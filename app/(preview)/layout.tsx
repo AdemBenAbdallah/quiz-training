@@ -1,19 +1,19 @@
-import "./globals.css";
 import { Metadata } from "next";
-import { Toaster } from "sonner";
 import { ThemeProvider } from "next-themes";
 import { Geist } from "next/font/google";
+import { Toaster } from "sonner";
+import "./globals.css";
 
 const geist = Geist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ai-sdk-preview-pdf-support.vercel.app"),
-  title: "PDF Support Preview",
-  description: "Experimental preview of PDF support with the AI SDK",
+  // metadataBase: new URL("https://ai-sdk-preview-pdf-support.vercel.app"),
+  title: "Quizzes Prepare for exams",
+  description: "Quizzes Prepare for exams"
 };
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {

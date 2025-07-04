@@ -1,22 +1,24 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { Question } from "@/lib/schemas";
+import { AnimatePresence, motion } from "framer-motion";
 import {
+  Check,
   ChevronLeft,
   ChevronRight,
-  Check,
-  X,
-  RefreshCw,
   FileText,
+  RefreshCw,
+  X
 } from "lucide-react";
-import QuizScore from "./score";
+import NextLink from "next/link";
+import React, { useEffect, useState } from "react";
 import QuizReview from "./quiz-overview";
-import { Question } from "@/lib/schemas";
+import QuizScore from "./score";
 
 type QuizProps = {
   questions: Question[];
-  clearPDF: () => void;
   title: string;
 };
 
@@ -45,10 +47,10 @@ const QuestionCard: React.FC<{
               showCorrectAnswer && answerLabels[index] === question.answer
                 ? "bg-green-600 hover:bg-green-700"
                 : showCorrectAnswer &&
-                    selectedAnswer === answerLabels[index] &&
-                    selectedAnswer !== question.answer
-                  ? "bg-red-600 hover:bg-red-700"
-                  : ""
+                  selectedAnswer === answerLabels[index] &&
+                  selectedAnswer !== question.answer
+                ? "bg-red-600 hover:bg-red-700"
+                : ""
             }`}
             onClick={() => onSelectAnswer(answerLabels[index])}
           >
@@ -72,14 +74,10 @@ const QuestionCard: React.FC<{
   );
 };
 
-export default function Quiz({
-  questions,
-  clearPDF,
-  title = "Quiz",
-}: QuizProps) {
+export default function Quiz({ questions, title = "Quiz" }: QuizProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<string[]>(
-    Array(questions.length).fill(null),
+    Array(questions.length).fill(null)
   );
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [score, setScore] = useState<number | null>(null);
@@ -201,10 +199,12 @@ export default function Quiz({
                         <RefreshCw className="mr-2 h-4 w-4" /> Reset Quiz
                       </Button>
                       <Button
-                        onClick={clearPDF}
+                        asChild
                         className="bg-primary hover:bg-primary/90 w-full"
                       >
-                        <FileText className="mr-2 h-4 w-4" /> Try Another PDF
+                        <NextLink href="/quizzes">
+                          <FileText className="mr-2 h-4 w-4" /> View All Quizzes
+                        </NextLink>
                       </Button>
                     </div>
                   </div>
