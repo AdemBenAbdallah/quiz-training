@@ -3,8 +3,13 @@ import { db } from "@/lib/db";
 import { options, questions } from "@/lib/db/schema";
 import { eq, inArray } from "drizzle-orm";
 
-export default async function QuizPage({ params }: { params: { id: string } }) {
-  const quizId = Number(params.id);
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
+
+export default async function QuizPage({ params }: PageProps) {
+  const { id } = await params;
+  const quizId = Number(id);
   const quiz = await db.query.quizzes.findFirst({
     where: (quiz, { eq }) => eq(quiz.id, quizId)
   });

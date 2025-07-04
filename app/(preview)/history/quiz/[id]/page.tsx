@@ -1,17 +1,23 @@
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
 
-export default async function QuizPage({ params }: { params: { id: string } }) {
-  const quizId = parseInt(params.id, 10);
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
+
+const QuizPage = async ({ params }: PageProps) => {
+  const { id } = await params;
+
+  const quizId = parseInt(id, 10);
   const quiz = await db.query.quizzes.findFirst({
     where: (quizzes, { eq }) => eq(quizzes.id, quizId),
     with: {
       questions: {
         with: {
-          options: true,
-        },
-      },
-    },
+          options: true
+        }
+      }
+    }
   });
 
   if (!quiz) {
@@ -36,4 +42,6 @@ export default async function QuizPage({ params }: { params: { id: string } }) {
       </div>
     </div>
   );
-}
+};
+
+export default QuizPage;
