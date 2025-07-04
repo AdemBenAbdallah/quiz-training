@@ -139,8 +139,8 @@ export default function QuizList() {
           <DialogHeader>
             <DialogTitle>Import Questions</DialogTitle>
             <DialogDescription>
-              Add more questions to "{selectedQuiz?.name}" by uploading another
-              PDF.
+              Add more questions to &quot;{selectedQuiz?.name}&quot; by
+              uploading another PDF.
             </DialogDescription>
           </DialogHeader>
           <form onSubmit={handleImportSubmit} className="space-y-4 py-4">

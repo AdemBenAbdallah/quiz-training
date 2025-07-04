@@ -86,7 +86,7 @@ const AddQuestionsDialog = ({ quizId, quizName }: AddQuestionsDialogProps) => {
         <DialogHeader>
           <DialogTitle>Import Questions</DialogTitle>
           <DialogDescription>
-            Add more questions to "{quizName}" by uploading a PDF.
+            Add more questions to &quot;{quizName}&quot; by uploading a PDF.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleImportSubmit} className="space-y-4 py-4">
