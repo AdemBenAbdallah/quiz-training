@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { Question } from "@/lib/schemas";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Check,
@@ -16,6 +15,14 @@ import NextLink from "next/link";
 import React, { useEffect, useState } from "react";
 import QuizReview from "./quiz-overview";
 import QuizScore from "./score";
+
+export type Question = {
+  question: string;
+  options: string[];
+  answer: "A" | "B" | "C" | "D";
+  questionNumber?: string;
+  answerComments?: string[];
+};
 
 type QuizProps = {
   questions: Question[];
@@ -33,6 +40,11 @@ const QuestionCard: React.FC<{
 
   return (
     <div className="space-y-6">
+      {question.questionNumber && (
+        <div className="text-sm font-semibold text-muted-foreground mb-2">
+          {question.questionNumber}
+        </div>
+      )}
       <h2 className="text-lg font-semibold leading-tight">
         {question.question}
       </h2>
@@ -70,6 +82,16 @@ const QuestionCard: React.FC<{
           </Button>
         ))}
       </div>
+      {showCorrectAnswer && question.answerComments && (
+        <div className="mt-4 p-4 bg-muted rounded text-sm">
+          <div className="font-semibold mb-2">Answer Comments:</div>
+          <ul className="list-disc pl-5 space-y-2">
+            {question.answerComments.map((comment, idx) => (
+              <li key={idx}>{comment}</li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
@@ -79,7 +101,9 @@ export default function Quiz({ questions, title = "Quiz" }: QuizProps) {
   const [answers, setAnswers] = useState<string[]>(
     Array(questions.length).fill(null)
   );
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState<boolean[]>(
+    Array(questions.length).fill(false)
+  );
   const [score, setScore] = useState<number | null>(null);
   const [progress, setProgress] = useState(0);
 
@@ -91,11 +115,17 @@ export default function Quiz({ questions, title = "Quiz" }: QuizProps) {
   }, [currentQuestionIndex, questions.length]);
 
   const handleSelectAnswer = (answer: string) => {
-    if (!isSubmitted) {
+    if (!isSubmitted[currentQuestionIndex]) {
       const newAnswers = [...answers];
       newAnswers[currentQuestionIndex] = answer;
       setAnswers(newAnswers);
     }
+  };
+
+  const handleSubmitCurrent = () => {
+    const updated = [...isSubmitted];
+    updated[currentQuestionIndex] = true;
+    setIsSubmitted(updated);
   };
 
   const handleNextQuestion = () => {
@@ -113,16 +143,18 @@ export default function Quiz({ questions, title = "Quiz" }: QuizProps) {
   };
 
   const handleSubmit = () => {
-    setIsSubmitted(true);
-    const correctAnswers = questions.reduce((acc, question, index) => {
-      return acc + (question.answer === answers[index] ? 1 : 0);
-    }, 0);
+    const correctAnswers = questions.reduce(
+      (acc: number, question: Question, index: number) => {
+        return acc + (question.answer === answers[index] ? 1 : 0);
+      },
+      0
+    );
     setScore(correctAnswers);
   };
 
   const handleReset = () => {
     setAnswers(Array(questions.length).fill(null));
-    setIsSubmitted(false);
+    setIsSubmitted(Array(questions.length).fill(false));
     setScore(null);
     setCurrentQuestionIndex(0);
     setProgress(0);
@@ -137,27 +169,44 @@ export default function Quiz({ questions, title = "Quiz" }: QuizProps) {
           {title}
         </h1>
         <div className="relative">
-          {!isSubmitted && <Progress value={progress} className="h-1 mb-8" />}
+          {!isSubmitted.every(Boolean) && (
+            <Progress value={progress} className="h-1 mb-8" />
+          )}
           <div className="min-h-[400px]">
             {" "}
             {/* Prevent layout shift */}
             <AnimatePresence mode="wait">
               <motion.div
-                key={isSubmitted ? "results" : currentQuestionIndex}
+                key={
+                  isSubmitted[currentQuestionIndex]
+                    ? `results-${currentQuestionIndex}`
+                    : currentQuestionIndex
+                }
                 initial={{ opacity: 1 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}
               >
-                {!isSubmitted ? (
+                {!isSubmitted.every(Boolean) ? (
                   <div className="space-y-8">
                     <QuestionCard
                       question={currentQuestion}
                       selectedAnswer={answers[currentQuestionIndex]}
                       onSelectAnswer={handleSelectAnswer}
-                      isSubmitted={isSubmitted}
-                      showCorrectAnswer={false}
+                      isSubmitted={isSubmitted[currentQuestionIndex]}
+                      showCorrectAnswer={isSubmitted[currentQuestionIndex]}
                     />
+                    {!isSubmitted[currentQuestionIndex] && (
+                      <div className="flex justify-center pt-4">
+                        <Button
+                          onClick={handleSubmitCurrent}
+                          disabled={answers[currentQuestionIndex] === null}
+                          className="w-full max-w-xs"
+                        >
+                          Submit
+                        </Button>
+                      </div>
+                    )}
                     <div className="flex justify-between items-center pt-4">
                       <Button
                         onClick={handlePreviousQuestion}
@@ -171,11 +220,11 @@ export default function Quiz({ questions, title = "Quiz" }: QuizProps) {
                       </span>
                       <Button
                         onClick={handleNextQuestion}
-                        disabled={answers[currentQuestionIndex] === null}
+                        disabled={!isSubmitted[currentQuestionIndex]}
                         variant="ghost"
                       >
                         {currentQuestionIndex === questions.length - 1
-                          ? "Submit"
+                          ? "Finish"
                           : "Next"}{" "}
                         <ChevronRight className="ml-2 h-4 w-4" />
                       </Button>

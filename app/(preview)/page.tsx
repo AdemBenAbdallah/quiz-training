@@ -1,45 +1,29 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle
-} from "@/components/ui/card";
-import NextLink from "next/link";
+import Quiz from "@/components/quiz";
+import data from "@/data.json";
+
+const extractCorrectAnswer = (answersArr: string[]): "A" | "B" | "C" | "D" => {
+  if (!answersArr || !answersArr.length) return "A";
+  const match = answersArr[0].match(/Selected Answer: ([A-D])/);
+  return (match ? match[1] : "A") as "A" | "B" | "C" | "D";
+};
+
+const extractQuestionNumber = (questionNumberStr: string): string => {
+  const match = questionNumberStr.match(/Question #:\s*(\d+)/);
+  return match ? `Question: ${match[1]}` : "";
+};
 
 export default function HomePage() {
-  return (
-    <div className="min-h-[100dvh] w-full flex justify-center">
-      <Card className="w-full max-w-md h-full border-0 sm:border sm:h-fit mt-12">
-        <CardHeader className="text-center space-y-6">
-          <div className="space-y-2">
-            <CardTitle className="text-2xl font-bold">
-              PDF Quiz Generator
-            </CardTitle>
-            <CardDescription className="text-base">
-              Create and take quizzes from your PDF files.
-            </CardDescription>
-          </div>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-4">
-          <NextLink href="/create" passHref>
-            <Button className="w-full">Create a New Quiz</Button>
-          </NextLink>
-          <NextLink href="/quizzes" passHref>
-            <Button variant="outline" className="w-full">
-              View All Quizzes
-            </Button>
-          </NextLink>
-          <NextLink href="/history" passHref>
-            <Button variant="outline" className="w-full">
-              History
-            </Button>
-          </NextLink>
-        </CardContent>
-      </Card>
-    </div>
-  );
+  const quizQuestions = data.map((q: any) => ({
+    questionNumber: extractQuestionNumber(q.question_number),
+    question: q.question,
+    options: q.choices.map((choice: string) =>
+      choice.replace(/^([A-D]\.\s)/, "")
+    ),
+    answer: extractCorrectAnswer(q.answers),
+    answerComments: q.answers
+  }));
+
+  return <Quiz title="Quiz AWS DVA-C02" questions={quizQuestions} />;
 }
