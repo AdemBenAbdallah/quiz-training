@@ -220,7 +220,7 @@ export default function Quiz({ questions, title = "Quiz" }: QuizProps) {
                       </span>
                       <Button
                         onClick={handleNextQuestion}
-                        disabled={!isSubmitted[currentQuestionIndex]}
+                        disabled={answers[currentQuestionIndex] === null}
                         variant="ghost"
                       >
                         {currentQuestionIndex === questions.length - 1

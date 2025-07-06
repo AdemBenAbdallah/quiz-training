@@ -14,13 +14,17 @@ const extractQuestionNumber = (questionNumberStr: string): string => {
   return match ? `Question: ${match[1]}` : "";
 };
 
+const cleanChoice = (choice: string) =>
+  choice
+    .replace(/^([A-D]\.\s)/, "")
+    .replace(/\.?(Most Voted|Most\sVoted)$/, "")
+    .trim();
+
 export default function HomePage() {
   const quizQuestions = data.map((q: any) => ({
     questionNumber: extractQuestionNumber(q.question_number),
     question: q.question,
-    options: q.choices.map((choice: string) =>
-      choice.replace(/^([A-D]\.\s)/, "")
-    ),
+    options: q.choices.map(cleanChoice),
     answer: extractCorrectAnswer(q.answers),
     answerComments: q.answers
   }));
