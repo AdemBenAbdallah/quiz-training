@@ -100,7 +100,7 @@ const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
           <BadgeInfo className="w-6 h-6 text-primary" />
         </button>
       </DialogTrigger>
-      <DialogContent className="min-w-fit overflow-y-auto">
+      <DialogContent className="min-w-fit overflow-y-auto max-h-full">
         <DialogHeader>
           <DialogTitle>Question Explanation</DialogTitle>
           <DialogDescription>
