@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import NextLink from "next/link";
 import React, { useEffect, useState } from "react";
+import QuestionExplainDialog from "./QuestionExplainDialog";
 import QuizReview from "./quiz-overview";
 import QuizScore from "./score";
 
@@ -165,9 +166,12 @@ export default function Quiz({ questions, title = "Quiz" }: QuizProps) {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <main className="container mx-auto px-4 py-12 max-w-4xl">
-        <h1 className="text-3xl font-bold mb-8 text-center text-foreground">
-          {title}
-        </h1>
+        <div className="flex items-center gap-3 mb-8">
+          <h1 className="text-3xl font-bold text-center text-foreground">
+            {title}
+          </h1>
+          <QuestionExplainDialog question={currentQuestion} />
+        </div>
         <div className="relative">
           {!isSubmitted.every(Boolean) && (
             <Progress value={progress} className="h-1 mb-8" />
