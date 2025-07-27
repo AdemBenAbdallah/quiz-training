@@ -94,7 +94,7 @@ export default function CreateQuizPage() {
     : 0;
 
   if (questions.length === questionNumber) {
-    return <Quiz title={quizName} questions={questions} />;
+    return <Quiz idx={1} title={quizName} questions={questions} />;
   }
 
   if (isCreating) {
