@@ -63,42 +63,6 @@ export default function HomePage() {
               )}
             </div>
           );
-
-          //   return (
-          //     <div key={idx} className="relative group" onClick={() => {}}>
-          //       <NextLink
-          //         href={`/quiz/${idx + 1}`}
-          //         className={`block rounded-2xl border border-muted bg-gradient-to-br from-background to-muted/40 shadow-md transition-all duration-200 p-8 text-center scale-100
-          //   ${
-          //     !isLocked
-          //       ? "hover:shadow-xl hover:border-primary hover:scale-105"
-          //       : "cursor-not-allowed pointer-events-none"
-          //   }
-          // `}
-          //         style={{ minHeight: 200 }}
-          //       >
-          //         <div className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors duration-200">
-          //           {idx !== quizParts.length - 1
-          //             ? `Quiz Part ${idx + 1}`
-          //             : "Final Part of the Quiz"}
-          //         </div>
-          //         <div className="text-muted-foreground text-base mb-6 tracking-wide">
-          //           Questions {item.start + 1} - {item.end + 1}
-          //         </div>
-          //         <div className="flex justify-center">
-          //           <span className="px-6 py-2 text-black rounded-full bg-primary font-semibold shadow group-hover:bg-primary/90 group-hover:shadow-lg transition-all duration-200">
-          //             Start
-          //           </span>
-          //         </div>
-          //       </NextLink>
-
-          //       {isLocked && (
-          //         <div className="absolute inset-0 rounded-2xl bg-black/50 backdrop-blur-[2px] flex items-center justify-center z-10">
-          //           <Lock className="text-white w-10 h-10 opacity-90" />
-          //         </div>
-          //       )}
-          //     </div>
-          //   );
         })}
       </div>
     </div>
