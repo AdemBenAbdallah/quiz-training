@@ -13,6 +13,16 @@ const config: Config = {
   			'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
   			'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
   		},
+        animation: {
+            "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
+        },
+        keyframes: {
+            "border-beam": {
+                "100%": {
+                    "offset-distance": "100%",
+                },
+            },
+        },
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
