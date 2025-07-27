@@ -1,40 +1,104 @@
 "use client";
 
-import data from "@/data.json";
+import useLocalStorage from "@/hook/useLocalStorage";
+import { Lock } from "lucide-react";
 import NextLink from "next/link";
-
-const QUESTIONS_PER_PART = 10;
+import { QuizPart, QuizParts } from "./parts";
 
 export default function HomePage() {
-  const numParts = Math.ceil(data.length / QUESTIONS_PER_PART);
+  const [quizParts, setQuizParts] = useLocalStorage<QuizPart[]>(
+    "quizPart",
+    QuizParts
+  );
+  if (!quizParts) return null;
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-background py-12 px-6 md:px-0">
       <h1 className="text-3xl font-bold mb-8 text-center">Quiz AWS DVA-C02</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-5xl">
-        {Array.from({ length: numParts }).map((_, idx) => {
-          const start = idx * QUESTIONS_PER_PART + 1;
-          const end = Math.min((idx + 1) * QUESTIONS_PER_PART, data.length);
+        {quizParts.map((item, idx) => {
+          const isLocked = !item.passed;
           return (
-            <NextLink
-              key={idx}
-              href={`/quiz/${idx + 1}`}
-              className="block rounded-2xl border border-muted bg-gradient-to-br from-background to-muted/40 shadow-md hover:shadow-xl hover:border-primary transition-all duration-200 p-8 text-center group scale-100 hover:scale-105"
-              style={{ minHeight: 200 }}
-            >
-              <div className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors duration-200">
-                Quiz Part {idx + 1}
-              </div>
-              <div className="text-muted-foreground text-base mb-6 tracking-wide">
-                Questions {start} - {end}
-              </div>
-              <div className="flex justify-center">
-                <span className="px-6 py-2 text-black rounded-full bg-primary font-semibold shadow group-hover:bg-primary/90 group-hover:shadow-lg transition-all duration-200 cursor-pointer">
-                  Start
-                </span>
-              </div>
-            </NextLink>
+            <div key={idx} className="relative group">
+              <NextLink
+                href={!isLocked ? `/quiz/${idx + 1}` : "#"}
+                className={`block relative rounded-2xl border bg-gradient-to-br from-background to-muted/40 shadow-md p-8 text-center transition-all duration-300 overflow-hidden
+      ${
+        !isLocked
+          ? "hover:scale-[1.02] hover:shadow-xl hover:border-primary"
+          : "cursor-not-allowed pointer-events-none opacity-70 locked-card"
+      }
+    `}
+                style={{ minHeight: 200 }}
+              >
+                <div className="relative z-10">
+                  <div className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors duration-200">
+                    {idx !== quizParts.length - 1
+                      ? `Quiz Part ${idx + 1}`
+                      : "Final Part of the Quiz"}
+                  </div>
+                  <div className="text-muted-foreground text-base mb-6 tracking-wide">
+                    Questions {item.start + 1} - {item.end + 1}
+                  </div>
+                  <div className="flex justify-center">
+                    <span
+                      className={`px-6 py-2 rounded-full font-semibold shadow transition-all duration-300
+            ${
+              !isLocked
+                ? "bg-primary text-black hover:bg-primary/90 hover:shadow-lg"
+                : "bg-muted text-muted-foreground"
+            }
+          `}
+                    >
+                      {isLocked ? "Locked" : "Start"}
+                    </span>
+                  </div>
+                </div>
+              </NextLink>
+
+              {isLocked && (
+                <div className="absolute inset-0 rounded-2xl bg-black/40 backdrop-blur-[2px] flex items-center justify-center z-20">
+                  <Lock className="text-white w-10 h-10 opacity-90" />
+                </div>
+              )}
+            </div>
           );
+
+          //   return (
+          //     <div key={idx} className="relative group" onClick={() => {}}>
+          //       <NextLink
+          //         href={`/quiz/${idx + 1}`}
+          //         className={`block rounded-2xl border border-muted bg-gradient-to-br from-background to-muted/40 shadow-md transition-all duration-200 p-8 text-center scale-100
+          //   ${
+          //     !isLocked
+          //       ? "hover:shadow-xl hover:border-primary hover:scale-105"
+          //       : "cursor-not-allowed pointer-events-none"
+          //   }
+          // `}
+          //         style={{ minHeight: 200 }}
+          //       >
+          //         <div className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors duration-200">
+          //           {idx !== quizParts.length - 1
+          //             ? `Quiz Part ${idx + 1}`
+          //             : "Final Part of the Quiz"}
+          //         </div>
+          //         <div className="text-muted-foreground text-base mb-6 tracking-wide">
+          //           Questions {item.start + 1} - {item.end + 1}
+          //         </div>
+          //         <div className="flex justify-center">
+          //           <span className="px-6 py-2 text-black rounded-full bg-primary font-semibold shadow group-hover:bg-primary/90 group-hover:shadow-lg transition-all duration-200">
+          //             Start
+          //           </span>
+          //         </div>
+          //       </NextLink>
+
+          //       {isLocked && (
+          //         <div className="absolute inset-0 rounded-2xl bg-black/50 backdrop-blur-[2px] flex items-center justify-center z-10">
+          //           <Lock className="text-white w-10 h-10 opacity-90" />
+          //         </div>
+          //       )}
+          //     </div>
+          //   );
         })}
       </div>
     </div>

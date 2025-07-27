@@ -40,7 +40,7 @@ export default async function QuizPage({
 
   return (
     <div className="flex flex-col gap-4">
-      <Quiz title={`Quiz Part ${part}`} questions={quizQuestions} />
+      <Quiz idx={part} title={`Quiz Part ${part}`} questions={quizQuestions} />
     </div>
   );
 }

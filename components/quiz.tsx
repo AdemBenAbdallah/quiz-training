@@ -1,7 +1,9 @@
 "use client";
 
+import { QuizPart, QuizParts } from "@/app/(preview)/parts";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import useLocalStorage from "@/hook/useLocalStorage";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Check,
@@ -26,6 +28,7 @@ export type Question = {
 };
 
 type QuizProps = {
+  idx: number;
   questions: Question[];
   title: string;
 };
@@ -97,7 +100,7 @@ const QuestionCard: React.FC<{
   );
 };
 
-export default function Quiz({ questions, title = "Quiz" }: QuizProps) {
+export default function Quiz({ idx, questions, title = "Quiz" }: QuizProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<string[]>(
     Array(questions.length).fill(null)
@@ -151,6 +154,10 @@ export default function Quiz({ questions, title = "Quiz" }: QuizProps) {
       0
     );
     setScore(correctAnswers);
+    setIsSubmitted(Array(questions.length).fill(true));
+    if (correctAnswers === questions.length) {
+      handlePassNextPart();
+    }
   };
 
   const handleReset = () => {
@@ -162,6 +169,30 @@ export default function Quiz({ questions, title = "Quiz" }: QuizProps) {
   };
 
   const currentQuestion = questions[currentQuestionIndex];
+
+  const [quizParts, setQuizParts] = useLocalStorage<QuizPart[]>(
+    "quizPart",
+    QuizParts
+  );
+  if (!quizParts) return null;
+
+  // check if it open
+  const isAllPassed = quizParts.find((part) => part.id === +idx)?.passed;
+  if (!isAllPassed) return null;
+
+  const handlePassNextPart = () => {
+    setQuizParts(() => {
+      return quizParts.map((part, index) => {
+        if (index === +idx) {
+          return {
+            ...part,
+            passed: true
+          };
+        }
+        return part;
+      });
+    });
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -255,8 +286,8 @@ export default function Quiz({ questions, title = "Quiz" }: QuizProps) {
                         asChild
                         className="bg-primary hover:bg-primary/90 w-full"
                       >
-                        <NextLink href="/quizzes">
-                          <FileText className="mr-2 h-4 w-4" /> View All Quizzes
+                        <NextLink href="/">
+                          <FileText className="mr-2 h-4 w-4" /> View All Parts
                         </NextLink>
                       </Button>
                     </div>
