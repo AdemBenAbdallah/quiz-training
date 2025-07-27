@@ -9,9 +9,9 @@ export default function HomePage() {
   const numParts = Math.ceil(data.length / QUESTIONS_PER_PART);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-background py-12">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-background py-12 px-6 md:px-0">
       <h1 className="text-3xl font-bold mb-8 text-center">Quiz AWS DVA-C02</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-3xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-5xl">
         {Array.from({ length: numParts }).map((_, idx) => {
           const start = idx * QUESTIONS_PER_PART + 1;
           const end = Math.min((idx + 1) * QUESTIONS_PER_PART, data.length);
@@ -29,7 +29,7 @@ export default function HomePage() {
                 Questions {start} - {end}
               </div>
               <div className="flex justify-center">
-                <span className="px-6 py-2 rounded-full bg-primary text-white font-semibold shadow group-hover:bg-primary/90 group-hover:shadow-lg transition-all duration-200 cursor-pointer">
+                <span className="px-6 py-2 text-black rounded-full bg-primary font-semibold shadow group-hover:bg-primary/90 group-hover:shadow-lg transition-all duration-200 cursor-pointer">
                   Start
                 </span>
               </div>
