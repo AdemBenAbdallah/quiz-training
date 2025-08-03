@@ -1,5 +1,6 @@
-const { createClient } = require("redis");
-require("dotenv").config();
+import { createClient } from "redis";
+import dotenv from "dotenv";
+dotenv.config();
 
 async function testRedisConnection() {
   // Create Redis client with configuration

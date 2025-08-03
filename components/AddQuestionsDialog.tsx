@@ -6,7 +6,7 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import { questionsSchema } from "@/lib/schemas";
 import { experimental_useObject } from "ai/react";
@@ -35,13 +35,13 @@ const AddQuestionsDialog = ({ quizId, quizName }: AddQuestionsDialogProps) => {
       toast.success("Successfully added new questions to the quiz!");
       setIsDialogOpen(false);
       setFiles([]);
-    }
+    },
   });
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = Array.from(e.target.files || []);
     const validFiles = selectedFiles.filter(
-      (file) => file.type === "application/pdf" && file.size <= 5 * 1024 * 1024
+      (file) => file.type === "application/pdf" && file.size <= 5 * 1024 * 1024,
     );
     if (validFiles.length !== selectedFiles.length) {
       toast.error("Only PDF files under 5MB are allowed.");
@@ -69,8 +69,8 @@ const AddQuestionsDialog = ({ quizId, quizName }: AddQuestionsDialogProps) => {
       files.map(async (file) => ({
         name: file.name,
         type: file.type,
-        data: await encodeFileAsBase64(file)
-      }))
+        data: await encodeFileAsBase64(file),
+      })),
     );
     submit({ files: encodedFiles, quizId });
   };
