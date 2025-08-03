@@ -6,9 +6,9 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
 } from "@/components/ui/dialog";
-import { BadgeInfo } from "lucide-react";
+import { BadgeInfo, Loader2 } from "lucide-react";
 import React, { useState } from "react";
 import type { Question } from "./quiz";
 
@@ -25,42 +25,69 @@ type Props = {
   question: Question;
 };
 
+// Loading states to track different phases
+type LoadingState = "initial" | "loading" | "cached" | "generated" | "error";
+
 // Skeleton loader for explanation modal
-const QuestionExplainSkeleton: React.FC = () => (
-  <div className="space-y-4 animate-pulse" aria-busy="true">
-    <div className="h-6 w-1/2 bg-muted rounded" />
-    <div className="h-4 w-1/3 bg-muted rounded" />
+const QuestionExplainSkeleton: React.FC<{
+  message: string;
+  loadingState: LoadingState;
+}> = ({ message, loadingState }) => (
+  <div className="space-y-4" aria-busy="true">
+    <div className="flex items-center gap-2 mb-4">
+      {loadingState === "loading" && (
+        <Loader2 className="h-4 w-4 animate-spin text-primary" />
+      )}
+      <div
+        className={`text-sm ${
+          loadingState === "cached"
+            ? "text-green-600"
+            : loadingState === "generated"
+              ? "text-blue-600"
+              : "text-muted-foreground"
+        }`}
+      >
+        {message}
+      </div>
+    </div>
+    <div className="h-6 w-1/2 bg-muted rounded animate-pulse" />
+    <div className="h-4 w-1/3 bg-muted rounded animate-pulse" />
     <div>
-      <div className="h-4 w-24 bg-muted rounded mb-2" />
+      <div className="h-4 w-24 bg-muted rounded mb-2 animate-pulse" />
       <ul className="space-y-2">
         {[...Array(4)].map((_, i) => (
           <li
             key={i}
             className="p-2 rounded border bg-muted/60 flex flex-col gap-2"
           >
-            <div className="h-4 w-1/6 bg-muted rounded" />
-            <div className="h-4 w-2/3 bg-muted rounded" />
-            <div className="h-3 w-1/2 bg-muted/80 rounded" />
+            <div className="h-4 w-1/6 bg-muted rounded animate-pulse" />
+            <div className="h-4 w-2/3 bg-muted rounded animate-pulse" />
+            <div className="h-3 w-1/2 bg-muted/80 rounded animate-pulse" />
           </li>
         ))}
       </ul>
     </div>
-    <div className="h-4 w-1/4 bg-muted rounded mt-4" />
-    <div className="h-3 w-1/2 bg-muted/80 rounded" />
+    <div className="h-4 w-1/4 bg-muted rounded mt-4 animate-pulse" />
+    <div className="h-3 w-1/2 bg-muted/80 rounded animate-pulse" />
   </div>
 );
 
 const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
   const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loadingState, setLoadingState] = useState<LoadingState>("initial");
+  const [loadingMessage, setLoadingMessage] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<ExplainData | null>(null);
 
   const handleOpenExplain = async () => {
     setOpen(true);
-    setLoading(true);
+    setLoadingState("loading");
+    setLoadingMessage("Fetching explanation...");
     setError(null);
     setData(null);
+
+    const startTime = Date.now();
+
     try {
       const res = await fetch("/api/explain-question", {
         method: "POST",
@@ -68,19 +95,35 @@ const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
         body: JSON.stringify({
           question: question.question,
           options: question.options,
-          answer: question.answer
-        })
+          answer: question.answer,
+        }),
       });
+
       if (!res.ok) {
         const err = await res.json();
         throw new Error(err.error || "Failed to get explanation");
       }
+
       const json = await res.json();
       setData(json);
+
+      // If response was fast (< 1s), it was likely cached
+      const responseTime = Date.now() - startTime;
+      if (responseTime < 1000) {
+        setLoadingState("cached");
+        setLoadingMessage("✨ Retrieved from cache");
+      } else {
+        setLoadingState("generated");
+        setLoadingMessage("🤖 Generated new explanation");
+      }
+
+      // Show loading state briefly before showing content
+      await new Promise((resolve) => setTimeout(resolve, 800));
+      setLoadingState("initial");
     } catch (err: any) {
       setError(err.message || "Failed to get explanation");
-    } finally {
-      setLoading(false);
+      setLoadingState("error");
+      setLoadingMessage("❌ Error fetching explanation");
     }
   };
 
@@ -107,9 +150,22 @@ const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
             Beginner-friendly explanation for this question and its choices.
           </DialogDescription>
         </DialogHeader>
-        {loading && <QuestionExplainSkeleton />}
-        {error && <div className="text-red-600 py-4">{error}</div>}
-        {data && (
+
+        {loadingState !== "initial" && (
+          <QuestionExplainSkeleton
+            message={loadingMessage}
+            loadingState={loadingState}
+          />
+        )}
+
+        {error && (
+          <div className="flex items-center gap-2 text-red-600 py-4">
+            <span>❌</span>
+            {error}
+          </div>
+        )}
+
+        {loadingState === "initial" && data && (
           <div className="space-y-4">
             <div className="font-semibold">{data.explanation}</div>
             <div>
@@ -157,6 +213,7 @@ const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
             )}
           </div>
         )}
+
         <DialogClose asChild>
           <Button variant="outline" className="mt-6 w-full">
             Close

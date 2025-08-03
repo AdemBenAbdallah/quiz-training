@@ -11,7 +11,7 @@ import {
   ChevronRight,
   FileText,
   RefreshCw,
-  X
+  X,
 } from "lucide-react";
 import NextLink from "next/link";
 import React, { useEffect, useState } from "react";
@@ -63,10 +63,10 @@ const QuestionCard: React.FC<{
               showCorrectAnswer && answerLabels[index] === question.answer
                 ? "bg-green-600 hover:bg-green-700"
                 : showCorrectAnswer &&
-                  selectedAnswer === answerLabels[index] &&
-                  selectedAnswer !== question.answer
-                ? "bg-red-600 hover:bg-red-700"
-                : ""
+                    selectedAnswer === answerLabels[index] &&
+                    selectedAnswer !== question.answer
+                  ? "bg-red-600 hover:bg-red-700"
+                  : ""
             }`}
             onClick={() => onSelectAnswer(answerLabels[index])}
           >
@@ -103,10 +103,10 @@ const QuestionCard: React.FC<{
 export default function Quiz({ idx, questions, title = "Quiz" }: QuizProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<string[]>(
-    Array(questions.length).fill(null)
+    Array(questions.length).fill(null),
   );
   const [isSubmitted, setIsSubmitted] = useState<boolean[]>(
-    Array(questions.length).fill(false)
+    Array(questions.length).fill(false),
   );
   const [score, setScore] = useState<number | null>(null);
   const [progress, setProgress] = useState(0);
@@ -151,7 +151,7 @@ export default function Quiz({ idx, questions, title = "Quiz" }: QuizProps) {
       (acc: number, question: Question, index: number) => {
         return acc + (question.answer === answers[index] ? 1 : 0);
       },
-      0
+      0,
     );
     setScore(correctAnswers);
     setIsSubmitted(Array(questions.length).fill(true));
@@ -172,7 +172,7 @@ export default function Quiz({ idx, questions, title = "Quiz" }: QuizProps) {
 
   const [quizParts, setQuizParts] = useLocalStorage<QuizPart[]>(
     "quizPart",
-    QuizParts
+    QuizParts,
   );
   if (!quizParts) return null;
 
@@ -186,7 +186,7 @@ export default function Quiz({ idx, questions, title = "Quiz" }: QuizProps) {
         if (index === +idx) {
           return {
             ...part,
-            passed: true
+            passed: true,
           };
         }
         return part;
