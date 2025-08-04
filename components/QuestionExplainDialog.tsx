@@ -9,7 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { BadgeInfo, Loader2 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import type { Question } from "./quiz";
 
 // Types for the explanation data
@@ -79,8 +79,13 @@ const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<ExplainData | null>(null);
 
-  const handleOpenExplain = async () => {
-    setOpen(true);
+  useEffect(() => {
+    if (open && !data && loadingState === "initial") {
+      fetchExplanation();
+    }
+  }, [open]);
+
+  const fetchExplanation = async () => {
     setLoadingState("loading");
     setLoadingMessage("Fetching explanation...");
     setError(null);
@@ -135,9 +140,9 @@ const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
           aria-label="Explain this question"
           tabIndex={0}
           className="ml-2 p-2 rounded-full hover:bg-accent focus:outline-none focus:ring-2 focus:ring-ring"
-          onClick={handleOpenExplain}
+          onClick={() => setOpen(true)}
           onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") handleOpenExplain();
+            if (e.key === "Enter" || e.key === " ") setOpen(true);
           }}
         >
           <BadgeInfo className="w-6 h-6 text-primary" />
