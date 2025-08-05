@@ -808,7 +808,7 @@
       "C. Use server-side encryption with AWS KMS managed keys (SSE-KMS) and download the documents using HTTPS.",
       "D. Modify the S3 bucket policy to only allow specific users to download the documents. Revert the change after 15 minutes."
     ],
-    "answers": ["D"]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/154337-exam-aws-certified-developer-associate-dva-c02-topic-1/",
