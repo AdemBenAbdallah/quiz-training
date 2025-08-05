@@ -9,11 +9,7 @@
       "C. Use pagination to reduce the size of the items that the queries return.",
       "D. Use the Scan operation to retrieve the data."
     ],
-    "answers": [
-      "vbloise 2 months ago Selected Answer: B B. Revise the primary key to use more unique identifiers.\nExplanation:\n\nThe ProvisionedThroughputExceededException occurs when too many requests are made to a single partition key, which causes hot partitioning in DynamoDB. In this case, since the partition key is \"country\", a spike in players from a single country will overload that partition.\n\nTo resolve this, the developer should revise the primary key to distribute read/write traffic more evenly—for example, by including a more granular identifier like a user ID along with the country (e.g., a composite key or a more randomized key structure).\nWhy not the others:\n\n    A. Strongly consistent reads actually require more throughput, worsening the issue.\n\n    C. Pagination helps with large result sets but doesn't resolve partition throughput limits.\n\n    D. Scan operations are less efficient and consume more throughput than queries. upvoted 1 times ...",
-      "Dadasar 4 months ago Selected Answer: B Problema de Hot partition, resolve adicionando uma chave de partição mais aleatória para o DynamoDb executar consultas mais eficientes. upvoted 1 times ...",
-      "e886835 4 months, 4 weeks ago Selected Answer: B when the request rate exceeds the provisioned throughput for a specific partition key in DynamoDB. This means that the partition key (country in this case) has become a hot spot, as many players from the same country are causing an overload of requests to that partition.\n\nTo resolve this issue, the developer should revise the primary key to distribute the traffic more evenly upvoted 3 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/154534-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -25,11 +21,7 @@
       "C. Enable CloudWatch Lambda Insights on the function. View the latency graph that CloudWatch Lambda Insights provides.",
       "D. Enable AWS X-Ray on the Lambda function. Select Amazon S3 in the latency graph to view the latency histogram."
     ],
-    "answers": [
-      "thalasi 1 month, 2 weeks ago Selected Answer: A Option A (AWS X-Ray trace map) is the most effective method! It enables precise measurement of latency between Lambda and S3, helping pinpoint performance issues efficiently upvoted 1 times ...",
-      "LingZ 4 months, 1 week ago Selected Answer: A AWS X-Ray provides distributed tracing that helps you visualize the service map of your application. By enabling X-Ray on your Lambda function, you can trace its calls to external services—in this case, Amazon S3. In the generated trace map, clicking the connection (or line) between the Lambda function and S3 shows you detailed timing information, including the latency for the S3 calls. This makes it possible to pinpoint where delays are occurring. upvoted 2 times ...",
-      "bp07 5 months, 3 weeks ago Selected Answer: A Answer should be A. As want to trace latency between a lambda and S3bucket , not an average of latency of events between them. upvoted 1 times ..."
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/157446-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -41,10 +33,7 @@
       "C. kms:*",
       "D. secretsmanager:*"
     ],
-    "answers": [
-      "Dadasar 4 months ago Selected Answer: A Padrão de menor privilégios. O acesso é a chave KMS e não a secret upvoted 1 times ...",
-      "0bdf3af 4 months ago Selected Answer: A least priviliges upvoted 1 times ..."
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/157447-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -56,10 +45,7 @@
       "C. In-place deployment",
       "D. Linear deployment"
     ],
-    "answers": [
-      "vbloise 2 months ago Selected Answer: B The correct answer is:\n\nB. Canary deployment\nExplanation:\n\nA canary deployment allows the company to release a new feature to a small subset of users first, gather feedback, and validate that the feature works correctly. If successful, the company can then roll out the new version to all users.\n\nThis fits the scenario described:\n\n    Testing with a small group of users ✔\n\n    Keeping the current version deployed for most users ✔\n\n    Deploying to all users at once after validation ✔ upvoted 1 times ...",
-      "0bdf3af 4 months ago Selected Answer: B Canary deployment upvoted 1 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/157448-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -71,10 +57,7 @@
       "C. Enable S3 Object Lock. Configure an S3 Object Lock policy to retain one newer noncurrent version of the objects.",
       "D. Suspend S3 Versioning. Modify the application code to check the number of object versions before updating the objects."
     ],
-    "answers": [
-      "vbloise 2 months ago Selected Answer: B Correct answer: B. Configure an S3 Lifecycle rule to retain one newer noncurrent version of the objects.\nExplanation:\n\n    S3 Versioning keeps all versions of an object, including deleted versions, which can lead to storage cost growth.\n\n    To retain only the current and the immediately previous version of each object, use an S3 Lifecycle rule.\n\n    The lifecycle rule should be configured to delete noncurrent versions after 1 day and retain only 1 noncurrent version.\n\nWhy the other options are incorrect:\n\n    A. S3 bucket policies control access, not version retention.\n\n    C. S3 Object Lock is used for WORM (Write Once Read Many) compliance and legal holds, not for version count control.\n\n    D. Suspending versioning stops new versions from being created, but does not help manage or limit existing versions. upvoted 1 times ...",
-      "0bdf3af 4 months ago Selected Answer: B Lifecycle rule to remove old versions upvoted 1 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156015-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -86,9 +69,7 @@
       "C. Define a DynamoDB API request for the Scan action with the following parameters:",
       "D. Define a DynamoDB API request for the Query action with the following parameters:Most Voted"
     ],
-    "answers": [
-      "e886835 4 months, 4 weeks ago Selected Answer: D The Query action is the most efficient for retrieving items from DynamoDB when you want to retrieve data based on a partition key or both a partition key and sort key upvoted 2 times ..."
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/157510-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -100,13 +81,7 @@
       "C. Configure the CloudFront distribution to use WebSockets by forwarding all viewer request headers to the origin. Create an asymmetric AWS KMS key. Configure the CloudFront distribution to use field-level encryption. Use the AWS KMS key.",
       "D. Configure the cache behavior in the CloudFront distribution to require HTTPS for communication between viewers and CloudFront. Configure GoudFront to require users to access the files by using either signed URLs or signed cookies."
     ],
-    "answers": [
-      "AlmeroSenior 1 month, 1 week ago Selected Answer: A Answer is A  \n\nC not correct : \nCloudFront does support field-level encryption, but it does not use AWS KMS keys directly for this. Instead, it uses its own mechanism with public keys you upload. upvoted 1 times ...",
-      "thalasi 1 month, 2 weeks ago Selected Answer: C Field-level encryption allows specific fields in user requests to be encrypted while leaving other fields readable.\n\n Encryption is performed at the edge (CloudFront), ensuring data is protected before reaching the application backend. upvoted 1 times AlmeroSenior 1 month, 1 week ago yeah , but not intergrated in KMS upvoted 1 times ... ...",
-      "sungtae 2 months, 3 weeks ago Selected Answer: A 정답은 A다 upvoted 1 times ...",
-      "devOpsihc 3 months, 1 week ago Selected Answer: A 정답은 a입니다. upvoted 1 times ...",
-      "0bdf3af 4 months ago Selected Answer: D secure transaction - ssl upvoted 1 times ..."
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/157490-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -118,11 +93,7 @@
       "C. Store the credentials as a SecureString parameter in AWS Systems Manager Parameter Store. Add a trigger to pass the credentials to the Lambda functions when the Lambda functions run.",
       "D. Store the credentials as a SecureString parameter in AWS Systems Manager Parameter Store. Add a reference to the parameter in an environment variable in the Lambda functions."
     ],
-    "answers": [
-      "thalasi 1 month, 2 weeks ago Selected Answer: A Using Parameter Store with Environment variables do not auto-refresh, requiring redeployment or reloading functions for updated credentials. \n\n Secrets Manager is explicitly designed for credential management, while Parameter Store is more general-purpose upvoted 1 times ...",
-      "0bdf3af 4 months ago Selected Answer: D D\nWe can store the credentials in SSM Parameter Store with encryption.\nThen we can add a environment variable \"db_password\" in lambda with proper credential name from SSM Parameter Store\nIn the code in Lambda we can import ssm and call ssm.get_parameters(os.environ(\"db_password\")) upvoted 1 times ...",
-      "Dadasar 4 months ago Selected Answer: A Secret manager é para essa finalidade upvoted 1 times ..."
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/154460-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -134,14 +105,7 @@
       "C. Server-side encryption with AWS KMS keys (SSE-KMS)Most Voted",
       "D. Dual-layer server-side encryption with AWS KMS keys (DSSE-KMS)"
     ],
-    "answers": [
-      "acea5d5 2 weeks, 2 days ago Selected Answer: A Because the documents can't be accessible to any third party (include AWS, ... ) upvoted 1 times ...",
-      "thalasi 1 month, 2 weeks ago Selected Answer: C enabling server-side encryption with AWS KMS, restricting access through IAM policies, and leveraging features like CloudFront for content delivery and API Gateway for authentication and authorization upvoted 1 times ...",
-      "Dadasar 4 months ago Selected Answer: C Protege os dados com chaves gerenciadas pelo AWS KMS, oferecendo um nível extra de controle e auditoria sobre as chaves.Além disso, o SSE-KMS permite logs detalhados de acessos e tentativas de descriptografia no AWS CloudTrail. \nA. Errado, pois essa abordagem exige que os usuários gerenciem suas próprias chaves. Se um usuário perder a chave, os dados não poderão ser recuperados. Além disso, essa abordagem não aproveita os recursos de controle de acesso e auditoria do AWS KMS.\nB. Errado, pois o SSE-S3 usa chaves gerenciadas pelo próprio Amazon S3 e não permite controle detalhado sobre quem pode descriptografar os dados. \nD. Errado, porque o DSSE-KMS (Dual-layer Server-Side Encryption with AWS KMS) é mais adequado para FINRA e CJIS upvoted 1 times ...",
-      "LingZ 4 months, 1 week ago Selected Answer: A A. Client-side encryption using the S3 Encryption Client with a Raw RSA key:\nThis is the correct answer because it ensures complete end-to-end protection. Here's why:\n\nThe document is encrypted on the user's device before transmission\nThe encryption key never leaves the user's control\nEven AWS cannot access the unencrypted contents\nThe data remains protected throughout its entire lifecycle upvoted 2 times ...",
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: C Es una solución robusta y administrativamente sencilla, sin la complejidad del cifrado del lado del cliente (opción A) y con un nivel de seguridad superior al de SSE-S3 (opción B). La opción D implicaría una doble capa de cifrado innecesaria para este caso. upvoted 1 times ...",
-      "Arad 5 months, 3 weeks ago Selected Answer: C C is the correct answer.\nA is too complex.\nB is not the most secure way as there's no integration with IAM for access control policies specific to the key.\nD is overkill. upvoted 2 times ..."
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/157499-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -167,11 +131,7 @@
       "C. Create an Amazon Cognito identity pool. Configure permissions by choosing a default IAM role for authenticated users or guest users in the identity pool. Associate the identity pool with an identity provider. Integrate the identity pool with the mobile app.",
       "D. Create an Amazon Cognito user pool. Configure the security requirements by choosing a password policy, multi-factor authentication (MFA) requirements, and user account recovery options. Create an app client. Integrate the app client with the mobile app.Most Voted"
     ],
-    "answers": [
-      "LingZ 4 months, 1 week ago Selected Answer: D Using Amazon Cognito User Pools:\nThis is the correct solution because User Pools provide everything we need:\n\nComplete user directory management\nBuilt-in sign-up and sign-in flows\nCustomizable security policies\nPassword management and recovery\nMFA support\nEasy mobile SDK integration\nCan be combined with Identity Pools for AWS resource access upvoted 2 times ...",
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: D Identity pool es para termporales, efectivamente es user pool upvoted 2 times ...",
-      "Arad 5 months, 3 weeks ago Selected Answer: D D is the correct answer.\nAmazon Cognito User Pools provide a fully managed authentication mechanism. They enable user sign-up, sign-in, and user management.\n\nC is wrong, because identity pool does not provide user sign-up and sign-in features. upvoted 3 times ..."
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156701-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -183,9 +143,7 @@
       "C. Store manually created test event payloads in an Amazon S3 bucket. Use the sam local invoke command with the S3 path to the payloads.",
       "D. Use the sam local generate-event command to create test payloads for local testing."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: D obvio sam local generate-event te permite generar payloads de eventos de prueba upvoted 1 times ..."
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156700-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -197,19 +155,14 @@
       "C. Use AWS Key Management Service (AWS KMS) to implement encryption in the S3 bucket. Re-upload all the existing S3 objects. Give the kms:Decrypt permission to the analytics service.",
       "D. Create an Amazon Simple Notification Service (Amazon SNS) topic. Implement message data protection. Refactor the analytics service to publish data access requests to the SNS topic."
     ],
-    "answers": [
-      "BasselBuzz 4 months, 2 weeks ago Selected Answer: B B is the correct answer upvoted 2 times ...",
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: B Con S3 Object Lambda puedes interceptar las solicitudes GET a objetos en S3 y ejecutar Lambda para cambios antes de que lleguen al consumidor. upvoted 1 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/157498-exam-aws-certified-developer-associate-dva-c02-topic-1/",
     "question_number": "Question #: 543Topic #: 1",
     "question": "A company has an AWS Step Functions state machine named myStateMachine. The company configured a service role for Step Functions. The developer must ensure that only the myStateMachine state machine can assume the service role. Which statement should the developer add to the trust policy to meet this requirement?",
     "choices": ["A. Most Voted", "B.", "C.", "D."],
-    "answers": [
-      "0bdf3af 4 months ago Selected Answer: A A: the \"myStateMachine\" from specific account. upvoted 1 times ..."
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156699-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -221,9 +174,7 @@
       "C. Increase the ephemeral storage size to 2 GB. Copy the files from the S3 bucket to the /tmp directory of the Lambda function.",
       "D. Configure the Lambda function code to read the video files directly from the S3 bucket."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: C Lambda permite aumentar el almacenamiento efímero (/tmp) hasta 10 GB. Al aumentar este almacenamiento a 2 GB y copiar el archivo desde S3 a /tmp, el procesamiento I/O intensivo se realiza localmente, reduciendo la latencia y evitando múltiples lecturas directamente desde S3 upvoted 2 times ..."
-    ]
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/153933-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -235,11 +186,7 @@
       "C. Use AWS CloudTrail to log all Amazon SNS API calls.",
       "D. Use Amazon GuardDuty. Enable runtime monitoring."
     ],
-    "answers": [
-      "LingZ 4 months, 1 week ago Selected Answer: A A. AWS X-Ray with active tracing:\nThis is exactly what we need because:\n\nX-Ray provides detailed tracing of messages through the SNS FIFO topics\nIt shows the complete path of each message, including timing information\nYou can see exactly how long each notification takes to process and deliver\nIt provides visualization tools to help spot bottlenecks and issues\nYou can track both throughput and latency in real-time\n✅ CORRECT upvoted 1 times ...",
-      "bp07 5 months, 3 weeks ago Selected Answer: A D can't be as Amazon GuardDuty is a threat detection service, not a monitoring tool for performance metrics like notification rate or latency. upvoted 1 times ...",
-      "Ibra992 6 months ago Selected Answer: A I vote A: https://docs.aws.amazon.com/xray/latest/devguide/xray-services-sns.html\n\nBoth B and C don't make sense to me\nD is not suitable as its Designed for security threat detection. upvoted 1 times ..."
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156698-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -251,9 +198,7 @@
       "C. Attach the AWSCodeDeployRole policy to the CodeDeploy service role.",
       "D. Ensure the CodeDeploy agent is installed and running on all instances in the deployment group."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: C IAM_ROLE_PERMISSIONS indica que el rol que CodeDeploy utiliza no tiene los permisos necesarios. La política estándar para CodeDeploy en instancias EC2 es AWSCodeDeployRole, la cual debe estar adjunta al rol del servicio de CodeDeploy. upvoted 1 times ..."
-    ]
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/157497-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -265,11 +210,7 @@
       "C. Create a new AWS managed KMS key for Amazon S3 in the development account. Specify the production account in the key policy.Most Voted",
       "D. Replicate the default AWS managed KMS key for Amazon S3 from the production account to the development account. Specify the production account in the key policy."
     ],
-    "answers": [
-      "AlmeroSenior 1 month, 1 week ago Selected Answer: B AWS managed keys (aws/s3) cannot be modified — you cannot add cross-account permissions to their key policies. upvoted 1 times ...",
-      "yusan 2 months ago Selected Answer: B C：AWS 管理キー（AWS マネージドキー）はキーの管理やポリシー変更ができず、かつアカウント間で共有できないため、要件を満たせません。\nよって、Bが’正解となる upvoted 1 times ...",
-      "0bdf3af 4 months ago Selected Answer: C C or B \nI would say C. We don't know exactly which type of KMS key will be used in development account.. KMS cusutomer key or KMS AWS menaged key? I guess the second one so it could be just default aws/s3 key.\nThe other thing is that production account should have access tho this new key but development account should not have access to  AWS customer key in production account. Is is quite logical.\nSharing acceess to key with other accaount is to specify the account in KMS key policy. upvoted 2 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156029-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -281,12 +222,7 @@
       "C. Create an AWS Step Functions workflow that is invoked by each certificate’s expiration notification from AWS CloudTrail. Create an AWS Lambda function to send each certificate's Amazon Resource Name (ARN) in a message to the SQS queue.",
       "D. Configure AWS Config with the acm-certificate-expiration-check managed rule to run every 24 hours. Create an Amazon EventBridge rule that includes an event pattern that specifies the Config Rules Compliance Change detail type and the configured rule. Set the SNS topic as the EventBridge rule’s target.Most Voted"
     ],
-    "answers": [
-      "thalasi 1 month, 2 weeks ago Selected Answer: A EventBridge rule + SNS notifications is the best approach! It provides automated expiration alerts, minimal setup, and direct integration with ACM expiration events\n\nAWS Config tracks compliance violations but does not directly monitor ACM certificate expirations. upvoted 1 times ...",
-      "Dadasar 4 months ago Selected Answer: D A resposta correta é:D.\nA. Errado, porque esse evento só é gerado para certificados emitidos pelo ACM. Como a empresa está usando certificados importados, esse evento nunca será disparado.\nB. Ineficiente, pois exigiria que o Lambda varresse manualmente todos os certificados periodicamente. O AWS Config já faz isso automaticamente.\nC. Errado, porque o AWS CloudTrail não gera eventos de expiração de certificados no ACM. upvoted 2 times ...",
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: D Aunque Amazon EventBridge puede capturar ciertos eventos de ACM, en la práctica el evento ACM Certificate Approaching Expiration se genera únicamente para certificados emitidos y administrados por ACM. Los certificados importados, que son aquellos generados por terceros y luego importados a ACM, no generan ese evento. Por ello, utilizar una regla de EventBridge para capturar el evento de expiración no funcionaría para certificados importados, lo que hace que la opción A no cumpla con el requisito en este caso. upvoted 3 times ...",
-      "e886835 4 months, 4 weeks ago Selected Answer: A Amazon EventBridge can capture events such as the expiration of SSL certificates imported into AWS Certificate Manager (ACM).\nThe specific event type you are interested in is the ACM Certificate Approaching Expiration event, which is triggered when a certificate in ACM is approaching its expiration date.\nEventBridge allows you to define rules for such events and trigger actions such as sending a notification to an SNS topic. upvoted 2 times ..."
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156697-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -298,12 +234,7 @@
       "C. Enable public access on the Aurora database. Configure a security group on the database to allow outbound access for the database engine’s port.",
       "D. Enable VPC access for the Lambda function. Attach the Lambda function to a new security group that does not have rules."
     ],
-    "answers": [
-      "thalasi 1 month, 2 weeks ago Selected Answer: A D is incorrect\n\nThis would attach Lambda to a VPC, but without proper networking rules, it wouldn’t allow connections to Aurora upvoted 1 times ...",
-      "thalasi 1 month, 2 weeks ago Selected Answer: D Question is \n\nWhat should the developer do to give the Lambda function access to the database? upvoted 1 times ...",
-      "0bdf3af 4 months ago Selected Answer: D Lambda connects to private subnet only when is configured as a part in user VPC upvoted 1 times ...",
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: A RDS Proxy permite que la función Lambda tenga un gran rendimiento y gestión de picos en \nAurora upvoted 1 times ..."
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156696-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -315,13 +246,7 @@
       "C. Configure a pipe in Amazon EventBridge Pipes. Connect the application to the pipe as a source. Configure the pipe to use each user’s mobile phone number as a target. Configure the pipe to send incoming events to the users.",
       "D. Create an Amazon Simple Notification Service (SNS) FIFO topic. Configure the application to use the AWS SDK to publish notifications to the SNS topic to send SMS messages to the users.Most Voted"
     ],
-    "answers": [
-      "thalasi 1 month, 2 weeks ago Selected Answer: B Sorry, amazon SNS FIFO does not natively support SMS delivery upvoted 1 times ...",
-      "thalasi 1 month, 2 weeks ago Selected Answer: D only \nSendMessage\nSendMessageBatch in SQS upvoted 1 times ...",
-      "thalasi 1 month, 2 weeks ago Selected Answer: D Send SMS upvoted 1 times ...",
-      "0bdf3af 4 months ago Selected Answer: D Thought one.\nI would say D - using SNS but it costs operation work.\nB seems right but there is no SendMessageIn and SendMessageOut API operations upvoted 3 times ...",
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: B La opción D no es viable porque, aunque SNS permite enviar mensajes SMS, no ofrece temas FIFO ni garantías de orden en la entrega de SMS. Además, no se proporciona un mecanismo de deduplicación para SMS en SNS, lo que significa que podría haber mensajes duplicados o fuera de orden upvoted 2 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156695-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -333,9 +258,7 @@
       "C. Create an AWS CloudFormation template. Use the existing pipeline workflow to build a pipeline for AWS CloudFormation stacks.",
       "D. Create an AWS Serverless Application Model (AWS SAM) template. Use an automated script to deploy the serverless workload by using the AWS SAM CLI deploy command."
     ],
-    "answers": [
-      "0bdf3af 4 months ago Selected Answer: A SAM is for serverless applications and it helps with local testing upvoted 1 times ..."
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156684-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -347,9 +270,7 @@
       "C. Configure a VPC endpoint connection for the Lambda function. Set up the VPC endpoint to route traffic through a NAT gateway.",
       "D. Configure an AWS PrivateLink endpoint for the private resources. Configure the Lambda function to reference the PrivateLink endpoint."
     ],
-    "answers": [
-      "0bdf3af 4 months ago Selected Answer: A Attach Lambda to VPC upvoted 1 times ..."
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156681-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -361,10 +282,7 @@
       "C. Configure the SQS queue’s delivery delay value to be greater than the maximum time it takes to call the third-party API.",
       "D. Configure the SQS queue’s visibility timeout value to be greater than the maximum time it takes to call the third-party API."
     ],
-    "answers": [
-      "vbloise 2 months ago Selected Answer: D The correct answer is:\n\nD. Configure the SQS queue’s visibility timeout value to be greater than the maximum time it takes to call the third-party API.\nExplanation:\n\nWhen a Lambda function reads a message from an SQS queue, the message becomes invisible for the duration of the visibility timeout. If the Lambda function doesn’t finish processing (or doesn’t delete the message from the queue) before the visibility timeout expires, the message becomes visible again and may be reprocessed, causing duplicates.\n\nSince the third-party API can take up to 60 seconds, the visibility timeout should be set to greater than 60 seconds to ensure that the message remains hidden from other consumers until the Lambda function finishes processing it. upvoted 1 times ...",
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: D el tiempo de visibilidad del mensaje en la cola SQS es demasiado corto upvoted 1 times ..."
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156682-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -376,9 +294,7 @@
       "C. CloudFormation will overwrite the existing table and will rename the existing table.",
       "D. CloudFormation will keep the existing table and will not create a new table."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: A Al cambiar el nombre en la template, CloudFormation crea un nuevo recurso con el nombre modificado y no hay retención de lo antiguo upvoted 1 times ..."
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/157496-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -390,10 +306,7 @@
       "C. Store the feature flag values in AWS AppConfig. Configure AWS AppConfig Agent on the EC2 instances to poll for the values on an interval. Update the application to retrieve the values from the AppConfig Agent localhost endpoint.",
       "D. Store the feature flag values in AWS Systems Manager Parameter Store. Configure the application to poll on an interval. Configure the application to use the AWS SDK to retrieve the values from Parameter Store and to store the values in memory."
     ],
-    "answers": [
-      "devOpsihc 3 months ago Selected Answer: C 정답은 C입니다.  EC2 인스턴스에서 AWS AppConfig Agent를 구성하여 간격에 따라 값을 폴링합니다. AppConfig Agent 로컬 호스트 엔드포인트에서 값을 검색하도록 애플리케이션을 업데이트합니다. 입니다. upvoted 2 times ...",
-      "0bdf3af 4 months ago Selected Answer: B DAX as a cache requires no application changes.\nDynamoDB is a way to share values between applications upvoted 1 times ..."
-    ]
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156681-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -405,10 +318,7 @@
       "C. Configure the SQS queue’s delivery delay value to be greater than the maximum time it takes to call the third-party API.",
       "D. Configure the SQS queue’s visibility timeout value to be greater than the maximum time it takes to call the third-party API."
     ],
-    "answers": [
-      "vbloise 2 months ago Selected Answer: D The correct answer is:\n\nD. Configure the SQS queue’s visibility timeout value to be greater than the maximum time it takes to call the third-party API.\nExplanation:\n\nWhen a Lambda function reads a message from an SQS queue, the message becomes invisible for the duration of the visibility timeout. If the Lambda function doesn’t finish processing (or doesn’t delete the message from the queue) before the visibility timeout expires, the message becomes visible again and may be reprocessed, causing duplicates.\n\nSince the third-party API can take up to 60 seconds, the visibility timeout should be set to greater than 60 seconds to ensure that the message remains hidden from other consumers until the Lambda function finishes processing it. upvoted 1 times ...",
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: D el tiempo de visibilidad del mensaje en la cola SQS es demasiado corto upvoted 1 times ..."
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156680-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -420,9 +330,7 @@
       "C. Request a concurrency quota increase for the Lambda function.",
       "D. Configure provisioned concurrency for the Lambda function."
     ],
-    "answers": [
-      "vbloise 2 months ago Selected Answer: A The correct answer is:\n\nA. Increase the Lambda function’s timeout value.\nExplanation:\n\nThe error message \"Task timed out after 3.01 seconds\" clearly indicates that the Lambda function is not being given enough time to complete its task — specifically, moving images larger than 2 MB. This is a timeout configuration issue, not a concurrency issue or a problem with the code logic.\n\n    A is correct because increasing the timeout allows the function more time to complete processing.\n\n    B avoids the problem rather than solving it.\n\n    C (concurrency quota increase) deals with how many instances can run simultaneously, not execution time.\n\n    D (provisioned concurrency) ensures a function is pre-initialized but doesn't fix timeout errors. upvoted 1 times ..."
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/152779-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -434,11 +342,7 @@
       "C. Configure an AWS Step Functions state machine to invoke the Lambda functions in a specific order.Most Voted",
       "D. Configure Amazon EventBridge Scheduler schedules to invoke the Lambda functions in a specific order."
     ],
-    "answers": [
-      "xdeveloper 6 months, 1 week ago Selected Answer: C LEAST operational overhead , its Step Functions. upvoted 1 times ...",
-      "ShakthiGCP 6 months, 3 weeks ago Selected Answer: C Orchestration is done by Step functions upvoted 3 times ...",
-      "YUICH 6 months, 3 weeks ago Selected Answer: C C. AWS Step Functions\nAWS Step Functions is designed to orchestrate workflows, making it ideal for ensuring Lambda functions execute in a specific order. It allows you to define a state machine that explicitly specifies the sequence of execution, handles errors, and minimizes operational overhead. This makes it the most suitable choice. upvoted 1 times ..."
-    ]
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156678-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -450,9 +354,7 @@
       "C. Store the connection string in AWS KMS.",
       "D. Store the connection string as a Lambda layer."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: A en AWS Secrets Manager, el desarrollador puede cambiar la configuración sin modificar el código Lambda upvoted 1 times ..."
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/153619-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -465,9 +367,7 @@
       "D. Use Amazon ElastiCache to cache messages in the queue.",
       "E. Use an SQS FIFO queue to manage the messages."
     ],
-    "answers": [
-      "jheimar 6 months, 1 week ago Selected Answer: AC A. Long polling (reduces unnecessary requests).\nC. Message batching (reduces the number of requests by processing multiple messages upvoted 2 times ..."
-    ]
+    "answers": ["A", "C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/157451-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -480,9 +380,7 @@
       "D. Use AWS IAM to create IAM users.",
       "E. Enable multifactor authentication for the users created in AWS IAM."
     ],
-    "answers": [
-      "0bdf3af 4 months ago Selected Answer: AC Cognito User Pool for users and for MFA upvoted 1 times ..."
-    ]
+    "answers": ["A", "C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156677-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -494,9 +392,7 @@
       "C. Configure the Lambda function to increase the amount of memory.",
       "D. Configure burstable performance for the Lambda function."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: C aumentar la memoria asignada a la funcióntambién asigna más potencia de CPU proporcionalmente upvoted 1 times ..."
-    ]
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156021-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -508,9 +404,7 @@
       "C. Update the application to use a Regional STS endpoint that is closer to the application deployment.Most Voted",
       "D. Update the application to use the AssumeRoleWithWebldentity API operation. Move the STS endpoint to a global endpoint."
     ],
-    "answers": [
-      "e886835 4 months, 4 weeks ago Selected Answer: C To resolve the intermittent latency issues, the developer should modify the application to call the appropriate Regional STS endpoint that is closer to the application's deployment region, rather than relying on the global endpoint. upvoted 2 times ..."
-    ]
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156020-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -522,9 +416,7 @@
       "C. AWS Systems Manager Agent logs",
       "D. Amazon CloudWatch agent logs"
     ],
-    "answers": [
-      "e886835 4 months, 4 weeks ago Selected Answer: A It will provide information about the IP traffic going to and from network interfaces in your VPC. upvoted 2 times ..."
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/153503-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -536,10 +428,7 @@
       "C. Use Lambda proxy integration for the REST API.",
       "D. Configure AWS Global Accelerator for the Lambda function."
     ],
-    "answers": [
-      "e886835 4 months, 4 weeks ago Selected Answer: B Provisioned concurrency addresses this by pre-warming a specified number of function instances, ensuring that these instances are always ready to handle invocations. This reduces the initialization time (cold start) for the Lambda function. upvoted 2 times ...",
-      "xdeveloper 6 months, 1 week ago Selected Answer: B Provisioned concurrency – This is the number of pre-initialized execution environments allocated to your function. These execution environments are ready to respond immediately to incoming function requests. Provisioned concurrency is useful for reducing cold start latencies for functions. Configuring provisioned concurrency incurs additional charges to your AWS account. upvoted 2 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156676-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -551,9 +440,7 @@
       "C. Configure the S3 bucket with server-side encryption with AWS KMS managed encryption keys (SSE-KMS).",
       "D. Create an S3 bucket policy that denies traffic when the value for the aws:SecureTransport condition key is false."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: D Configurar una política de bucket que deniegue el tráfico cuando aws:SecureTransport sea falso asegura que solo se permitan conexiones seguras (HTTPS) al bucket upvoted 1 times ..."
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/152780-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -565,10 +452,7 @@
       "C. Use IAM access keys and secret keys in the application code to allow Get* on the S3 bucket.",
       "D. Use AWS STS AssumeRole in the application code and assume a role with Get* permissions on the S3 bucket."
     ],
-    "answers": [
-      "0bdf3af 4 months ago Selected Answer: A Cognito User Pool\n• Create a serverless database of user for your web & mobile apps\n• Simple login: Username (or email) / password combination\n• Password reset\n• Email & Phone Number Verification\n• Multi-factor authentication (MFA)\n• Federated Identities: users from Facebook, Google, SAML…\n• Feature: block users if their credentials are compromised elsewhere\n• Login sends back a JSON Web Token (JWT)\n© Stephane Maarek upvoted 1 times ...",
-      "Dahlia9524 6 months, 3 weeks ago Selected Answer: A Cognito user pool upvoted 3 times ..."
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156675-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -580,10 +464,7 @@
       "C. Set ECS_ENABLE_TASK_IAM ROLE to true on EC2 instance boot in the ECS agent configuration file. Run the first microservice with an IAM role for ECS tasks with read-only access for the Aurora database. Run the second microservice with an IAM role for ECS tasks with read-only access to DynamoDB.Most Voted",
       "D. Set ECS_ENABLE_TASK_IAM_ROLE to true on EC2 instance boot in the ECS agent configuration file. Grant the instance profile role read-only access to the Aurora database and DynamoDB."
     ],
-    "answers": [
-      "0bdf3af 4 months ago Selected Answer: C ECS_ENABLE_TASK_IAM -  This role allows your application code (on the container) to use other AWS services. The task role is required when your application accesses other AWS services, such as Amazon S3. upvoted 1 times ...",
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: C Al establecer ECS_ENABLE_TASK_IAM_ROLE en true, cada tarea (microservicio) puede asumir un rol IAM distinto upvoted 1 times ..."
-    ]
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/157450-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -595,9 +476,7 @@
       "C. Update the Lambda function to send the file location to each department’s SQS queue.",
       "D. Configure the S3 bucket to send the event notifications to each department’s SQS queue."
     ],
-    "answers": [
-      "vbloise 2 months ago Selected Answer: A The correct answer is:\n\nA. Configure the S3 bucket to send the event notifications to an Amazon Simple Notification Service (Amazon SNS) topic. Subscribe each department’s SQS queue to the SNS topic. Configure subscription filter policies.\nExplanation:\n\n    The goal is to route events from S3 to multiple SQS queues (one per department) without changing the existing Lambda function code.\n\n    SNS supports fan-out messaging, meaning one message can be sent to multiple subscribers (SQS queues in this case).\n\n    Subscription filter policies allow messages to be selectively routed to specific queues based on attributes (like department). upvoted 1 times ..."
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/153024-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -609,12 +488,7 @@
       "C. Configure a VPN connection between the Lambda function and the private subnet. Attach the VPN to the Lambda function.",
       "D. Configure the VPC route table to include the Lambda function’s IP address."
     ],
-    "answers": [
-      "thalasi 1 month, 2 weeks ago Selected Answer: B Lambda functions do not have fixed IP addresses, making it impractical to add them to a route table upvoted 1 times ...",
-      "xdeveloper 6 months, 1 week ago Selected Answer: B When your Lambda function needs to access resources within a VPC, such as Amazon EC2 instances in a private subnet, you need to configure the Lambda function to run within that VPC. This is done by specifying the VPC, subnet(s), and security group(s) in the Lambda configuration. Once attached to the VPC and subnet, the Lambda function can make HTTP requests to the internal application running on the EC2 instances in the private subnet. upvoted 4 times ...",
-      "YUICH 6 months, 3 weeks ago Selected Answer: D Lambda Function logs request information (e.g., timestamp, processing time, status) using the default logging mechanism.\nCreate custom CloudWatch metrics in a specific namespace based on these logs. upvoted 1 times YUICH 6 months, 1 week ago Sorry I changed my opinion. The answer is B. Lambda functions do not have fixed IP addresses, making it impractical to add them to a route table. Instead, attaching the Lambda function to the VPC and configuring security groups appropriately is the recommended approach. upvoted 3 times ... ...",
-      "YUICH 6 months, 1 week ago Sorry I changed my opinion. The answer is B. Lambda functions do not have fixed IP addresses, making it impractical to add them to a route table. Instead, attaching the Lambda function to the VPC and configuring security groups appropriately is the recommended approach. upvoted 3 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156674-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -626,9 +500,7 @@
       "C. Use Amazon CloudWatch Logs Insights to generate custom metrics from the logs by using JSON format.",
       "D. Use the CloudWatch embedded metric format (EMF) for the structure of the log statements to generate custom CloudWatch metrics."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: D Al formatear las declaraciones de log con el CloudWatch Embedded Metric Format (EMF), CloudWatch extraerá automáticamente los valores y creará métricas personalizadas en el namespace que especifiques, sin necesidad de procesamiento adicional upvoted 2 times ..."
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/152781-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -640,16 +512,7 @@
       "C. Add two asynchronous invocation destinations to the Lambda function: one destination for successful invocations and one destination for failed invocations. Configure the SQS queue as the destination for each type. Create an Amazon CloudWatch alarm based on the DestinationDeliveryFailures metric to catch any message that cannot be delivered.Most Voted",
       "D. Add a single asynchronous invocation destination to the Lambda function to capture successful invocations. Configure the SQS queue as the destination. Create an Amazon CloudWatch alarm based on the DestinationDeliveryFailures metric to catch any message that cannot be delivered."
     ],
-    "answers": [
-      "thalasi 1 month, 2 weeks ago Selected Answer: C Capturing both successful and failed invocations ensures complete tracking of the Lambda function's activity. No manual code changes are required in the Lambda function, reducing development effort.Amazon CloudWatch alarms can monitor DestinationDeliveryFailures, ensuring visibility into messages that fail to reach SQS. upvoted 2 times ...",
-      "LingZ 4 months, 1 week ago Selected Answer: B Create code that uses the AWS SDK to call the SQS SendMessage operation. upvoted 1 times ...",
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: C Dudo entre la B y la C porque aunque la B no registra todo, los fallos reintentables no son estados definitivos, hay reintento y la C es un poco demasiado esfuerzo, no es eficiente operacionalmente, aunque tampoco se pide eso upvoted 1 times ...",
-      "e886835 4 months, 4 weeks ago Selected Answer: B using the AWS SDK within the Lambda function code to call SendMessage to SQS, the developer can ensure that the invocation details are logged in the queue. upvoted 1 times ...",
-      "Arad 5 months, 3 weeks ago Selected Answer: B B is the correct answer.\nWhen using asynchronous invocations, there are three types of potential states: success, failure and retryable failure. this option only logs first 2, not all.\nA is wrong because it only logs the failure invocations, not all.\nC is wrong because it only logs success and failure invocations, not all.\nD is wrong because it logs only successful invocations, not all. upvoted 2 times ...",
-      "YUICH 6 months, 3 weeks ago Selected Answer: D Requirements:\nLambda function is invoked via Amazon SNS.\nYou need to log each invocation (successful or failed) to an Amazon SQS queue. upvoted 2 times GGGApigateway 5 months ago I see that option D only captures successful invocations, but the question asks for all invocations (both successful and failed). How does D ensure that all invocations are recorded in the SQS queue? upvoted 2 times ... ...",
-      "ShakthiGCP 6 months, 3 weeks ago Selected Answer: D One SQS for success is sufficient and  when the undelivered message will be monitored via cloudwatch. upvoted 1 times ...",
-      "Dahlia9524 6 months, 3 weeks ago Selected Answer: C Lambda Destination supported for both success and failure upvoted 2 times ..."
-    ]
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156673-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -661,9 +524,7 @@
       "C. Create an Amazon ElastiCache (Memcached) cluster, then implement session handling at the application level to leverage the cluster for session data storage.",
       "D. Create an Amazon DynamoDB table, then implement session handling at the application level to leverage the table for session data storage."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: C Al externalizar la sesión en un clúster de ElastiCache con Memcached, se obtiene un almacenamiento en memoria de baja latencia, ideal para manejar un alto volumen de solicitudes upvoted 1 times ..."
-    ]
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/153149-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -675,9 +536,7 @@
       "C. Create an Amazon OpenSearch Service instance. Set the OpenSearch Service instance as the destination of the delivery stream. Use search and replace to remove the customer identifiers. Export the data to an Amazon S3 bucket.",
       "D. Create an AWS Step Functions workflow to remove the customer identifiers. As the last step in the workflow, store the transformed data in an Amazon S3 bucket. Set the workflow as the destination of the delivery stream."
     ],
-    "answers": [
-      "ShakthiGCP 6 months, 2 weeks ago Selected Answer: A Data Anonymization:\n\nRemove or obfuscate sensitive information for compliance or security reasons.\nExample: Mask personally identifiable information (PII) like email addresses or phone numbers. upvoted 2 times ..."
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/103772-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -689,14 +548,7 @@
       "C. Upload log files from the on-premises server to Amazon S3 and have CloudWatch read the files.",
       "D. Upload log files from the on-premises server to an Amazon EC2 instance and have the instance forward the logs to CloudWatch."
     ],
-    "answers": [
-      "Untamables Highly Voted 2 years, 3 months ago Selected Answer: B B\nhttps://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html\nhttps://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-on-premise.html upvoted 14 times ...",
-      "Dun6 Highly Voted 2 years, 3 months ago Selected Answer: B We need cloudwatchagent upvoted 6 times ...",
-      "sumanshu Most Recent 6 months, 1 week ago Selected Answer: B A) Eliminated - Using the AWS SDK means you must write custom code to capture and send logs to CloudWatch via the PutLogEvents API. This is not automatic as mentioned in option\n\nB) CloudWatch agent is specifically designed for collecting logs and metrics from both AWS and on-premises environments.\n\nC) Eliminated - unnecessary complexity.\n\nD) Eliminated - unnecessarily complex and costly. upvoted 3 times ...",
-      "Saudis 8 months, 4 weeks ago Selected Answer: B https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html upvoted 2 times ...",
-      "65703c1 1 year, 1 month ago Selected Answer: B B is the correct answer. upvoted 1 times ...",
-      "Baba_Eni 2 years ago Selected Answer: B https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html upvoted 2 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/152782-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -708,10 +560,7 @@
       "C. Use the GenerateDataKey API, then use that data key to encrypt the file in the Lambda function code.Most Voted",
       "D. Use an AWS Key Management Service (AWS KMS) customer managed key for Amazon S3 in the Lambda function code."
     ],
-    "answers": [
-      "ShakthiGCP 6 months, 3 weeks ago Selected Answer: C generating a data key, then enc  # Generate a data key\n        response = kms.generate_data_key(KeyId=key_id, KeySpec='AES_256')\n        plaintext_key = response['Plaintext']\n        ciphertext_key = response['CiphertextBlob']rypting and decrypting a small string using that data key upvoted 2 times ...",
-      "Dahlia9524 6 months, 3 weeks ago Selected Answer: C to make sure encrypt before upload upvoted 3 times ..."
-    ]
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/153213-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -723,11 +572,7 @@
       "C. Use an all-at-once deployment policy to deploy to Amazon EC2 instances.",
       "D. Use a-canary deployment strategy to deploy changes to Amazon EC2 instances."
     ],
-    "answers": [
-      "Arad 5 months, 3 weeks ago Selected Answer: B B is the correct answer.\nD is wrong because though it's useful for testing new features on a limited scale, it does not minimize the overall deployment duration and availability as effectively as immutable deployments. upvoted 2 times ...",
-      "YUICH 6 months, 2 weeks ago Selected Answer: D A canary deployment is a strategy where a new version of an application is deployed to a small subset of instances first. Once it has been validated as stable, it is gradually rolled out to the remaining instances. This approach provides the following benefits:\n\nMinimal performance impact: Issues with the new version can be identified early before it affects all users.\nMaximum availability: Problems can be quickly rolled back, minimizing downtime or service interruptions.\nFast delivery of features: By deploying incrementally, new features reach all users promptly after initial validation. upvoted 1 times ...",
-      "lht 6 months, 2 weeks ago Selected Answer: B Immutable deployment creates a new set of instances with the updated version of the application. Once the new instances are verified as healthy, they replace the old instances. This strategy ensures high availability and minimizes the risk of performance impact since the old instances remain untouched until the new instances are validated. upvoted 2 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156019-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -739,9 +584,7 @@
       "C. aws ssm resume-session",
       "D. aws rds add-role-to-db-cluster"
     ],
-    "answers": [
-      "e886835 4 months, 4 weeks ago Selected Answer: A This command is used to test assuming a role to determine if the IAM role has the appropriate permissions upvoted 1 times ..."
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156018-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -753,11 +596,7 @@
       "C. Move the database connection and close statement out of the handler. Place the connection in the global space.Most Voted",
       "D. Replace Amazon RDS with Amazon DynamoDB to implement control over the number of writes per second."
     ],
-    "answers": [
-      "0bdf3af 4 months ago Selected Answer: C connection to database as global variable outside the handler upvoted 1 times ...",
-      "LingZ 4 months, 1 week ago Selected Answer: C The best answer is C: Move the database connection and close statement out of the handler. Place the connection in the global space.\nThis solution would:\n\nCreate the connection once when the Lambda container initializes\nReuse that same connection across multiple invocations\nSignificantly reduce the overhead of establishing new connections\nImprove execution time and resource usage\nFollow AWS best practices for Lambda-RDS connections upvoted 2 times ...",
-      "e886835 4 months, 4 weeks ago Selected Answer: A Reserved concurrency defines the maximum number of concurrent executions for a Lambda function. If the function is expected to run hundreds of times each hour, it could be hitting concurrency limits, causing delays due to Lambda being throttled, which would lead to longer execution times. upvoted 1 times ..."
-    ]
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/152778-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -769,11 +608,7 @@
       "C. Use AWS CodeDeploy to create a linear traffic shifting deployment",
       "D. Create a tag for the Lambda function that contains the production version and updated version of the code."
     ],
-    "answers": [
-      "YUICH 6 months, 3 weeks ago Selected Answer: C AWS CodeDeploy allows you to set up linear traffic shifting deployments for AWS Lambda. This enables you to safely shift traffic gradually between the production and staging versions of the Lambda function, handling calls to both environments effectively. upvoted 1 times ...",
-      "jasonkym 6 months, 3 weeks ago Selected Answer: A \"The developer needs to configure a staging environment for the Lambda function to handle invocations to both the development version and the production version.\" A weighted alias can divert traffic to both version. upvoted 2 times ...",
-      "Dahlia9524 6 months, 3 weeks ago Selected Answer: A Alias can mix different version upvoted 3 times ..."
-    ]
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/152777-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -785,14 +620,7 @@
       "C. Write the files to an Amazon Elastic Block Store (Amazon EBS) General Purpose SSD volume. Add the EBS location of the files to the SQS queue.",
       "D. Write messages that contain the contents of the uploaded files to the SQS queue."
     ],
-    "answers": [
-      "AlmeroSenior 1 month, 2 weeks ago Selected Answer: B Since 10meg is more than SQS can handle ( 256kb  ) , you need to send the file location of where actual data is stored on S3 , to the SQS queue . upvoted 1 times ...",
-      "e886835 4 months, 4 weeks ago Selected Answer: B Amazon S3 Standard is the most appropriate storage class for frequently accessed data, such as video files that need to be processed quickly (within 5 minutes). upvoted 2 times ...",
-      "ShakthiGCP 6 months, 2 weeks ago Selected Answer: B s3 is cost effective compared to EBS upvoted 2 times ...",
-      "ShakthiGCP 6 months, 3 weeks ago Selected Answer: C Ans: C ,. s3 is cost effective compared to EBS upvoted 1 times ShakthiGCP 6 months, 2 weeks ago Sorry. Answer is 'B' . upvoted 1 times ... ...",
-      "ShakthiGCP 6 months, 2 weeks ago Sorry. Answer is 'B' . upvoted 1 times ...",
-      "Dahlia9524 6 months, 3 weeks ago Selected Answer: B S3 so it still can be accessed. upvoted 3 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/152776-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -804,23 +632,14 @@
       "C. Create an HTTP API and the /auth route. Create and configure an AWS Lambda authorizer. Attach the Lambda authorizer to the /auth route. Deploy the API.",
       "D. Create an HTTP API and the /auth route. Configure the JWT authorizer. Attach the JWT authorizer to the /auth route. Deploy the API.Most Voted"
     ],
-    "answers": [
-      "e886835 4 months, 4 weeks ago Selected Answer: D To test JWT authorization using the built-in capabilities of Amazon API Gateway, you should create an HTTP API, configure the JWT authorizer, and attach it to the /auth route. upvoted 1 times ...",
-      "xdeveloper 6 months, 1 week ago Selected Answer: D WebSocket APIs in API Gateway do not support the built-in JWT authorizer. This option is invalid.\nLambda authorizers require custom code, which contradicts the requirement to avoid managing custom logic. upvoted 1 times ...",
-      "ShakthiGCP 6 months, 3 weeks ago Selected Answer: D It narrow downs to C and D . But for C , we need to create a Lambda function , whereas for D - JWT authorizer, it uses the token. upvoted 1 times ...",
-      "Dahlia9524 6 months, 3 weeks ago Selected Answer: D not needs interactive chat like communication to verify the token. So no web-socket? upvoted 3 times ..."
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/152775-exam-aws-certified-developer-associate-dva-c02-topic-1/",
     "question_number": "Question #: 503Topic #: 1",
     "question": "A developer has an AWS Lambda function that needs to access an Amazon DynamoDB table named DailyOrders. The Lambda function must be able to perform read operations on the table. The Lambda function must not be able to perform write operations on the table. The developer needs to create an IAM policy to associate with the Lambda function's execution role. Which IAM policy statement will meet these requirements?",
     "choices": ["A.", "B.", "C.", "D. Most Voted"],
-    "answers": [
-      "PawanShetty 6 months, 2 weeks ago Selected Answer: D Lambda Function must not be able to write upvoted 3 times ...",
-      "jasonkym 6 months, 3 weeks ago Selected Answer: D The Lambda function must NOT BE ABLE TO PERFORM WRITE operations on the table. The answer is D. upvoted 2 times ...",
-      "Wonjin7 6 months, 3 weeks ago Selected Answer: D 'put' needs to be denied upvoted 3 times ..."
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/152774-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -832,13 +651,7 @@
       "C. Create an AWS Step Functions workflow that is invoked by each certificate’s expiration notification from AWS CloudTrail. Create an AWS Lambda function to send each certificate's Amazon Resource Name (ARN) in a message to the SQS queue.",
       "D. Configure AWS Config with the acm-certificate-expiration-check managed rule to run every 24 hours. Create an Amazon EventBridge rule that includes an event pattern that specifies the Config Rules Compliance Change detail type and the configured rule. Set the SNS topic as the EventBridge rule’s target."
     ],
-    "answers": [
-      "AlmeroSenior 3 weeks, 5 days ago Selected Answer: D ITs D , the certs are imported , not ACM issued : \n\nEventBridge rule for ACM Certificate Approaching Expiration:\n\nThis event type is only for ACM-issued certificates, not imported ones from third-party providers. upvoted 1 times ...",
-      "0bdf3af 4 months ago Selected Answer: A Manage certificate expiration events\n\nAn Amazon EventBridge event will be published when your certificates near expiration. You can configure the \"days to expiration\" value when these events are first published for your certificates. ACM automatically attempts to renew an ACM generated certificate 60 days prior to certificate expiration. Hence, these events only show up for certificates that have not yet been, or could not be, renewed. Events are published for both issued and imported certificates.\n\nFor example, when set to 45, the first event will be published when a certificate is 45 days away from its expiration date, followed by one event per day until expiration. upvoted 2 times ...",
-      "e886835 4 months, 4 weeks ago Selected Answer: A Amazon EventBridge can be used to track specific events, such as the approaching expiration of SSL certificates in AWS Certificate Manager (ACM). AWS publishes events like ACM Certificate Approaching Expiration to EventBridge, which allows you to trigger specific actions when such events occur. upvoted 2 times ...",
-      "Arad 5 months, 3 weeks ago Selected Answer: D D is the correct answer.\n\nBoth options A and D are viable solutions for monitoring certificate expirations. Option A leverages ACM's built-in event for certificates approaching expiration, while Option D uses AWS Config's managed rule acm-certificate-expiration-check to assess certificate compliance and trigger notifications via EventBridge and SNS.\n\nBy default, ACM's \"Certificate Approaching Expiration\" event starts 45 days before expiration. If you require notifications earlier than 45 days, AWS Config's managed rule allows you to specify a custom number of days for the check.\nhttps://docs.aws.amazon.com/acm/latest/APIReference/API_ExpiryEventsConfiguration.html?utm_source=chatgpt.com\n\nQuestion is asking for 90 days earlier than expiration, so D is the right answer. upvoted 2 times ...",
-      "bp07 5 months, 3 weeks ago Selected Answer: A Amazon EventBridge provides a set of predefined events, and one of these events is related to ACM certificates. Specifically, there is an event type called ACM Certificate Approaching Expiration, which is emitted when an ACM certificate is approaching expiration. upvoted 2 times ..."
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/152773-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -850,10 +663,7 @@
       "C. Create an Amazon API Gateway REST API. Connect the REST API to AWS WAF. Use geo match statements and regex match statements to allow or deny requests based on the labels returned from web request evaluations.",
       "D. Configure an Amazon CloudFront distribution that uses the application as an origin. Configure the distribution to forward the Accept-Language header and the CloudFront-Viewer-Country header to the origin.Most Voted"
     ],
-    "answers": [
-      "ShakthiGCP 6 months, 3 weeks ago Selected Answer: D https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/adding-cloudfront-headers.html\n\nhttps://aws.amazon.com/blogs/networking-and-content-delivery/reduce-latency-for-end-users-with-multi-region-apis-with-cloudfront/ upvoted 2 times ...",
-      "Dahlia9524 6 months, 3 weeks ago Selected Answer: D cache based on header/attribute upvoted 4 times ..."
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156668-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -865,9 +675,7 @@
       "C. Enable a DynamoDB stream for the table. Set the view type to new image. Create an AWS Lambda function that uses the stream data to update the spreadsheet. Subscribe the Lambda function to the stream.",
       "D. Enable a DynamoDB stream for the table. Set the view type to old image. Create an AWS Lambda function that uses the stream data to update the spreadsheet. Subscribe the Lambda function to the stream."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: C Habilitar un stream de DynamoDB con el view type configurado en new image permite que la función Lambda reciba la versión actualizada del registro y puede actuar sin intervención upvoted 1 times ..."
-    ]
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/142933-exam-aws-certified-solutions-architect-professional-sap-c02/",
@@ -880,16 +688,7 @@
       "D. Create an S3 Lifecycle configuration to transition objects to S3 Glacier Instant Retrieval after 1 day.",
       "E. Create an S3 Lifecycle configuration to transition objects to S3 Standard-infrequent Access (S3 Standard- IA) after 180 days.Most Voted"
     ],
-    "answers": [
-      "d401c0d 4 months, 3 weeks ago Selected Answer: CE Couldn't have said it better than JoeTromundo upvoted 1 times ...",
-      "JoeTromundo 8 months, 3 weeks ago Selected Answer: CE C: Incomplete multipart uploads consume unnecessary storage and increase costs, especially with large files like videos. Setting a lifecycle policy to automatically delete incomplete uploads after 7 days helps reduce unnecessary storage costs without manual intervention.\nE: The videos are frequently accessed in the first 180 days and rarely accessed after that. Transitioning the videos to S3 Standard-IA after 180 days reduces costs while still providing immediate retrieval when needed. S3 Standard-IA is designed for infrequently accessed data and offers lower storage costs than S3 Standard while maintaining fast access times.\nWhy not B? S3 Transfer Acceleration improves upload speeds for users with poor internet connectivity, but it INCURS ADDITIONAL COSTS. While this can help with uploads, it does NOT directly optimize STORAGE COSTS, which is the main goal here. upvoted 3 times ...",
-      "kgpoj 10 months, 3 weeks ago Selected Answer: CE CE for sure.\n\nWhy not B?\nThe root cause for failed upload is due to that fact that user has poor internet connectivity. That's not something transfer accelerator can help with, maybe the user need to find a better internet provider, or use Elon's star link upvoted 1 times ...",
-      "Russs99 1 year ago Selected Answer: CE CE are the best options.  In option C, incomplete upload should be deleted to save costs. upvoted 1 times ...",
-      "AhmedSalem 1 year ago Selected Answer: CE From the cost management perspective, the answer should be CE upvoted 1 times ...",
-      "ujizane 1 year ago Selected Answer: CE Cost Optimization so CE upvoted 3 times ...",
-      "mifune 1 year ago Selected Answer: BE B - for transfers of files over long distances between your client and an S3 bucket | E - for reducing cost for data that is accessed less frequently. upvoted 2 times ...",
-      "ebbff63 1 year ago Selected Answer: CE C - optimizes the S3 storage costs effectively \nE - address frequent access in the first 180 days and infrequent access afterward upvoted 4 times ..."
-    ]
+    "answers": ["C", "E"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156666-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -901,9 +700,7 @@
       "C. Configure a trigger for the ProcessMessages Lambda function. Specify the ErrorTopic SNS topic as the trigger topic. Configure a filter policy on the topic for failures",
       "D. Configure a delivery policy on the ErrorTopic SNS topic. Configure a filter policy for failures. Specify the Lambda function as the input endpoint."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: B Puedes configurar un destino de error (failure destination) para llamadas Lambda y cuando la función falle, se enviará un mensaje al  ErrorTopic SNS, permitiendo recibir notificaciones de fallo. upvoted 1 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/103919-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -915,12 +712,7 @@
       "C. Access on all objects in the “DOC-EXAMPLE-BUCKET” bucket along with access to all S3 actions for objects in the “DOC-EXAMPLE-BUCKET” bucket that start with “secrets”",
       "D. Access on all objects in the “DOC-EXAMPLE-BUCKET” bucket except on objects that start with “secrets”Most Voted"
     ],
-    "answers": [
-      "Untamables Highly Voted 2 years, 3 months ago Selected Answer: D D\nhttps://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-actions.html upvoted 12 times ...",
-      "sumanshu Most Recent 6 months, 2 weeks ago Selected Answer: D The condition restricts access to objects that start with the prefix secrets upvoted 1 times ...",
-      "65703c1 1 year, 1 month ago Selected Answer: D D is the correct answer. upvoted 1 times ...",
-      "nmc12 1 year, 9 months ago Selected Answer: D D\nhttps://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-actions.html upvoted 2 times ..."
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/153523-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -932,11 +724,7 @@
       "C. Use AWS CodePipeline with AWS CloudFormation change sets to deploy the infrastructure. Use a CloudFormation custom resource to run the tests.",
       "D. Use AWS Serverless Application Model (AWS SAM) templates with AWS CloudFormation change sets to deploy the infrastructure. Use AWS CodeDeploy to run the tests."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: B CodePipeline junto con CloudFormation StackSets facilita el despliegue de infraestructura en múltiples cuentas, y CodeBuild se adapta perfectamente para ejecutar los tests de integración. Minimo esfuerzo administrativo upvoted 1 times ...",
-      "bp07 5 months, 3 weeks ago Selected Answer: B Answer should be B. upvoted 1 times ...",
-      "xdeveloper 6 months, 1 week ago Selected Answer: B StackSets handle the deployment of resources to multiple accounts without the need for complex configurations.\nCodePipeline and CodeBuild integrate seamlessly for CI/CD, providing a low-maintenance, fully managed solution. upvoted 3 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156664-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -948,9 +736,7 @@
       "C. Enable encryption on the DB cluster by using the same KMS key that is used in CloudFront.",
       "D. Request and deploy a new SSL certificate to use with the CloudFront distribution."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: B Al usar CloudFront con field-level encryption, los datos se cifran en el borde y llegan cifrados al origen. Para evitar que se almacenen en la base de datos como texto cifrado, debes incluir una función (o lógica en la Lambda) que, usando la misma clave de KMS, descifre esos campos antes de guardarlos. upvoted 1 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156663-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -962,9 +748,7 @@
       "C. Set the DelaySeconds value of the SQS queue to be the number of seconds required to delay delivery of the messages. Add an event source mapping for the Lambda function. Specify the SQS queue as a source.",
       "D. Set the Visibility Timeout value of the SQS queue to be the number of seconds required to delay delivery of the messages. Add an event source mapping for the Lambda function. Specify the SQS queue as a source."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: C Al configurar el parámetro DelaySeconds de la cola SQS, se retrasa la entrega de los mensajes a la lambda y eso hace que esté el tiempo necesario upvoted 1 times ..."
-    ]
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156662-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -976,10 +760,7 @@
       "C. Include a filter for a status of ready in all EventBridge rules that subscribe to the event bus.",
       "D. Add an input transformer to the pipe output that filters streams that have a status of ready."
     ],
-    "answers": [
-      "0bdf3af 4 months ago Selected Answer: B B. Lambda is for retrieve status from database. Only lambda know the status.\nThe filtering can be done by addingone line in the code of the lambda function.\nA. In Filtering step we don't have information about the status (status is in the database and the lambda has the access to it)\nC. It's too late. Event is already sent to eventbus and then rule can be invoked. upvoted 2 times ...",
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: A EventBridge Pipes permite agregar un paso de filtro para que solo los eventos que cumplan con ciertas condiciones (como tener un estado \"ready\") sean enviados al bus de eventos. Esto se configura sin cambiar la función Lambda ni afectar otros componentes, upvoted 2 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156661-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -991,9 +772,7 @@
       "C. Increase the memory allocation of the Lambda function.",
       "D. Configure provisioned concurrency for the Lambda function."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: D Configurar provisioned concurrency mantiene contenedores de Lambda \"calentitos\" y listos para responder, upvoted 1 times ..."
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156660-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1005,9 +784,7 @@
       "C. Include only the AWS SDK for .NET modules for DynamoDB and Amazon S3 in the Lambda function’s deployment package.",
       "D. Configure the Lambda function to download the AWS SDK for .NET from an S3 bucket at runtime."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: C Incluyendo únicamente los módulos para DynamoDB y S3, se reduce el tamaño del paquete, lo que disminuye el tiempo de despliegue e invocación de la función. upvoted 1 times ..."
-    ]
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/153147-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1019,11 +796,7 @@
       "C. Use AWS DataSync to transfer audit logs to an Amazon S3 bucket. Load the logs into an Amazon S3 bucket. Use Amazon Athena to query the bucket.",
       "D. Install the Amazon CloudWatch agent on the on-premises servers. Give the agent the ability to push audit logs to CloudWatch. Use CloudWatch Insights to query the logs."
     ],
-    "answers": [
-      "robotgeek 1 month ago Selected Answer: D Operationally efficient is to use the program specifically designed for this: the CloudWatch Agent, which ships log files to the cloud.\nhttps://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html\n\nIs AWS trying to evangelize CloudTrail Lake here? Maybe. But I can't imagine pulling logs from HTTP on-premises endpoints... Operationally, it just doesn't make sense to me. upvoted 1 times ...",
-      "0bdf3af 4 months ago Selected Answer: C AWS DataSync is an online data movement and discovery service that simplifies and accelerates data migrations to AWS as well as moving data to and from on-premises storage, edge locations, other cloud providers, and AWS Storage services.\n\nhttps://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html upvoted 1 times ...",
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: B una función Lambda programada mediante EventBridge, se puede invocar periódicamente para llamar al endpoint HTTP y extraer los logs, sin tener que instalar nada en los servidores on premises. Con CLoudtrail lake tampoco tienes que instalar nada upvoted 1 times ..."
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156657-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1035,9 +808,7 @@
       "C. Use server-side encryption with AWS KMS managed keys (SSE-KMS) and download the documents using HTTPS.",
       "D. Modify the S3 bucket policy to only allow specific users to download the documents. Revert the change after 15 minutes."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: B sar un presigned URL con expiración de 15 minutos es la forma más sencilla de dar acceso temporal a objetos en un bucket privado de S3. upvoted 1 times ..."
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/154337-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1049,10 +820,7 @@
       "C. Subscribe an AWS Lambda function to the DynamoDB table stream. Configure the Lambda function to run when a new record is added to the table. When the Lambda function receives the appropriate record, stop the current state machine invocation and start a new invocation.",
       "D. Invoke an AWS Lambda function from the state machine. Configure the Lambda function to continuously poll the DynamoDB table for the appropriate record and to return when a record exists. Continue the state machine invocation when the Lambda function returns. If the Lambda function times out, then fail the state machine."
     ],
-    "answers": [
-      "0bdf3af 4 months ago Selected Answer: B B. Use DynamoDB streams, then lambda subscribe the stream and redrive state machine upvoted 3 times ...",
-      "Arad 5 months, 3 weeks ago Selected Answer: A A is the correct answer.\nBecause AWS Step Functions provides native integration with Amazon DynamoDB, allowing the state machine to directly query a DynamoDB table using the DynamoDB GetItem state. This approach enables a wait-and-retry mechanism, which is ideal for workflows where the state machine needs to wait for a confirmation record to appear in the DynamoDB table.\nB is wrong.\nBecause while this could work, it adds unnecessary complexity. The redrive execution command involves restarting the state machine, which is not ideal for workflows designed to wait for an event. upvoted 1 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156655-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1064,9 +832,7 @@
       "C. Create a new CodeAifact domain that contains a new repository that has an external connection to the public package repository.",
       "D. Modify the CodeAnifact repository resource policy to allow artifacts to be fetched from the public package repository."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: A Básicamente, solo tienes que modificar el repositorio actual para agregar Maven Central como repositorio \"upstream\", lo que minimiza los cambios en la pipeline. upvoted 1 times ..."
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156656-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1078,11 +844,7 @@
       "C. Use stage variables in the integration request mapping template and decide on status codes based on the stage (e.g., prod vs dev), employing $stageVariables.myStage inside the template logic.",
       "D. Create multiple mock integration endpoints (e.g., /resource/success and /resource/error) and route traffic using API Gateway routing rules, each with a static mapping template returning the desired HTTP code."
     ],
-    "answers": [
-      "thalasi 1 month, 2 weeks ago Selected Answer: B https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-mock-integration.html upvoted 1 times ...",
-      "0bdf3af 4 months ago Selected Answer: B https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-mock-integration.html upvoted 4 times ...",
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: C Creo que está bien formada y utiliza #if/#else de Velocity para decidir qué código HTTP queremos devolver en función de si existe o no el campo integration en el path.\nEs la forma típica de “maquetar” un mock response en API Gateway, retornando distintos statusCode según la condición. upvoted 1 times ..."
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156653-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1094,9 +856,7 @@
       "C. Install the AWS CLI, Configure the AWS CLI by using an IAM user access key and secret key.",
       "D. Install an AWS software development kit (SDK). Configure the SDK by using an X.509 certificate."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: C Para desplegar una plantilla de CloudFormation desde una máquina local, debes tener instalada la AWS CLI y configurarla con las credenciales de un usuario IAM upvoted 1 times ..."
-    ]
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156652-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1109,9 +869,7 @@
       "D. Package the application code into a .zip file. Use the AWS CL to create a new application version from the .zip file and to update the environment.",
       "E. Package the application code into a .zip file. Use the AWS Management Console to create a new application version from the .zip file. Rebuild the environment by using the AWS CLI."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: AD A: Puedes empaquetar el código en un archivo .zip, subirlo mediante la consola de Elastic Beanstalk y desplegar la nueva versión directamente desde la consola.\nD: También es posible empaquetar el código en un archivo .zip y utilizar la AWS CLI para crear una nueva versión de la aplicación upvoted 2 times ..."
-    ]
+    "answers": ["A", "D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/152955-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1123,10 +881,7 @@
       "C. in-place",
       "D. immutable"
     ],
-    "answers": [
-      "xdeveloper 6 months, 1 week ago Selected Answer: B Traffic splitting – A canary testing deployment method. Suitable if you want to test the health of your new application version using a portion of incoming traffic, while keeping the rest of the traffic served by the old application version. upvoted 2 times ...",
-      "ShakthiGCP 6 months, 3 weeks ago Selected Answer: B https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html#environments-cfg-trafficsplitting-method upvoted 1 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/134278-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1138,23 +893,7 @@
       "C. Create an AWS Lambda function to load all untagged S3 objects. Retrieve the results for each item from the REST API and tag each S3 object accordingly. Create and configure an Amazon EventBridge rule to run at regular intervals. Set the Lambda function as a target for the EventBridge rule.",
       "D. Launch an Amazon EC2 instance. Deploy a script to the EC2 instance to use the external database results to tag the S3 objects accordingly. Configure a crontab file to run the script at regular intervals."
     ],
-    "answers": [
-      "AssessmentKing Highly Voted 1 year, 3 months ago Selected Answer: B Images are first uploaded to S3 bucket.\nThen, manual audit is performed that lasts 1-24 hours.\nOnly after the audit of the image is finished we can run our Lambda function.\nIf we run event at regular intervals (what does it mean?) should we run it every hour and then we would have bunch of untagged objects that haven't been audited and we would add a tag to them which doesn't make sense.\n\n- In option B they explicitly mention that the Wait period will be 24 hours thus insuring that the audit of those objects has been completed. Only then we run the Lambda function. upvoted 8 times ...",
-      "SerialiDr Highly Voted 1 year, 4 months ago Selected Answer: C C. Create an AWS Lambda function to load all untagged S3 objects. Retrieve the results for each item from the REST API and tag each S3 object accordingly. Create and configure an Amazon EventBridge rule to run at regular intervals. Set the Lambda function as a target for the EventBridge rule.\n\nThis solution leverages AWS Lambda for processing and tagging S3 objects based on the audit results available through the REST API. By using Amazon EventBridge to trigger the Lambda function at regular intervals, the developer ensures that the process runs automatically without manual intervention, efficiently handling the tagging of S3 objects once the audit results are available. This approach minimizes operational effort and does not require the continuous monitoring of S3 object creation or the management of complex workflows. upvoted 6 times ...",
-      "egosselin Most Recent 1 month, 1 week ago Selected Answer: C C is the best anwser. B is wrong, because it induce unnecessary latency, if the image is audited after an hour, the app will still wait for 23 hours to tag the image. upvoted 1 times ...",
-      "mooncake1 5 months, 1 week ago Selected Answer: B C will take too long... Each img will takd 24 hrs, and it will wait for all imgs. I do not understand why people are confused.. It needs to be triggered when the img is uploaded. upvoted 1 times mooncake1 5 months, 1 week ago Also SQS max VT is 12 hr. 24 hr is impossible, A not right upvoted 1 times ... ...",
-      "Arad 5 months, 3 weeks ago Selected Answer: C C is the right answer.\nLambda+EvenBridge is operationally more efficient than Step Function. upvoted 1 times ...",
-      "ShakthiGCP 6 months, 3 weeks ago Selected Answer: B Ans: B . We have to wait for 1- 24 hrs .we cant just run the lambda functions to get untagged objects . upvoted 1 times ...",
-      "Saudis 8 months ago Selected Answer: C I am confuse because the chatGPT Says C upvoted 1 times ...",
-      "devmo 8 months, 1 week ago Selected Answer: C With option B, what if the external company doesn't complete the audit in 24 hours  Least operational over head and long term solution would be going with 1 lambda and event bridge is what I feel. upvoted 1 times devmo 8 months, 1 week ago Changing my mind to B as a lambda might time out if number of untagged items are a lot. Good use case for dynamodb streams. upvoted 1 times ... ...",
-      "tsangckl 1 year ago Selected Answer: C This solution leverages AWS Lambda, which is a serverless compute service that runs your code in response to events and automatically manages the underlying compute resources for you1. By using Lambda in conjunction with Amazon EventBridge, which can trigger events at regular intervals, you can create a system that periodically checks for new audit results and applies tags to S3 objects without the need for managing server instances or handling queue visibility timeouts. This approach is not only operationally efficient but also cost-effective, as you pay only for the compute time you consume with Lambda21. upvoted 3 times ...",
-      "65703c1 1 year, 1 month ago Selected Answer: B B is the correct answer. upvoted 2 times ...",
-      "DeaconStJohn 1 year, 3 months ago Selected Answer: B I'm still not sure if B is correct. \nHowever, I think this use case is very similar to a feature that exists in step functions. Although the wording doesn't answer the question directly and I think waiting 24 hours is the opposite of operationally efficient. The GetTaskToken feature that is part of service integration in step functions would be a perfect match for this scenario, removing the 24 hour wait while maintaining operational efficiency using AWS Step functions.\nI can only hope this is what they are getting at when I answer this on the exam.\n\nhttps://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html upvoted 4 times ...",
-      "KarBiswa 1 year, 3 months ago Selected Answer: C Best option considering the question conditions. Reading from Rest API upvoted 2 times ...",
-      "monishvster 1 year, 4 months ago Selected Answer: A Should be A upvoted 1 times ...",
-      "Jisking 1 year, 4 months ago Selected Answer: B I may choose B. upvoted 3 times ...",
-      "CrescentShared 1 year, 4 months ago Selected Answer: C A does not make any sense. upvoted 3 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/107444-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1166,13 +905,7 @@
       "C. Use an Application Load Balancer. Register the targets by the instance ID.",
       "D. Use a Network Load Balancer and the X-Forwarded-For headers."
     ],
-    "answers": [
-      "MrTee Highly Voted 1 year, 8 months ago Selected Answer: A Use an Application Load Balancer (ALB) and the X-Forwarded-For headers. When an ALB is used, the X-Forwarded-For header can be used to pass the client IP address to the backend servers. upvoted 10 times ...",
-      "sumanshu Most Recent 6 months, 1 week ago Selected Answer: A Application Load Balancer (ALB) is a Layer 7 (HTTP/HTTPS) load balancer that supports handling HTTP headers, including the X-Forwarded-For header.\n\nB/D - Eliminated - Network Load Balancer (NLB) operates at Layer 4 (TCP) and does not inherently handle HTTP headers\n\nC) Eliminated - it does not address the requirement of accessing client IP addresses. upvoted 2 times ...",
-      "65703c1 7 months, 2 weeks ago Selected Answer: A A is the correct answer. upvoted 1 times ...",
-      "topicsquestions 8 months, 2 weeks ago Selected Answer: A Option a upvoted 1 times ...",
-      "SerialiDr 11 months, 4 weeks ago Selected Answer: A An Application Load Balancer (ALB) operates at the application layer (Layer 7) of the OSI model and supports HTTP/HTTPS traffic. It adds the X-Forwarded-For header to the request as it forwards it to the target, which contains the original client's IP address. This allows the application behind the ALB to access the client IP addresses. upvoted 4 times ..."
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/152952-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1184,10 +917,7 @@
       "C. Enable application pooling",
       "D. Disable application pooling"
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: A El endpoint de lectura de Aurora usa un mecanismo de balanceo de carga basado en DNS para distribuir las solicitudes entre las réplicas. Si la aplicación almacena en caché la resolución DNS, siempre apuntará a la misma IP (réplica), dejando inactiva la otra. Desactivar el caching DNS en la aplicación permitirá que las solicitudes se distribuyan equitativamente entre las réplicas. upvoted 1 times ...",
-      "ShakthiGCP 6 months, 3 weeks ago Selected Answer: A https://docs.aws.amazon.com/whitepapers/latest/amazon-aurora-mysql-db-admin-handbook/dns-caching.html upvoted 1 times ..."
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/153146-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1199,10 +929,7 @@
       "C. Create an Amazon EMR cluster to read messages from the SQS queue. Configure an EMR job to enrich the order data. Create and configure an Amazon S3 bucket as the output location. Adjust the order fulfilment system to retrieve the enriched files from the S3 bucket.",
       "D. Create an Amazon EventBridge pipe that uses event enrichment. Configure the SQS queue as a source for the pipe. Set the fulfillment system as the target of the pipe.Most Voted"
     ],
-    "answers": [
-      "xdeveloper 6 months, 1 week ago Selected Answer: D EventBridge Pipes enables you to create point-to-point integrations between sources and targets, including advanced event transformations and enrichment. upvoted 2 times ...",
-      "ShakthiGCP 6 months, 2 weeks ago Selected Answer: D AWS EventBridge Pipes is a feature of Amazon EventBridge that simplifies building event-driven architectures by connecting event producers and consumers directly with minimal code or custom logic. It allows you to create point-to-point integrations between sources (e.g., AWS services, SaaS applications) and targets with optional filtering and enrichment of events along the way. upvoted 1 times ..."
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/152950-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1214,12 +941,7 @@
       "C. Use customer managed keys. When the keys are no longer required, delete the key material.",
       "D. Use customer managed keys and an AWS CloudHSM key store. When the keys are no longer required, schedule the keys for immediate deletion."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: B B: Con claves administradas por el cliente que utilizan material de clave importado, puedes eliminar el material de clave de forma inmediata cuando ya no se requiera.\nA y D: Aunque son altamente disponibles, requieren programar la eliminación (no es inmediata). upvoted 1 times ...",
-      "Arad 5 months, 3 weeks ago Selected Answer: B B is the correct answer.\nA and C are wrong as AWS KMS managed keys (including AWS-managed keys and customer managed keys) cannot be deleted immediately. They must go through a minimum waiting period of 7 days. upvoted 2 times ...",
-      "xdeveloper 6 months, 1 week ago Selected Answer: A AWS KMS allows you to schedule the keys for immediate or future deletion. This makes it easy to delete keys without manual intervention. upvoted 1 times ...",
-      "ShakthiGCP 6 months, 3 weeks ago Selected Answer: B https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-delete-key-material.html upvoted 2 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156649-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1231,9 +953,7 @@
       "C. Create a new REST API. Add a resource that has a single GET method that is integrated with the updated version of the Lambda function.",
       "D. Update the Lambda integration of the existing GET method to point to the updated version of the Lambda function. Deploy the new version."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: B Al crear una etapa (stage) separada y usar variables de etapa para apuntar a la versión actualizada de la función, puedes probar sin afectar la etapa de producción. Es la opción de menor sobrecarga operativa. upvoted 2 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/152947-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1245,9 +965,7 @@
       "C. Create a Lambda layer that contains the zip archive. Attach the Lambda layer to the Lambda functions.",
       "D. Create a Lambda container image that includes the shared code. Use the container image as a Lambda base image for all the functions."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: C al crear una Lambda layer con el código compartido y adjuntarla a tus funciones Lambda, puedes reutilizar el código de manera operativamente eficiente sin tener que duplicarlo o reempaquetarlo en cada función. upvoted 1 times ..."
-    ]
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156648-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1259,9 +977,7 @@
       "C. Increase the memory allocation of the Lambda function.",
       "D. Increase the batch size in the event source mapping."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: B Porque al aumentar el tiempo de visibilidad del SQS, se evita que los mensajes se vuelvan a entregar mientras la función Lambda aún los está procesando. upvoted 1 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/152946-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1273,9 +989,7 @@
       "C. Create an AWS Lambda token authorizer. Reference the authorization token in the event payload. Authenticate requests based on the token value.",
       "D. Create an AWS Lambda request authorizer. Reference the authorization header in the event payload. Authenticate requests by using the header value in a request to the Cognito API."
     ],
-    "answers": [
-      "ShakthiGCP 6 months, 3 weeks ago Selected Answer: B https://medium.com/@shivkaundal/secure-your-apis-with-cognito-authorizers-for-aws-api-gateway-ba15914b64b2 upvoted 1 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156647-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1287,9 +1001,7 @@
       "C. Increase the memory that is available to the Lambda function.",
       "D. Refactor the Lambda function to start an AWS Step Functions state machine."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: D El error HTTP 504 ocurre porque API Gateway tiene un tiempo de espera de integración que es menor que el tiempo total de ejecución (hasta 10 minutos). Refactorizando la función para iniciar un Step Functions state machine, se separa el procesamiento largo de la respuesta síncrona, evitando que API Gateway agote el tiempo de espera. upvoted 2 times ..."
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/153145-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1301,9 +1013,7 @@
       "C. BatchGetItem",
       "D. GetItem"
     ],
-    "answers": [
-      "ShakthiGCP 6 months, 2 weeks ago Selected Answer: A Why Use Query?\nTargeted Retrieval:\nSince the index is defined with the date, you can use the date as the partition key or sort key (depending on how the index is designed).\nThe Query operation allows you to specify the exact partition key (e.g., date = '2024-12-16' for the previous day). upvoted 2 times ..."
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156645-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1316,9 +1026,7 @@
       "D. Repackage the Lambda function as a Docker container image. Upload the image to Amazon Elastic Container Registry (Amazon ECR). Create a new Lambda function by using the Lambda console. Reference the image that is deployed to Amazon ECR.",
       "E. Sign the .zip file digitally. Create a new Lambda function by using the Lambda console. Update the configuration of the new Lambda function to include the Amazon Resource Name (ARN) of the code signing configuration."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: AD A: Sube el .zip a un bucket de S3 y luego usa la consola de Lambda para cargarlo desde allí, evitando el límite directo.\nD: Empaqueta la función como imagen de contenedor, súbela a ECR y crea la función referenciando esa imagen, lo cual permite manejar paquetes más grandes. upvoted 1 times ..."
-    ]
+    "answers": ["A", "D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156644-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1330,9 +1038,7 @@
       "C. Use Amazon Data Firehose to deliver all changes from the Accounts database to the Payments database.",
       "D. Use Amazon DynamoDB Streams to deliver all changes from the Accounts database to the Payments database."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: D DynamoDB Streams te permite capturar cambios en la tabla de Accounts en tiempo real. C una función Lambda puedes actualizar la base de datos de Payments de manera simple, desacoplada y confiable. upvoted 1 times ..."
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/152923-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1344,10 +1050,7 @@
       "C. Configure cross-account resource sharing for the parameters by using AWS Resource Access Manager (AWS RAM).Most Voted",
       "D. Write a script that stores the parameter values in a private Amazon S3 bucket that both accounts can access."
     ],
-    "answers": [
-      "AlmeroSenior 3 weeks, 5 days ago Selected Answer: B Its B , Ram not supported for SSMParams \n\nAWS RAM: As of now, AWS Systems Manager Parameter Store is not a supported resource type for AWS Resource Access Manager (RAM), so this option is not feasible. upvoted 1 times AlmeroSenior 2 weeks, 2 days ago Its C , This changed in 2024 as per link below from Shakthi . Question also hints that AWS ORG is used , and ORG is requirement for RAM . upvoted 2 times ... ...",
-      "ShakthiGCP 6 months, 3 weeks ago Selected Answer: C https://aws.amazon.com/blogs/mt/introducing-parameter-store-cross-account-sharing/\nRAM Share is the easy and best way to share resources across Accounts. upvoted 4 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/152922-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1359,9 +1062,7 @@
       "C. Timeout: !Select [EnvironmentData, !Ref Environment, Timeout]",
       "D. Timeout: !ForEach[EnvironmentData, !Ref Environment, Timeout]"
     ],
-    "answers": [
-      "ShakthiGCP 6 months, 3 weeks ago Selected Answer: B !FindInMap is an intrinsic function used to retrieve a value from a mapping upvoted 2 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/151546-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1373,11 +1074,7 @@
       "C. Use Amazon Elastic Block Store (Amazon EBS) to store the video files for the first 90 days. After 90 days, transition the video files to the Amazon S3 Glacier Deep Archive storage class.",
       "D. Upload the video files to Amazon S3. Use the S3 Glacier Instant Retrieval storage class for the first 90 days. After 90 days, transition the video files to the S3 Glacier Flexible Retrieval storage class.Most Voted"
     ],
-    "answers": [
-      "tullio85 5 months, 3 weeks ago Selected Answer: D D solution is better upvoted 1 times ...",
-      "xdeveloper 6 months, 1 week ago Selected Answer: D https://docs.aws.amazon.com/AmazonS3/latest/userguide/glacier-storage-classes.html upvoted 1 times ...",
-      "albert_kuo 7 months, 2 weeks ago Selected Answer: D {\n  \"Rules\": [\n    {\n      \"ID\": \"TransitionToGlacier\",\n      \"Status\": \"Enabled\",\n      \"Filter\": {},\n      \"Transitions\": [\n        {\n          \"Days\": 90,\n          \"StorageClass\": \"GLACIER_IR\"\n        },\n        {\n          \"Days\": 91,\n          \"StorageClass\": \"GLACIER\"\n        }\n      ]\n    }\n  ]\n} upvoted 1 times ..."
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/152918-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1389,9 +1086,7 @@
       "C. Publish the data to Amazon EventBridge.",
       "D. Publish the data to Amazon Kinesis Data Streams."
     ],
-    "answers": [
-      "ShakthiGCP 6 months, 3 weeks ago Selected Answer: D Real-time Data Streaming: Kinesis Data Streams is designed for real-time processing of streaming data. It offers high throughput and low latency, making it suitable for applications requiring immediate processing of incoming data.\n\nParallel Processing: Kinesis Data Streams allows you to partition the data stream into shards. Each shard can be consumed by a single consumer (in this case, an EC2 instance). By creating multiple shards, you can distribute the processing load across multiple EC2 instances for parallel processing. This scales horizontally to accommodate increasing data volume and processing needs. upvoted 1 times ..."
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156669-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1403,9 +1098,7 @@
       "C. Create a Lambda function alias. Set the weight to 50% for the current version and 50% for the new version. Set the event source mappings for the Lambda function to point to the alias.",
       "D. Update the event source mappings for the Lambda function. In the mappings, set the weight to 50% for the current version and 50% for the new version."
     ],
-    "answers": [
-      "italiancloud2025 4 months, 2 weeks ago Selected Answer: C La manera más sencilla es usar un alias de Lambda con una configuración de enrutamiento ponderado (routing weights) para distribuir el tráfico entre versiones. upvoted 1 times ..."
-    ]
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/152916-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1417,11 +1110,7 @@
       "C. Upload the zipped source code to another S3 bucket before updating the CioudFormation stack.",
       "D. Associate a cade signing configuration with the Lambda function before updating the CloudFormation stack."
     ],
-    "answers": [
-      "Shamalka 3 months, 3 weeks ago Selected Answer: B You have to change the S3 Object Key and the Version every time you update the code, upvoted 1 times ...",
-      "0bdf3af 4 months ago Selected Answer: A A. Lambda alias pointing to $LATEST will resolve this issue. \n\nB could also fit in this situation, but if deployment can happen even couple times a day it is very annoiyng to change manually the version of the lambda funtion everytime in cloudformation template upvoted 1 times ...",
-      "ShakthiGCP 6 months, 3 weeks ago Selected Answer: B Giving a new object key when load the new zip file upvoted 1 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/153505-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1433,11 +1122,7 @@
       "C. Deploy the API to a new stage named production. Configure the stage to include a stage variable that points to the prod Lambda function alias.Most Voted",
       "D. Deploy the API to a new stage named production. Configure an integration request on the API’s production stage that points to the prod Lambda function alias."
     ],
-    "answers": [
-      "LingZ 4 months, 2 weeks ago Selected Answer: C This solution separates environments and provides flexibility for future alias updates upvoted 2 times ...",
-      "Arad 5 months, 3 weeks ago Selected Answer: C C is the correct answer.\nD is wrong as directly configuring the integration request on the production stage is not ideal. You should use stage variables to configure the integration dynamically, allowing you to manage different environments without manually changing the integration in each stage. upvoted 2 times ...",
-      "xdeveloper 6 months, 1 week ago Selected Answer: C Choose C,\nD: While it's necessary to create a new stage called \"production\", the configuration should be done using a stage variable, not by configuring the integration request directly in the production stage. upvoted 2 times ..."
-    ]
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/150781-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1449,11 +1134,7 @@
       "C. Configure CodePipeline to invoke AWS CodeBuild to deploy and test the CloudFormation templates in each Region. Update CodeBuild and CloudFormation with appropriate permissions.",
       "D. Use the Snyk action in CodePipeline to deploy and test the CloudFormation templates in each Region."
     ],
-    "answers": [
-      "xdeveloper 6 months, 1 week ago Selected Answer: B AWS CloudFormation StackSets extends the capability of stacks by allowing you to create, update, or delete stacks across multiple accounts and AWS Regions with a single operation. Using an administrator account, you define and manage a CloudFormation template, and use the template as the basis for provisioning stacks into selected target accounts across specified AWS Regions. upvoted 2 times ...",
-      "aragon_saa 8 months ago Selected Answer: B Answer is B upvoted 1 times ...",
-      "Saudis 8 months ago Selected Answer: B primary AWS Region and a disaster recovery Region that mean multi regions so should use Staksets upvoted 2 times ..."
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/152886-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1465,9 +1146,6 @@
       "C. Increase the reserved concurrency of the Lambda function to the maximum value for unreserved account concurrency. Run any setup activities manually before the initial invocation of the Lambda function.",
       "D. Publish a new version of the Lambda function. Configure provisioned concurrency for the Lambda function with the required minimum number of execution environments.Most Voted"
     ],
-    "answers": [
-      "thalasi 1 month, 2 weeks ago Selected Answer: D must have predictable function start times\n\nso, provisioened consucrrency upvoted 1 times ...",
-      "ShakthiGCP 6 months, 3 weeks ago Selected Answer: D The developer's requirements—minimum latency, predictable function start times, and all setup activities completed before invocation—point towards using AWS Lambda provisioned concurrency. upvoted 2 times ..."
-    ]
+    "answers": ["D"]
   }
 ]

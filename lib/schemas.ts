@@ -6,13 +6,13 @@ export const questionSchema = z.object({
     .array(z.string())
     .length(4)
     .describe(
-      "Four possible answers to the question. Only one should be correct. They should all be of equal lengths."
+      "Four possible answers to the question. Only one should be correct. They should all be of equal lengths.",
     ),
   answer: z
-    .enum(["A", "B", "C", "D"])
+    .array(z.enum(["A", "B", "C", "D"]))
     .describe(
-      "The correct answer, where A is the first option, B is the second, and so on."
-    )
+      "The correct answers as an array, where A is the first option, B is the second, and so on.",
+    ),
 });
 
 export type Question = z.infer<typeof questionSchema>;

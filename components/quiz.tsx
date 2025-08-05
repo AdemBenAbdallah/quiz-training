@@ -19,12 +19,14 @@ import QuestionExplainDialog from "./QuestionExplainDialog";
 import QuizReview from "./quiz-overview";
 import QuizScore from "./score";
 
+export type Choice = "A" | "B" | "C" | "D";
 export type Question = {
   question: string;
   options: string[];
-  answer: "A" | "B" | "C" | "D";
+  answer: Choice[];
   questionNumber?: string;
   answerComments?: string[];
+  multipleAnswers?: boolean;
 };
 
 type QuizProps = {
@@ -35,12 +37,12 @@ type QuizProps = {
 
 const QuestionCard: React.FC<{
   question: Question;
-  selectedAnswer: string | null;
-  onSelectAnswer: (answer: string) => void;
+  selectedAnswers: Choice[];
+  onSelectAnswer: (answer: Choice) => void;
   isSubmitted: boolean;
   showCorrectAnswer: boolean;
-}> = ({ question, selectedAnswer, onSelectAnswer, showCorrectAnswer }) => {
-  const answerLabels = ["A", "B", "C", "D"];
+}> = ({ question, selectedAnswers, onSelectAnswer, showCorrectAnswer }) => {
+  const answerLabels: Choice[] = ["A", "B", "C", "D"];
 
   return (
     <div className="space-y-6">
@@ -57,14 +59,16 @@ const QuestionCard: React.FC<{
           <Button
             key={index}
             variant={
-              selectedAnswer === answerLabels[index] ? "secondary" : "outline"
+              selectedAnswers.includes(answerLabels[index])
+                ? "secondary"
+                : "outline"
             }
             className={`h-auto py-6 px-4 justify-start text-left whitespace-normal ${
-              showCorrectAnswer && answerLabels[index] === question.answer
+              showCorrectAnswer && question.answer.includes(answerLabels[index])
                 ? "bg-green-600 hover:bg-green-700"
                 : showCorrectAnswer &&
-                    selectedAnswer === answerLabels[index] &&
-                    selectedAnswer !== question.answer
+                    selectedAnswers.includes(answerLabels[index]) &&
+                    !question.answer.includes(answerLabels[index])
                   ? "bg-red-600 hover:bg-red-700"
                   : ""
             }`}
@@ -74,13 +78,14 @@ const QuestionCard: React.FC<{
               {answerLabels[index]}
             </span>
             <span className="flex-grow">{option}</span>
-            {(showCorrectAnswer && answerLabels[index] === question.answer) ||
-              (selectedAnswer === answerLabels[index] && (
+            {(showCorrectAnswer &&
+              question.answer.includes(answerLabels[index])) ||
+              (selectedAnswers.includes(answerLabels[index]) && (
                 <Check className="ml-2 shrink-0 text-white" size={20} />
               ))}
             {showCorrectAnswer &&
-              selectedAnswer === answerLabels[index] &&
-              selectedAnswer !== question.answer && (
+              selectedAnswers.includes(answerLabels[index]) &&
+              !question.answer.includes(answerLabels[index]) && (
                 <X className="ml-2 shrink-0 text-white" size={20} />
               )}
           </Button>
@@ -102,8 +107,8 @@ const QuestionCard: React.FC<{
 
 export default function Quiz({ idx, questions, title = "Quiz" }: QuizProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [answers, setAnswers] = useState<string[]>(
-    Array(questions.length).fill(null),
+  const [answers, setAnswers] = useState<Choice[][]>(
+    Array(questions.length).fill([]) as Choice[][],
   );
   const [isSubmitted, setIsSubmitted] = useState<boolean[]>(
     Array(questions.length).fill(false),
@@ -118,10 +123,21 @@ export default function Quiz({ idx, questions, title = "Quiz" }: QuizProps) {
     return () => clearTimeout(timer);
   }, [currentQuestionIndex, questions.length]);
 
-  const handleSelectAnswer = (answer: string) => {
+  const handleSelectAnswer = (answer: Choice) => {
     if (!isSubmitted[currentQuestionIndex]) {
       const newAnswers = [...answers];
-      newAnswers[currentQuestionIndex] = answer;
+      const currentAnswers = newAnswers[currentQuestionIndex] || [];
+
+      if (currentAnswers.includes(answer)) {
+        newAnswers[currentQuestionIndex] = currentAnswers.filter(
+          (a) => a !== answer,
+        );
+      } else if (!questions[currentQuestionIndex].multipleAnswers) {
+        newAnswers[currentQuestionIndex] = [answer];
+      } else {
+        newAnswers[currentQuestionIndex] = [...currentAnswers, answer];
+      }
+
       setAnswers(newAnswers);
     }
   };
@@ -149,7 +165,16 @@ export default function Quiz({ idx, questions, title = "Quiz" }: QuizProps) {
   const handleSubmit = () => {
     const correctAnswers = questions.reduce(
       (acc: number, question: Question, index: number) => {
-        return acc + (question.answer === answers[index] ? 1 : 0);
+        const userAnswers = answers[index] || [];
+        const correctAnswerSet = new Set(question.answer);
+        const userAnswerSet = new Set(userAnswers);
+        return (
+          acc +
+          (correctAnswerSet.size === userAnswerSet.size &&
+          [...correctAnswerSet].every((answer) => userAnswerSet.has(answer))
+            ? 1
+            : 0)
+        );
       },
       0,
     );
@@ -161,7 +186,7 @@ export default function Quiz({ idx, questions, title = "Quiz" }: QuizProps) {
   };
 
   const handleReset = () => {
-    setAnswers(Array(questions.length).fill(null));
+    setAnswers(Array(questions.length).fill([]) as Choice[][]);
     setIsSubmitted(Array(questions.length).fill(false));
     setScore(null);
     setCurrentQuestionIndex(0);
@@ -214,7 +239,7 @@ export default function Quiz({ idx, questions, title = "Quiz" }: QuizProps) {
               <motion.div
                 key={
                   isSubmitted[currentQuestionIndex]
-                    ? `results-${currentQuestionIndex}`
+                    ? `sults-${currentQuestionIndex}`
                     : currentQuestionIndex
                 }
                 initial={{ opacity: 1 }}
@@ -226,7 +251,7 @@ export default function Quiz({ idx, questions, title = "Quiz" }: QuizProps) {
                   <div className="space-y-8">
                     <QuestionCard
                       question={currentQuestion}
-                      selectedAnswer={answers[currentQuestionIndex]}
+                      selectedAnswers={answers[currentQuestionIndex] || []}
                       onSelectAnswer={handleSelectAnswer}
                       isSubmitted={isSubmitted[currentQuestionIndex]}
                       showCorrectAnswer={isSubmitted[currentQuestionIndex]}
@@ -235,7 +260,7 @@ export default function Quiz({ idx, questions, title = "Quiz" }: QuizProps) {
                       <div className="flex justify-center pt-4">
                         <Button
                           onClick={handleSubmitCurrent}
-                          disabled={answers[currentQuestionIndex] === null}
+                          disabled={!answers[currentQuestionIndex]?.length}
                           className="w-full max-w-xs"
                         >
                           Submit
@@ -255,7 +280,7 @@ export default function Quiz({ idx, questions, title = "Quiz" }: QuizProps) {
                       </span>
                       <Button
                         onClick={handleNextQuestion}
-                        disabled={answers[currentQuestionIndex] === null}
+                        disabled={!answers[currentQuestionIndex]?.length}
                         variant="ghost"
                       >
                         {currentQuestionIndex === questions.length - 1

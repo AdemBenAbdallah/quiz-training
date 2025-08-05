@@ -8,12 +8,12 @@ const explainSchema = z.object({
   explanation: z.string(),
   choices: z.array(
     z.object({
-      label: z.string(),
+      label: z.enum(["A", "B", "C", "D"]),
       text: z.string(),
       explanation: z.string(),
     }),
   ),
-  correctAnswer: z.string(),
+  correctAnswer: z.enum(["A", "B", "C", "D"]),
   correctExplanation: z.string(),
   trick: z.string(),
 });
@@ -29,12 +29,12 @@ function stripCodeBlock(text: string): string {
 function generateCacheKey(
   question: string,
   options: string[],
-  answer: string,
+  answer: ("A" | "B" | "C" | "D")[],
 ): string {
   // Create a unique key based on the question content
   const normalizedQuestion = question.toLowerCase().trim();
   const normalizedOptions = options.map((opt) => opt.toLowerCase().trim());
-  const normalizedAnswer = answer.toLowerCase().trim();
+  const normalizedAnswer = answer.join(",").toLowerCase().trim();
 
   // Create a hash of the question data
   return `explain:${Buffer.from(
@@ -49,7 +49,15 @@ function generateCacheKey(
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { question, options, answer } = body;
+    const {
+      question,
+      options,
+      answer,
+    }: {
+      question: string;
+      options: string[];
+      answer: ("A" | "B" | "C" | "D")[];
+    } = body;
 
     if (!question || !options || !answer) {
       return NextResponse.json(

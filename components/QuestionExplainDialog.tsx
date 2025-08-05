@@ -80,16 +80,18 @@ const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
   const [data, setData] = useState<ExplainData | null>(null);
 
   useEffect(() => {
-    if (open && !data && loadingState === "initial") {
+    if (open && (!data || data.explanation !== question.question)) {
       fetchExplanation();
     }
-  }, [open]);
+  }, [open, question]);
 
   const fetchExplanation = async () => {
     setLoadingState("loading");
     setLoadingMessage("Fetching explanation...");
     setError(null);
-    setData(null);
+    if (data?.explanation !== question.question) {
+      setData(null);
+    }
 
     const startTime = Date.now();
 
@@ -100,7 +102,9 @@ const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
         body: JSON.stringify({
           question: question.question,
           options: question.options,
-          answer: question.answer,
+          answer: Array.isArray(question.answer)
+            ? question.answer
+            : [question.answer],
         }),
       });
 
