@@ -19,7 +19,7 @@ import QuestionExplainDialog from "./QuestionExplainDialog";
 import QuizReview from "./quiz-overview";
 import QuizScore from "./score";
 
-export type Choice = "A" | "B" | "C" | "D";
+export type Choice = "A" | "B" | "C" | "D" | "E" | "F";
 export type Question = {
   question: string;
   options: string[];
@@ -42,7 +42,8 @@ const QuestionCard: React.FC<{
   isSubmitted: boolean;
   showCorrectAnswer: boolean;
 }> = ({ question, selectedAnswers, onSelectAnswer, showCorrectAnswer }) => {
-  const answerLabels: Choice[] = ["A", "B", "C", "D"];
+  const answerLabels: Choice[] = ["A", "B", "C", "D", "E", "F"];
+  const availableOptions = answerLabels.slice(0, question.options.length);
 
   return (
     <div className="space-y-6">
@@ -59,33 +60,34 @@ const QuestionCard: React.FC<{
           <Button
             key={index}
             variant={
-              selectedAnswers.includes(answerLabels[index])
+              selectedAnswers.includes(availableOptions[index])
                 ? "secondary"
                 : "outline"
             }
             className={`h-auto py-6 px-4 justify-start text-left whitespace-normal ${
-              showCorrectAnswer && question.answer.includes(answerLabels[index])
+              showCorrectAnswer &&
+              question.answer.includes(availableOptions[index])
                 ? "bg-green-600 hover:bg-green-700"
                 : showCorrectAnswer &&
-                    selectedAnswers.includes(answerLabels[index]) &&
-                    !question.answer.includes(answerLabels[index])
+                    selectedAnswers.includes(availableOptions[index]) &&
+                    !question.answer.includes(availableOptions[index])
                   ? "bg-red-600 hover:bg-red-700"
                   : ""
             }`}
-            onClick={() => onSelectAnswer(answerLabels[index])}
+            onClick={() => onSelectAnswer(availableOptions[index])}
           >
             <span className="text-lg font-medium mr-4 shrink-0">
-              {answerLabels[index]}
+              {availableOptions[index]}
             </span>
             <span className="flex-grow">{option}</span>
             {(showCorrectAnswer &&
-              question.answer.includes(answerLabels[index])) ||
-              (selectedAnswers.includes(answerLabels[index]) && (
+              question.answer.includes(availableOptions[index])) ||
+              (selectedAnswers.includes(availableOptions[index]) && (
                 <Check className="ml-2 shrink-0 text-white" size={20} />
               ))}
             {showCorrectAnswer &&
-              selectedAnswers.includes(answerLabels[index]) &&
-              !question.answer.includes(answerLabels[index]) && (
+              selectedAnswers.includes(availableOptions[index]) &&
+              !question.answer.includes(availableOptions[index]) && (
                 <X className="ml-2 shrink-0 text-white" size={20} />
               )}
           </Button>
@@ -132,7 +134,7 @@ export default function Quiz({ idx, questions, title = "Quiz" }: QuizProps) {
         newAnswers[currentQuestionIndex] = currentAnswers.filter(
           (a) => a !== answer,
         );
-      } else if (!questions[currentQuestionIndex].multipleAnswers) {
+      } else if (questions[currentQuestionIndex].answer.length === 1) {
         newAnswers[currentQuestionIndex] = [answer];
       } else {
         newAnswers[currentQuestionIndex] = [...currentAnswers, answer];

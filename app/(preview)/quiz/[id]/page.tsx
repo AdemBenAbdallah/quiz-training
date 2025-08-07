@@ -30,6 +30,7 @@ export default async function QuizPage({
     options: q.choices.map(cleanChoice),
     answer: q.answers,
     answerComments: q.answers,
+    multipleAnswers: q.answers.length > 1,
   }));
 
   return (

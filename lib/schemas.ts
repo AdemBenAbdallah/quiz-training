@@ -4,12 +4,14 @@ export const questionSchema = z.object({
   question: z.string(),
   options: z
     .array(z.string())
-    .length(4)
+    .min(2)
+    .max(6)
     .describe(
-      "Four possible answers to the question. Only one should be correct. They should all be of equal lengths.",
+      "Two to six possible answers to the question. One or more should be correct. They should all be of equal lengths.",
     ),
   answer: z
-    .array(z.enum(["A", "B", "C", "D"]))
+    .array(z.enum(["A", "B", "C", "D", "E", "F"]))
+    .min(1)
     .describe(
       "The correct answers as an array, where A is the first option, B is the second, and so on.",
     ),

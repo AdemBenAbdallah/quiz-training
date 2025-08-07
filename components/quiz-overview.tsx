@@ -13,7 +13,7 @@ export default function QuizReview({
   questions,
   userAnswers,
 }: QuizReviewProps) {
-  const answerLabels: Choice[] = ["A", "B", "C", "D"];
+  const answerLabels: Choice[] = ["A", "B", "C", "D", "E", "F"];
 
   return (
     <Card className="w-full">
