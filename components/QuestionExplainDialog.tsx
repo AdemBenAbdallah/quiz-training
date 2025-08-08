@@ -9,7 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { BadgeInfo, Loader2 } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import type { Question } from "./quiz";
 
 // Types for the explanation data
@@ -79,19 +79,12 @@ const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<ExplainData | null>(null);
 
-  useEffect(() => {
-    if (open && (!data || data.explanation !== question.question)) {
-      fetchExplanation();
-    }
-  }, [open, question]);
+  const lastLoadedQuestion = useRef<string | null>(null);
 
   const fetchExplanation = async () => {
     setLoadingState("loading");
     setLoadingMessage("Fetching explanation...");
     setError(null);
-    if (data?.explanation !== question.question) {
-      setData(null);
-    }
 
     const startTime = Date.now();
 
@@ -135,6 +128,13 @@ const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
       setLoadingMessage("❌ Error fetching explanation");
     }
   };
+
+  useEffect(() => {
+    if (open && lastLoadedQuestion.current !== question.question) {
+      fetchExplanation();
+      lastLoadedQuestion.current = question.question;
+    }
+  }, [open, question.question, fetchExplanation]);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
