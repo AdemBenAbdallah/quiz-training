@@ -14,7 +14,6 @@ async function testRedisConnection() {
   });
 
   try {
-    // Set up event handlers
     client.on("error", (err: Error) =>
       console.error("Redis Client Error:", err),
     );
