@@ -3,20 +3,7 @@ import { generateText } from "ai";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { getCachedData, setCachedData } from "@/lib/redis-cache";
-
-export const explainSchema = z.object({
-  explanation: z.string(),
-  choices: z.array(
-    z.object({
-      label: z.enum(["A", "B", "C", "D", "E"]),
-      text: z.string(),
-      explanation: z.string(),
-    }),
-  ),
-  correctAnswer: z.enum(["A", "B", "C", "D", "E"]),
-  correctExplanation: z.string(),
-  trick: z.string(),
-});
+import { explainSchema } from "./schemas";
 
 function stripCodeBlock(text: string): string {
   return text
