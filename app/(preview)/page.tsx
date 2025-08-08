@@ -8,7 +8,7 @@ import { QuizPart, QuizParts } from "./parts";
 export default function HomePage() {
   const [quizParts, setQuizParts] = useLocalStorage<QuizPart[]>(
     "quizPart",
-    QuizParts
+    QuizParts,
   );
   if (!quizParts) return null;
 

@@ -24,14 +24,23 @@ export default async function QuizPage({
   const startIdx = (part - 1) * QUESTIONS_PER_PART;
   const endIdx = Math.min(part * QUESTIONS_PER_PART, data.length);
 
-  const quizQuestions = data.slice(startIdx, endIdx).map((q: any) => ({
-    questionNumber: extractQuestionNumber(q.question_number),
-    question: q.question,
-    options: q.choices.map(cleanChoice),
-    answer: q.answers,
-    answerComments: q.answers,
-    multipleAnswers: q.answers.length > 1,
-  }));
+  const quizQuestions = data.slice(startIdx, endIdx).map((q: any) => {
+    const rawChoices = q.choices;
+    if (rawChoices.length > 5) {
+      console.warn(
+        `Quiz question has ${rawChoices.length} choices; trimming to 5`,
+      );
+    }
+    const limited = rawChoices.slice(0, 5);
+    return {
+      questionNumber: extractQuestionNumber(q.question_number),
+      question: q.question,
+      options: limited.map(cleanChoice),
+      answer: q.answers,
+      answerComments: q.answers,
+      multipleAnswers: q.answers.length > 1,
+    };
+  });
 
   return (
     <div className="flex flex-col gap-4">
