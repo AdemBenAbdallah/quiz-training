@@ -8,7 +8,7 @@ const extractQuestionNumber = (questionNumberStr: string): string => {
 
 const cleanChoice = (choice: string) =>
   choice
-    .replace(/^([A-D]\.\s)/, "")
+    .replace(/^([A-E]\.\s)/, "")
     .replace(/\.?(Most Voted|Most\sVoted)$/, "")
     .trim();
 

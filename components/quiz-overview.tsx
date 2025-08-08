@@ -1,6 +1,5 @@
 import { Check, X } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Question } from "@/lib/schemas";
 import { Choice } from "./quiz";
 
@@ -13,7 +12,7 @@ export default function QuizReview({
   questions,
   userAnswers,
 }: QuizReviewProps) {
-  const answerLabels: Choice[] = ["A", "B", "C", "D", "E", "F"];
+  const answerLabels: Choice[] = ["A", "B", "C", "D", "E"];
 
   return (
     <Card className="w-full">

@@ -8,12 +8,12 @@ const explainSchema = z.object({
   explanation: z.string(),
   choices: z.array(
     z.object({
-      label: z.enum(["A", "B", "C", "D"]),
+      label: z.enum(["A", "B", "C", "D", "E"]),
       text: z.string(),
       explanation: z.string(),
     }),
   ),
-  correctAnswer: z.enum(["A", "B", "C", "D"]),
+  correctAnswer: z.enum(["A", "B", "C", "D", "E"]),
   correctExplanation: z.string(),
   trick: z.string(),
 });
@@ -29,7 +29,7 @@ function stripCodeBlock(text: string): string {
 function generateCacheKey(
   question: string,
   options: string[],
-  answer: ("A" | "B" | "C" | "D")[],
+  answer: ("A" | "B" | "C" | "D" | "E")[],
 ): string {
   // Create a unique key based on the question content
   const normalizedQuestion = question.toLowerCase().trim();
@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
     }: {
       question: string;
       options: string[];
-      answer: ("A" | "B" | "C" | "D")[];
+      answer: ("A" | "B" | "C" | "D" | "E")[];
     } = body;
 
     if (!question || !options || !answer) {
@@ -83,7 +83,7 @@ export async function POST(req: NextRequest) {
     }
 
     console.log("🔄 Generating new response for question:", question);
-    const answerLabels = ["A", "B", "C", "D"];
+    const answerLabels = ["A", "B", "C", "D", "E"];
     const prompt = `You are a helpful assistant for beginners. Given the following multiple-choice question, explain the question, each choice, and why the correct answer is correct in a beginner-friendly way. Also, provide a short actionable trick or tip for answering this type of question in the future.\n\nQuestion: ${question}\nChoices:\n${options
       .map((opt: string, i: number) => `${answerLabels[i]}. ${opt}`)
       .join(

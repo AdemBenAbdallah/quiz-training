@@ -19,7 +19,7 @@ import QuestionExplainDialog from "./QuestionExplainDialog";
 import QuizReview from "./quiz-overview";
 import QuizScore from "./score";
 
-export type Choice = "A" | "B" | "C" | "D" | "E" | "F";
+export type Choice = "A" | "B" | "C" | "D" | "E";
 export type Question = {
   question: string;
   options: string[];
@@ -42,7 +42,7 @@ const QuestionCard: React.FC<{
   isSubmitted: boolean;
   showCorrectAnswer: boolean;
 }> = ({ question, selectedAnswers, onSelectAnswer, showCorrectAnswer }) => {
-  const answerLabels: Choice[] = ["A", "B", "C", "D", "E", "F"];
+  const answerLabels: Choice[] = ["A", "B", "C", "D", "E"];
   const availableOptions = answerLabels.slice(0, question.options.length);
 
   return (
