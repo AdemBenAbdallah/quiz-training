@@ -8,11 +8,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Question } from "@/lib/quiz/selection";
+import { Question } from "@/types/quiz";
 import { BadgeInfo, Loader2 } from "lucide-react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
-// Types for the explanation data
 interface ExplainData {
   explanation: string;
   choices: Array<{ label: string; text: string; explanation: string }>;

@@ -1,13 +1,12 @@
 import { describe, it, expect } from "vitest";
 import {
-  type Choice,
-  type Question,
   handleAnswerSelection,
   canSelectMoreAnswers,
   isAnswerCorrect,
   calculateScore,
   isChoiceDisabled,
-} from "./selection";
+} from "@/lib/selection";
+import { Question, Choice } from "@/types/quiz";
 
 // Mock test data
 const singleAnswerQuestion: Question = {
@@ -198,19 +197,19 @@ describe("calculateScore", () => {
   ];
 
   it("should return 0 for all wrong answers", () => {
-    const allAnswers = [["A"], ["B"], ["D", "E"]];
+    const allAnswers: Choice[][] = [["A"], ["B"], ["D", "E"]];
     const score = calculateScore(allAnswers, questions);
     expect(score).toBe(0);
   });
 
   it("should return full score for all correct answers", () => {
-    const allAnswers = [["C"], ["A", "C"], ["A", "B", "C"]];
+    const allAnswers: Choice[][] = [["C"], ["A", "C"], ["A", "B", "C"]];
     const score = calculateScore(allAnswers, questions);
     expect(score).toBe(3);
   });
 
   it("should return partial score for mixed answers", () => {
-    const allAnswers = [["C"], ["A"], ["A", "B", "C"]];
+    const allAnswers: Choice[][] = [["C"], ["A"], ["A", "B", "C"]];
     const score = calculateScore(allAnswers, questions);
     expect(score).toBe(2); // First and third correct, second incomplete
   });
@@ -222,7 +221,7 @@ describe("calculateScore", () => {
   });
 
   it("should handle missing answers for some questions", () => {
-    const allAnswers = [["C"]]; // Only first question answered
+    const allAnswers: Choice[][] = [["C"]]; // Only first question answered
     const score = calculateScore(allAnswers, questions);
     expect(score).toBe(1);
   });

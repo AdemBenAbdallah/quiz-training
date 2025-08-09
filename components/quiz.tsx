@@ -19,14 +19,13 @@ import QuestionExplainDialog from "./QuestionExplainDialog";
 import QuizReview from "./quiz-overview";
 import QuizScore from "./score";
 import {
-  Choice,
-  Question,
   handleAnswerSelection,
   canSelectMoreAnswers,
   isAnswerCorrect,
   calculateScore,
   isChoiceDisabled,
-} from "@/lib/quiz/selection";
+} from "@/lib/selection";
+import { Question, Choice } from "@/types/quiz";
 
 type QuizProps = {
   idx: number;

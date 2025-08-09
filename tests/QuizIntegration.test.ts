@@ -1,5 +1,5 @@
 // ai-sdk-preview-pdf-support/tests/integration/QuizIntegration.test.ts
-import { Choice } from "@/lib/quiz/selection";
+import { Choice } from "@/types/quiz";
 import { describe, it, expect } from "vitest";
 
 /**
