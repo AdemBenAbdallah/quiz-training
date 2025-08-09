@@ -1,7 +1,7 @@
 import { Check, X } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Question } from "@/lib/schemas";
-import { Choice } from "./quiz";
+import { Choice } from "@/lib/quiz/selection";
 
 interface QuizReviewProps {
   questions: Question[];

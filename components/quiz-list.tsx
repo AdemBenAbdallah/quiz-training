@@ -6,7 +6,7 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import {
   Dialog,
@@ -14,7 +14,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
 } from "@/components/ui/dialog";
 import { questionsSchema } from "@/lib/schemas";
 import { experimental_useObject } from "ai/react";
@@ -38,7 +38,7 @@ export default function QuizList() {
   const {
     data: quizzes = [],
     mutate,
-    isLoading
+    isLoading,
   } = useSWR<Quiz[]>("/api/quizzes", fetcher);
   const [selectedQuiz, setSelectedQuiz] = useState<Quiz | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -56,13 +56,13 @@ export default function QuizList() {
       setIsDialogOpen(false);
       setFiles([]);
       mutate(); // Re-fetch quizzes after import
-    }
+    },
   });
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = Array.from(e.target.files || []);
     const validFiles = selectedFiles.filter(
-      (file) => file.type === "application/pdf" && file.size <= 5 * 1024 * 1024
+      (file) => file.type === "application/pdf" && file.size <= 5 * 1024 * 1024,
     );
     if (validFiles.length !== selectedFiles.length) {
       toast.error("Only PDF files under 5MB are allowed.");
@@ -91,8 +91,8 @@ export default function QuizList() {
       files.map(async (file) => ({
         name: file.name,
         type: file.type,
-        data: await encodeFileAsBase64(file)
-      }))
+        data: await encodeFileAsBase64(file),
+      })),
     );
     submit({ files: encodedFiles, quizId: selectedQuiz.id });
   };

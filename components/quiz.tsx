@@ -18,16 +18,15 @@ import React, { useEffect, useState } from "react";
 import QuestionExplainDialog from "./QuestionExplainDialog";
 import QuizReview from "./quiz-overview";
 import QuizScore from "./score";
-
-export type Choice = "A" | "B" | "C" | "D" | "E";
-export type Question = {
-  question: string;
-  options: string[];
-  answer: Choice[];
-  questionNumber?: string;
-  answerComments?: string[];
-  multipleAnswers?: boolean;
-};
+import {
+  Choice,
+  Question,
+  handleAnswerSelection,
+  canSelectMoreAnswers,
+  isAnswerCorrect,
+  calculateScore,
+  isChoiceDisabled,
+} from "@/lib/quiz/selection";
 
 type QuizProps = {
   idx: number;
@@ -55,43 +54,68 @@ const QuestionCard: React.FC<{
       <h2 className="text-lg font-semibold leading-tight">
         {question.question}
       </h2>
+      {question.answer.length > 1 && (
+        <div
+          className={`text-sm font-medium ${
+            selectedAnswers.length === question.answer.length
+              ? "text-green-600"
+              : selectedAnswers.length > 0
+                ? "text-blue-600"
+                : "text-gray-600"
+          }`}
+        >
+          Select {question.answer.length} answers ({selectedAnswers.length}/
+          {question.answer.length} selected)
+          {selectedAnswers.length === question.answer.length && (
+            <span className="ml-2">✓ Complete</span>
+          )}
+        </div>
+      )}
       <div className="grid grid-cols-1 gap-4">
-        {question.options.map((option, index) => (
-          <Button
-            key={index}
-            variant={
-              selectedAnswers.includes(availableOptions[index])
-                ? "secondary"
-                : "outline"
-            }
-            className={`h-auto py-6 px-4 justify-start text-left whitespace-normal ${
-              showCorrectAnswer &&
-              question.answer.includes(availableOptions[index])
-                ? "bg-green-600 hover:bg-green-700"
-                : showCorrectAnswer &&
-                    selectedAnswers.includes(availableOptions[index]) &&
-                    !question.answer.includes(availableOptions[index])
-                  ? "bg-red-600 hover:bg-red-700"
-                  : ""
-            }`}
-            onClick={() => onSelectAnswer(availableOptions[index])}
-          >
-            <span className="text-lg font-medium mr-4 shrink-0">
-              {availableOptions[index]}
-            </span>
-            <span className="flex-grow">{option}</span>
-            {(showCorrectAnswer &&
-              question.answer.includes(availableOptions[index])) ||
-              (selectedAnswers.includes(availableOptions[index]) && (
-                <Check className="ml-2 shrink-0 text-white" size={20} />
-              ))}
-            {showCorrectAnswer &&
-              selectedAnswers.includes(availableOptions[index]) &&
-              !question.answer.includes(availableOptions[index]) && (
-                <X className="ml-2 shrink-0 text-white" size={20} />
-              )}
-          </Button>
-        ))}
+        {question.options.map((option, index) => {
+          const isSelected = selectedAnswers.includes(availableOptions[index]);
+          const isDisabled = isChoiceDisabled(
+            selectedAnswers,
+            availableOptions[index],
+            question,
+          );
+
+          return (
+            <Button
+              key={index}
+              disabled={isDisabled}
+              variant={isSelected ? "secondary" : "outline"}
+              className={`h-auto py-6 px-4 justify-start text-left whitespace-normal ${
+                showCorrectAnswer &&
+                question.answer.includes(availableOptions[index])
+                  ? "bg-green-600 hover:bg-green-700"
+                  : showCorrectAnswer &&
+                      isSelected &&
+                      !question.answer.includes(availableOptions[index])
+                    ? "bg-red-600 hover:bg-red-700"
+                    : isDisabled
+                      ? "opacity-50 cursor-not-allowed"
+                      : ""
+              }`}
+              onClick={() => onSelectAnswer(availableOptions[index])}
+            >
+              <span className="text-lg font-medium mr-4 shrink-0">
+                {availableOptions[index]}
+              </span>
+              <span className="flex-grow">{option}</span>
+              {(showCorrectAnswer &&
+                question.answer.includes(availableOptions[index])) ||
+                (isSelected && (
+                  <Check className="ml-2 shrink-0 text-white" size={20} />
+                ))}
+              {showCorrectAnswer &&
+                isSelected &&
+                !question.answer.includes(availableOptions[index]) && (
+                  <X className="ml-2 shrink-0 text-white" size={20} />
+                )}
+            </Button>
+          );
+        })}
       </div>
       {showCorrectAnswer && question.answerComments && (
         <div className="mt-4 p-4 bg-muted rounded text-sm">
@@ -130,15 +154,11 @@ export default function Quiz({ idx, questions, title = "Quiz" }: QuizProps) {
       const newAnswers = [...answers];
       const currentAnswers = newAnswers[currentQuestionIndex] || [];
 
-      if (currentAnswers.includes(answer)) {
-        newAnswers[currentQuestionIndex] = currentAnswers.filter(
-          (a) => a !== answer,
-        );
-      } else if (questions[currentQuestionIndex].answer.length === 1) {
-        newAnswers[currentQuestionIndex] = [answer];
-      } else {
-        newAnswers[currentQuestionIndex] = [...currentAnswers, answer];
-      }
+      newAnswers[currentQuestionIndex] = handleAnswerSelection(
+        currentAnswers,
+        answer,
+        questions[currentQuestionIndex],
+      );
 
       setAnswers(newAnswers);
     }
@@ -165,21 +185,7 @@ export default function Quiz({ idx, questions, title = "Quiz" }: QuizProps) {
   };
 
   const handleSubmit = () => {
-    const correctAnswers = questions.reduce(
-      (acc: number, question: Question, index: number) => {
-        const userAnswers = answers[index] || [];
-        const correctAnswerSet = new Set(question.answer);
-        const userAnswerSet = new Set(userAnswers);
-        return (
-          acc +
-          (correctAnswerSet.size === userAnswerSet.size &&
-          [...correctAnswerSet].every((answer) => userAnswerSet.has(answer))
-            ? 1
-            : 0)
-        );
-      },
-      0,
-    );
+    const correctAnswers = calculateScore(answers, questions);
     setScore(correctAnswers);
     setIsSubmitted(Array(questions.length).fill(true));
     if (correctAnswers === questions.length) {

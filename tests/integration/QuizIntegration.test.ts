@@ -1,6 +1,6 @@
 // ai-sdk-preview-pdf-support/tests/integration/QuizIntegration.test.ts
+import { Choice } from "@/lib/quiz/selection";
 import { describe, it, expect } from "vitest";
-import { Choice } from "../../components/quiz";
 
 /**
  * Tests for the five-option flow (A-E)

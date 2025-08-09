@@ -8,9 +8,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Question } from "@/lib/quiz/selection";
 import { BadgeInfo, Loader2 } from "lucide-react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import type { Question } from "./quiz";
 
 // Types for the explanation data
 interface ExplainData {
