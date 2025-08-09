@@ -10,7 +10,7 @@ export const explainSchema = z.object({
       explanation: z.string(),
     }),
   ),
-  correctAnswer: z.enum(["A", "B", "C", "D", "E"]),
+  correctAnswer: z.string(),
   correctExplanation: z.string(),
   trick: z.string(),
 });
