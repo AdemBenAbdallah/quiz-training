@@ -107,19 +107,6 @@ const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
 
       const json = await res.json();
       setData(json);
-
-      // If response was fast (< 1s), it was likely cached
-      const responseTime = Date.now() - startTime;
-      if (responseTime < 1000) {
-        setLoadingState("cached");
-        setLoadingMessage("✨ Retrieved from cache");
-      } else {
-        setLoadingState("generated");
-        setLoadingMessage("🤖 Generated new explanation");
-      }
-
-      // Show loading state briefly before showing content
-      await new Promise((resolve) => setTimeout(resolve, 800));
       setLoadingState("initial");
     } catch (err: any) {
       setError(err.message || "Failed to get explanation");
