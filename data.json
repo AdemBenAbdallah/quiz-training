@@ -9,7 +9,7 @@
       "C. Use pagination to reduce the size of the items that the queries return.",
       "D. Use the Scan operation to retrieve the data."
     ],
-    "answers": ["A", "B"]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/154534-exam-aws-certified-developer-associate-dva-c02-topic-1/",

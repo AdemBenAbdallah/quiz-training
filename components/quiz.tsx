@@ -6,6 +6,7 @@ import { Progress } from "@/components/ui/progress";
 import useLocalStorage from "@/hook/useLocalStorage";
 import { AnimatePresence, motion } from "framer-motion";
 import {
+  BadgeInfo,
   Check,
   ChevronLeft,
   ChevronRight,
@@ -16,6 +17,7 @@ import {
 import NextLink from "next/link";
 import React, { useEffect, useState } from "react";
 import QuestionExplainDialog from "./QuestionExplainDialog";
+import ServiceInfoDialog from "./ServiceInfoDialog";
 import QuizReview from "./quiz-overview";
 import QuizScore from "./score";
 import {
@@ -26,6 +28,12 @@ import {
   isChoiceDisabled,
 } from "@/lib/selection";
 import { Question, Choice } from "@/types/quiz";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 type QuizProps = {
   idx: number;
@@ -229,11 +237,13 @@ export default function Quiz({ idx, questions, title = "Quiz" }: QuizProps) {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <main className="container mx-auto px-4 py-12 max-w-4xl">
-        <div className="flex items-center gap-3 mb-8">
+        <div className="flex items-center justify-start gap-4 mb-8">
           <h1 className="text-3xl font-bold text-center text-foreground">
             {title}
           </h1>
-          <QuestionExplainDialog question={currentQuestion} />
+          <div className="flex items-center gap-2">
+            <ServiceInfoDialog question={currentQuestion} />
+          </div>
         </div>
         <div className="relative">
           {!isSubmitted.every(Boolean) && (
@@ -264,15 +274,7 @@ export default function Quiz({ idx, questions, title = "Quiz" }: QuizProps) {
                       showCorrectAnswer={isSubmitted[currentQuestionIndex]}
                     />
                     {!isSubmitted[currentQuestionIndex] && (
-                      <div className="flex justify-center pt-4">
-                        <Button
-                          onClick={handleSubmitCurrent}
-                          disabled={!answers[currentQuestionIndex]?.length}
-                          className="w-full max-w-xs"
-                        >
-                          Submit
-                        </Button>
-                      </div>
+                      <QuestionExplainDialog question={currentQuestion} />
                     )}
                     <div className="flex justify-between items-center pt-4">
                       <Button

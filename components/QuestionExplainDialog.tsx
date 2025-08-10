@@ -125,18 +125,16 @@ const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <button
-          type="button"
+        <Button
           aria-label="Explain this question"
-          tabIndex={0}
-          className="ml-2 p-2 rounded-full hover:bg-accent focus:outline-none focus:ring-2 focus:ring-ring"
+          className="w-full max-w-xs mx-auto block"
           onClick={() => setOpen(true)}
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === " ") setOpen(true);
           }}
         >
-          <BadgeInfo className="w-6 h-6 text-primary" />
-        </button>
+          Get Answer
+        </Button>
       </DialogTrigger>
       <DialogContent className="overflow-y-auto max-h-[700px] w-full sm:max-w-lg md:max-w-3xl">
         <DialogHeader>
