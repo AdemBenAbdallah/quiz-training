@@ -43,5 +43,16 @@ export async function setCachedData(
   }
 }
 
+export async function removeCachedData(key: string): Promise<number> {
+  try {
+    await ensureConnection();
+    const result = await client.del(key);
+    return result; // Returns the number of keys removed
+  } catch (error) {
+    console.error("Redis delete error:", error);
+    return 0; // Return 0 if deletion fails
+  }
+}
+
 // Ensure Redis is connected when the module is imported
 ensureConnection().catch(console.error);

@@ -18,12 +18,19 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
+interface OptionWithSmallDescription {
+  optionLabel: string;
+  optionText: string;
+  optionDescription: string;
+}
+
 interface ServiceInfoData {
   serviceName: string;
   serviceDescription: string;
+  overallServiceSmallDescription: string;
   keyFeatures: string[];
   useCases: string[];
-  relatedServices: string[];
+  optionsWithSmallDescriptions: OptionWithSmallDescription[];
 }
 
 type Props = {
@@ -37,7 +44,8 @@ type LoadingState = "initial" | "loading" | "cached" | "generated" | "error";
 const ServiceInfoSkeleton: React.FC<{
   message: string;
   loadingState: LoadingState;
-}> = ({ message, loadingState }) => (
+  question: Question;
+}> = ({ message, loadingState, question }) => (
   <div className="space-y-4" aria-busy="true">
     <div className="flex items-center gap-2 mb-4">
       {loadingState === "loading" && (
@@ -57,27 +65,30 @@ const ServiceInfoSkeleton: React.FC<{
     </div>
     <div className="h-8 w-1/2 bg-muted rounded animate-pulse" />
     <div className="h-20 w-full bg-muted rounded animate-pulse" />
+    {/* Overall service small description skeleton */}
+    <div className="h-12 w-full bg-muted rounded animate-pulse" />
     <div>
       <div className="h-6 w-32 bg-muted rounded mb-3 animate-pulse" />
-      <ul className="space-y-2">
-        {[...Array(3)].map((_, i) => (
-          <li key={i} className="h-4 w-3/4 bg-muted rounded animate-pulse" />
-        ))}
-      </ul>
+      {/* Key features inline skeleton */}
+      <div className="h-10 w-full bg-muted rounded animate-pulse" />
     </div>
     <div>
       <div className="h-6 w-24 bg-muted rounded mb-3 animate-pulse" />
-      <ul className="space-y-2">
-        {[...Array(2)].map((_, i) => (
-          <li key={i} className="h-4 w-2/3 bg-muted rounded animate-pulse" />
-        ))}
-      </ul>
+      {/* Common use cases inline skeleton */}
+      <div className="h-10 w-full bg-muted rounded animate-pulse" />
     </div>
+    {/* Options with small descriptions skeleton */}
     <div>
       <div className="h-6 w-40 bg-muted rounded mb-3 animate-pulse" />
-      <ul className="space-y-2">
-        {[...Array(3)].map((_, i) => (
-          <li key={i} className="h-4 w-1/2 bg-muted rounded animate-pulse" />
+      <ul className="space-y-4">
+        {[
+          ...Array(question.options.length > 0 ? question.options.length : 3),
+        ].map((_, i) => (
+          <li key={i} className="space-y-2 p-2 rounded border bg-muted">
+            <div className="h-4 w-1/4 bg-muted rounded animate-pulse" />
+            <div className="h-4 w-full bg-muted rounded animate-pulse" />
+            <div className="h-4 w-3/4 bg-muted rounded animate-pulse" />
+          </li>
         ))}
       </ul>
     </div>
@@ -160,7 +171,8 @@ const ServiceInfoDialog: React.FC<Props> = ({ question }) => {
         <DialogHeader>
           <DialogTitle>AWS Service Information</DialogTitle>
           <DialogDescription>
-            Learn about the AWS service mentioned in this question.
+            Learn about the AWS service mentioned in this question and its
+            options.
           </DialogDescription>
         </DialogHeader>
 
@@ -168,6 +180,7 @@ const ServiceInfoDialog: React.FC<Props> = ({ question }) => {
           <ServiceInfoSkeleton
             message={loadingMessage}
             loadingState={loadingState}
+            question={question}
           />
         )}
 
@@ -184,6 +197,12 @@ const ServiceInfoDialog: React.FC<Props> = ({ question }) => {
               <h3 className="text-2xl font-bold text-primary mb-3">
                 {data.serviceName}
               </h3>
+              {/* Display overall service small description */}
+              {data.overallServiceSmallDescription && (
+                <p className="text-lg font-medium text-foreground mb-4">
+                  {data.overallServiceSmallDescription}
+                </p>
+              )}
               <p className="text-muted-foreground leading-relaxed">
                 {data.serviceDescription}
               </p>
@@ -193,49 +212,56 @@ const ServiceInfoDialog: React.FC<Props> = ({ question }) => {
               <h4 className="text-lg font-semibold mb-3 text-foreground">
                 Key Features
               </h4>
-              <ul className="space-y-2">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {data.keyFeatures.map((feature, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                    <span className="text-sm text-muted-foreground">
-                      {feature}
-                    </span>
-                  </li>
+                  <React.Fragment key={i}>
+                    {feature}
+                    {i < data.keyFeatures.length - 1 && ", "}
+                  </React.Fragment>
                 ))}
-              </ul>
+              </p>
             </div>
 
             <div>
               <h4 className="text-lg font-semibold mb-3 text-foreground">
                 Common Use Cases
               </h4>
-              <ul className="space-y-2">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {data.useCases.map((useCase, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0" />
-                    <span className="text-sm text-muted-foreground">
-                      {useCase}
-                    </span>
-                  </li>
+                  <React.Fragment key={i}>
+                    {useCase}
+                    {i < data.useCases.length - 1 && ", "}
+                  </React.Fragment>
                 ))}
-              </ul>
+              </p>
             </div>
 
-            <div>
-              <h4 className="text-lg font-semibold mb-3 text-foreground">
-                Related Services
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {data.relatedServices.map((service, i) => (
-                  <span
-                    key={i}
-                    className="px-3 py-1 rounded-full text-sm font-medium border border-blue-200"
-                  >
-                    {service}
-                  </span>
-                ))}
-              </div>
-            </div>
+            {/* New section for options with small descriptions */}
+            {data.optionsWithSmallDescriptions &&
+              data.optionsWithSmallDescriptions.length > 0 && (
+                <div>
+                  <h4 className="text-lg font-semibold mb-3 text-foreground">
+                    Options Explained
+                  </h4>
+                  <ul className="space-y-4">
+                    {data.optionsWithSmallDescriptions.map((option, i) => (
+                      <li key={i} className="p-2 rounded border bg-muted">
+                        <p className="text-base mb-1">
+                          <span className="font-bold text-primary">
+                            {option.optionLabel}.
+                          </span>{" "}
+                          <span className="font-medium text-foreground">
+                            {option.optionText}
+                          </span>
+                        </p>
+                        <p className="text-sm text-muted-foreground leading-relaxed mt-1">
+                          {option.optionDescription}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
           </div>
         )}
 

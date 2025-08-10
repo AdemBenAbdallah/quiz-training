@@ -69,22 +69,30 @@ Question: ${question}
 Choices:
 ${options
   .map((opt: string, i: number) => `${answerLabels[i]}. ${opt}`)
-  .join("\n")}
+  .join("\\n")}
 
 Analyze the question and identify the main AWS service being discussed. Then provide:
 1. The service name
 2. A clear, beginner-friendly description of what the service does
-3. Key features of the service (3-5 important features)
-4. Common use cases (2-4 practical scenarios)
-5. Related AWS services that often work together with this service (3-5 services)
+3. A very small, concise description of the overall service (1-2 sentences)
+4. Key features of the service (3-5 important features)
+5. Common use cases (2-4 practical scenarios)
+6. For each choice, provide a very small, concise description (1-2 sentences) of the service mentioned in the choice. If the choice is not an AWS service or is irrelevant, provide a description stating that it\'s not an AWS service or is irrelevant to the context.
 
 Respond in this JSON format:
 {
   "serviceName": "string",
   "serviceDescription": "string",
+  "overallServiceSmallDescription": "string",
   "keyFeatures": ["string", "string", "string"],
   "useCases": ["string", "string"],
-  "relatedServices": ["string", "string", "string"]
+  "optionsWithSmallDescriptions": [
+    {
+      "optionLabel": "string",
+      "optionText": "string",
+      "optionDescription": "string"
+    }
+  ]
 }`;
 
     const result = await generateText({
@@ -92,13 +100,18 @@ Respond in this JSON format:
       prompt,
     });
 
+    console.log("Raw AI response:", result.text); // Log raw AI response
     const cleanText = stripCodeBlock(result.text);
     const parsed = JSON.parse(cleanText);
 
     const validated = serviceInfoSchema.safeParse(parsed);
     if (!validated.success) {
+      console.error("AI response validation error:", validated.error);
       return NextResponse.json(
-        { error: "AI response did not match expected format" },
+        {
+          error: "AI response did not match expected format",
+          details: validated.error.issues,
+        },
         { status: 500 },
       );
     }
