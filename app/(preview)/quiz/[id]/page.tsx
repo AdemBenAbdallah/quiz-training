@@ -1,5 +1,5 @@
 import Quiz from "@/components/quiz";
-import data from "@/data.json";
+import data from "@/quiz/level1.json";
 
 const extractQuestionNumber = (questionNumberStr: string): string => {
   const match = questionNumberStr.match(/Question #:\s*(\d+)/);

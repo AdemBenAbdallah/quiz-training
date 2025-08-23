@@ -1,3 +1,4 @@
+export const quizLevelNumber = 8;
 export type Choice = "A" | "B" | "C" | "D" | "E";
 
 export interface Question {
