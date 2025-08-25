@@ -1,70 +1,64 @@
-export const QuizParts = [
+export const LevelParts = [
   {
     id: 1,
-    start: 0,
-    end: 9,
-    passed: true
+    passed: true,
   },
   {
     id: 2,
-    start: 10,
-    end: 19,
-    passed: false
+    passed: false,
   },
   {
     id: 3,
-    start: 20,
-    end: 29,
-    passed: false
+    passed: false,
   },
   {
     id: 4,
-    start: 30,
-    end: 39,
-    passed: false
+    passed: false,
   },
   {
     id: 5,
-    start: 40,
-    end: 49,
-    passed: false
+    passed: false,
   },
   {
     id: 6,
-    start: 50,
-    end: 59,
-    passed: false
+    passed: false,
   },
   {
     id: 7,
-    start: 60,
-    end: 69,
-    passed: false
+    passed: false,
   },
   {
     id: 8,
-    start: 70,
-    end: 79,
-    passed: false
+    passed: false,
   },
-  {
-    id: 9,
-    start: 80,
-    end: 89,
-    passed: false
-  },
-  {
-    id: 10,
-    start: 90,
-    end: 95,
-    passed: false
-  },
-  {
-    id: 11,
-    start: 0,
-    end: 95,
-    passed: false
-  }
 ];
+export const LevelPartsKey = `levelPart`;
+export type TLevelParts = typeof LevelParts;
 
-export type QuizPart = (typeof QuizParts)[number];
+export const QuizParts = (level: number) => {
+  const ranges = [
+    [0, 9],
+    [10, 19],
+    [20, 29],
+    [30, 39],
+    [40, 49],
+    [50, 59],
+    [60, 69],
+    [70, 79],
+    [80, 89],
+    [90, 95],
+    [96, 105],
+  ];
+
+  const data = ranges.map(([start, end], index) => ({
+    id: index + 1,
+    start,
+    end,
+    passed: level === 1 && index === 0,
+  }));
+
+  return { level, data };
+};
+
+export type TQuizParts = ReturnType<typeof QuizParts>;
+export const QuizPartsKey = (levelId: number) => `quizPart${levelId}`;

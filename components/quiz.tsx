@@ -1,6 +1,6 @@
 "use client";
 
-import { QuizPart, QuizParts } from "@/app/(preview)/parts";
+import { TQuizParts, QuizParts, QuizPartsKey } from "@/app/(preview)/parts";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import useLocalStorage from "@/hook/useLocalStorage";
@@ -37,6 +37,7 @@ import {
 
 type QuizProps = {
   idx: number;
+  levelId: number;
   questions: Question[];
   title: string;
 };
@@ -138,7 +139,12 @@ const QuestionCard: React.FC<{
   );
 };
 
-export default function Quiz({ idx, questions, title = "Quiz" }: QuizProps) {
+export default function Quiz({
+  idx,
+  levelId,
+  questions,
+  title = "Quiz",
+}: QuizProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Choice[][]>(
     Array(questions.length).fill([]) as Choice[][],
@@ -210,27 +216,30 @@ export default function Quiz({ idx, questions, title = "Quiz" }: QuizProps) {
 
   const currentQuestion = questions[currentQuestionIndex];
 
-  const [quizParts, setQuizParts] = useLocalStorage<QuizPart[]>(
-    "quizPart",
-    QuizParts,
+  const [quizParts, setQuizParts] = useLocalStorage<TQuizParts>(
+    QuizPartsKey(levelId),
+    QuizParts(levelId),
   );
   if (!quizParts) return null;
 
   // check if it open
-  const isAllPassed = quizParts.find((part) => part.id === +idx)?.passed;
-  if (!isAllPassed) return null;
+  const isPartAccessible = quizParts.data.find(
+    (part) => part.id === +idx,
+  )?.passed;
+  if (!isPartAccessible) return null;
 
   const handlePassNextPart = () => {
-    setQuizParts(() => {
-      return quizParts.map((part, index) => {
-        if (index === +idx) {
-          return {
-            ...part,
-            passed: true,
-          };
+    setQuizParts((prevQuizParts) => {
+      if (!prevQuizParts) {
+        return prevQuizParts;
+      }
+      const newData = prevQuizParts.data.map((part) => {
+        if (part.id === +idx + 1) {
+          return { ...part, passed: true };
         }
         return part;
       });
+      return { ...prevQuizParts, data: newData };
     });
   };
 

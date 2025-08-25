@@ -1,5 +1,5 @@
 import Quiz from "@/components/quiz";
-import data from "@/quiz/level1.json";
+import { quizLevels } from "@/quiz";
 
 const extractQuestionNumber = (questionNumberStr: string): string => {
   const match = questionNumberStr.match(/Question #:\s*(\d+)/);
@@ -17,11 +17,13 @@ const QUESTIONS_PER_PART = 10;
 export default async function QuizPage({
   params,
 }: {
-  params: Promise<{ id: number }>;
+  params: Promise<{ id: number; levelId: number }>;
 }) {
-  const { id } = await params;
+  const { id, levelId } = await params;
+  const level = levelId || 1;
   const part = id || 1;
   const startIdx = (part - 1) * QUESTIONS_PER_PART;
+  const data = quizLevels[level - 1];
   const endIdx = Math.min(part * QUESTIONS_PER_PART, data.length);
 
   const quizQuestions = data.slice(startIdx, endIdx).map((q: any) => {
@@ -44,7 +46,12 @@ export default async function QuizPage({
 
   return (
     <div className="flex flex-col gap-4">
-      <Quiz idx={part} title={`Quiz Part ${part}`} questions={quizQuestions} />
+      <Quiz
+        idx={part}
+        levelId={levelId}
+        title={`Quiz Part ${part}`}
+        questions={quizQuestions}
+      />
     </div>
   );
 }

@@ -59,35 +59,50 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
 }
 
 @keyframes shimmer {
-  0% {
-    background-position: -300px 0;
-  }
-  100% {
-    background-position: 300px 0;
-  }
+    0% {
+        background-position: -300px 0;
+    }
+    100% {
+        background-position: 300px 0;
+    }
 }
 
 .locked-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.15) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 2s infinite;
-  border-radius: inherit;
-  z-index: 1;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+    border-radius: inherit;
+    z-index: 1;
+}
+
+@keyframes draw {
+    from {
+        stroke-dashoffset: 200;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.animate-draw {
+    stroke-dasharray: 6 6;
+    stroke-dashoffset: 200;
+    animation: draw 2s ease forwards;
 }

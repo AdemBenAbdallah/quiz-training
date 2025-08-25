@@ -1,70 +1,88 @@
 "use client";
 
-import useLocalStorage from "@/hook/useLocalStorage";
+import Link from "next/link";
+import { motion } from "framer-motion";
 import { Lock } from "lucide-react";
-import NextLink from "next/link";
-import { QuizPart, QuizParts } from "./parts";
+import useLocalStorage from "@/hook/useLocalStorage";
+import { LevelParts, TLevelParts } from "./parts";
 
-export default function HomePage() {
-  const [quizParts, setQuizParts] = useLocalStorage<QuizPart[]>(
-    "quizPart",
-    QuizParts,
-  );
-  if (!quizParts) return null;
+export default function LevelsPage() {
+  const [levelParts] = useLocalStorage<TLevelParts>("levelParts", LevelParts);
+
+  if (!levelParts) {
+    // You can render a loading spinner here if you'd like
+    return null;
+  }
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+      },
+    },
+  };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-background py-12 px-6 md:px-0">
-      <h1 className="text-3xl font-bold mb-8 text-center">Quiz AWS DVA-C02</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-5xl">
-        {quizParts.map((item, idx) => {
-          const isLocked = !item.passed;
-          return (
-            <div key={idx} className="relative group">
-              <NextLink
-                href={!isLocked ? `/quiz/${idx + 1}` : "#"}
-                className={`block relative rounded-2xl border bg-gradient-to-br from-background to-muted/40 shadow-md p-8 text-center transition-all duration-300 overflow-hidden
-      ${
-        !isLocked
-          ? "hover:scale-[1.02] hover:shadow-xl hover:border-primary"
-          : "cursor-not-allowed pointer-events-none opacity-70 locked-card"
-      }
-    `}
-                style={{ minHeight: 200 }}
-              >
-                <div className="relative z-10">
-                  <div className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors duration-200">
-                    {idx !== quizParts.length - 1
-                      ? `Quiz Part ${idx + 1}`
-                      : "Final Part of the Quiz"}
-                  </div>
-                  <div className="text-muted-foreground text-base mb-6 tracking-wide">
-                    Questions {item.start + 1} - {item.end + 1}
-                  </div>
-                  <div className="flex justify-center">
-                    <span
-                      className={`px-6 py-2 rounded-full font-semibold shadow transition-all duration-300
-            ${
-              !isLocked
-                ? "bg-primary text-black hover:bg-primary/90 hover:shadow-lg"
-                : "bg-muted text-muted-foreground"
-            }
-          `}
-                    >
-                      {isLocked ? "Locked" : "Start"}
-                    </span>
-                  </div>
-                </div>
-              </NextLink>
+    <div className="relative w-full min-h-screen bg-black flex flex-col items-center justify-center p-8 overflow-y-auto">
+      <div className="absolute inset-0 bg-gradient-to-b from-neutral-900 via-black to-black" />
+      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat opacity-5" />
 
-              {isLocked && (
-                <div className="absolute inset-0 rounded-2xl bg-black/40 backdrop-blur-[2px] flex items-center justify-center z-20">
-                  <Lock className="text-white w-10 h-10 opacity-90" />
+      <motion.h1
+        className="text-4xl sm:text-5xl font-bold text-white mb-16 z-10"
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      >
+        Quiz AWS DVA-C02
+      </motion.h1>
+
+      <motion.div
+        className="relative grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 sm:gap-10 z-10"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {levelParts.map((level) => (
+          <motion.div key={level.id} variants={itemVariants}>
+            {level.passed ? (
+              <Link
+                href={`/level/${level.id}`}
+                className="group relative flex items-center justify-center w-32 h-32 sm:w-36 sm:h-36 rounded-2xl transition-transform duration-300 ease-in-out hover:scale-105"
+              >
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition duration-500" />
+                <div className="relative w-full h-full flex items-center justify-center bg-neutral-900/70 border border-white/20 rounded-2xl backdrop-blur-lg">
+                  <span className="text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-110">
+                    {level.id}
+                  </span>
                 </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
+              </Link>
+            ) : (
+              <div className="relative flex items-center justify-center w-32 h-32 sm:w-36 sm:h-36 rounded-2xl">
+                <div className="relative flex items-center justify-center w-full h-full rounded-2xl  border border-neutral-700 bg-neutral-900/50 backdrop-blur-md text-neutral-600 cursor-not-allowed overflow-hidden blur-sm">
+                  <span className="text-4xl font-bold text-neutral-700">
+                    {level.id}
+                  </span>
+                </div>
+                <Lock className="absolute w-10 h-10 text-neutral-500 z-30" />
+              </div>
+            )}
+          </motion.div>
+        ))}
+      </motion.div>
     </div>
   );
 }
