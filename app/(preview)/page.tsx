@@ -47,7 +47,7 @@ export default function LevelsPage() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        Quiz AWS DVA-C02
+        Quiz <span className="text-orange-500">AWS</span> DVA-C02
       </motion.h1>
 
       <motion.div
@@ -63,7 +63,7 @@ export default function LevelsPage() {
                 href={`/level/${level.id}`}
                 className="group relative flex items-center justify-center w-32 h-32 sm:w-36 sm:h-36 rounded-2xl transition-transform duration-300 ease-in-out hover:scale-105"
               >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition duration-500" />
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-orange-500 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition duration-500" />
                 <div className="relative w-full h-full flex items-center justify-center bg-neutral-900/70 border border-white/20 rounded-2xl backdrop-blur-lg">
                   <span className="text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-110">
                     {level.id}

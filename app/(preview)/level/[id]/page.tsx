@@ -26,12 +26,18 @@ export default function LevelPage() {
           const isLocked = !item.passed;
           return (
             <div key={idx} className="relative group">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-orange-500 to-orange-200 rounded-2xl blur-xl opacity-0 group-hover:opacity-60 transition duration-500" />
+
+              {/*<div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-orange-500 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition duration-500" />*/}
               <NextLink
                 href={!isLocked ? `/quiz/${idx + 1}/${levelId}` : "#"}
-                className={`block relative rounded-2xl border bg-gradient-to-br from-background to-muted/40 shadow-md p-8 text-center transition-all duration-300 overflow-hidden
+                className={`block border relative rounded-2xl  bg-gradient-to-br from-background to-muted/40 shadow-md p-8 text-center transition-all duration-300 overflow-hidden
+
+
+
       ${
         !isLocked
-          ? "hover:scale-[1.02] hover:shadow-xl hover:border-primary"
+          ? "hover:scale-[1.02] hover:shadow-xl"
           : "cursor-not-allowed pointer-events-none opacity-70 locked-card"
       }
     `}
