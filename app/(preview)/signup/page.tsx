@@ -27,10 +27,19 @@ export default function SignInPage() {
           console.log("Sign up successful", ctx);
         },
         onError: (ctx) => {
-          console.log("Sign up error", ctx);
+          toast.error("Sign up error Please try again later");
         },
       },
     );
+  };
+  const handleGoogleSignIn = async () => {
+    const { data, error } = await authClient.signIn.social({
+      provider: "google",
+    });
+
+    if (error) {
+      toast.error("Google sign-in error Please try again later");
+    }
   };
 
   return (
@@ -58,6 +67,12 @@ export default function SignInPage() {
           className="w-full py-3 bg-orange-400 text-gray-900 font-semibold rounded-lg hover:bg-orange-500 transition duration-200 shadow-md hover:shadow-lg"
         >
           Sign Up
+        </button>
+        <button
+          onClick={handleGoogleSignIn}
+          className="w-full py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition duration-200 shadow-md hover:shadow-lg"
+        >
+          Sign Up with Google
         </button>
       </div>
     </div>
