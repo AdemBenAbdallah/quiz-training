@@ -2,15 +2,16 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Lock } from "lucide-react";
+import { Frown, Lock } from "lucide-react";
 import useLocalStorage from "@/hook/useLocalStorage";
 import { LevelParts, TLevelParts } from "./parts";
 import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import { containerVariants, itemVariants } from "@/lib/variants";
 
-export default function LevelsPage() {
+export default function HomePage() {
   const [levelParts] = useLocalStorage<TLevelParts>("levelParts", LevelParts);
   const router = useRouter();
   const {
@@ -24,29 +25,6 @@ export default function LevelsPage() {
     // You can render a loading spinner here if you'd like
     return null;
   }
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-      },
-    },
-  };
-
   const handleSignOut = async () => {
     await authClient.signOut({
       fetchOptions: {
@@ -58,68 +36,28 @@ export default function LevelsPage() {
   };
 
   return (
-    <div className="relative w-full min-h-screen bg-black flex flex-col items-center justify-center p-8 overflow-y-auto">
-      <div className="fixed top-0 w-full z-20 px-10 py-8">
+    <div className="w-full min-h-screen bg-black flex flex-col items-center justify-center p-8 overflow-y-auto">
+      <div className="fixed top-0 w-full z-20 px-10 py-8 flex gap-3">
         {!session ? (
           <Button
-            className="text-white bg-orange-500 block ml-auto"
+            className="text-white bg-orange-900"
             onClick={() => redirect("/signup")}
           >
             SingUp
           </Button>
         ) : (
-          <Button
-            className="text-white bg-orange-500 block ml-auto"
-            onClick={handleSignOut}
-          >
+          <Button className="text-white bg-orange-900" onClick={handleSignOut}>
             SingOut
           </Button>
         )}
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-neutral-900 via-black to-black" />
-      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat opacity-5" />
-      <motion.h1
-        className="text-4xl sm:text-5xl font-bold text-white mb-16 z-10"
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-      >
-        Quiz <span className="text-orange-500">AWS</span> DVA-C02
-      </motion.h1>
 
-      <motion.div
-        className="relative grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 sm:gap-10 z-10"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {levelParts.map((level) => (
-          <motion.div key={level.id} variants={itemVariants}>
-            {level.passed ? (
-              <Link
-                href={`/level/${level.id}`}
-                className="group relative flex items-center justify-center w-32 h-32 sm:w-36 sm:h-36 rounded-2xl transition-transform duration-300 ease-in-out hover:scale-105"
-              >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-orange-500 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition duration-500" />
-                <div className="relative w-full h-full flex items-center justify-center bg-neutral-900/70 border border-white/20 rounded-2xl backdrop-blur-lg">
-                  <span className="text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-110">
-                    {level.id}
-                  </span>
-                </div>
-              </Link>
-            ) : (
-              <div className="relative flex items-center justify-center w-32 h-32 sm:w-36 sm:h-36 rounded-2xl">
-                <div className="relative flex items-center justify-center w-full h-full rounded-2xl  border border-neutral-700 bg-neutral-900/50 backdrop-blur-md text-neutral-600 cursor-not-allowed overflow-hidden blur-sm">
-                  <span className="text-4xl font-bold text-neutral-700">
-                    {level.id}
-                  </span>
-                </div>
-                <Lock className="absolute w-10 h-10 text-neutral-500 z-30" />
-              </div>
-            )}
-          </motion.div>
-        ))}
-      </motion.div>
+        <Button
+          className="text-white bg-orange-900"
+          onClick={() => router.push("/levels")}
+        >
+          Levels Page
+        </Button>
+      </div>
     </div>
   );
 }

@@ -1,86 +1,124 @@
 "use client";
-
 import { Input } from "@/components/ui/input";
-import { CLIENT_PUBLIC_FILES_PATH } from "next/dist/shared/lib/constants";
 import { useEffect, useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import GoogleIcon from "@/components/icons/Google";
 
 export default function SignInPage() {
-  const { data: session } = authClient.useSession();
   const router = useRouter();
   const [email, setEmail] = useState("");
-  const [pass, setPassword] = useState("");
-  const name = "name";
+  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    if (session) {
-      router.push("/");
-    }
-  }, [session, router]);
+  const handleMagicLink = async () => {
+    if (!email) return;
+    setIsLoading(true);
 
-  if (session) {
-    return null;
-  }
-
-  const handleSubmit = async () => {
-    const { data, error } = await authClient.signUp.email(
-      {
-        email: email,
-        password: pass,
-        name,
+    try {
+      const { data, error } = await authClient.signIn.magicLink({
+        email,
+        name: email.charAt(0).toUpperCase() + email.slice(1),
         callbackURL: "/",
-      },
-      {
-        onRequest: (ctx) => {
-          console.log("Sign up request", ctx);
-          //show loading
-        },
-        onSuccess: (ctx) => {
-          console.log("Sign up successful", ctx);
-        },
-      },
-    );
+        errorCallbackURL: "/error",
+      });
+    } catch (error) {
+      console.error("Magic link error:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
+
   const handleGoogleSignIn = async () => {
-    const { data, error } = await authClient.signIn.social({
-      provider: "google",
-      callbackURL: "/",
-    });
+    setIsLoading(true);
+
+    try {
+      const { data, error } = await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/",
+      });
+    } catch (error) {
+      console.error("Google sign in error:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900">
-      <div className="w-80 p-6 rounded-xl bg-gray-800 shadow-lg border border-orange-300 flex flex-col gap-4">
-        <h2 className="text-2xl font-semibold text-white text-center mb-2">
-          Sign Up
-        </h2>
-        <Input
-          className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400 transition duration-200 shadow-md hover:shadow-lg"
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <Input
-          className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400 transition duration-200 shadow-md hover:shadow-lg"
-          type="password"
-          placeholder="Password"
-          value={pass}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button
-          onClick={handleSubmit}
-          className="w-full py-3 bg-orange-400 text-gray-900 font-semibold rounded-lg hover:bg-orange-500 transition duration-200 shadow-md hover:shadow-lg"
-        >
-          Sign Up
-        </button>
-        <button
-          onClick={handleGoogleSignIn}
-          className="w-full py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition duration-200 shadow-md hover:shadow-lg"
-        >
-          Sign Up with Google
-        </button>
+    <div className="min-h-screen flex items-center justify-center bg-black relative overflow-hidden">
+      {/* Subtle background pattern similar to quiz interface */}
+      {/*<div className="absolute inset-0 opacity-5">
+        <div className="w-full h-full bg-gradient-to-br from-orange-500/10 to-transparent"></div>
+      </div>*/}
+      <div className="absolute inset-0 bg-gradient-to-b from-neutral-900 via-black to-black" />
+
+      {/* Main signup card */}
+      <div className="w-full md:w-1/4 p-8 rounded-2xl shadow-2xl border border-gray-700/50 flex flex-col gap-6 relative">
+        {/* Subtle orange glow effect */}
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-500/5 to-orange-900/5 pointer-events-none"></div>
+
+        <div className="relative z-10">
+          <h2 className="text-2xl font-bold text-white text-center mb-2">
+            Join the Quiz
+          </h2>
+          <p className="text-gray-400 text-center text-sm mb-6">
+            Start your AWS certification journey
+          </p>
+
+          {/* Email input with enhanced styling */}
+          <div className="space-y-4">
+            <div className="relative">
+              <Input
+                className="w-full px-4 py-6 rounded-xl bg-gray-800/70 text-white placeholder-gray-500 border border-gray-600/50 focus:outline-none focus:ring-2 focus:ring-orange-400/50 focus:border-orange-400/50 transition-all duration-300 shadow-inner hover:bg-gray-800/90 text-base"
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={isLoading}
+              />
+            </div>
+
+            {/* Primary CTA button with quiz-like styling */}
+            <button
+              onClick={handleMagicLink}
+              disabled={!email || isLoading}
+              className="w-full py-3 bg-gradient-to-r from-orange-600 to-orange-900 text-gray-900 font-bold rounded-xl hover:from-orange-500 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none text-base"
+            >
+              {isLoading ? (
+                <div className="flex items-center justify-center gap-2">
+                  <div className="w-3 h-3 border-2 border-gray-900/30 border-t-gray-900 rounded-full animate-spin"></div>
+                  <span>Starting...</span>
+                </div>
+              ) : (
+                <span className="text-white">Sign Up with email</span>
+              )}
+            </button>
+
+            {/* Divider */}
+            <div className="relative flex items-center justify-center my-6">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-600/50"></div>
+              </div>
+              <div className="relative bg-gray-900 px-4">
+                <span className="text-gray-500 text-sm">or</span>
+              </div>
+            </div>
+
+            {/* Google sign in button */}
+            <button
+              onClick={handleGoogleSignIn}
+              disabled={isLoading}
+              className="w-full py-3 bg-gray-800/70 text-white font-semibold rounded-xl border border-gray-600/50 hover:bg-gray-700/80 hover:border-gray-500/50 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-3 text-base"
+            >
+              <GoogleIcon />
+              Continue with Google
+            </button>
+          </div>
+
+          {/* Footer text */}
+          <p className="text-gray-500 text-xs text-center mt-6">
+            By signing up, you agree to our terms and privacy policy
+          </p>
+        </div>
       </div>
     </div>
   );
