@@ -1,14 +1,27 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
-import { authClient } from "@/lib/auth-client";
 import { CLIENT_PUBLIC_FILES_PATH } from "next/dist/shared/lib/constants";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 export default function SignInPage() {
+  const { data: session } = authClient.useSession();
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [pass, setPassword] = useState("");
   const name = "name";
+
+  useEffect(() => {
+    if (session) {
+      router.push("/");
+    }
+  }, [session, router]);
+
+  if (session) {
+    return null;
+  }
 
   const handleSubmit = async () => {
     const { data, error } = await authClient.signUp.email(
@@ -26,20 +39,14 @@ export default function SignInPage() {
         onSuccess: (ctx) => {
           console.log("Sign up successful", ctx);
         },
-        onError: (ctx) => {
-          toast.error("Sign up error Please try again later");
-        },
       },
     );
   };
   const handleGoogleSignIn = async () => {
     const { data, error } = await authClient.signIn.social({
       provider: "google",
+      callbackURL: "/",
     });
-
-    if (error) {
-      toast.error("Google sign-in error Please try again later");
-    }
   };
 
   return (

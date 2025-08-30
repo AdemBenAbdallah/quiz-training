@@ -7,9 +7,18 @@ import useLocalStorage from "@/hook/useLocalStorage";
 import { LevelParts, TLevelParts } from "./parts";
 import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 export default function LevelsPage() {
   const [levelParts] = useLocalStorage<TLevelParts>("levelParts", LevelParts);
+  const router = useRouter();
+  const {
+    data: session,
+    isPending, //loading state
+    error, //error object
+    refetch, //refetch the session
+  } = authClient.useSession();
 
   if (!levelParts) {
     // You can render a loading spinner here if you'd like
@@ -38,15 +47,34 @@ export default function LevelsPage() {
     },
   };
 
+  const handleSignOut = async () => {
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          router.push("/signup");
+        },
+      },
+    });
+  };
+
   return (
     <div className="relative w-full min-h-screen bg-black flex flex-col items-center justify-center p-8 overflow-y-auto">
       <div className="fixed top-0 w-full z-20 px-10 py-8">
-        <Button
-          className="text-white bg-orange-500 block ml-auto"
-          onClick={() => redirect("/signup")}
-        >
-          SingUp
-        </Button>
+        {!session ? (
+          <Button
+            className="text-white bg-orange-500 block ml-auto"
+            onClick={() => redirect("/signup")}
+          >
+            SingUp
+          </Button>
+        ) : (
+          <Button
+            className="text-white bg-orange-500 block ml-auto"
+            onClick={handleSignOut}
+          >
+            SingOut
+          </Button>
+        )}
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-neutral-900 via-black to-black" />
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat opacity-5" />
