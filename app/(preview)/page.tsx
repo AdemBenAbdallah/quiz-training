@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { Lock } from "lucide-react";
 import useLocalStorage from "@/hook/useLocalStorage";
 import { LevelParts, TLevelParts } from "./parts";
+import { redirect } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
 export default function LevelsPage() {
   const [levelParts] = useLocalStorage<TLevelParts>("levelParts", LevelParts);
@@ -38,9 +40,16 @@ export default function LevelsPage() {
 
   return (
     <div className="relative w-full min-h-screen bg-black flex flex-col items-center justify-center p-8 overflow-y-auto">
+      <div className="fixed top-0 w-full z-20 px-10 py-8">
+        <Button
+          className="text-white bg-orange-500 block ml-auto"
+          onClick={() => redirect("/signup")}
+        >
+          SingUp
+        </Button>
+      </div>
       <div className="absolute inset-0 bg-gradient-to-b from-neutral-900 via-black to-black" />
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat opacity-5" />
-
       <motion.h1
         className="text-4xl sm:text-5xl font-bold text-white mb-16 z-10"
         initial={{ y: -50, opacity: 0 }}
