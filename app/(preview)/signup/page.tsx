@@ -18,7 +18,7 @@ export default function SignInPage() {
       const { data, error } = await authClient.signIn.magicLink({
         email,
         name: email.charAt(0).toUpperCase() + email.slice(1),
-        callbackURL: "/",
+        callbackURL: "/levels",
         errorCallbackURL: "/error",
       });
     } catch (error) {
@@ -34,7 +34,7 @@ export default function SignInPage() {
     try {
       const { data, error } = await authClient.signIn.social({
         provider: "google",
-        callbackURL: "/",
+        callbackURL: "/levels",
       });
     } catch (error) {
       console.error("Google sign in error:", error);
@@ -47,14 +47,14 @@ export default function SignInPage() {
     <div className="min-h-screen flex items-center justify-center bg-black relative overflow-hidden">
       {/* Subtle background pattern similar to quiz interface */}
       {/*<div className="absolute inset-0 opacity-5">
-        <div className="w-full h-full bg-gradient-to-br from-orange-500/10 to-transparent"></div>
+        <div className="w-full h-full bg-gradient-to-br from-red-500/10 to-transparent"></div>
       </div>*/}
       <div className="absolute inset-0 bg-gradient-to-b from-neutral-900 via-black to-black" />
 
       {/* Main signup card */}
       <div className="w-full md:w-1/4 p-8 rounded-2xl shadow-2xl border border-gray-700/50 flex flex-col gap-6 relative">
-        {/* Subtle orange glow effect */}
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-500/5 to-orange-900/5 pointer-events-none"></div>
+        {/* Subtle red glow effect */}
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-red-500/5 to-red-900/5 pointer-events-none"></div>
 
         <div className="relative z-10">
           <h2 className="text-2xl font-bold text-white text-center mb-2">
@@ -68,7 +68,7 @@ export default function SignInPage() {
           <div className="space-y-4">
             <div className="relative">
               <Input
-                className="w-full px-4 py-6 rounded-xl bg-gray-800/70 text-white placeholder-gray-500 border border-gray-600/50 focus:outline-none focus:ring-2 focus:ring-orange-400/50 focus:border-orange-400/50 transition-all duration-300 shadow-inner hover:bg-gray-800/90 text-base"
+                className="w-full px-4 py-6 rounded-xl bg-gray-800/70 text-white placeholder-gray-500 border border-gray-600/50 focus:outline-none focus:ring-2 focus:ring-red-400/50 focus:border-red-400/50 transition-all duration-300 shadow-inner hover:bg-gray-800/90 text-base"
                 type="email"
                 placeholder="Enter your email"
                 value={email}
@@ -81,7 +81,7 @@ export default function SignInPage() {
             <button
               onClick={handleMagicLink}
               disabled={!email || isLoading}
-              className="w-full py-3 bg-gradient-to-r from-orange-600 to-orange-900 text-gray-900 font-bold rounded-xl hover:from-orange-500 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none text-base"
+              className="w-full py-3 bg-red-600 to-red-900 text-gray-900 font-bold rounded-xl hover:from-red-500 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none text-base"
             >
               {isLoading ? (
                 <div className="flex items-center justify-center gap-2">
