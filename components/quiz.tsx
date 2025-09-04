@@ -6,10 +6,17 @@ import { Progress } from "@/components/ui/progress";
 import useLocalStorage from "@/hook/useLocalStorage";
 import { AnimatePresence, motion } from "framer-motion";
 import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
   BadgeInfo,
   Check,
   ChevronLeft,
   ChevronRight,
+  Copy,
   FileText,
   RefreshCw,
   X,
@@ -28,12 +35,8 @@ import {
   isChoiceDisabled,
 } from "@/lib/selection";
 import { Question, Choice } from "@/types/quiz";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import QuestionCard from "./QuestionCard";
+import CopyButton from "./ui/copy-button";
 
 type QuizProps = {
   idx: number;
@@ -42,109 +45,7 @@ type QuizProps = {
   title: string;
 };
 
-const QuestionCard: React.FC<{
-  question: Question;
-  selectedAnswers: Choice[];
-  onSelectAnswer: (answer: Choice) => void;
-  isSubmitted: boolean;
-  showCorrectAnswer: boolean;
-}> = ({ question, selectedAnswers, onSelectAnswer, showCorrectAnswer }) => {
-  const answerLabels: Choice[] = ["A", "B", "C", "D", "E"];
-  const availableOptions = answerLabels.slice(0, question.options.length);
-
-  return (
-    <div className="space-y-6">
-      {question.questionNumber && (
-        <div className="text-sm font-semibold text-muted-foreground mb-2">
-          {question.questionNumber}
-        </div>
-      )}
-      <h2 className="text-lg font-semibold leading-tight">
-        {question.question}
-      </h2>
-      {question.answer.length > 1 && (
-        <div
-          className={`text-sm font-medium ${
-            selectedAnswers.length === question.answer.length
-              ? "text-green-600"
-              : selectedAnswers.length > 0
-                ? "text-blue-600"
-                : "text-gray-600"
-          }`}
-        >
-          Select {question.answer.length} answers ({selectedAnswers.length}/
-          {question.answer.length} selected)
-          {selectedAnswers.length === question.answer.length && (
-            <span className="ml-2">✓ Complete</span>
-          )}
-        </div>
-      )}
-      <div className="grid grid-cols-1 gap-4">
-        {question.options.map((option, index) => {
-          const isSelected = selectedAnswers.includes(availableOptions[index]);
-          const isDisabled = isChoiceDisabled(
-            selectedAnswers,
-            availableOptions[index],
-            question,
-          );
-
-          return (
-            <Button
-              key={index}
-              disabled={isDisabled}
-              variant={isSelected ? "secondary" : "outline"}
-              className={`h-auto py-6 px-4 justify-start text-left whitespace-normal ${
-                showCorrectAnswer &&
-                question.answer.includes(availableOptions[index])
-                  ? "bg-green-600 hover:bg-green-700"
-                  : showCorrectAnswer &&
-                      isSelected &&
-                      !question.answer.includes(availableOptions[index])
-                    ? "bg-red-600 hover:bg-red-700"
-                    : isDisabled
-                      ? "opacity-50 cursor-not-allowed"
-                      : ""
-              }`}
-              onClick={() => onSelectAnswer(availableOptions[index])}
-            >
-              <span className="text-lg font-medium mr-4 shrink-0">
-                {availableOptions[index]}
-              </span>
-              <span className="flex-grow">{option}</span>
-              {(showCorrectAnswer &&
-                question.answer.includes(availableOptions[index])) ||
-                (isSelected && (
-                  <Check className="ml-2 shrink-0 text-white" size={20} />
-                ))}
-              {showCorrectAnswer &&
-                isSelected &&
-                !question.answer.includes(availableOptions[index]) && (
-                  <X className="ml-2 shrink-0 text-white" size={20} />
-                )}
-            </Button>
-          );
-        })}
-      </div>
-      {showCorrectAnswer && question.answerComments && (
-        <div className="mt-4 p-4 bg-muted rounded text-sm">
-          <div className="font-semibold mb-2">Answer Comments:</div>
-          <ul className="list-disc pl-5 space-y-2">
-            {question.answerComments.map((comment, idx) => (
-              <li key={idx}>{comment}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
-  );
-};
-
-export default function Quiz({
-  idx,
-  levelId,
-  questions,
-  title = "Quiz",
-}: QuizProps) {
+function Quiz({ idx, levelId, questions, title = "Quiz" }: QuizProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Choice[][]>(
     Array(questions.length).fill([]) as Choice[][],
@@ -246,20 +147,22 @@ export default function Quiz({
   return (
     <div className="min-h-screen bg-background text-foreground">
       <main className="container mx-auto px-4 py-12 max-w-4xl">
-        <div className="flex items-center justify-start gap-4 mb-8">
-          <h1 className="text-3xl font-bold text-center text-foreground">
-            {title}
-          </h1>
+        <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-2">
-            <ServiceInfoDialog question={currentQuestion} />
+            <h1 className="text-3xl font-bold text-center text-foreground">
+              {title}
+            </h1>
+            <div className="flex items-center gap-2">
+              {/*<ServiceInfoDialog question={currentQuestion} />*/}
+            </div>
           </div>
+          <CopyButton />
         </div>
         <div className="relative">
           {!isSubmitted.every(Boolean) && (
             <Progress value={progress} className="h-1 mb-8" />
           )}
           <div className="min-h-[400px]">
-            {" "}
             {/* Prevent layout shift */}
             <AnimatePresence mode="wait">
               <motion.div
@@ -344,3 +247,5 @@ export default function Quiz({
     </div>
   );
 }
+
+export default Quiz;

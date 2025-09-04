@@ -73,7 +73,16 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="relative flex justify-center w-full h-[800px] rounded-2xl bg-gray-800"></div>
+          <div className="relative flex justify-center w-full h-[800px] rounded-2xl overflow-hidden bg-gray-800">
+            <video
+              src="demo.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover rounded-2xl"
+            />
+          </div>
         </section>
       </div>
     </div>
