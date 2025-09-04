@@ -9,9 +9,7 @@
       "C. Use pagination to reduce the size of the items that the queries return.",
       "D. Use the Scan operation to retrieve the data."
     ],
-    "answers": [
-      "B"
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/154534-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -23,9 +21,7 @@
       "C. Enable CloudWatch Lambda Insights on the function. View the latency graph that CloudWatch Lambda Insights provides.",
       "D. Enable AWS X-Ray on the Lambda function. Select Amazon S3 in the latency graph to view the latency histogram."
     ],
-    "answers": [
-      "A"
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/157446-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -37,9 +33,7 @@
       "C. kms:*",
       "D. secretsmanager:*"
     ],
-    "answers": [
-      "A"
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/157447-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -51,9 +45,7 @@
       "C. In-place deployment",
       "D. Linear deployment"
     ],
-    "answers": [
-      "B"
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/157448-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -65,9 +57,7 @@
       "C. Enable S3 Object Lock. Configure an S3 Object Lock policy to retain one newer noncurrent version of the objects.",
       "D. Suspend S3 Versioning. Modify the application code to check the number of object versions before updating the objects."
     ],
-    "answers": [
-      "B"
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156015-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -79,9 +69,7 @@
       "C. Define a DynamoDB API request for the Scan action with the following parameters:",
       "D. Define a DynamoDB API request for the Query action with the following parameters:Most Voted"
     ],
-    "answers": [
-      "D"
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/157510-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -93,9 +81,7 @@
       "C. Configure the CloudFront distribution to use WebSockets by forwarding all viewer request headers to the origin. Create an asymmetric AWS KMS key. Configure the CloudFront distribution to use field-level encryption. Use the AWS KMS key.",
       "D. Configure the cache behavior in the CloudFront distribution to require HTTPS for communication between viewers and CloudFront. Configure GoudFront to require users to access the files by using either signed URLs or signed cookies."
     ],
-    "answers": [
-      "A"
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/157490-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -107,9 +93,7 @@
       "C. Store the credentials as a SecureString parameter in AWS Systems Manager Parameter Store. Add a trigger to pass the credentials to the Lambda functions when the Lambda functions run.",
       "D. Store the credentials as a SecureString parameter in AWS Systems Manager Parameter Store. Add a reference to the parameter in an environment variable in the Lambda functions."
     ],
-    "answers": [
-      "A"
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/154460-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -121,9 +105,7 @@
       "C. Server-side encryption with AWS KMS keys (SSE-KMS)Most Voted",
       "D. Dual-layer server-side encryption with AWS KMS keys (DSSE-KMS)"
     ],
-    "answers": [
-      "A"
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/157499-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -135,9 +117,7 @@
       "C. Create a separate Amazon Simple Notification Service (Amazon SNS) topic and subscription for each consumer Lambda function. Add message routing logic to the data-processing Lambda function to publish to the appropriate topic.",
       "D. Create a single Amazon Simple Notification Service (Amazon SNS) topic. Subscribe the four consumer Lambda functions to the topic. Add SNS subscription filter policies to each subscription. Configure the data-processing Lambda function to publish to the topic.Most Voted"
     ],
-    "answers": [
-      "0bdf3af 4\u00a0months ago Selected Answer: D D is the correct answear\nSNS with Subscription filter policy\n\nSQS vs. SNS: It's easy to confuse SQS and SNS. SQS is a queuing service for decoupling and asynchronous communication, guaranteeing message delivery. SNS is a publish-subscribe service for broadcasting messages to multiple subscribers. upvoted 1 times ..."
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/154507-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -149,9 +129,7 @@
       "C. Create an Amazon Cognito identity pool. Configure permissions by choosing a default IAM role for authenticated users or guest users in the identity pool. Associate the identity pool with an identity provider. Integrate the identity pool with the mobile app.",
       "D. Create an Amazon Cognito user pool. Configure the security requirements by choosing a password policy, multi-factor authentication (MFA) requirements, and user account recovery options. Create an app client. Integrate the app client with the mobile app.Most Voted"
     ],
-    "answers": [
-      "D"
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156701-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -163,9 +141,7 @@
       "C. Store manually created test event payloads in an Amazon S3 bucket. Use the sam local invoke command with the S3 path to the payloads.",
       "D. Use the sam local generate-event command to create test payloads for local testing."
     ],
-    "answers": [
-      "D"
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/152886-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -177,9 +153,7 @@
       "C. Increase the reserved concurrency of the Lambda function to the maximum value for unreserved account concurrency. Run any setup activities manually before the initial invocation of the Lambda function.",
       "D. Publish a new version of the Lambda function. Configure provisioned concurrency for the Lambda function with the required minimum number of execution environments.Most Voted"
     ],
-    "answers": [
-      "D"
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/151547-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -191,10 +165,7 @@
       "C. Decrease the amount of time that data is kept in the data stream by using the DecreaseStreamRetentionPeriod API operation.",
       "D. Increase the shard count in the data stream by using the UpdateShardCount API operation.Most Voted"
     ],
-    "answers": [
-      "D",
-      "B"
-    ]
+    "answers": ["D", "B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/151627-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -206,23 +177,19 @@
       "C. Configure Amazon Inspector to generate findings. Use Amazon EventBridge to create rules that copy the findings to eu-west-2.",
       "D. Configure Amazon Macie to generate findings and to publish the findings to AWS CloudTrail. Use a CloudTrail trail to copy the results to eu-west-2."
     ],
-    "answers": [
-      "B"
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/157514-exam-aws-certified-developer-associate-dva-c02-topic-1/",
-    "question_number": "Question #: 454Topic #: 1",
     "question": "A developer built an application that uses AWS Lambda functions to process images. The developer wants to improve image processing times throughout the day. The developer needs to create an Amazon CloudWatch Logs Insights query that shows the average, slowest, and fastest processing time in 1-minute intervals. Which query will meet these requirements?",
+    "question_number": "Question #: 454Topic #: 1",
     "choices": [
-      "A.",
-      "B.",
-      "C.",
-      "D."
+      "A. fields @timestamp, @message | parse @message \"Processing time: * ms\" as processingTime | stats avg(processingTime) as avgTime, min(processingTime) as minTime, max(processingTime) as maxTime by bin(1m)",
+      "B. fields @timestamp, @message | filter @message like /Processing time/ | stats avg(@duration) as avgTime, min(@duration) as minTime, max(@duration) as maxTime by bin(1m)",
+      "C. fields @timestamp, @message | parse @message \"Execution time: * ms\" as execTime | stats avg(execTime) as avgTime, min(execTime) as minTime, max(execTime) as maxTime by bin(1m)",
+      "D. fields @timestamp, @message | filter @message like /Execution time/ | stats avg(@duration) as avgTime, min(@duration) as minTime, max(@duration) as maxTime by bin(1m)"
     ],
-    "answers": [
-      "A"
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/151333-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -234,11 +201,7 @@
       "C. Encrypt the environment variables by using AWS Key Management Service (AWS KMS) AWS managed keys. Configure a custom AWS Lambda function to automate key rotation.",
       "D. Encrypt the environment variables by using AWS Systems Manager Parameter Store. Set up automatic rotation in Parameter Store."
     ],
-    "answers": [
-      "D",
-      "B",
-      "A"
-    ]
+    "answers": ["D", "B", "A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/150946-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -251,9 +214,7 @@
       "D. CodeDeploy was trying to deploy to instances that were attached to an IAM instance profile that did not have the required permissions.",
       "E. CodeDeploy was trying to deploy to instances that were not set up with correct CodeDeploy health checks.Most Voted"
     ],
-    "answers": [
-      "A"
-    ]
+    "answers": ["A", "E"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/150775-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -265,11 +226,7 @@
       "C. Use Amazon CloudWatch Logs Insights to create custom metrics by querying the logs that come from the Lambda function. Use CloudWatch to create the required graphs and alarms for the custom metrics.",
       "D. Create an Amazon Kinesis data stream to stream log events in real time from Lambda. Specify an Amazon S3 bucket as the destination for the Kinesis data stream. Use Amazon CloudWatch to visualize the log data and to set alarms."
     ],
-    "answers": [
-      "A",
-      "C",
-      "B"
-    ]
+    "answers": ["B", "C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/150773-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -281,9 +238,7 @@
       "C. Request a service quota increase for Parameter Store GetParameter API operations to match the expected usage of the Lambda functions.",
       "D. Add an SSM dynamic reference as an environment variable to the Lambda functions resource in the CloudFormation templates.Most Voted"
     ],
-    "answers": [
-      "D"
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/303080-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -295,9 +250,7 @@
       "C. Enable Amazon Inspector for the AWS account. Use Amazon Inspector to scan the S3 bucket to find unencrypted private data and to monitor for security issues. Set up Amazon EventBridge to provide a notification when Amazon Inspector detects security issues.",
       "D. Create an Amazon Kinesis data stream. Configure Amazon S3 to send new object notifications to the stream. Create an AWS Lambda function that runs every 10 minutes to check the stream for unencrypted private data and to monitor for security issues. Program the Lambda function to provide a notification when security issues are detected."
     ],
-    "answers": [
-      "B"
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/150940-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -309,9 +262,7 @@
       "C. Increase the ephemeral storage size of the Lambda function.",
       "D. Increase the timeout value of the Lambda function."
     ],
-    "answers": [
-      "B"
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/103721-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -324,10 +275,7 @@
       "D. Set up AWS CodePipeline to deploy the most recent version of the application at runtime.",
       "E. Remove any commands that perform operating system patching from the UserData script."
     ],
-    "answers": [
-      "A",
-      "B"
-    ]
+    "answers": ["A", "B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/303078-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -339,9 +287,7 @@
       "C. Associate an Amazon Elastic Block Store (Amazon EBS) volume with the Lambda function. Store all the dependencies on the EBS volume.",
       "D. Create and deploy a Lambda container image with all the dependencies.Most Voted"
     ],
-    "answers": [
-      "D"
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/148536-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -354,10 +300,7 @@
       "D. Create a ZIP package locally and call aws serverlessrepo create-applicatiion to create the application.",
       "E. Create a ZIP package and upload it to Amazon S3. Call aws cloudformation create-stack to create the application."
     ],
-    "answers": [
-      "A",
-      "B"
-    ]
+    "answers": ["A", "B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/149825-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -369,23 +312,19 @@
       "C. Setup an Amazon DynamoDB database that has an in-memory cache. Implement a lazy loading caching strategy in the application.",
       "D. Set up an Amazon RDS database and an Amazon DynamoDB Accelerator (DAX) cluster. Specify a TTL setting for the DAX cluster."
     ],
-    "answers": [
-      "A"
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/148960-exam-aws-certified-developer-associate-dva-c02-topic-1/",
     "question_number": "Question #: 443Topic #: 1",
     "question": "A gaming application stores scores for players in an Amazon DynamoDB table that has four attributes: user_id, user_name, user_score, and user_rank. The users are allowed to update their names only. A user is authenticated by web identity federation. Which set of conditions should be added in the policy attached to the role for the dynamodb:PutItem API call?",
     "choices": [
-      "A.",
-      "B.",
-      "C.",
-      "D."
+      "A. {\"dynamodb:LeadingKeys\": [\"${aws:userid}\"], \"dynamodb:Attributes\": [\"user_name\"]}",
+      "B. {\"dynamodb:LeadingKeys\": [\"${aws:userid}\"], \"dynamodb:Attributes\": [\"user_score\"]}",
+      "C. {\"dynamodb:LeadingKeys\": [\"${aws:userid}\"], \"dynamodb:Attributes\": [\"user_rank\"]}",
+      "D. {\"dynamodb:LeadingKeys\": [\"${aws:userid}\"], \"dynamodb:Attributes\": [\"user_id\"]}"
     ],
-    "answers": [
-      "A"
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/153821-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -397,9 +336,7 @@
       "C. Create an Amazon DynamoDB Accelerator (DAX) cluster in front of the RDS for MySQL cluster. Configure the application to connect to the DAX endpoint instead of the RDS endpoint.",
       "D. Configure the RDS for MySQL cluster to add a standby instance in a different Availability Zone. Configure the application to read the data from the standby instance."
     ],
-    "answers": [
-      "B"
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/148959-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -411,9 +348,7 @@
       "C. Invalidate the file caches for the primary CloudFront distribution.",
       "D. Modify the cross-origin resource sharing (CORS) policy of the S3 bucket and redeploy the website files."
     ],
-    "answers": [
-      "C"
-    ]
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/148958-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -425,9 +360,7 @@
       "C. Create an AWS Client VPN endpoint in the VPInstruct users to connect to the VPN to access the application. Create a Route 53 alias record for the VPN endpoint. Configure Route 53 to use a geolocation routing policy.",
       "D. Deploy the application to multiple Regions across the world. Create a Route 53 alias record for the ALB by using a latency-based routing policy."
     ],
-    "answers": [
-      "A"
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/148957-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -440,9 +373,7 @@
       "D. Permission for Amazon S3 to invoke the Lambda function",
       "E. Permission for DynamoDB to invoke the Lambda function"
     ],
-    "answers": [
-      "B"
-    ]
+    "answers": ["B", "C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/150938-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -454,9 +385,7 @@
       "C. DynamoDB auto scaling",
       "D. Amazon CloudFront"
     ],
-    "answers": [
-      "B"
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/303051-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -468,9 +397,7 @@
       "C. Create a local secondary index (LSI) with the customer email address as the sort key.",
       "D. Create a global secondary index (GSI) with the customer email address as the partition key.Most Voted"
     ],
-    "answers": [
-      "D"
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/151546-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -482,9 +409,7 @@
       "C. Use Amazon Elastic Block Store (Amazon EBS) to store the video files for the first 90 days. After 90 days, transition the video files to the Amazon S3 Glacier Deep Archive storage class.",
       "D. Upload the video files to Amazon S3. Use the S3 Glacier Instant Retrieval storage class for the first 90 days. After 90 days, transition the video files to the S3 Glacier Flexible Retrieval storage class.Most Voted"
     ],
-    "answers": [
-      "D"
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/150942-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -497,9 +422,7 @@
       "D. Set up a routing policy on a Network Load Balancer. Configure 10% of the traffic to go to the new Lambda function version.",
       "E. Set up a weighted routing policy by using Amazon Route 53. Configure 10% of the traffic to go to the new Lambda function version."
     ],
-    "answers": [
-      "A"
-    ]
+    "answers": ["A", "C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/156702-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -512,9 +435,7 @@
       "D. Application Load Balancer",
       "E. Amazon Simple Queue Service (Amazon SQS)"
     ],
-    "answers": [
-      "A"
-    ]
+    "answers": ["A", "C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/148956-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -526,10 +447,7 @@
       "C. Separate the development environment and the production environment into their own AWS accounts. Update the execution role for each Lambda function. Add a policy that allows the execution role to read from only the S3 bucket that is in the same account.",
       "D. Separate the development environment and the production environment into their own AWS accounts. Add a resource policy to the Lambda functions to allow only S3 bucket events in the same account to invoke the functions.Most Voted"
     ],
-    "answers": [
-      "B",
-      "D"
-    ]
+    "answers": ["B", "D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/147042-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -541,7 +459,7 @@
       "C. The S3 event is processed until it is successful.",
       "D. The S3 event is discarded after the event is retried twice."
     ],
-    "answers": []
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/134068-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -553,9 +471,7 @@
       "C. Set the integration type to HTTP_PROXY. Configure API Gateway to pass all requests to an external placeholder API. which the team will build.",
       "D. Set the integration type to MOCK. Use a method request to define HTTP status codes. Use an integration request to define JSON responses."
     ],
-    "answers": [
-      "B"
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/134067-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -567,9 +483,7 @@
       "C. Use the AWS Cloud Development Kit (AWS CDK) to build the application. Use the cdk synth command to deploy the incremental changes.",
       "D. Use the AWS Cloud Development Kit (AWS CDK) to build the application. Use the cdk bootstrap command to deploy the incremental changes."
     ],
-    "answers": [
-      "A"
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/134248-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -581,9 +495,7 @@
       "C. Encode the third-party service endpoints as query parameters in the API Gateway request URL.",
       "D. Store the third-party service endpoint for each environment in AWS AppConfig."
     ],
-    "answers": [
-      "B"
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124865-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -595,9 +507,7 @@
       "C. Use the AWS Serverless Application Model (AWS SAM) CLI to run and locally test the Lambda functions.",
       "D. Use AWS Step Functions Local with mocked service integrations.Most Voted"
     ],
-    "answers": [
-      "D"
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124864-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -609,9 +519,7 @@
       "C. Create an AWS Lambda function to process the requests. Create an Amazon Simple Queue Service (Amazon SQS) standard queue. Set the SQS queue as an event source for the Lambda function. Modify the application to write the requests to the SQS queue.",
       "D. Create an AWS Lambda function to process the requests. Create an Amazon Simple Queue Service (Amazon SQS) FIFO queue. Set the SQS queue as an event source for the Lambda function. Modify the application to write the requests to the SQS queue.Most Voted"
     ],
-    "answers": [
-      "D"
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124863-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -623,11 +531,7 @@
       "C. The IAM role for the custom Lambda authorizer does not have a Department tag.",
       "D. The IAM role for the Amazon Cognito user pool does not have a Department tag."
     ],
-    "answers": [
-      "A",
-      "D",
-      "B"
-    ]
+    "answers": ["A", "B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124862-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -639,10 +543,7 @@
       "C. Save the user\u2019s email address along with the user-uploaded file. When the validation process is complete, send an email notification through Amazon Simple Notification Service (Amazon SNS) to the user who uploaded the file.",
       "D. Save the user-uploaded file and user detail to Amazon DynamoDB. Use Amazon DynamoDB Streams with Amazon Simple Notification Service (Amazon SNS) push notifications to send updates to the browser to update the user interface."
     ],
-    "answers": [
-      "A",
-      "D"
-    ]
+    "answers": ["A", "D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124861-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -654,9 +555,7 @@
       "C. Deploy an Application Load Balancer (ALB) in front of the REST API. Change the production API Amazon Route 53 record to point traffic to the ALB. Register the production and testing stages as targets of the ALB with weights of 80% and 20%, respectively.",
       "D. Configure canary settings for the production stage API. Change the percentage of traffic directed to canary deployment to 20%. Make the planned updates to the production stage. Deploy the changesMost Voted"
     ],
-    "answers": [
-      "D"
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124860-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -668,9 +567,7 @@
       "C. Store the key by using AWS Key Management Service (AWS KMS). Create the DynamoDB table with default encryption. Include the kms:Encrypt parameter with the Amazon Resource Name (ARN) of the AWS KMS key when using the DynamoDB software development kit (SDK).",
       "D. Store the key by using AWS Key Management Service (AWS KMS). Choose an AWS KMS AWS managed key during creation of the DynamoDB table. Provide the Amazon Resource Name (ARN) of the AWS KMS key."
     ],
-    "answers": [
-      "B"
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124859-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -683,9 +580,7 @@
       "D. Blue/greenMost Voted",
       "E. Rolling with additional batch"
     ],
-    "answers": [
-      "B"
-    ]
+    "answers": ["B", "D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124858-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -697,10 +592,7 @@
       "C. Create an Amazon CloudWatch custom metric. Each time a photo is processed, publish the processing time as a metric value. Create a CloudWatch alarm that enters ALARM state if the average of values is greater than 5 seconds. Notify the development team by sending an Amazon Simple Email Service (Amazon SES) message.",
       "D. Create an Amazon Kinesis data stream. Each time a photo is processed, publish the processing time to the data stream. Create an Amazon CloudWatch alarm that enters ALARM state if any values are more than 5 seconds. Notify the development team by using an Amazon Simple Notification Service (Amazon SNS) topic."
     ],
-    "answers": [
-      "A",
-      "C"
-    ]
+    "answers": ["A", "C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124748-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -712,9 +604,7 @@
       "C. Create an AWS Step Functions state machine. Configure the state machine to invoke the Lambda function execution role at a specified interval by using a Wait state. Set the interval to 15 minutes.",
       "D. Provision a small Amazon EC2 instance. Set up a cron job that invokes the Lambda function every 15 minutes."
     ],
-    "answers": [
-      "A"
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124831-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -727,9 +617,7 @@
       "D. Write a script that searches the application for specific key configuration strings. Configure the script to produce a report of any security violations.",
       "E. Use the CDK Aspects class to create custom rules to apply to the CDK application. Fall the stack synthesis if any violations are present.Most Voted"
     ],
-    "answers": [
-      "B"
-    ]
+    "answers": ["B", "E"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124787-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -741,11 +629,7 @@
       "C. Create an IAM role in the shared account. Add the ec2:DescribeInstances permission to the role. Establish a trust relationship between the development accounts for this role. Update the Lambda function IAM role in the shared account by adding the iam:AssumeRole permissions.",
       "D. Create an IAM role in the development accounts. Add the ec2:DescribeInstances permission to the role. Establish a trust relationship with the shared account for this role. Update the Lambda function IAM role in the shared account by adding the ec2:DescribeInstances permission to the role."
     ],
-    "answers": [
-      "B",
-      "C",
-      "A"
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124747-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -757,10 +641,7 @@
       "C. Set the Deployment Preference Type to Canary10Percent10Minutes. Set the PreTraffic and PostTraffic properties to the Lambda alias.",
       "D. Set the Deployment Preference Type to Linear10PercentEvery10Minutes. Set PreTraffic and PostTraffic properties to the Lambda alias."
     ],
-    "answers": [
-      "C",
-      "A"
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124830-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -773,10 +654,7 @@
       "D. The AWS CodePipeline is incorrectly configured and is not invoking AWS CodeDeploy.",
       "E. AWS CodePipeline does not have permissions to access AWS CodeCommit."
     ],
-    "answers": [
-      "A",
-      "B"
-    ]
+    "answers": ["A", "B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124828-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -788,9 +666,7 @@
       "C. Create an API Gateway resource policy to isolate versions and provide context to the Lambda function(s).",
       "D. Deploy the API versions as unique stages with unique endpoints and use stage variables to provide further context.Most Voted"
     ],
-    "answers": [
-      "D"
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124827-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -803,9 +679,7 @@
       "D. Add the lambda:GetFunctionConcurrency action to the execution role.",
       "E. Request a service quota change for increased concurrency.Most Voted"
     ],
-    "answers": [
-      "C"
-    ]
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124826-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -817,10 +691,7 @@
       "C. Create an Amazon API Gateway API. Configure all API methods to be forwarded to the ALB endpoint. Create an authorizer of the COGNITO_USER_POOLS type. Configure every API method to use that authorizer.",
       "D. Create a new target group that includes an AWS Lambda function target that validates the Authorization header by using Amazon Cognito. Associate the target group with the listener."
     ],
-    "answers": [
-      "B",
-      "C"
-    ]
+    "answers": ["B", "C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124783-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -832,9 +703,7 @@
       "C. Create an IAM role. Configure the IAM role to access the specific Amazon S3 API calls the application requires. Associate the IAM role with the EC2 instance.Most Voted",
       "D. Configure an S3 bucket policy for the S3 bucket. Configure the S3 bucket policy to allow access for the EC2 instance ID."
     ],
-    "answers": [
-      "C"
-    ]
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124824-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -846,23 +715,19 @@
       "C. Create a data key pair in AWS Key Management Service (AWS KMS). Use the AWS CLI to encrypt the files.",
       "D. Create a data key in AWS Key Management Service (AWS KMS). Use the AWS CLI to encrypt the files."
     ],
-    "answers": [
-      "A"
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124825-exam-aws-certified-developer-associate-dva-c02-topic-1/",
     "question_number": "Question #: 236Topic #: 1",
     "question": "A company has an online web application that includes a product catalog. The catalog is stored in an Amazon S3 bucket that is named DOC-EXAMPLE-BUCKET. The application must be able to list the objects in the S3 bucket and must be able to download objects through an IAM policy. Which policy allows MINIMUM access to meet these requirements?",
     "choices": [
-      "A. Most Voted",
-      "B.",
-      "C.",
-      "D."
+      "A. Create an IAM policy that allows the 's3:ListBucket' action on 'arn:aws:s3:::DOC-EXAMPLE-BUCKET' and the 's3:GetObject' action on 'arn:aws:s3:::DOC-EXAMPLE-BUCKET/*'.",
+      "B. Create an IAM policy that allows the 's3:ListBucket' action on 'arn:aws:s3:::DOC-EXAMPLE-BUCKET'.",
+      "C. Create an IAM policy that allows the 's3:GetObject' action on 'arn:aws:s3:::DOC-EXAMPLE-BUCKET/*'.",
+      "D. Create an IAM policy that allows the 's3:ListBucket' action on 'arn:aws:s3:::DOC-EXAMPLE-BUCKET' and the 's3:PutObject' action on 'arn:aws:s3:::DOC-EXAMPLE-BUCKET/*'."
     ],
-    "answers": [
-      "A"
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124822-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -874,9 +739,7 @@
       "C. Add read capacity units (RCUs) to the DB instance.",
       "D. Modify the ECS task definition to increase the task memory."
     ],
-    "answers": [
-      "A"
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124821-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -888,11 +751,7 @@
       "C. Increase the retry attempts and maximum event age in the Lambda function\u2019s asynchronous configuration.",
       "D. Configure maximum concurrency on the SQS event source based on the third-party service\u2019s documented rate limits.Most Voted"
     ],
-    "answers": [
-      "D",
-      "B",
-      "C"
-    ]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/126181-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -905,10 +764,7 @@
       "D. Zip the .zip file twice to compress the file more.",
       "E. Move common libraries, function dependencies, and custom runtimes into Lambda layers.Most Voted"
     ],
-    "answers": [
-      "C",
-      "A"
-    ]
+    "answers": ["C", "E"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124820-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -920,9 +776,7 @@
       "C. Create an Application Load Balancer (ALB) that uses the Lambda function as a target. Configure the ALB to split the traffic between the two versions of the Lambda function.",
       "D. Create the new version of the Lambda function as a Lambda layer on the existing version. Configure the function to split the traffic between the two layers."
     ],
-    "answers": [
-      "B"
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124819-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -934,9 +788,7 @@
       "C. Store the database credentials in AWS Systems Manager Parameter Store as secure string parameters. Set up managed rotation on the parameters.",
       "D. Store the database credentials in the X-Amz-Security-Token parameter. Set up managed rotation on the parameter."
     ],
-    "answers": [
-      "B"
-    ]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124818-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -948,9 +800,7 @@
       "C. The permissions to invoke the Lambda function are missing.Most Voted",
       "D. Cross-zone is not enabled on the ALB."
     ],
-    "answers": [
-      "C"
-    ]
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124815-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -962,9 +812,7 @@
       "C. Create one API Gateway with multiple stages with one Lambda function with multiple aliases.Most Voted",
       "D. Create one API Gateway and one Lambda function, and use a REST parameter to identify the environment."
     ],
-    "answers": [
-      "C"
-    ]
+    "answers": ["C"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124778-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -976,10 +824,7 @@
       "C. Create temporary IAM users that have read-only access to the S3 bucket. Share the access keys with the external users. Expire the credentials after 7 days.",
       "D. Create a role that has read-only access to the S3 bucket. Share the Amazon Resource Name (ARN) of this role with the external users."
     ],
-    "answers": [
-      "B",
-      "A"
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124816-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -992,10 +837,7 @@
       "D. Increase the frequency of requests to DynamoDB by decreasing the retry delay.",
       "E. Change the capacity mode of the DynamoDB table from provisioned to on-demand.Most Voted"
     ],
-    "answers": [
-      "C",
-      "B"
-    ]
+    "answers": ["C", "E"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124817-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1007,9 +849,7 @@
       "C. Create a custom AWS CloudFormation resource that gets the bucket name from the ContentBucket resource of the first stack.",
       "D. Use Fn::Include to include the existing template in other templates and use the ContentBucket resource directly."
     ],
-    "answers": [
-      "A"
-    ]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124775-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -1021,8 +861,6 @@
       "C. Amazon Kinesis Firehose",
       "D. Amazon Kinesis Data StreamsMost Voted"
     ],
-    "answers": [
-      "D"
-    ]
+    "answers": ["D"]
   }
 ]

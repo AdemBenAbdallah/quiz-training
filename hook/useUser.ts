@@ -1,0 +1,14 @@
+import useSWR from "swr";
+import { authClient } from "@/lib/auth-client";
+
+const fetchSession = async () => {
+  const { data, error } = await authClient.getSession();
+  if (error) throw error;
+  return data;
+};
+
+export const useUser = () => {
+  const { data: session, error } = useSWR("session", fetchSession);
+
+  return { session, error, isLoading: !error && !session };
+};

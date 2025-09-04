@@ -1,6 +1,13 @@
 "use client";
 
-import { TQuizParts, QuizParts, QuizPartsKey } from "@/app/(preview)/parts";
+import {
+  TQuizParts,
+  QuizParts,
+  QuizPartsKey,
+  TLevelParts,
+  LevelParts,
+  LevelPartsKey,
+} from "@/app/(preview)/parts";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import useLocalStorage from "@/hook/useLocalStorage";
@@ -121,6 +128,12 @@ function Quiz({ idx, levelId, questions, title = "Quiz" }: QuizProps) {
     QuizPartsKey(levelId),
     QuizParts(levelId),
   );
+
+  const [levelParts, setLevelParts] = useLocalStorage<TLevelParts>(
+    LevelPartsKey,
+    LevelParts,
+  );
+
   if (!quizParts) return null;
 
   // check if it open
@@ -130,18 +143,34 @@ function Quiz({ idx, levelId, questions, title = "Quiz" }: QuizProps) {
   if (!isPartAccessible) return null;
 
   const handlePassNextPart = () => {
-    setQuizParts((prevQuizParts) => {
-      if (!prevQuizParts) {
-        return prevQuizParts;
-      }
-      const newData = prevQuizParts.data.map((part) => {
-        if (part.id === +idx + 1) {
-          return { ...part, passed: true };
+    const isLastPart = +idx === quizParts.data.length;
+    if (isLastPart) {
+      setLevelParts((prevLevelParts) => {
+        if (!prevLevelParts) {
+          return prevLevelParts;
         }
-        return part;
+        const newData = prevLevelParts.map((level) => {
+          if (level.id === levelId + 1) {
+            return { ...level, passed: true };
+          }
+          return level;
+        });
+        return newData;
       });
-      return { ...prevQuizParts, data: newData };
-    });
+    } else {
+      setQuizParts((prevQuizParts) => {
+        if (!prevQuizParts) {
+          return prevQuizParts;
+        }
+        const newData = prevQuizParts.data.map((part) => {
+          if (part.id === +idx + 1) {
+            return { ...part, passed: true };
+          }
+          return part;
+        });
+        return { ...prevQuizParts, data: newData };
+      });
+    }
   };
 
   return (
@@ -232,7 +261,7 @@ function Quiz({ idx, levelId, questions, title = "Quiz" }: QuizProps) {
                         asChild
                         className="bg-primary hover:bg-primary/90 w-full"
                       >
-                        <NextLink href="/">
+                        <NextLink href={`/level/${levelId}`}>
                           <FileText className="mr-2 h-4 w-4" /> View All Parts
                         </NextLink>
                       </Button>

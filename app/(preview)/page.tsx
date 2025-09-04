@@ -1,13 +1,9 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { authClient } from "@/lib/auth-client";
+import AvatarMenu from "@/components/Avatar";
 
 export default function HomePage() {
-  const router = useRouter();
-
   return (
     <div className="relative min-h-screen text-white">
       <div className="absolute inset-0 bg-gradient-to-b from-neutral-900 via-black to-black" />
@@ -37,12 +33,7 @@ export default function HomePage() {
                 </a>
               </div>
 
-              <Button
-                onClick={() => router.push("/signup")}
-                className="border border-white text-black font-semibold px-4 py-4 text-md rounded-xl transition-all duration-200 hover:scale-105"
-              >
-                Sign Up
-              </Button>
+              <AvatarMenu />
             </div>
           </div>
         </nav>
