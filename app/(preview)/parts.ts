@@ -39,7 +39,7 @@ export type TLevelParts = typeof LevelParts;
 
 export const QuizParts = (level: number) => {
   const quizLevel = quizLevels[level - 1];
-  const QUESTIONS_PER_PART = Math.ceil(quizLevel.length / 8);
+  const QUESTIONS_PER_PART = Math.ceil(quizLevel?.length / 8);
 
   const ranges = [
     [0, 8],
@@ -57,7 +57,7 @@ export const QuizParts = (level: number) => {
     id: index + 1,
     start,
     end,
-    passed: level === 1 && index === 0,
+    passed: level === level && index === 0,
   }));
 
   return { level, data, QUESTIONS_PER_PART };

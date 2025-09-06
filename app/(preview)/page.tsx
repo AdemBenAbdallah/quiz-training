@@ -64,7 +64,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="relative flex justify-center w-full h-[800px] rounded-2xl overflow-hidden bg-gray-800">
+          <div className="relative flex justify-center w-full h-auto rounded-2xl overflow-hidden bg-gray-800">
             <video
               src="demo.mp4"
               autoPlay

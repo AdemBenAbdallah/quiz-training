@@ -25,7 +25,6 @@ export default function QuizCard({
   return (
     <div className="relative group">
       <div className="absolute -inset-0.5 bg-gradient-to-r from-red-500 to-red-200 rounded-2xl blur-xl opacity-0 group-hover:opacity-60 transition duration-500" />
-
       <NextLink
         href={!isLocked ? `/quiz/${idx + 1}/${levelId}` : "#"}
         className={`block border relative rounded-2xl bg-gradient-to-br from-background to-muted/40 shadow-md p-8 text-center transition-all duration-300 overflow-hidden
@@ -57,7 +56,6 @@ export default function QuizCard({
           </div>
         </div>
       </NextLink>
-
       {isLocked && (
         <div className="absolute inset-0 rounded-2xl bg-black/40 backdrop-blur-[2px] flex items-center justify-center z-20">
           <Lock className="text-white w-10 h-10 opacity-90" />

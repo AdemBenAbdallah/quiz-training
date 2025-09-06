@@ -14,22 +14,17 @@ import { LevelParts, TLevelParts } from "../parts";
 export default function LevelsPage() {
   const [levelParts] = useLocalStorage<TLevelParts>("levelParts", LevelParts);
   const router = useRouter();
-  const {
-    data: session,
-    isPending, //loading state
-    error, //error object
-    refetch, //refetch the session
-  } = authClient.useSession();
+  const { data: session, isPending, error, refetch } = authClient.useSession();
 
   if (!levelParts) {
-    // You can render a loading spinner here if you'd like
     return null;
   }
+
   return (
     <div className="relative w-full min-h-screen bg-black flex flex-col items-center justify-center p-8 overflow-y-auto">
       <div className="absolute inset-0 bg-gradient-to-b from-neutral-900 via-black to-black" />
       <motion.h1
-        className="text-4xl sm:text-5xl font-bold text-white mb-16 z-10"
+        className={`text-4xl sm:text-5xl font-bold text-white mb-16 z-10`}
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}

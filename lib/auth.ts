@@ -1,3 +1,5 @@
+import "server-only";
+
 import { db } from "@/db/index";
 import { schema } from "@/db/schema";
 import MagicLinkEmail from "@/emails/MagicLinkEmail";
@@ -27,7 +29,6 @@ export const auth = betterAuth({
     magicLink({
       sendMagicLink: async (params) => {
         const { email, url } = params;
-        console.log("Sending magic link to", email);
         await resend.emails.send({
           from: "Acme <onboarding@resend.dev>",
           to: email,
