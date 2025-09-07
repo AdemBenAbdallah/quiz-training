@@ -7,7 +7,7 @@ import {
   LevelParts,
   LevelPartsKey,
 } from "@/app/(preview)/parts";
-import useLocalStorage from "@/hook/useLocalStorage";
+import useLocalStorage, { encryptData } from "@/hook/useLocalStorage";
 
 export interface QuizProgressionState {
   quizParts: TQuizParts | null;
@@ -68,7 +68,7 @@ export const useQuizProgression = (
       try {
         localStorage.setItem(
           QuizPartsKey(newLevelId),
-          JSON.stringify(newQuizParts),
+          encryptData(JSON.stringify(newQuizParts)),
         );
       } catch (error) {
         console.warn(
