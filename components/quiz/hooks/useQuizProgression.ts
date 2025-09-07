@@ -68,7 +68,7 @@ export const useQuizProgression = (
       try {
         localStorage.setItem(
           QuizPartsKey(newLevelId),
-          encryptData(JSON.stringify(newQuizParts)),
+          encryptData(newQuizParts),
         );
       } catch (error) {
         console.warn(

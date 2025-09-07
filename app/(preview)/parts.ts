@@ -39,29 +39,34 @@ export type TLevelParts = typeof LevelParts;
 
 export const QuizParts = (level: number) => {
   const quizLevel = quizLevels[level - 1];
-  const QUESTIONS_PER_PART = Math.ceil(quizLevel?.length / 8);
+  const totalQuestions = quizLevel?.length || 0;
 
-  const ranges = [
-    [0, 8],
-    [9, 17],
-    [18, 26],
-    [27, 35],
-    [36, 44],
-    [45, 53],
-    [54, 62],
-    [63, 71],
-    [0, 71],
-  ];
+  // calculate questions per part (8 parts total)
+  const QUESTIONS_PER_PART = Math.ceil(totalQuestions / 8);
+
+  const ranges: [number, number][] = [];
+  for (let i = 0; i < 8; i++) {
+    const start = i * QUESTIONS_PER_PART;
+    const end = Math.min(start + QUESTIONS_PER_PART - 1, totalQuestions - 1);
+
+    if (start < totalQuestions) {
+      ranges.push([start, end]);
+    }
+  }
+
+  // add the "all questions" range as the last part
+  if (totalQuestions > 0) {
+    ranges.push([0, totalQuestions - 1]);
+  }
 
   const data = ranges.map(([start, end], index) => ({
     id: index + 1,
     start,
     end,
-    passed: level === level && index === 0,
+    passed: index === 0, // mark first as passed?
   }));
 
   return { level, data, QUESTIONS_PER_PART };
 };
-
 export type TQuizParts = ReturnType<typeof QuizParts>;
 export const QuizPartsKey = (levelId: number) => `quizPart${levelId}`;

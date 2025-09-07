@@ -33,12 +33,12 @@ export const QuizContainer = ({
 
   // Handle quiz completion and progression
   const handleQuizSubmit = () => {
-    const correctAnswers = quizState.submitQuiz();
+    // const correctAnswers = quizState.submitQuiz();
 
     // // If perfect score, unlock next part/level
-    if (correctAnswers === questions.length) {
-      progression.passToNextPart();
-    }
+    // if (correctAnswers === questions.length) {
+    progression.passToNextPart();
+    // }
   };
 
   // Navigation with quiz submission
@@ -75,12 +75,12 @@ export const QuizContainer = ({
       <main className="container mx-auto px-4 py-12 max-w-4xl">
         <QuizHeader title={title} />
 
-        {/*<button
+        <button
           onClick={handleQuizSubmit}
           className="bg-primary text-white px-4 py-2 rounded-md"
         >
           Submit test
-        </button>*/}
+        </button>
         <div className="relative">
           {!quizState.isQuizComplete && (
             <Progress value={navigation.progress} className="h-1 mb-8" />

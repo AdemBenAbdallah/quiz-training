@@ -27,6 +27,7 @@ function useLocalStorage<T>(key: string, initialValue: T) {
     try {
       const item = localStorage.getItem(key);
       const value = item ? decryptData<T>(item) : initialValue;
+      console.log("Decrypted value:", typeof value);
       setStoredValue(value);
     } catch (error) {
       console.warn(`Error reading localStorage key “${key}”:`, error);

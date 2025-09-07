@@ -26,6 +26,8 @@ export default function LevelPage() {
     quiz,
   );
 
+  console.log("quizParts", quizParts);
+
   if (currentLevel && currentLevel.passed === false) {
     redirect("/levels");
     return null;
