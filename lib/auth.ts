@@ -1,5 +1,3 @@
-import "server-only";
-
 import { db } from "@/db/index";
 import { schema } from "@/db/schema";
 import MagicLinkEmail from "@/emails/MagicLinkEmail";
@@ -8,8 +6,19 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { magicLink } from "better-auth/plugins";
 import React from "react";
 import { Resend } from "resend";
+import {
+  dodopayments,
+  checkout,
+  portal,
+  webhooks,
+} from "@dodopayments/better-auth";
+import DodoPayments from "dodopayments";
 
 const resend = new Resend(process.env.RESEND_API_KEY!);
+export const dodoPayments = new DodoPayments({
+  bearerToken: process.env.DODO_PAYMENTS_API_KEY!,
+  environment: "test_mode",
+});
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -43,6 +52,29 @@ export const auth = betterAuth({
           }),
         });
       },
+    }),
+    dodopayments({
+      client: dodoPayments,
+      createCustomerOnSignUp: true,
+      use: [
+        checkout({
+          products: [
+            {
+              productId: "pdt_z28uLLeKQEqtPzrqMt85k",
+              slug: "premium-plan",
+            },
+          ],
+          successUrl: "/levels",
+          authenticatedUsersOnly: true,
+        }),
+        portal(),
+        webhooks({
+          webhookKey: process.env.DODO_PAYMENTS_WEBHOOK_SECRET!,
+          onPayload: async (payload: any) => {
+            console.log("Received webhook:", payload.event_type);
+          },
+        }),
+      ],
     }),
   ],
 });

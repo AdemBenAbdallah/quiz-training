@@ -9,8 +9,9 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Question } from "@/types/quiz";
-import { BadgeInfo, Loader2 } from "lucide-react";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { Loader2 } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import useSWR, { mutate } from "swr";
 
 interface ExplainData {
   explanation: string;
@@ -71,56 +72,81 @@ const QuestionExplainSkeleton: React.FC<{
   </div>
 );
 
+const fetcher = async (url: string, body: any) => {
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.error || "Failed to get explanation");
+  }
+  return res.json();
+};
+
 const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
   const [open, setOpen] = useState(false);
   const [loadingState, setLoadingState] = useState<LoadingState>("initial");
   const [loadingMessage, setLoadingMessage] = useState<string>("");
-  const [error, setError] = useState<string | null>(null);
-  const [data, setData] = useState<ExplainData | null>(null);
 
-  const lastLoadedQuestion = useRef<string | null>(null);
+  const payload = {
+    question: question.question,
+    options: question.options,
+    answer: Array.isArray(question.answer)
+      ? question.answer
+      : [question.answer],
+  };
 
-  const fetchExplanation = async () => {
-    setLoadingState("loading");
-    setLoadingMessage("Fetching explanation...");
-    setError(null);
+  const key = ["/api/explain-question", payload];
 
-    const startTime = Date.now();
+  const { data, error, isLoading } = useSWR<ExplainData>(
+    open ? key : null,
+    ([url, body]) => fetcher(url, body),
+  );
 
-    try {
-      const res = await fetch("/api/explain-question", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          question: question.question,
-          options: question.options,
-          answer: Array.isArray(question.answer)
-            ? question.answer
-            : [question.answer],
-        }),
-      });
-
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error || "Failed to get explanation");
-      }
-
-      const json = await res.json();
-      setData(json);
-      setLoadingState("initial");
-    } catch (err: any) {
-      setError(err.message || "Failed to get explanation");
+  // control skeleton state
+  useEffect(() => {
+    if (isLoading) {
+      setLoadingState("loading");
+      setLoadingMessage("Fetching explanation...");
+    } else if (error) {
       setLoadingState("error");
       setLoadingMessage("❌ Error fetching explanation");
+    } else if (data) {
+      setLoadingState("initial");
     }
+  }, [isLoading, error, data]);
+
+  // optimistic update trigger
+  const handleFetch = async () => {
+    setLoadingState("loading");
+    setLoadingMessage("Generating explanation...");
+
+    await mutate(
+      key,
+      async () => {
+        return await fetcher("/api/explain-question", payload);
+      },
+      {
+        optimisticData: {
+          explanation: "Generating explanation...",
+          choices: [],
+          correctAnswer: "",
+          correctExplanation: "",
+          trick: "",
+        },
+        rollbackOnError: true,
+        revalidate: false,
+      },
+    );
   };
 
   useEffect(() => {
-    if (open && lastLoadedQuestion.current !== question.question) {
-      fetchExplanation();
-      lastLoadedQuestion.current = question.question;
+    if (open) {
+      handleFetch();
     }
-  }, [open, question.question, fetchExplanation]);
+  }, [open]);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -129,9 +155,6 @@ const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
           aria-label="Explain this question"
           className="w-full max-w-xs mx-auto block"
           onClick={() => setOpen(true)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") setOpen(true);
-          }}
         >
           Get Answer
         </Button>
@@ -154,7 +177,7 @@ const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
         {error && (
           <div className="flex items-center gap-2 text-red-600 py-4">
             <span>❌</span>
-            {error}
+            {error.message}
           </div>
         )}
 
