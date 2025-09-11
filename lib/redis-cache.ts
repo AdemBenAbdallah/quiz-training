@@ -1,4 +1,6 @@
+import { exists } from "drizzle-orm";
 import client from "./redis";
+import { ESLINT_DEFAULT_DIRS } from "next/dist/lib/constants";
 
 async function ensureConnection() {
   if (!client.isOpen) {
@@ -26,16 +28,21 @@ export async function getCachedData<T>(key: string): Promise<T | null> {
 export async function setCachedData(
   key: string,
   data: any,
-  expirationDays: number = 30,
+  expirationDays?: number,
 ): Promise<void> {
   try {
     await ensureConnection();
-    // Convert expiration days to seconds (86400 seconds in a day)
-    const expirationSeconds = expirationDays * 86400;
 
-    await client.set(key, JSON.stringify(data), {
-      EX: expirationSeconds, // Set expiration time in seconds
-    });
+    // Convert expiration days to seconds (86400 seconds in a day)
+    if (expirationDays && expirationDays > 0) {
+      const expirationSeconds = expirationDays * 86400;
+      await client.set(key, JSON.stringify(data), {
+        EX: expirationSeconds,
+      });
+    } else {
+      // No expiration → key stays forever
+      await client.set(key, JSON.stringify(data));
+    }
   } catch (error) {
     console.error("Redis set error:", error);
     // Don't throw the error, just log it

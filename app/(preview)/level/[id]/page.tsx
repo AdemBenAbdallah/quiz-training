@@ -1,32 +1,25 @@
 "use client";
 
-import useLocalStorage from "@/hook/useLocalStorage";
 import { Lock } from "lucide-react";
 import NextLink from "next/link";
-import {
-  TQuizParts,
-  QuizParts,
-  QuizPartsKey,
-  TLevelParts,
-  LevelParts,
-} from "../../parts";
+import { TQuizParts, QuizParts } from "../../parts";
 import { useParams, redirect } from "next/navigation";
 import QuizCard from "@/components/QuizCard";
+import { useProgress } from "@/hooks/useProgress";
 
 export default function LevelPage() {
   const { id } = useParams<{ id: string }>();
   const levelId = id ? parseInt(id) : 0;
-  const quiz = QuizParts(levelId);
+  const { data: progressData, isLoading: progressLoading } = useProgress();
 
-  const [levelParts] = useLocalStorage<TLevelParts>("levelParts", LevelParts);
-  const currentLevel = levelParts?.find((item) => item.id === levelId);
-
-  const [quizParts, _] = useLocalStorage<TQuizParts>(
-    QuizPartsKey(levelId),
-    quiz,
+  const currentLevel = progressData?.levelParts?.find(
+    (item) => item.id === levelId,
   );
+  const quizParts = progressData?.quizPartsByLevel[levelId];
 
-  console.log("quizParts", quizParts);
+  if (progressLoading || !progressData) {
+    return null;
+  }
 
   if (currentLevel && currentLevel.passed === false) {
     redirect("/levels");

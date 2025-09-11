@@ -201,7 +201,7 @@
       "C. Encrypt the environment variables by using AWS Key Management Service (AWS KMS) AWS managed keys. Configure a custom AWS Lambda function to automate key rotation.",
       "D. Encrypt the environment variables by using AWS Systems Manager Parameter Store. Set up automatic rotation in Parameter Store."
     ],
-    "answers": ["D", "B", "A"]
+    "answers": ["B"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/150946-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -447,7 +447,7 @@
       "C. Separate the development environment and the production environment into their own AWS accounts. Update the execution role for each Lambda function. Add a policy that allows the execution role to read from only the S3 bucket that is in the same account.",
       "D. Separate the development environment and the production environment into their own AWS accounts. Add a resource policy to the Lambda functions to allow only S3 bucket events in the same account to invoke the functions.Most Voted"
     ],
-    "answers": ["B", "D"]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/147042-exam-aws-certified-developer-associate-dva-c02-topic-1/",
@@ -531,7 +531,7 @@
       "C. The IAM role for the custom Lambda authorizer does not have a Department tag.",
       "D. The IAM role for the Amazon Cognito user pool does not have a Department tag."
     ],
-    "answers": ["A", "B"]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124862-exam-aws-certified-developer-associate-dva-c02-topic-1/",

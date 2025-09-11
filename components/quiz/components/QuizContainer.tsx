@@ -13,6 +13,7 @@ import QuestionCard from "@/components/QuestionCard";
 import QuestionExplainDialog from "@/components/QuestionExplainDialog";
 import QuizScore from "@/components/score";
 import QuizReview from "@/components/quiz-overview";
+import { calculateScore } from "@/lib/selection";
 
 interface QuizContainerProps {
   idx: number;
@@ -32,13 +33,16 @@ export const QuizContainer = ({
   const progression = useQuizProgression(levelId, idx);
 
   // Handle quiz completion and progression
-  const handleQuizSubmit = () => {
-    // const correctAnswers = quizState.submitQuiz();
+  const handleQuizSubmit = async () => {
+    const correctAnswers = quizState.submitQuiz();
 
-    // // If perfect score, unlock next part/level
-    // if (correctAnswers === questions.length) {
-    progression.passToNextPart();
-    // }
+    try {
+      if (correctAnswers === questions.length) {
+        await progression.passToNextPart();
+      }
+    } catch (error) {
+      console.error("Error progressing to next part:", error);
+    }
   };
 
   // Navigation with quiz submission
@@ -75,12 +79,31 @@ export const QuizContainer = ({
       <main className="container mx-auto px-4 py-12 max-w-4xl">
         <QuizHeader title={title} />
 
-        <button
-          onClick={handleQuizSubmit}
-          className="bg-primary text-white px-4 py-2 rounded-md"
-        >
-          Submit test
-        </button>
+        {/* Debug Information */}
+        {/*<div className="mb-4 p-4 bg-muted rounded-md text-sm">
+          <div>
+            <strong>Debug Info:</strong>
+          </div>
+          <div>
+            Part ID: {idx}, Level ID: {levelId}
+          </div>
+          <div>
+            Is Part Accessible: {progression.isPartAccessible ? "Yes" : "No"}
+          </div>
+          <div>Quiz Complete: {quizState.isQuizComplete ? "Yes" : "No"}</div>
+          <div>Score: {quizState.score ?? "Not calculated"}</div>
+          <div>
+            Current Question: {navigation.currentQuestionIndex + 1} of{" "}
+            {questions.length}
+          </div>
+          <div>
+            Answers:{" "}
+            {JSON.stringify(
+              quizState.answers.map((ans, i) => `Q${i + 1}: ${ans.join(", ")}`),
+            )}
+          </div>
+        </div>
+*/}
         <div className="relative">
           {!quizState.isQuizComplete && (
             <Progress value={navigation.progress} className="h-1 mb-8" />

@@ -69,7 +69,7 @@
       "C. The IAM role for the custom Lambda authorizer does not have a Department tag.",
       "D. The IAM role for the Amazon Cognito user pool does not have a Department tag."
     ],
-    "answers": ["A", "B"]
+    "answers": ["A"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/124862-exam-aws-certified-developer-associate-dva-c02-topic-1/",

@@ -1,4 +1,10 @@
-import { pgTable, text, timestamp, boolean } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  text,
+  timestamp,
+  boolean,
+  integer,
+} from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
@@ -60,9 +66,42 @@ export const verification = pgTable("verification", {
   ),
 });
 
+export const userLevelProgress = pgTable("user_level_progress", {
+  id: text("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  levelId: integer("level_id").notNull(),
+  passed: boolean("passed").notNull().default(false),
+  createdAt: timestamp("created_at")
+    .$defaultFn(() => new Date())
+    .notNull(),
+  updatedAt: timestamp("updated_at")
+    .$defaultFn(() => new Date())
+    .notNull(),
+});
+
+export const userQuizProgress = pgTable("user_quiz_progress", {
+  id: text("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  levelId: integer("level_id").notNull(),
+  partId: integer("part_id").notNull(),
+  passed: boolean("passed").notNull().default(false),
+  createdAt: timestamp("created_at")
+    .$defaultFn(() => new Date())
+    .notNull(),
+  updatedAt: timestamp("updated_at")
+    .$defaultFn(() => new Date())
+    .notNull(),
+});
+
 export const schema = {
   user,
   session,
   account,
   verification,
+  userLevelProgress,
+  userQuizProgress,
 };

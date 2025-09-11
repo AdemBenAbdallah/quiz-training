@@ -96,7 +96,7 @@ export async function POST(req: NextRequest) {
     // Cache the validated response
     // Store for 30 days (you can adjust this value)
     try {
-      await setCachedData(cacheKey, parsed, 30);
+      await setCachedData(cacheKey, parsed);
       console.log("✅ Cached new response for question:", question);
     } catch (error) {
       console.error("Failed to cache response:", error);

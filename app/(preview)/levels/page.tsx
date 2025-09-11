@@ -9,11 +9,11 @@ import { Button } from "@/components/ui/button";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { containerVariants, itemVariants } from "@/lib/variants";
-import { LevelParts, TLevelParts } from "../parts";
 import { getBillingInfo } from "@/lib/utils/get-user-location";
+import { useProgress } from "@/hooks/useProgress";
 
 export default function LevelsPage() {
-  const [levelParts] = useLocalStorage<TLevelParts>("levelParts", LevelParts);
+  const { data: progressData, isLoading: progressLoading } = useProgress();
   const router = useRouter();
   const { data: session, isPending, error, refetch } = authClient.useSession();
 
@@ -41,9 +41,11 @@ export default function LevelsPage() {
     });
   };
 
-  if (!levelParts) {
+  if (!progressData?.levelParts || progressLoading) {
     return null;
   }
+
+  const levelParts = progressData.levelParts;
 
   return (
     <div className="relative w-full min-h-screen bg-black flex flex-col items-center justify-center p-8 overflow-y-auto">
@@ -67,8 +69,6 @@ export default function LevelsPage() {
           <motion.div key={level.id} variants={itemVariants}>
             {level.passed ? (
               <button
-                // href={`/level/${level.id}`}
-
                 onClick={() => handleCheckout(level.id)}
                 className="group relative flex items-center justify-center w-32 h-32 sm:w-36 sm:h-36 rounded-2xl transition-transform duration-300 ease-in-out hover:scale-105"
               >

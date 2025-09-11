@@ -24,8 +24,8 @@ export default async function QuizPage({
   const data = quizLevels[level - 1];
   const { QUESTIONS_PER_PART, data: quizParts } = QuizParts(level);
 
-  const startIdx = quizParts[part - 1].start;
-  const endIdx = quizParts[part - 1].end;
+  const startIdx = quizParts[part - 1]?.start || 0;
+  const endIdx = quizParts[part - 1]?.end || 0;
 
   const quizQuestions = data.slice(startIdx, endIdx).map((q: any) => {
     const rawChoices = q.choices;

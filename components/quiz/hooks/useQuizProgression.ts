@@ -1,13 +1,6 @@
 import { useCallback } from "react";
-import {
-  TQuizParts,
-  QuizParts,
-  QuizPartsKey,
-  TLevelParts,
-  LevelParts,
-  LevelPartsKey,
-} from "@/app/(preview)/parts";
-import useLocalStorage, { encryptData } from "@/hook/useLocalStorage";
+import { TQuizParts, TLevelParts } from "@/app/(preview)/parts";
+import { useProgress } from "@/hooks/useProgress";
 
 export interface QuizProgressionState {
   quizParts: TQuizParts | null;
@@ -25,89 +18,34 @@ export const useQuizProgression = (
   levelId: number,
   partId: number,
 ): QuizProgressionState & QuizProgressionActions => {
-  const [quizParts, setQuizParts] = useLocalStorage<TQuizParts>(
-    QuizPartsKey(levelId),
-    QuizParts(levelId),
-  );
+  const { data, updateProgress } = useProgress();
 
-  const [levelParts, setLevelParts] = useLocalStorage<TLevelParts>(
-    LevelPartsKey,
-    LevelParts,
-  );
+  const quizParts = data?.quizPartsByLevel[levelId] || null;
+  const levelParts = data?.levelParts || null;
 
   // Check if current part is accessible
-  const isPartAccessible = Boolean(
-    quizParts?.data.find((part) => part.id === +partId)?.passed,
-  );
+  const currentPart = quizParts?.data.find((part) => part.id === +partId);
+  const isPartAccessible = Boolean(currentPart?.accessible);
 
   // Check if this is the last part of the current level
   const isLastPart = Boolean(
     quizParts && Number(partId) === quizParts.data.length,
   );
 
-  const passToNextPart = useCallback(() => {
+  const passToNextPart = useCallback(async () => {
     if (!quizParts) return;
 
-    if (isLastPart) {
-      // Unlock next level
-      setLevelParts((prevLevelParts) => {
-        if (!prevLevelParts) return prevLevelParts;
-
-        return prevLevelParts.map((level) => {
-          if (Number(level.id) === Number(levelId) + 1) {
-            return { ...level, passed: true };
-          }
-          return level;
-        });
-      });
-
-      // Initialize next level's quiz parts with first part unlocked
-      const newLevelId = Number(levelId) + 1;
-      const newQuizParts = QuizParts(newLevelId);
-
-      try {
-        localStorage.setItem(
-          QuizPartsKey(newLevelId),
-          encryptData(newQuizParts),
-        );
-      } catch (error) {
-        console.warn(
-          `Error setting localStorage key "${QuizPartsKey(newLevelId)}":`,
-          error,
-        );
-      }
-    } else {
-      // Unlock next part in current level
-      setQuizParts((prevQuizParts) => {
-        if (!prevQuizParts) return prevQuizParts;
-
-        const newData = prevQuizParts.data.map((part) => {
-          if (Number(part.id) === Number(partId) + 1) {
-            return { ...part, passed: true };
-          }
-          return part;
-        });
-
-        return { ...prevQuizParts, data: newData };
-      });
+    try {
+      await updateProgress(levelId, partId);
+    } catch (error) {
+      console.error("Error updating progress:", error);
     }
-  }, [
-    quizParts,
-    levelParts,
-    levelId,
-    partId,
-    isLastPart,
-    setQuizParts,
-    setLevelParts,
-  ]);
+  }, [quizParts, levelId, partId, updateProgress]);
 
   const resetProgression = useCallback(() => {
-    // Reset current level quiz parts
-    setQuizParts(QuizParts(levelId));
-
-    // Reset level parts to initial state
-    setLevelParts(LevelParts);
-  }, [levelId, setQuizParts, setLevelParts]);
+    // This would require a separate API endpoint for reset functionality
+    console.log("Reset progression not implemented yet");
+  }, []);
 
   return {
     quizParts,

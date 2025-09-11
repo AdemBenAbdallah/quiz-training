@@ -3,6 +3,7 @@ import NextLink from "next/link";
 
 type TItem = {
   passed: boolean;
+  accessible: boolean;
   start: number;
   end: number;
 };
@@ -20,7 +21,7 @@ export default function QuizCard({
   item,
   isLast,
 }: QuizCardProps) {
-  const isLocked = !item.passed;
+  const isLocked = !item.accessible;
 
   return (
     <div className="relative group">
