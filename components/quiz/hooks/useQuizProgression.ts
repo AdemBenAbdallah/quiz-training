@@ -11,7 +11,6 @@ export interface QuizProgressionState {
 
 export interface QuizProgressionActions {
   passToNextPart: () => void;
-  resetProgression: () => void;
 }
 
 export const useQuizProgression = (
@@ -42,17 +41,11 @@ export const useQuizProgression = (
     }
   }, [quizParts, levelId, partId, updateProgress]);
 
-  const resetProgression = useCallback(() => {
-    // This would require a separate API endpoint for reset functionality
-    console.log("Reset progression not implemented yet");
-  }, []);
-
   return {
     quizParts,
     levelParts,
     isPartAccessible,
     isLastPart,
     passToNextPart,
-    resetProgression,
   };
 };

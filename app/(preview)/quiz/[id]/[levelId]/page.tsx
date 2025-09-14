@@ -40,7 +40,6 @@ export default async function QuizPage({
     };
   });
 
-  console.log(quizQuestions);
   return (
     <div className="flex flex-col gap-4">
       <Quiz
