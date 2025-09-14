@@ -98,7 +98,7 @@ const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
       : [question.answer],
   };
 
-  const key = ["/api/explain-question", payload];
+  const key: [string, typeof payload] = ["/api/explain-question", payload];
 
   const { data, error, isLoading } = useSWR<ExplainData>(
     open ? key : null,
