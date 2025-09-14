@@ -251,7 +251,7 @@ export default function HomePage() {
                   Still have questions?
                 </h3>
                 <p className="text-gray-400">
-                  We're here to help. Get in touch with us.
+                  We&apos;re here to help. Get in touch with us.
                 </p>
               </div>
               <p className="text-gray-400">adembenabdallah.contact@gmail.com</p>
