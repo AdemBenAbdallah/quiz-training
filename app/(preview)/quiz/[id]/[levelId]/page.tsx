@@ -1,17 +1,12 @@
 import { QuizParts } from "@/app/(preview)/parts";
 import Quiz from "@/components/quiz";
 import { quizLevels } from "@/quiz";
+import { cleanOptions } from "@/lib/explain-utils";
 
 const extractQuestionNumber = (questionNumberStr: string): string => {
   const match = questionNumberStr.match(/Question #:\s*(\d+)/);
   return match ? `Question: ${match[1]}` : "";
 };
-
-const cleanChoice = (choice: string) =>
-  choice
-    .replace(/^([A-E]\.\s)/, "")
-    .replace(/\.?(Most Voted|Most\sVoted)$/, "")
-    .trim();
 
 export default async function QuizPage({
   params,
@@ -33,7 +28,7 @@ export default async function QuizPage({
     return {
       questionNumber: extractQuestionNumber(q.question_number),
       question: q.question,
-      options: limited.map(cleanChoice),
+      options: cleanOptions(limited),
       answer: q.answers,
       answerComments: q.answers,
       multipleAnswers: q.answers.length > 1,

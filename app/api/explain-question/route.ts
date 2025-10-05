@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { getCachedData, setCachedData } from "@/lib/redis-cache";
 import { explainSchema } from "./schemas";
-import { cleanOptions, generateCacheKey } from "@/lib/explain-utils";
+import { generateCacheKey } from "@/lib/explain-utils";
 
 export async function POST(req: NextRequest) {
   try {
@@ -25,11 +25,8 @@ export async function POST(req: NextRequest) {
         { status: 400 },
       );
     }
-    // CLEAN OPTIONS - This is the key fix!
-    const cleanedOptions = cleanOptions(options);
-
-    // Generate cache key
-    const cacheKey = generateCacheKey(question, cleanedOptions, answer);
+    // Generate cache key - options are already cleaned by frontend
+    const cacheKey = generateCacheKey(question, options, answer);
 
     // Try to get cached response
     let cachedResponse = null;
@@ -51,7 +48,7 @@ export async function POST(req: NextRequest) {
 
 Question: ${question}
 Choices:
-${cleanedOptions.map((opt: string, i: number) => `${answerLabels[i]}. ${opt}`).join("\n")}
+${options.map((opt: string, i: number) => `${answerLabels[i]}. ${opt}`).join("\n")}
 Correct Answer: ${answer}`;
 
     const result = await generateObject({
