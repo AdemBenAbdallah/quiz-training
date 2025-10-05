@@ -79,7 +79,7 @@ const fetcher = async (url: string, body: any) => {
     body: JSON.stringify(body),
   });
   if (!res.ok) {
-    const err = await res.json();
+    const err = await res.json().catch(() => ({ error: "Unknown error" }));
     throw new Error(err.error || "Failed to get explanation");
   }
   return res.json();
@@ -103,50 +103,36 @@ const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
   const { data, error, isLoading } = useSWR<ExplainData>(
     open ? key : null,
     ([url, body]) => fetcher(url, body),
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+      dedupingInterval: 60000, // Cache for 60 seconds
+    },
   );
 
   // control skeleton state
   useEffect(() => {
     if (isLoading) {
       setLoadingState("loading");
-      setLoadingMessage("Fetching explanation...");
+      setLoadingMessage("Generating explanation...");
     } else if (error) {
       setLoadingState("error");
-      setLoadingMessage("❌ Error fetching explanation");
+      setLoadingMessage(`❌ ${error.message}`);
     } else if (data) {
-      setLoadingState("initial");
+      setLoadingState("cached");
+      setLoadingMessage("✅ Explanation loaded");
+      // Clear the message after a short delay
+      setTimeout(() => setLoadingState("initial"), 1000);
     }
   }, [isLoading, error, data]);
 
-  // optimistic update trigger
-  const handleFetch = async () => {
-    setLoadingState("loading");
-    setLoadingMessage("Generating explanation...");
-
-    await mutate(
-      key,
-      async () => {
-        return await fetcher("/api/explain-question", payload);
-      },
-      {
-        optimisticData: {
-          explanation: "Generating explanation...",
-          choices: [],
-          correctAnswer: "",
-          correctExplanation: "",
-          trick: "",
-        },
-        rollbackOnError: true,
-        revalidate: false,
-      },
-    );
-  };
-
+  // Trigger fetch when dialog opens
   useEffect(() => {
-    if (open) {
-      handleFetch();
+    if (open && !data && !isLoading) {
+      setLoadingState("loading");
+      setLoadingMessage("Generating explanation...");
     }
-  }, [open]);
+  }, [open, data, isLoading]);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

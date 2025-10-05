@@ -6,12 +6,17 @@ async function testRedisConnection() {
   // Create Redis client with configuration
   const client = createClient({
     username: "default",
-    password: process.env.REDIS_PASSWORD,
+    password: "ARhmAAImcDI5ODRjYjU3ZjNiYzU0MDUzYTNjNmE2MzFjNDljYzY5NXAyNjI0Ng",
     socket: {
-      host: process.env.REDIS_HOST,
-      port: 15487,
+      host: "one-wren-6246.upstash.io",
+      port: 6379,
+      tls: true,
     },
   });
+
+  // const client = createClient({
+  //   url: "rediss://default:ARhmAAImcDI5ODRjYjU3ZjNiYzU0MDUzYTNjNmE2MzFjNDljYzY5NXAyNjI0Ng@one-wren-6246.upstash.io:6379",
+  // });
 
   try {
     client.on("error", (err: Error) =>
