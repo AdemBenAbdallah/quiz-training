@@ -13,7 +13,8 @@ import QuestionCard from "@/components/QuestionCard";
 import QuestionExplainDialog from "@/components/QuestionExplainDialog";
 import QuizScore from "@/components/score";
 import QuizReview from "@/components/quiz-overview";
-import { calculateScore } from "@/lib/selection";
+import CompletionModal from "@/components/CompletionModal";
+import { useState } from "react";
 
 interface QuizContainerProps {
   idx: number;
@@ -31,6 +32,7 @@ export const QuizContainer = ({
   // State management
   const quizState = useQuizState(questions);
   const progression = useQuizProgression(levelId, idx);
+  const [showCompletionModal, setShowCompletionModal] = useState(false);
 
   // Handle quiz completion and progression
   const handleQuizSubmit = async () => {
@@ -38,7 +40,9 @@ export const QuizContainer = ({
 
     try {
       if (correctAnswers === questions.length) {
-        await progression.passToNextPart();
+        progression.passToNextPart();
+        // Show completion modal when quiz is completed successfully
+        setShowCompletionModal(true);
       }
     } catch (error) {
       console.error("Error progressing to next part:", error);
@@ -74,36 +78,16 @@ export const QuizContainer = ({
     quizState.selectAnswer(navigation.currentQuestionIndex, answer);
   };
 
+  const handleCopy = () => {
+    const text = currentQuestion.question + currentQuestion.options.join(", ");
+    navigator.clipboard.writeText(text);
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <main className="container mx-auto px-4 py-12 max-w-4xl">
-        <QuizHeader title={title} />
+        <QuizHeader title={title} handleCopyAction={handleCopy} />
 
-        {/* Debug Information */}
-        {/*<div className="mb-4 p-4 bg-muted rounded-md text-sm">
-          <div>
-            <strong>Debug Info:</strong>
-          </div>
-          <div>
-            Part ID: {idx}, Level ID: {levelId}
-          </div>
-          <div>
-            Is Part Accessible: {progression.isPartAccessible ? "Yes" : "No"}
-          </div>
-          <div>Quiz Complete: {quizState.isQuizComplete ? "Yes" : "No"}</div>
-          <div>Score: {quizState.score ?? "Not calculated"}</div>
-          <div>
-            Current Question: {navigation.currentQuestionIndex + 1} of{" "}
-            {questions.length}
-          </div>
-          <div>
-            Answers:{" "}
-            {JSON.stringify(
-              quizState.answers.map((ans, i) => `Q${i + 1}: ${ans.join(", ")}`),
-            )}
-          </div>
-        </div>
-*/}
         <div className="relative">
           {!quizState.isQuizComplete && (
             <Progress value={navigation.progress} className="h-1 mb-8" />
@@ -167,6 +151,12 @@ export const QuizContainer = ({
           </div>
         </div>
       </main>
+
+      <CompletionModal
+        isOpen={showCompletionModal}
+        onCloseAction={() => setShowCompletionModal(false)}
+        level={levelId}
+      />
     </div>
   );
 };

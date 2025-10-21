@@ -18,6 +18,9 @@ const config: Config = {
         "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
         shimmer: "shimmer 4s infinite linear",
         glow: "glow 2.5s ease-in-out infinite",
+        "spin-slower": "spin-slower 14s linear infinite",
+        floaty: "floaty 9s ease-in-out infinite",
+        "floaty-delayed": "floaty 11s ease-in-out infinite 1.4s",
       },
       keyframes: {
         "border-beam": {
@@ -41,6 +44,25 @@ const config: Config = {
           "50%": {
             "text-shadow":
               "0 0 20px theme(colors.orange.400), 0 0 40px theme(colors.orange.400), 0 0 60px theme(colors.orange.400)",
+          },
+        },
+        "spin-slower": {
+          from: {
+            transform: "rotate(0deg)",
+          },
+          to: {
+            transform: "rotate(360deg)",
+          },
+        },
+        floaty: {
+          "0%": {
+            transform: "translate3d(0, 0, 0) scale(1)",
+          },
+          "50%": {
+            transform: "translate3d(18px, -12px, 0) scale(1.05)",
+          },
+          "100%": {
+            transform: "translate3d(0, 0, 0) scale(1)",
           },
         },
       },

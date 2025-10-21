@@ -97,6 +97,24 @@ export const userQuizProgress = pgTable("user_quiz_progress", {
     .notNull(),
 });
 
+export const userPayment = pgTable("user_payment", {
+  id: text("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  paymentId: text("payment_id").notNull().unique(),
+  status: text("status").notNull().default("pending"),
+  amount: integer("amount"),
+  currency: text("currency").default("USD"),
+  productSlug: text("product_slug").notNull(),
+  createdAt: timestamp("created_at")
+    .$defaultFn(() => new Date())
+    .notNull(),
+  updatedAt: timestamp("updated_at")
+    .$defaultFn(() => new Date())
+    .notNull(),
+});
+
 export const schema = {
   user,
   session,
@@ -104,4 +122,5 @@ export const schema = {
   verification,
   userLevelProgress,
   userQuizProgress,
+  userPayment,
 };

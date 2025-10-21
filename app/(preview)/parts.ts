@@ -3,35 +3,43 @@ import { quizLevels } from "@/quiz";
 export const LevelParts = [
   {
     id: 1,
-    passed: true,
+    passed: false,
+    accessible: true, // Level 1 is always accessible
   },
   {
     id: 2,
     passed: false,
+    accessible: false, // Requires payment
   },
   {
     id: 3,
     passed: false,
+    accessible: false, // Requires payment
   },
   {
     id: 4,
     passed: false,
+    accessible: false, // Requires payment
   },
   {
     id: 5,
     passed: false,
+    accessible: false, // Requires payment
   },
   {
     id: 6,
     passed: false,
+    accessible: false, // Requires payment
   },
   {
     id: 7,
     passed: false,
+    accessible: false, // Requires payment
   },
   {
     id: 8,
     passed: false,
+    accessible: false, // Requires payment
   },
 ];
 export const LevelPartsKey = `levelParts`;
@@ -63,7 +71,8 @@ export const QuizParts = (level: number) => {
     id: index + 1,
     start,
     end,
-    passed: index === 0, // mark first as passed?
+    passed: false,
+    accessible: false, // Will be determined by payment status
   }));
 
   return { level, data, QUESTIONS_PER_PART };

@@ -2,50 +2,25 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Frown, Lock } from "lucide-react";
-import useLocalStorage from "@/hook/useLocalStorage";
-import { redirect } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { authClient } from "@/lib/auth-client";
+import { Lock } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { containerVariants, itemVariants } from "@/lib/variants";
 import { getBillingInfo } from "@/lib/utils/get-user-location";
 import { useProgress } from "@/hooks/useProgress";
+import { authClient } from "@/lib/auth-client";
 
 export default function LevelsPage() {
   const { data: progressData, isLoading: progressLoading } = useProgress();
   const router = useRouter();
   const { data: session, isPending, error, refetch } = authClient.useSession();
 
-  const handleCheckout = async (levelId: number) => {
-    if (levelId === 1) {
-      router.push("/level/1");
-      return;
-    }
-
-    const billingInfo = await getBillingInfo();
-    const { data: checkout, error } = await authClient.dodopayments.checkout({
-      slug: "premium-plan",
-      billing: {
-        city: billingInfo.city,
-        country: billingInfo.country,
-        state: billingInfo.state,
-        street: billingInfo.street,
-        zipcode: billingInfo.zipcode,
-      },
-      customer: {
-        email: session?.user.email,
-        name: session?.user.name,
-      },
-      referenceId: session?.user.id,
-    });
-  };
-
   if (!progressData?.levelParts || progressLoading) {
     return null;
   }
 
   const levelParts = progressData.levelParts;
+
+  console.log("Level Parts:", levelParts);
 
   return (
     <div className="relative w-full min-h-screen bg-black flex flex-col items-center justify-center p-8 overflow-y-auto">
@@ -67,9 +42,9 @@ export default function LevelsPage() {
       >
         {levelParts.map((level) => (
           <motion.div key={level.id} variants={itemVariants}>
-            {level.passed ? (
-              <button
-                onClick={() => handleCheckout(level.id)}
+            {level.accessible ? (
+              <Link
+                href={`/level/${level.id}`}
                 className="group relative flex items-center justify-center w-32 h-32 sm:w-36 sm:h-36 rounded-2xl transition-transform duration-300 ease-in-out hover:scale-105"
               >
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-red-500 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition duration-500" />
@@ -78,7 +53,7 @@ export default function LevelsPage() {
                     {level.id}
                   </span>
                 </div>
-              </button>
+              </Link>
             ) : (
               <div className="relative flex items-center justify-center w-32 h-32 sm:w-36 sm:h-36 rounded-2xl">
                 <div className="relative flex items-center justify-center w-full h-full rounded-2xl  border border-neutral-700 bg-neutral-900/50 backdrop-blur-md text-neutral-600 cursor-not-allowed overflow-hidden blur-sm">

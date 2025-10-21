@@ -1,6 +1,4 @@
-import { exists } from "drizzle-orm";
 import client from "./redis";
-import { ESLINT_DEFAULT_DIRS } from "next/dist/lib/constants";
 
 async function ensureConnection() {
   if (!client.isOpen) {

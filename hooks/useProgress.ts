@@ -7,6 +7,7 @@ interface QuizPartWithAccess {
   end: number;
   passed: boolean;
   accessible: boolean;
+  needsPayment?: boolean;
 }
 
 interface EnhancedQuizParts {

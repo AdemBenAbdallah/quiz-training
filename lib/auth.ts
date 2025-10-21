@@ -1,9 +1,9 @@
 import { db } from "@/db/index";
-import { schema } from "@/db/schema";
+import { schema, userPayment, userLevelProgress } from "@/db/schema";
 import MagicLinkEmail from "@/emails/MagicLinkEmail";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { magicLink } from "better-auth/plugins";
+import { magicLink, openAPI } from "better-auth/plugins";
 import React from "react";
 import { Resend } from "resend";
 import {
@@ -25,6 +25,68 @@ export const auth = betterAuth({
     provider: "pg",
     schema,
   }),
+  databaseHooks: {
+    user: {
+      create: {
+        after: async (user) => {
+          // Initialize user level progress - Level 1 is accessible, others are locked
+          const initialProgress = [
+            {
+              id: `${user.id}_1`,
+              userId: user.id,
+              levelId: 1,
+              passed: false,
+            },
+            {
+              id: `${user.id}_2`,
+              userId: user.id,
+              levelId: 2,
+              passed: false,
+            },
+            {
+              id: `${user.id}_3`,
+              userId: user.id,
+              levelId: 3,
+              passed: false,
+            },
+            {
+              id: `${user.id}_4`,
+              userId: user.id,
+              levelId: 4,
+              passed: false,
+            },
+            {
+              id: `${user.id}_5`,
+              userId: user.id,
+              levelId: 5,
+              passed: false,
+            },
+            {
+              id: `${user.id}_6`,
+              userId: user.id,
+              levelId: 6,
+              passed: false,
+            },
+            {
+              id: `${user.id}_7`,
+              userId: user.id,
+              levelId: 7,
+              passed: false,
+            },
+            {
+              id: `${user.id}_8`,
+              userId: user.id,
+              levelId: 8,
+              passed: false,
+            },
+          ];
+
+          await db.insert(userLevelProgress).values(initialProgress);
+          console.log(`Created initial progress for user: ${user.id}`);
+        },
+      },
+    },
+  },
   emailAndPassword: {
     enabled: true,
   },
@@ -35,6 +97,7 @@ export const auth = betterAuth({
     },
   },
   plugins: [
+    openAPI(),
     magicLink({
       sendMagicLink: async (params) => {
         const { email, url } = params;
@@ -71,7 +134,69 @@ export const auth = betterAuth({
         webhooks({
           webhookKey: process.env.DODO_PAYMENTS_WEBHOOK_SECRET!,
           onPayload: async (payload: any) => {
-            console.log("Received webhook:", payload.event_type);
+            try {
+              const event =
+                payload?.type || payload?.event_type || payload?.event;
+              const data = payload?.data || {};
+
+              // Your app user id passed during checkout as referenceId
+              const userId: string | undefined = data?.metadata?.referenceId;
+
+              // Payment details
+              const paymentId: string | undefined =
+                data?.payment_id || data?.id;
+              const amount: number =
+                data?.total_amount ?? data?.settlement_amount ?? 0;
+              const currency: string =
+                data?.settlement_currency ?? data?.currency ?? "USD";
+              const productSlug: string =
+                data?.product_cart?.[0]?.product_slug || "premium-plan";
+
+              console.log("Received webhook (normalized):", {
+                event,
+                userId,
+                paymentId,
+                amount,
+                currency,
+                productSlug,
+              });
+
+              if (
+                event === "payment.succeeded" ||
+                (data?.status === "succeeded" && paymentId)
+              ) {
+                if (userId && paymentId) {
+                  await db
+                    .insert(userPayment)
+                    .values({
+                      id: crypto.randomUUID(),
+                      userId,
+                      paymentId,
+                      status: "completed",
+                      amount,
+                      currency,
+                      productSlug,
+                    })
+                    .onConflictDoNothing();
+
+                  console.log(`Payment recorded for user: ${userId}`);
+                } else {
+                  console.warn(
+                    "Missing userId or paymentId in webhook payload",
+                    { userId, paymentId },
+                  );
+                }
+              } else if (
+                event === "payment.failed" ||
+                data?.status === "failed"
+              ) {
+                console.log("Payment failed:", paymentId);
+              } else {
+                console.warn("Unhandled webhook event:", event);
+              }
+            } catch (error) {
+              console.error("Webhook processing error:", error);
+            }
           },
         }),
       ],

@@ -21,7 +21,7 @@ export default function LevelPage() {
     return null;
   }
 
-  if (currentLevel && currentLevel.passed === false) {
+  if (currentLevel && !currentLevel.accessible) {
     redirect("/levels");
     return null;
   }

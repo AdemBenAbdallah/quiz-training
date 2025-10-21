@@ -2,6 +2,7 @@ import { Choice, Question } from "@/types/quiz";
 import { Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { isChoiceDisabled } from "@/lib/selection";
+import CopyButton from "@/components/ui/copy-button";
 
 const QuestionCard: React.FC<{
   question: Question;
@@ -20,9 +21,11 @@ const QuestionCard: React.FC<{
           {question.questionNumber}
         </div>
       )}
-      <h2 className="text-lg font-semibold leading-tight">
-        {question.question}
-      </h2>
+      <div className="flex items-start gap-2 group">
+        <h2 className="text-lg font-semibold leading-tight flex-grow">
+          {question.question}
+        </h2>
+      </div>
       {question.answer.length > 1 && (
         <div
           className={`text-sm font-medium ${
@@ -50,39 +53,40 @@ const QuestionCard: React.FC<{
           );
 
           return (
-            <Button
-              key={index}
-              disabled={isDisabled}
-              variant={isSelected ? "secondary" : "outline"}
-              className={`h-auto py-6 px-4 justify-start text-left whitespace-normal ${
-                showCorrectAnswer &&
-                question.answer.includes(availableOptions[index])
-                  ? "bg-green-600 hover:bg-green-700"
-                  : showCorrectAnswer &&
-                      isSelected &&
-                      !question.answer.includes(availableOptions[index])
-                    ? "bg-red-600 hover:bg-red-700"
-                    : isDisabled
-                      ? "opacity-50 cursor-not-allowed"
-                      : ""
-              }`}
-              onClick={() => onSelectAnswer(availableOptions[index])}
-            >
-              <span className="text-lg font-medium mr-4 shrink-0">
-                {availableOptions[index]}
-              </span>
-              <span className="flex-grow">{option}</span>
-              {(showCorrectAnswer &&
-                question.answer.includes(availableOptions[index])) ||
-                (isSelected && (
-                  <Check className="ml-2 shrink-0 text-white" size={20} />
-                ))}
-              {showCorrectAnswer &&
-                isSelected &&
-                !question.answer.includes(availableOptions[index]) && (
-                  <X className="ml-2 shrink-0 text-white" size={20} />
-                )}
-            </Button>
+            <div key={index} className="relative group">
+              <Button
+                disabled={isDisabled}
+                variant={isSelected ? "secondary" : "outline"}
+                className={`h-auto py-6 px-4 justify-start text-left whitespace-normal w-full ${
+                  showCorrectAnswer &&
+                  question.answer.includes(availableOptions[index])
+                    ? "bg-green-600 hover:bg-green-700"
+                    : showCorrectAnswer &&
+                        isSelected &&
+                        !question.answer.includes(availableOptions[index])
+                      ? "bg-red-600 hover:bg-red-700"
+                      : isDisabled
+                        ? "opacity-50 cursor-not-allowed"
+                        : ""
+                }`}
+                onClick={() => onSelectAnswer(availableOptions[index])}
+              >
+                <span className="text-lg font-medium mr-4 shrink-0">
+                  {availableOptions[index]}
+                </span>
+                <span className="flex-grow">{option}</span>
+                {(showCorrectAnswer &&
+                  question.answer.includes(availableOptions[index])) ||
+                  (isSelected && (
+                    <Check className="ml-2 shrink-0 text-white" size={20} />
+                  ))}
+                {showCorrectAnswer &&
+                  isSelected &&
+                  !question.answer.includes(availableOptions[index]) && (
+                    <X className="ml-2 shrink-0 text-white" size={20} />
+                  )}
+              </Button>
+            </div>
           );
         })}
       </div>

@@ -62,16 +62,15 @@ export async function POST(request: NextRequest) {
       const quizParts = QuizParts(levelId);
       const isLastPart = partId === quizParts.data.length;
 
-      if (isLastPart && levelId < 8) {
-        // Unlock next level by marking it as accessible
-        const nextLevelId = levelId + 1;
+      if (isLastPart) {
+        // Mark current level as passed
         const existingLevelProgress = await db
           .select()
           .from(userLevelProgress)
           .where(
             and(
               eq(userLevelProgress.userId, userId),
-              eq(userLevelProgress.levelId, nextLevelId),
+              eq(userLevelProgress.levelId, levelId),
             ),
           );
 
@@ -85,17 +84,19 @@ export async function POST(request: NextRequest) {
             .where(
               and(
                 eq(userLevelProgress.userId, userId),
-                eq(userLevelProgress.levelId, nextLevelId),
+                eq(userLevelProgress.levelId, levelId),
               ),
             );
         } else {
           await db.insert(userLevelProgress).values({
-            id: `${userId}_${nextLevelId}`,
+            id: `${userId}_${levelId}`,
             userId,
-            levelId: nextLevelId,
+            levelId: levelId,
             passed: true,
           });
         }
+
+        console.log(`Level ${levelId} completed for user: ${userId}`);
       }
 
       return NextResponse.json({ success: true });
