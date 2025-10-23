@@ -15,9 +15,10 @@ import {
 import DodoPayments from "dodopayments";
 
 const resend = new Resend(process.env.RESEND_API_KEY!);
+const isDev = process.env.NODE_ENV === "development";
 export const dodoPayments = new DodoPayments({
   bearerToken: process.env.DODO_PAYMENTS_API_KEY!,
-  environment: "test_mode",
+  environment: isDev ? "test_mode" : "live_mode",
 });
 
 export const auth = betterAuth({
@@ -102,7 +103,7 @@ export const auth = betterAuth({
       sendMagicLink: async (params) => {
         const { email, url } = params;
         await resend.emails.send({
-          from: "Acme <onboarding@resend.dev>",
+          from: "Acme <onboarding@adembenabdallah.com>",
           to: email,
           subject: "Your sign-in link",
           text: `Sign in to Your App:\n${url}\n\nThis link expires in 15 minutes.`,
