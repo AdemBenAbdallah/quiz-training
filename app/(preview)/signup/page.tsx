@@ -52,7 +52,7 @@ export default function SignInPage() {
       <div className="absolute inset-0 bg-gradient-to-b from-neutral-900 via-black to-black" />
 
       {/* Main signup card */}
-      <div className="w-full md:w-1/4 p-8 rounded-2xl shadow-2xl border border-gray-700/50 flex flex-col gap-6 relative">
+      <div className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-8 rounded-2xl shadow-2xl border border-gray-700/50 flex flex-col gap-6 relative">
         {/* Subtle red glow effect */}
         <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-red-500/5 to-red-900/5 pointer-events-none"></div>
 

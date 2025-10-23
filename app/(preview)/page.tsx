@@ -159,7 +159,7 @@ export default function HomePage() {
             {/* Desktop curved dashed line */}
             <svg
               className="hidden lg:block absolute inset-0 pointer-events-none z-10"
-              viewBox="0 0 1000 1400"
+              viewBox="0 0 1000 1500"
               preserveAspectRatio="none"
             >
               <defs>
@@ -523,6 +523,13 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        <div className="p-8 text-center">
+          <p className="text-gray-400">
+            For Any Questions, Please Contact Us At:
+          </p>
+          <p className="text-gray-500">adembenabdallah.contact@gmail.com</p>
+        </div>
       </div>
     </div>
   );
