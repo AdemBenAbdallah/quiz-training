@@ -13,6 +13,7 @@ import {
   webhooks,
 } from "@dodopayments/better-auth";
 import DodoPayments from "dodopayments";
+import { env } from "process";
 
 const resend = new Resend(process.env.RESEND_API_KEY!);
 const isDev = process.env.NODE_ENV === "development";
@@ -124,7 +125,7 @@ export const auth = betterAuth({
         checkout({
           products: [
             {
-              productId: "pdt_z28uLLeKQEqtPzrqMt85k",
+              productId: process.env.PRODUCT_ID!,
               slug: "premium-plan",
             },
           ],
