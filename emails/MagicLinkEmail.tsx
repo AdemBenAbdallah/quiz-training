@@ -24,7 +24,7 @@ type MagicLinkEmailProps = {
 export default function MagicLinkEmail({
   firstName = "there",
   magicLinkUrl,
-  appName = "Your App",
+  appName = "Quiz Aws",
   expiresInMinutes = 15,
   supportEmail = "support@example.com",
 }: MagicLinkEmailProps) {
@@ -78,17 +78,17 @@ export default function MagicLinkEmail({
 
 const styles: Record<string, React.CSSProperties> = {
   body: {
-    backgroundColor: "#f6f9fc",
+    backgroundColor: "#0b0b0b",
     fontFamily:
       '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"',
-    color: "#0f172a",
+    color: "#e5e7eb",
     margin: 0,
     padding: "24px",
   },
   card: {
     maxWidth: "520px",
     margin: "0 auto",
-    backgroundColor: "#ffffff",
+    backgroundColor: "#111827",
     borderRadius: 12,
     padding: "28px 28px 20px",
     boxShadow:
@@ -96,10 +96,10 @@ const styles: Record<string, React.CSSProperties> = {
   },
   h1: { fontSize: 24, lineHeight: "28px", margin: "0 0 10px" },
   text: { fontSize: 14, lineHeight: "22px", margin: "12px 0" },
-  textSmall: { fontSize: 12, lineHeight: "20px", color: "#475569" },
+  textSmall: { fontSize: 12, lineHeight: "20px", color: "#9ca3af" },
   codeWrap: {
     wordBreak: "break-all",
-    backgroundColor: "#f1f5f9",
+    backgroundColor: "#1f2937",
     padding: "10px 12px",
     borderRadius: 10,
     fontSize: 12,
@@ -110,15 +110,15 @@ const styles: Record<string, React.CSSProperties> = {
     padding: "12px 18px",
     textDecoration: "none",
     borderRadius: 999,
-    backgroundColor: "#111827",
+    backgroundColor: "#dc2626",
     color: "#ffffff",
   },
-  link: { color: "#0ea5e9", textDecoration: "underline" },
-  hr: { borderColor: "#e2e8f0", margin: "20px 0" },
+  link: { color: "#ef4444", textDecoration: "underline" },
+  hr: { borderColor: "#374151", margin: "20px 0" },
   footer: {
     marginTop: 8,
     fontSize: 11,
-    color: "#64748b",
+    color: "#9ca3af",
     textAlign: "center",
   },
 };

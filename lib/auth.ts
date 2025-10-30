@@ -13,7 +13,6 @@ import {
   webhooks,
 } from "@dodopayments/better-auth";
 import DodoPayments from "dodopayments";
-import { env } from "process";
 
 const resend = new Resend(process.env.RESEND_API_KEY!);
 const isDev = process.env.NODE_ENV === "development";
@@ -104,14 +103,14 @@ export const auth = betterAuth({
       sendMagicLink: async (params) => {
         const { email, url } = params;
         await resend.emails.send({
-          from: "Acme <onboarding@adembenabdallah.com>",
+          from: "Adem <onboarding@adembenabdallah.com>",
           to: email,
-          subject: "Your sign-in link",
-          text: `Sign in to Your App:\n${url}\n\nThis link expires in 15 minutes.`,
+          subject: "Quiz Aws: your sign-in link",
+          text: `Sign in to Quiz Aws:\n${url}\n\nThis link expires in 15 minutes.`,
           react: React.createElement(MagicLinkEmail, {
             firstName: "",
             magicLinkUrl: url,
-            appName: "Your App",
+            appName: "Quiz Aws",
             expiresInMinutes: 15,
             supportEmail: "support@example.com",
           }),

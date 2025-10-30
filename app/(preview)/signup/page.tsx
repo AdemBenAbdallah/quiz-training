@@ -1,6 +1,6 @@
 "use client";
 import { Input } from "@/components/ui/input";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import GoogleIcon from "@/components/icons/Google";
@@ -9,10 +9,14 @@ export default function SignInPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleMagicLink = async () => {
     if (!email) return;
     setIsLoading(true);
+    setSuccessMessage(null);
+    setErrorMessage(null);
 
     try {
       const { data, error } = await authClient.signIn.magicLink({
@@ -21,8 +25,25 @@ export default function SignInPage() {
         callbackURL: "/levels",
         errorCallbackURL: "/error",
       });
-    } catch (error) {
+
+      if (error) {
+        setErrorMessage(
+          // @ts-ignore - some clients return string errors
+          typeof error === "string"
+            ? error
+            : ((error as any)?.message ?? "Failed to send magic link."),
+        );
+      } else {
+        setSuccessMessage(
+          `We sent a sign-in link to ${email}. Please check your inbox to continue.`,
+        );
+      }
+    } catch (error: any) {
       console.error("Magic link error:", error);
+      setErrorMessage(
+        error?.message ??
+          "Something went wrong sending the magic link. Please try again.",
+      );
     } finally {
       setIsLoading(false);
     }
@@ -92,6 +113,21 @@ export default function SignInPage() {
                 <span className="text-white">Sign Up with email</span>
               )}
             </button>
+
+            {successMessage && (
+              <div className="rounded-xl border border-red-400/40 bg-gray-900/70 text-gray-200 p-3">
+                <p className="text-sm">{successMessage}</p>
+                <p className="text-xs text-gray-400 mt-1">
+                  If you don't see it, check your spam folder. The link expires
+                  in 15 minutes.
+                </p>
+              </div>
+            )}
+            {errorMessage && (
+              <div className="rounded-xl border border-red-500/60 bg-red-950/50 text-red-200 p-3">
+                <p className="text-sm">{errorMessage}</p>
+              </div>
+            )}
 
             {/* Divider */}
             <div className="relative flex items-center justify-center my-6">
