@@ -118,8 +118,8 @@ export default function SignInPage() {
               <div className="rounded-xl border border-red-400/40 bg-gray-900/70 text-gray-200 p-3">
                 <p className="text-sm">{successMessage}</p>
                 <p className="text-xs text-gray-400 mt-1">
-                  If you don't see it, check your spam folder. The link expires
-                  in 15 minutes.
+                  If you don&apos;t see it, check your spam folder. The link
+                  expires in 15 minutes.
                 </p>
               </div>
             )}
