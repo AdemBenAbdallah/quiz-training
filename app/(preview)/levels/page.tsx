@@ -20,8 +20,6 @@ export default function LevelsPage() {
 
   const levelParts = progressData.levelParts;
 
-  console.log("Level Parts:", levelParts);
-
   return (
     <div className="relative w-full min-h-screen bg-black flex flex-col items-center justify-center p-8 overflow-y-auto">
       <div className="absolute inset-0 bg-gradient-to-b from-neutral-900 via-black to-black" />

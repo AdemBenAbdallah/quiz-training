@@ -16,7 +16,7 @@ import { authClient } from "@/lib/auth-client";
 import { useUser } from "@/hook/useUser";
 import { useRouter } from "next/navigation";
 
-const AvatarMenu = () => {
+const AvatarMenu = ({ setOpen }: { setOpen: (open: boolean) => void }) => {
   const { session } = useUser();
   const router = useRouter();
 
@@ -32,7 +32,7 @@ const AvatarMenu = () => {
     await authClient.signOut({
       fetchOptions: {
         onSuccess: () => {
-          router.push("/signup");
+          router.push("/");
         },
       },
     });
@@ -64,11 +64,12 @@ const AvatarMenu = () => {
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <Link href="/signup">
-          <Button className="border border-white text-black font-semibold px-4 py-4 text-md rounded-xl transition-all duration-200 hover:scale-105">
-            Sign Up
-          </Button>
-        </Link>
+        <Button
+          onClick={() => setOpen(true)}
+          className="border border-white text-black font-semibold px-4 py-4 text-md rounded-xl transition-all duration-200 hover:scale-105"
+        >
+          Sign Up
+        </Button>
       )}
     </div>
   );

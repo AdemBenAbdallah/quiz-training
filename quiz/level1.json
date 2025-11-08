@@ -5,7 +5,7 @@
     "question": "A developer is designing a game that stores data in an Amazon DynamoDB table. The partition key of the table is the country of the player. After a sudden increase in the number of players in a specific country, the developer notices ProvisionedThroughputExceededException errors. What should the developer do to resolve these errors?",
     "choices": [
       "A. Use strongly consistent table reads.",
-      "B. Revise the primary key to use more unique identifiers.Most Voted",
+      "B. Revise the primary key to use more unique identifiers.",
       "C. Use pagination to reduce the size of the items that the queries return.",
       "D. Use the Scan operation to retrieve the data."
     ],
@@ -16,7 +16,7 @@
     "question_number": "Question #: 555Topic #: 1",
     "question": "A developer created several AWS Lambda functions that write data to a single Amazon S3 bucket. The developer configured all the Lambda functions to send logs and metrics to Amazon CloudWatch. The developer receives reports that one of the Lambda functions writes data to the bucket very slowly. The developer needs to measure the latency between the problematic Lambda function and the S3 bucket. Which solution will meet this requirement?",
     "choices": [
-      "A. Enable AWS X-Ray on the Lambda function. In the generated trace map, select the line between Lambda and Amazon S3.Most Voted",
+      "A. Enable AWS X-Ray on the Lambda function. In the generated trace map, select the line between Lambda and Amazon S3.",
       "B. Query the Lambda function\u2019s log file in Amazon CloudWatch Logs Insights. Return the average of the auto-discovered @duration field.",
       "C. Enable CloudWatch Lambda Insights on the function. View the latency graph that CloudWatch Lambda Insights provides.",
       "D. Enable AWS X-Ray on the Lambda function. Select Amazon S3 in the latency graph to view the latency histogram."
@@ -28,7 +28,7 @@
     "question_number": "Question #: 554Topic #: 1",
     "question": "A developer has an application that runs in AWS Account A. The application must retrieve an AWS Secrets Manager secret that is encrypted by an AWS Key Management Service (AWS KMS) key from AWS Account B. The application\u2019s role has permissions to access the secret in Account B. The developer must add a statement to the KMS key\u2019s key policy to allow the role in Account A to use the KMS key in Account B. The permissions must grant least privilege access to the role. Which permissions will meet these requirements?",
     "choices": [
-      "A. kms:Decrypt and kms:DescribeKeyMost Voted",
+      "A. kms:Decrypt and kms:DescribeKey",
       "B. secretsmanager:DescribeSecret and secretsmanager:GetSecretValue",
       "C. kms:*",
       "D. secretsmanager:*"

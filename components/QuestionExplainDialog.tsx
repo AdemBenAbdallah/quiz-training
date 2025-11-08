@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogClose,
@@ -10,8 +9,10 @@ import {
 } from "@/components/ui/dialog";
 import { Question } from "@/types/quiz";
 import { Loader2 } from "lucide-react";
-import React, { useEffect, useState } from "react";
-import useSWR, { mutate } from "swr";
+import React, { useEffect, useState, useContext } from "react";
+import useSWR from "swr";
+import { Button } from "./ui/button";
+import { FullscreenContainerContext } from "./ui/container";
 
 interface ExplainData {
   explanation: string;
@@ -89,6 +90,7 @@ const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
   const [open, setOpen] = useState(false);
   const [loadingState, setLoadingState] = useState<LoadingState>("initial");
   const [loadingMessage, setLoadingMessage] = useState<string>("");
+  const containerRef = useContext(FullscreenContainerContext);
 
   const payload = {
     question: question.question,
@@ -145,7 +147,10 @@ const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
           Get Answer
         </Button>
       </DialogTrigger>
-      <DialogContent className="overflow-y-auto max-h-[700px] w-full sm:max-w-lg md:max-w-3xl">
+      <DialogContent
+        container={containerRef?.current}
+        className="overflow-y-auto max-h-[700px] w-full sm:max-w-lg md:max-w-3xl"
+      >
         <DialogHeader>
           <DialogTitle>Question Explanation</DialogTitle>
           <DialogDescription>
