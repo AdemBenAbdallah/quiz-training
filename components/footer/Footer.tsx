@@ -81,7 +81,7 @@ export default function Footer({ onSignUpClickAction }: FooterProps) {
               Ready to Start?
             </h3>
             <p className="text-gray-400 text-sm">
-              Join thousands of developers who've passed their AWS
+              Join thousands of developers who&apos;ve passed their AWS
               certification.
             </p>
             <Button

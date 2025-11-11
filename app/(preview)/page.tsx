@@ -54,7 +54,7 @@ export default function HomePage() {
                 </span>
               </h1>
               <p className="text-xl lg:text-2xl text-gray-400 leading-relaxed text-pretty max-w-6xl">
-                Don't just memorize dumps. Our gamified quiz app provides
+                Don&apos;t just memorize dumps. Our gamified quiz app provides
                 detailed explanations for every answer, so you *actually* learn
                 the concepts. Try it free.
               </p>
@@ -183,14 +183,13 @@ export default function HomePage() {
             </div>
 
             <div className="flex items-center justify-center gap-3 lg:gap-4">
-              <img
+              <Image
                 alt="Wozu testimonial for DataFast"
                 loading="lazy"
                 width="48"
                 height="48"
                 className="h-10 w-10 rounded-full object-cover lg:h-12 lg:w-12"
-                src="adem.webp"
-                style={{ color: "transparent" }}
+                src="/adem.webp"
               />
               <div>
                 <p className="font-semibold lg:text-lg">Adem</p>

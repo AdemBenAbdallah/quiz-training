@@ -120,6 +120,7 @@ const Container = ({ children }: { children: React.ReactNode }) => {
             <div className="overflow-y-auto">{children}</div>
           </div>
         </div>
+        <div className="md:hidden">{children}</div>
       </div>
     </FullscreenContainerContext.Provider>
   );
