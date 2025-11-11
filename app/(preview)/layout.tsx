@@ -8,9 +8,6 @@ export const metadata: Metadata = {
   // metadataBase: new URL("https://ai-sdk-preview-pdf-support.vercel.app"),
   title: "Quizzes Prepare for exams",
   description: "Quizzes Prepare for exams",
-  icons: {
-    icon: "/favicon.ico",
-  },
 };
 
 export default function RootLayout({

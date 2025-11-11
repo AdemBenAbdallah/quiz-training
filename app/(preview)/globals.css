@@ -179,3 +179,19 @@
     transform: none !important;
   }
 }
+
+@layer components {
+  .custom-card {
+    overflow: hidden;
+    border-radius: 1rem;
+    border-width: 0.5px;
+    border-style: solid;
+    border-color: oklch(89.8042% 0.001746 67.800407 / 0.05);
+    background-color: oklch(18.8618% 0 0 / 1);
+    box-shadow:
+      0 0 #0000,
+      0 0 #0000,
+      0 1px 3px 0 rgba(0, 0, 0, 0.1),
+      0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  }
+}
