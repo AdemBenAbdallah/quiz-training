@@ -34,12 +34,13 @@ export default function RootLayout({
         </Script>
 
         {/*DataFast*/}
-        <script
-          defer
+        <Script
           data-website-id="dfid_eTpQ5NjrKpI9SsZkJ4rgy"
           data-domain="awsquizgame.adembenabdallah.com"
           src="https://datafa.st/js/script.js"
-        ></script>
+          strategy="afterInteractive"
+          data-allow-localhost="true"
+        />
       </head>
       <body>
         <Providers>{children}</Providers>
