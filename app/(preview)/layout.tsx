@@ -32,6 +32,14 @@ export default function RootLayout({
             gtag('config', 'AW-17695424239');
           `}
         </Script>
+
+        {/*DataFast*/}
+        <script
+          defer
+          data-website-id="dfid_eTpQ5NjrKpI9SsZkJ4rgy"
+          data-domain="awsquizgame.adembenabdallah.com"
+          src="https://datafa.st/js/script.js"
+        ></script>
       </head>
       <body>
         <Providers>{children}</Providers>
