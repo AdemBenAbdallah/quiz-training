@@ -18,13 +18,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={geist.className}>
-      <head>
+      <head></head>
+      <body>
+        <Providers>{children}</Providers>
+
         {/* ✅ Google Ads Global Tag */}
         <Script
-          async
+          strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=AW-17695424239"
         />
-        <Script id="google-ads-tag">
+        <Script id="google-ads-tag" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -41,9 +44,6 @@ export default function RootLayout({
           strategy="afterInteractive"
           data-allow-localhost="true"
         />
-      </head>
-      <body>
-        <Providers>{children}</Providers>
       </body>
     </html>
   );
