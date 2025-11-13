@@ -5,10 +5,10 @@ import { Mail, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface FooterProps {
-  onSignUpClickAction: () => void;
+  handleStart: () => void;
 }
 
-export default function Footer({ onSignUpClickAction }: FooterProps) {
+export default function Footer({ handleStart }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   const scrollToSection = (sectionId: string) => {
@@ -67,7 +67,7 @@ export default function Footer({ onSignUpClickAction }: FooterProps) {
                 FAQ
               </button>
               <button
-                onClick={onSignUpClickAction}
+                onClick={handleStart}
                 className="block text-gray-400 hover:text-white transition-colors duration-200"
               >
                 Start Free Trial
@@ -85,7 +85,7 @@ export default function Footer({ onSignUpClickAction }: FooterProps) {
               certification.
             </p>
             <Button
-              onClick={onSignUpClickAction}
+              onClick={handleStart}
               className="w-full bg-white text-black font-semibold hover:bg-gray-100 transition-all duration-200"
             >
               Start Free Trial

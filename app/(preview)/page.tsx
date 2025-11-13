@@ -12,13 +12,21 @@ import Container from "@/components/ui/container";
 import StarIcon from "@/components/icons/Star";
 import { faqData, stepsData } from "./data";
 import Footer from "@/components/footer";
+import { useUser } from "@/hook/useUser";
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
   const [openSignUp, setOpenSignUp] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const { session } = useUser();
+  const router = useRouter();
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
+  };
+
+  const handleStart = () => {
+    session ? router.push("/levels") : setOpenSignUp(true);
   };
 
   return (
@@ -62,7 +70,7 @@ export default function HomePage() {
 
             <div className="space-y-4">
               <Button
-                onClick={() => setOpenSignUp(true)}
+                onClick={handleStart}
                 size="lg"
                 className="bg-white text-black font-semibold px-8 py-4 text-xl rounded-xl transition-all duration-200 hover:scale-105"
               >
@@ -72,7 +80,7 @@ export default function HomePage() {
           </div>
 
           <Container>
-            <PublicQuiz setOpenSignUp={setOpenSignUp} />
+            <PublicQuiz handleStart={handleStart} />
           </Container>
         </section>
 
@@ -136,10 +144,7 @@ export default function HomePage() {
             <div className="mt-12">
               <div className="mx-auto flex w-64 flex-col items-center justify-center gap-1.5">
                 <div className="w-full space-y-1">
-                  <Button
-                    onClick={() => setOpenSignUp(true)}
-                    className="w-full"
-                  >
+                  <Button onClick={handleStart} className="w-full">
                     <span>Start now</span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -277,7 +282,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <Footer onSignUpClickAction={() => setOpenSignUp(true)} />
+        <Footer handleStart={handleStart} />
 
         {openSignUp && (
           <div className="fixed z-50 top-0 left-0 right-0 bottom-0 bg-black  flex items-center justify-center">

@@ -30,10 +30,10 @@ const transformQuestionData = (data: any[]): Question[] => {
 const questions: Question[] = transformQuestionData(rawQuestions.slice(0, 3));
 
 type PublicQuizProps = {
-  setOpenSignUp: (open: boolean) => void;
+  handleStart: () => void;
 };
 
-const PublicQuiz = ({ setOpenSignUp }: PublicQuizProps) => {
+const PublicQuiz = ({ handleStart }: PublicQuizProps) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<Choice[]>([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -60,8 +60,8 @@ const PublicQuiz = ({ setOpenSignUp }: PublicQuizProps) => {
   };
 
   const handleNext = () => {
-    if (currentQuestionIndex >= 2 && !session?.session) {
-      setOpenSignUp(true);
+    if (currentQuestionIndex >= 2) {
+      handleStart();
       return;
     }
     if (currentQuestionIndex < questions.length - 1) {
