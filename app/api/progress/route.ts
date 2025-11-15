@@ -5,7 +5,11 @@ import { eq } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { LevelParts, QuizParts } from "@/app/(preview)/parts";
 import { hasActivePurchase } from "@/lib/utils/payment";
+import { connection } from "next/server";
+
 export async function GET(request: NextRequest) {
+  await connection();
+
   try {
     const session = await auth.api.getSession({
       headers: request.headers,
@@ -54,17 +58,6 @@ export async function GET(request: NextRequest) {
     // Check if user has made a purchase
     const hasPaid = await hasActivePurchase(userId);
 
-    // PRICING MODEL SUMMARY:
-    // FREE: Only Level 1, Part 1 is completely free
-    // PAID: Everything else requires payment (Level 1 Part 2+, all Level 2+ content)
-    //
-    // PROGRESSION MODEL:
-    // - Level unlocking requires sequential completion (Level 1 → Level 2 → Level 3...)
-    // - Payment only affects CONTENT ACCESS within levels, not level unlocking
-    //
-    // Level accessibility logic:
-    // - Level 1 is always accessible (contains the free content)
-    // - Other levels unlock only when previous level is completed
     const levelParts = LevelParts.map((level) => {
       const userLevel = levelProgress.find((p) => p.levelId === level.id);
       const prevLevelPassed =
@@ -113,19 +106,8 @@ export async function GET(request: NextRequest) {
         let isAccessible = false;
         let needsPayment = false;
 
-        // FREE CONTENT LOGIC: Only Level 1, Part 1 is completely free
-        if (levelId === 1 && part.id === 1) {
-          // Level 1, Part 1 - completely free for everyone
-          isAccessible = true;
-          needsPayment = false;
-        } else if (part.id === 1) {
-          // First part of Level 2+ - requires payment to access
-          isAccessible = true;
-          needsPayment = !hasPaid;
-        } else {
-          // All other parts (Level 1 Part 2+, Level 2+ Part 2+) require:
-          // 1. Previous parts to be completed
-          // 2. Payment to access
+        if (levelId === 1) {
+          // Level 1 is completely free
           const prevPartsCompleted = defaultQuizParts.data
             .slice(0, index)
             .every((prevPart) =>
@@ -133,9 +115,24 @@ export async function GET(request: NextRequest) {
                 (p) => p.partId === prevPart.id && p.passed,
               ),
             );
-
-          isAccessible = prevPartsCompleted;
-          needsPayment = isAccessible && !hasPaid;
+          isAccessible = index === 0 || prevPartsCompleted;
+          needsPayment = false;
+        } else {
+          // Levels 2+ require payment
+          if (hasPaid) {
+            const prevPartsCompleted = defaultQuizParts.data
+              .slice(0, index)
+              .every((prevPart) =>
+                levelQuizProgress.find(
+                  (p) => p.partId === prevPart.id && p.passed,
+                ),
+              );
+            isAccessible = index === 0 || prevPartsCompleted;
+            needsPayment = false;
+          } else {
+            isAccessible = index === 0; // Only first part is accessible to show paywall
+            needsPayment = true;
+          }
         }
 
         return {

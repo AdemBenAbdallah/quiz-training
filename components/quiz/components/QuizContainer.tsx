@@ -13,8 +13,6 @@ import QuestionCard from "@/components/QuestionCard";
 import QuestionExplainDialog from "@/components/QuestionExplainDialog";
 import QuizScore from "@/components/score";
 import QuizReview from "@/components/quiz-overview";
-import CompletionModal from "@/components/CompletionModal";
-import { useState } from "react";
 
 interface QuizContainerProps {
   idx: number;
@@ -32,7 +30,6 @@ export const QuizContainer = ({
   // State management
   const quizState = useQuizState(questions);
   const progression = useQuizProgression(levelId, idx);
-  const [showCompletionModal, setShowCompletionModal] = useState(false);
 
   // Handle quiz completion and progression
   const handleQuizSubmit = async () => {
@@ -41,8 +38,6 @@ export const QuizContainer = ({
     try {
       if (correctAnswers === questions.length) {
         progression.passToNextPart();
-        // Show completion modal when quiz is completed successfully
-        setShowCompletionModal(true);
       }
     } catch (error) {
       console.error("Error progressing to next part:", error);
@@ -151,12 +146,6 @@ export const QuizContainer = ({
           </div>
         </div>
       </main>
-
-      <CompletionModal
-        isOpen={showCompletionModal}
-        onCloseAction={() => setShowCompletionModal(false)}
-        level={levelId}
-      />
     </div>
   );
 };

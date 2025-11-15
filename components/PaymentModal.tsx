@@ -114,10 +114,10 @@ export default function PaymentModal({
             <div className="mb-6">
               <div className="flex items-baseline gap-1">
                 <span className="text-white text-[64px] font-bold leading-none tracking-tighter">
-                  $30
+                  $4
                 </span>
                 <span className="text-white/60 text-2xl font-light leading-none">
-                  .00
+                  .99
                 </span>
               </div>
               <p className="text-white/70 text-sm mt-3">

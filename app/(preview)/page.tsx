@@ -3,8 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import AvatarMenu from "@/components/Avatar";
-import { ChevronDown, ChevronUp } from "lucide-react";
-import { Fragment, useState } from "react";
+import { ChevronDown } from "lucide-react";
+import { Fragment, Suspense, useState } from "react";
 import Image from "next/image";
 import SignUp from "@/components/Signup";
 import PublicQuiz from "@/components/PublicQuiz";
@@ -241,48 +241,52 @@ export default function HomePage() {
                       <ChevronDown className="w-5 h-5 text-red-500 flex-shrink-0" />
                     </motion.div>
                   </button>
-                  <AnimatePresence>
-                    {openFaq === index && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{
-                          height: "auto",
-                          opacity: 1,
-                          transition: {
-                            height: { duration: 0.4, ease: "easeInOut" },
-                            opacity: { duration: 0.3, delay: 0.1 },
-                          },
-                        }}
-                        exit={{
-                          height: 0,
-                          opacity: 0,
-                          transition: {
-                            height: { duration: 0.3, ease: "easeInOut" },
-                            opacity: { duration: 0.2 },
-                          },
-                        }}
-                        className="overflow-hidden"
-                      >
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <AnimatePresence>
+                      {openFaq === index && (
                         <motion.div
-                          className="px-6 pb-4"
-                          initial={{ y: -10 }}
-                          animate={{ y: 0 }}
-                          transition={{ duration: 0.3, delay: 0.1 }}
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{
+                            height: "auto",
+                            opacity: 1,
+                            transition: {
+                              height: { duration: 0.4, ease: "easeInOut" },
+                              opacity: { duration: 0.3, delay: 0.1 },
+                            },
+                          }}
+                          exit={{
+                            height: 0,
+                            opacity: 0,
+                            transition: {
+                              height: { duration: 0.3, ease: "easeInOut" },
+                              opacity: { duration: 0.2 },
+                            },
+                          }}
+                          className="overflow-hidden"
                         >
-                          <p className="text-gray-400 leading-relaxed">
-                            {faq.answer}
-                          </p>
+                          <motion.div
+                            className="px-6 pb-4"
+                            initial={{ y: -10 }}
+                            animate={{ y: 0 }}
+                            transition={{ duration: 0.3, delay: 0.1 }}
+                          >
+                            <p className="text-gray-400 leading-relaxed">
+                              {faq.answer}
+                            </p>
+                          </motion.div>
                         </motion.div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                      )}
+                    </AnimatePresence>
+                  </Suspense>
                 </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        <Footer handleStart={handleStart} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Footer handleStart={handleStart} />
+        </Suspense>
 
         {openSignUp && (
           <div className="fixed z-50 top-0 left-0 right-0 bottom-0 bg-black  flex items-center justify-center">

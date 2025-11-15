@@ -18,7 +18,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={geist.className}>
-      <head></head>
       <body>
         <Providers>{children}</Providers>
 

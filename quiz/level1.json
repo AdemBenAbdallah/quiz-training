@@ -165,7 +165,7 @@
       "C. Decrease the amount of time that data is kept in the data stream by using the DecreaseStreamRetentionPeriod API operation.",
       "D. Increase the shard count in the data stream by using the UpdateShardCount API operation.Most Voted"
     ],
-    "answers": ["D", "B"]
+    "answers": ["D"]
   },
   {
     "url": "https://www.examtopics.com/discussions/amazon/view/151627-exam-aws-certified-developer-associate-dva-c02-topic-1/",

@@ -3,16 +3,11 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Lock } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { containerVariants, itemVariants } from "@/lib/variants";
-import { getBillingInfo } from "@/lib/utils/get-user-location";
 import { useProgress } from "@/hooks/useProgress";
-import { authClient } from "@/lib/auth-client";
 
 export default function LevelsPage() {
   const { data: progressData, isLoading: progressLoading } = useProgress();
-  const router = useRouter();
-  const { data: session, isPending, error, refetch } = authClient.useSession();
 
   if (!progressData?.levelParts || progressLoading) {
     return null;

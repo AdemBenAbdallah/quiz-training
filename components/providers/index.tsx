@@ -1,14 +1,12 @@
-"use client";
-
+import { Suspense, PropsWithChildren } from "react";
 import { ThemeProvider } from "next-themes";
-import type { PropsWithChildren } from "react";
 import { Toaster } from "sonner";
 
 export function Providers({ children }: PropsWithChildren) {
   return (
     <ThemeProvider attribute="class" enableSystem forcedTheme="dark">
       <Toaster position="top-center" richColors />
-      {children}
+      <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
     </ThemeProvider>
   );
 }

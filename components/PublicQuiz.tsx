@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, Suspense } from "react";
 import { Question, Choice } from "@/types/quiz";
 import rawQuestions from "@/quiz/level1.json";
 import QuestionCard from "@/components/QuestionCard";
@@ -97,49 +97,51 @@ const PublicQuiz = ({ handleStart }: PublicQuizProps) => {
       <Progress value={progress} className="h-1 mb-8" />
 
       <div className="min-h-[400px]">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentQuestionIndex}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="space-y-8">
-              <QuestionCard
-                question={currentQuestion}
-                selectedAnswers={selectedAnswers}
-                onSelectAnswer={handleSelectAnswer}
-                isSubmitted={isSubmitted}
-                showCorrectAnswer={isSubmitted}
-              />
-              <div className="flex justify-center">
-                <QuestionExplainDialog question={currentQuestion} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentQuestionIndex}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="space-y-8">
+                <QuestionCard
+                  question={currentQuestion}
+                  selectedAnswers={selectedAnswers}
+                  onSelectAnswer={handleSelectAnswer}
+                  isSubmitted={isSubmitted}
+                  showCorrectAnswer={isSubmitted}
+                />
+                <div className="flex justify-center">
+                  <QuestionExplainDialog question={currentQuestion} />
+                </div>
+
+                <div className="flex justify-between items-center pt-4">
+                  <Button
+                    onClick={handlePrevious}
+                    disabled={currentQuestionIndex === 0}
+                    variant="ghost"
+                  >
+                    <ChevronLeft className="mr-2 h-4 w-4" /> Previous
+                  </Button>
+
+                  <span className="text-sm font-medium">
+                    {currentQuestionIndex + 1} / {questions.length}
+                  </span>
+
+                  <Button onClick={handleNext} variant="ghost">
+                    {currentQuestionIndex >= 2 && !session?.session
+                      ? "Sign up to Continue"
+                      : "Next"}
+                    <ChevronRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </div>
               </div>
-
-              <div className="flex justify-between items-center pt-4">
-                <Button
-                  onClick={handlePrevious}
-                  disabled={currentQuestionIndex === 0}
-                  variant="ghost"
-                >
-                  <ChevronLeft className="mr-2 h-4 w-4" /> Previous
-                </Button>
-
-                <span className="text-sm font-medium">
-                  {currentQuestionIndex + 1} / {questions.length}
-                </span>
-
-                <Button onClick={handleNext} variant="ghost">
-                  {currentQuestionIndex >= 2 && !session?.session
-                    ? "Sign up to Continue"
-                    : "Next"}
-                  <ChevronRight className="ml-2 h-4 w-4" />
-                </Button>
-              </div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
+            </motion.div>
+          </AnimatePresence>
+        </Suspense>
       </div>
       <div className="text-center mt-8 text-sm text-gray-500">
         Sign up to access over 500+ questions and track your progress.
