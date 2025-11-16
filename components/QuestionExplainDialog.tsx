@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { Question } from "@/types/quiz";
 import { Loader2 } from "lucide-react";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import useSWR from "swr";
 import { Button } from "./ui/button";
 import { FullscreenContainerContext } from "./ui/container";
@@ -88,9 +88,14 @@ const fetcher = async (url: string, body: any) => {
 
 const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
   const [open, setOpen] = useState(false);
-  const [loadingState, setLoadingState] = useState<LoadingState>("initial");
-  const [loadingMessage, setLoadingMessage] = useState<string>("");
   const containerRef = useContext(FullscreenContainerContext);
+
+  const [container, setContainer] = useState<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (containerRef) {
+      setContainer(containerRef.current);
+    }
+  }, [containerRef]);
 
   const payload = {
     question: question.question,
@@ -112,29 +117,21 @@ const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
     },
   );
 
-  // control skeleton state
-  useEffect(() => {
-    if (isLoading) {
-      setLoadingState("loading");
-      setLoadingMessage("Generating explanation...");
-    } else if (error) {
-      setLoadingState("error");
-      setLoadingMessage(`❌ ${error.message}`);
-    } else if (data) {
-      setLoadingState("cached");
-      setLoadingMessage("✅ Explanation loaded");
-      // Clear the message after a short delay
-      setTimeout(() => setLoadingState("initial"), 1000);
-    }
-  }, [isLoading, error, data]);
+  const loadingState: LoadingState = isLoading
+    ? "loading"
+    : error
+      ? "error"
+      : data
+        ? "cached"
+        : "initial";
 
-  // Trigger fetch when dialog opens
-  useEffect(() => {
-    if (open && !data && !isLoading) {
-      setLoadingState("loading");
-      setLoadingMessage("Generating explanation...");
-    }
-  }, [open, data, isLoading]);
+  const loadingMessage = isLoading
+    ? "Generating explanation..."
+    : error
+      ? `❌ ${error.message}`
+      : data
+        ? "✅ Explanation loaded"
+        : "";
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -148,7 +145,7 @@ const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
         </Button>
       </DialogTrigger>
       <DialogContent
-        container={containerRef?.current}
+        container={container}
         className="overflow-y-auto max-h-[700px] w-full sm:max-w-lg md:max-w-3xl"
       >
         <DialogHeader>
@@ -158,7 +155,7 @@ const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
           </DialogDescription>
         </DialogHeader>
 
-        {loadingState !== "initial" && (
+        {loadingState !== "initial" && loadingState !== "cached" && (
           <QuestionExplainSkeleton
             message={loadingMessage}
             loadingState={loadingState}
@@ -172,7 +169,7 @@ const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
           </div>
         )}
 
-        {loadingState === "initial" && data && (
+        {data && (
           <div className="space-y-4">
             <div className="font-semibold">{data.explanation}</div>
             <div>

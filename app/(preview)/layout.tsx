@@ -1,14 +1,43 @@
+import { Providers } from "@/components/providers";
+import { absoluteUrl } from "@/lib/utils";
 import { Metadata } from "next";
 import { Geist } from "next/font/google";
-import "./globals.css";
-import { Providers } from "@/components/providers";
 import Script from "next/script";
+import "./globals.css";
 
 const geist = Geist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Quizzes Prepare for exams",
-  description: "Quizzes Prepare for exams",
+  metadataBase: new URL("https://awsquizgame.adembenabdallah.com/"),
+  title: {
+    default: "Quizzes Prepare for exams",
+    template: `%s | Quizzes Prepare for exams`,
+  },
+  description:
+    "The best Quiz app to prepare for exams and improve your knowledge.",
+  openGraph: {
+    title: "Quizzes Prepare for exams",
+    description:
+      "The best Quiz app to prepare for exams and improve your knowledge.",
+    url: absoluteUrl("/"),
+    siteName: "Quizzes Prepare for exams",
+    images: [
+      {
+        url: absoluteUrl("/opengraph-image.png"),
+        width: 1800,
+        height: 1600,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Quizzes Prepare for exams",
+    description:
+      "The best Quiz app to prepare for exams and improve your knowledge.",
+    images: [absoluteUrl("/twitter-image.png")],
+  },
 };
 
 export default function RootLayout({
