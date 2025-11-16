@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: `%s | Quizzes Prepare for exams`,
   },
   description:
-    "The best Quiz app to prepare for exams and improve your knowledge.",
+    "The best Quiz app to prepare for aws developer exam  and improve your knowledge.",
   openGraph: {
     title: "Quizzes Prepare for exams",
     description:
