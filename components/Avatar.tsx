@@ -15,9 +15,10 @@ import { LogOut, User } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { useUser } from "@/hook/useUser";
 import { useRouter } from "next/navigation";
+import { Suspense } from "react";
 
 const AvatarMenu = ({ setOpen }: { setOpen: (open: boolean) => void }) => {
-  const { session } = useUser();
+  const { session, isLoading } = useUser();
   const router = useRouter();
 
   const getName = () => {
@@ -37,6 +38,10 @@ const AvatarMenu = ({ setOpen }: { setOpen: (open: boolean) => void }) => {
       },
     });
   };
+
+  if (isLoading) {
+    return <div className="w-10 h-10 rounded-full bg-gray-300 animate-pulse" />;
+  }
 
   return (
     <div className="flex items-center justify-center">

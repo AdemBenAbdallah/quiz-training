@@ -8,7 +8,7 @@ const fetchSession = async () => {
 };
 
 export const useUser = () => {
-  const { data: session, error } = useSWR("session", fetchSession);
+  const { data: session, error, isLoading } = useSWR("session", fetchSession);
 
-  return { session, error, isLoading: !error && !session };
+  return { session, error, isLoading };
 };

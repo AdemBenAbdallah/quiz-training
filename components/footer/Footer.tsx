@@ -1,14 +1,12 @@
 "use client";
 
-import Image from "next/image";
-import { Mail, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ExternalLink, Mail } from "lucide-react";
+import Image from "next/image";
+import { useClientProvider } from "../landing/client-provider";
 
-interface FooterProps {
-  handleStart: () => void;
-}
-
-export default function Footer({ handleStart }: FooterProps) {
+export default function Footer() {
+  const { handleStart } = useClientProvider();
   const currentYear = new Date().getFullYear();
 
   const scrollToSection = (sectionId: string) => {

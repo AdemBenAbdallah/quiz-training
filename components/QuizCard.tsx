@@ -1,9 +1,9 @@
 "use client";
 
-import { Lock, Crown } from "lucide-react";
+import { Lock } from "lucide-react";
 import NextLink from "next/link";
-import PaymentModal from "./PaymentModal";
 import { useState } from "react";
+import PaymentModal from "./PaymentModal";
 
 type TItem = {
   passed: boolean;

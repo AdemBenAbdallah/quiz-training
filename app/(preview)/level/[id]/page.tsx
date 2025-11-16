@@ -1,4 +1,5 @@
 import LevelProgress from "@/components/LevelProgress";
+import TopLoader from "@/components/loading/TopLoader";
 import { Suspense } from "react";
 
 interface LevelPageProps {
@@ -10,7 +11,7 @@ export default async function LevelPage({ params }: LevelPageProps) {
   const levelId = id ? parseInt(id, 10) : 0;
 
   return (
-    <Suspense fallback={<div>Loading level...</div>}>
+    <Suspense fallback={<TopLoader />}>
       <LevelProgress levelId={levelId} />
     </Suspense>
   );
