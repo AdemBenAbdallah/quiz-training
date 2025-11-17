@@ -1,17 +1,17 @@
-import * as React from "react";
 import {
-  Html,
-  Head,
-  Preview,
   Body,
-  Container,
-  Section,
-  Heading,
-  Text,
   Button,
+  Container,
+  Head,
+  Heading,
   Hr,
+  Html,
   Link,
+  Preview,
+  Section,
+  Text,
 } from "@react-email/components";
+import * as React from "react";
 
 type MagicLinkEmailProps = {
   firstName?: string;
@@ -26,7 +26,7 @@ export default function MagicLinkEmail({
   magicLinkUrl,
   appName = "Quiz Aws",
   expiresInMinutes = 15,
-  supportEmail = "support@example.com",
+  supportEmail = "support@adembenabdallah.com",
 }: MagicLinkEmailProps) {
   return (
     <Html lang="en">
