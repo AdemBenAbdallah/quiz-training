@@ -1,9 +1,9 @@
 "use client";
 
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
-import { authClient } from "@/lib/auth-client";
 import GoogleIcon from "@/components/icons/Google";
+import { Input } from "@/components/ui/input";
+import { authClient } from "@/lib/auth-client";
+import { useState } from "react";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -16,23 +16,17 @@ export default function SignUp() {
     setStatus("loading");
 
     try {
-      const { error } = await authClient.signIn.magicLink({
+      await authClient.signIn.magicLink({
         email,
         name: email.charAt(0).toUpperCase() + email.slice(1),
         callbackURL: "/levels",
         errorCallbackURL: "/error",
       });
 
-      if (error) {
-        setStatus("error");
-      } else {
-        setStatus("success");
-      }
+      setStatus("success");
     } catch (error: any) {
       console.error("Magic link error:", error);
       setStatus("error");
-    } finally {
-      setStatus("idle");
     }
   };
 
@@ -40,7 +34,7 @@ export default function SignUp() {
     setStatus("loading");
 
     try {
-      const { data, error } = await authClient.signIn.social({
+      await authClient.signIn.social({
         provider: "google",
         callbackURL: "/levels",
       });
@@ -50,6 +44,7 @@ export default function SignUp() {
       setStatus("idle");
     }
   };
+  console.log("status", status);
 
   return (
     <div className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-8 rounded-2xl shadow-2xl border border-gray-700/50 flex flex-col gap-6 relative">
@@ -93,11 +88,10 @@ export default function SignUp() {
           </button>
 
           {status === "success" && (
-            <div className="rounded-xl border border-red-400/40 bg-gray-900/70 text-gray-200 p-3">
+            <div className="rounded-xl border border-green-700/40 bg-gray-900/70 text-gray-200 p-3">
               <p className="text-sm">Success!</p>
               <p className="text-xs text-gray-400 mt-1">
-                If you don&apos;t see it, check your spam folder. The link
-                expires in 15 minutes.
+                Check your email. The link expires in 15 minutes.
               </p>
             </div>
           )}

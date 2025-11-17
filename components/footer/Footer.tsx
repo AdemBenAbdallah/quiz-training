@@ -90,7 +90,7 @@ export default function Footer() {
               <ExternalLink className="w-4 h-4 ml-2" />
             </Button>
             <p className="text-xs text-gray-500 text-center">
-              14-day free trial • No credit card required
+              Unlock level 1 for free • No credit card required
             </p>
           </div>
         </div>
