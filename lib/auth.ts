@@ -1,18 +1,18 @@
 import { db } from "@/db/index";
-import { schema, userPayment, userLevelProgress } from "@/db/schema";
+import { schema, userLevelProgress, userPayment } from "@/db/schema";
 import MagicLinkEmail from "@/emails/MagicLinkEmail";
-import { betterAuth } from "better-auth";
-import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { magicLink, openAPI } from "better-auth/plugins";
-import React from "react";
-import { Resend } from "resend";
 import {
-  dodopayments,
   checkout,
+  dodopayments,
   portal,
   webhooks,
 } from "@dodopayments/better-auth";
+import { betterAuth } from "better-auth";
+import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { magicLink, openAPI } from "better-auth/plugins";
 import DodoPayments from "dodopayments";
+import React from "react";
+import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY!);
 const isDev = process.env.NODE_ENV === "development";
@@ -103,7 +103,7 @@ export const auth = betterAuth({
       sendMagicLink: async (params) => {
         const { email, url } = params;
         await resend.emails.send({
-          from: "Adem <onboarding@adembenabdallah.com>",
+          from: "Aws Quiz Game <onboarding@adembenabdallah.com>",
           to: email,
           subject: "Quiz Aws: your sign-in link",
           text: `Sign in to Quiz Aws:\n${url}\n\nThis link expires in 15 minutes.`,
