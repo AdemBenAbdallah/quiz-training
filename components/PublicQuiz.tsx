@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useRef, useEffect, Suspense } from "react";
-import { Question, Choice } from "@/types/quiz";
-import rawQuestions from "@/quiz/level1.json";
 import QuestionCard from "@/components/QuestionCard";
 import QuestionExplainDialog from "@/components/QuestionExplainDialog";
 import { Button } from "@/components/ui/button";
 import { useUser } from "@/hook/useUser";
-import { motion, AnimatePresence } from "framer-motion";
+import rawQuestions from "@/public/quiz/level1.json";
+import { Choice, Question } from "@/types/quiz";
+import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { Progress } from "./ui/progress";
 
 const transformQuestionData = (data: any[]): Question[] => {

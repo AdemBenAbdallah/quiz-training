@@ -1,4 +1,4 @@
-import { quizLevels } from "@/quiz";
+import { quizLevels } from "@/public/quiz";
 
 export const LevelParts = [
   {

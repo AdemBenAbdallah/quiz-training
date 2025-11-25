@@ -1,4 +1,4 @@
-import { quizLevels } from "@/quiz";
+import { quizLevels } from "@/public/quiz";
 import { MetadataRoute } from "next";
 import { LevelParts } from "./(preview)/parts";
 

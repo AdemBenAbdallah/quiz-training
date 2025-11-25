@@ -3,13 +3,13 @@ import dotenv from "dotenv";
 // Load environment variables
 dotenv.config();
 
-import { quizLevels } from "../quiz";
 import {
   QuizQuestion,
-  processQuestionForCache,
-  generateCacheKey,
   cleanOptions,
+  generateCacheKey,
+  processQuestionForCache,
 } from "../lib/explain-utils";
+import { quizLevels } from "../public/quiz";
 
 console.log("🧪 Testing Cache Key Consistency\n");
 
@@ -51,7 +51,10 @@ testQuestions.forEach((question, index) => {
   console.log(`   Cache key 1: ${cacheKey1}`);
   console.log(`   Cache key 2: ${cacheKey2}`);
   console.log(`   ✅ Keys match:`, cacheKey1 === cacheKey2);
-  console.log(`   ✅ Options match:`, JSON.stringify(cleanedOptions1) === JSON.stringify(cleanedOptions2));
+  console.log(
+    `   ✅ Options match:`,
+    JSON.stringify(cleanedOptions1) === JSON.stringify(cleanedOptions2),
+  );
 
   if (cacheKey1 !== cacheKey2) {
     console.log(`   ❌ MISMATCH DETECTED!`);
@@ -76,7 +79,9 @@ const allMatch = testQuestions.every((question) => {
 });
 
 if (allMatch) {
-  console.log("✅ All cache keys match! The warm-cache and API route will use identical keys.");
+  console.log(
+    "✅ All cache keys match! The warm-cache and API route will use identical keys.",
+  );
   console.log("🎉 Your cached explanations should work correctly!");
 } else {
   console.log("❌ Cache key mismatch detected!");

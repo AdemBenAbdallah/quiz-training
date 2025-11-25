@@ -16,7 +16,10 @@
     "warm-cache": "pnpm dlx tsx ./scripts/warm-cache.ts",
     "db:push": "drizzle-kit push",
     "db:generate": "drizzle-kit generate",
-    "send-reminders": "tsx ./scripts/send-reminder-emails.ts"
+    "send-reminders": "tsx ./scripts/send-reminder-emails.ts",
+    "init-workflow": "tsx ./scripts/init-workflow.ts",
+    "workflow:inspect": "npx workflow inspect runs --web",
+    "workflow:dev": "npx workflow dev"
   },
   "dependencies": {
     "@ai-sdk/google": "^2.0.17",
@@ -58,6 +61,7 @@
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "vite": "^7.1.1",
+    "workflow": "^4.0.1-beta.19",
     "zod": "^3.23.8"
   },
   "devDependencies": {

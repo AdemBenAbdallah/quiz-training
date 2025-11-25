@@ -2,8 +2,8 @@
 
 import { QuizParts } from "@/app/(preview)/parts";
 import Quiz from "@/components/quiz";
-import { quizLevels } from "@/quiz";
 import { cleanOptions } from "@/lib/explain-utils";
+import { quizLevels } from "@/public/quiz";
 
 interface QuizPartProps {
   levelId: number;

@@ -1,5 +1,5 @@
+import { TLevelParts } from "@/app/(preview)/parts";
 import useSWR, { mutate } from "swr";
-import { TLevelParts, TQuizParts } from "@/app/(preview)/parts";
 
 interface QuizPartWithAccess {
   id: number;

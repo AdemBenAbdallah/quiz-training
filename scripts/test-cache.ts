@@ -4,8 +4,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import { createClient, type RedisClientType } from "redis";
-import { quizLevels } from "../quiz";
 import { processQuestionForCache, QuizQuestion } from "../lib/explain-utils";
+import { quizLevels } from "../public/quiz";
 
 // Create Redis client
 const redisClient: RedisClientType = createClient({
@@ -56,7 +56,9 @@ async function testCache() {
         if (cachedData) {
           console.log(`   ✅ FOUND in cache`);
           const parsed = JSON.parse(cachedData);
-          console.log(`   📝 Explanation preview: ${parsed.explanation.substring(0, 80)}...`);
+          console.log(
+            `   📝 Explanation preview: ${parsed.explanation.substring(0, 80)}...`,
+          );
           foundInCache++;
         } else {
           console.log(`   ❌ NOT FOUND in cache`);
@@ -74,7 +76,9 @@ async function testCache() {
     console.log("📊 Cache Test Results:");
     console.log(`   ✅ Found in cache: ${foundInCache}`);
     console.log(`   ❌ Not found in cache: ${notFoundInCache}`);
-    console.log(`   📈 Cache hit rate: ${((foundInCache / testQuestions.length) * 100).toFixed(1)}%`);
+    console.log(
+      `   📈 Cache hit rate: ${((foundInCache / testQuestions.length) * 100).toFixed(1)}%`,
+    );
 
     if (foundInCache === 0) {
       console.log("\n⚠️  NO CACHED DATA FOUND!");
@@ -96,7 +100,10 @@ async function testCache() {
     // Test a manual cache operation
     console.log("\n🧪 Testing manual cache operations...");
     const testKey = "test:cache:key";
-    const testData = { message: "Hello from cache test!", timestamp: Date.now() };
+    const testData = {
+      message: "Hello from cache test!",
+      timestamp: Date.now(),
+    };
 
     // Set test data
     await redisClient.set(testKey, JSON.stringify(testData), { EX: 60 });
@@ -112,7 +119,6 @@ async function testCache() {
     // Clean up test data
     await redisClient.del(testKey);
     console.log("✅ Cleaned up test data");
-
   } catch (error) {
     console.error("❌ Cache test failed:", error);
   } finally {

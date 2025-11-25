@@ -7,13 +7,12 @@ import { google } from "@ai-sdk/google";
 import { generateObject } from "ai";
 import { createClient, type RedisClientType } from "redis";
 import { explainSchema } from "../app/api/explain-question/schemas";
-import { quizLevels } from "../quiz";
 import {
   QuizQuestion,
   cleanOptions,
-  generateCacheKey,
   processQuestionForCache,
 } from "../lib/explain-utils";
+import { quizLevels } from "../public/quiz";
 
 // Create our own Redis client with proper env loading
 const redisClient: RedisClientType = createClient({

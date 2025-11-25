@@ -1,8 +1,7 @@
-import { Choice, Question } from "@/types/quiz";
-import { Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { isChoiceDisabled } from "@/lib/selection";
-import CopyButton from "@/components/ui/copy-button";
+import { Choice, Question } from "@/types/quiz";
+import { Check, X } from "lucide-react";
 
 const QuestionCard: React.FC<{
   question: Question;
