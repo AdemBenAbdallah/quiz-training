@@ -1,8 +1,9 @@
+import { AnalyticsScripts } from "@/components/AnalyticsScripts";
 import { Providers } from "@/components/providers";
+import { getAnalyticsConfig } from "@/lib/analytics-config";
 import { absoluteUrl } from "@/lib/utils";
 import { Metadata } from "next";
 import { Geist } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 
 const geist = Geist({ subsets: ["latin"] });
@@ -50,27 +51,10 @@ export default function RootLayout({
       <body>
         <Providers>{children}</Providers>
 
-        {/* ✅ Google Ads Global Tag */}
-        <Script
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=AW-17695424239"
-        />
-        <Script id="google-ads-tag" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'AW-17695424239');
-          `}
-        </Script>
-
-        {/*DataFast*/}
-        <Script
-          data-website-id="dfid_eTpQ5NjrKpI9SsZkJ4rgy"
-          data-domain="awsquizgame.adembenabdallah.com"
-          src="https://datafa.st/js/script.js"
-          strategy="afterInteractive"
-          data-allow-localhost="true"
+        {/* 📊 All Analytics Scripts */}
+        <AnalyticsScripts
+          {...getAnalyticsConfig()}
+          debug={process.env.NODE_ENV === "development"}
         />
       </body>
     </html>
