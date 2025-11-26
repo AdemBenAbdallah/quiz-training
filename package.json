@@ -19,7 +19,8 @@
     "send-reminders": "tsx ./scripts/send-reminder-emails.ts",
     "workflow:inspect": "npx workflow inspect runs --web",
     "workflow:dev": "npx workflow dev",
-    "seed:certificates": "tsx ./scripts/seed-certificates.ts"
+    "seed:certificates": "tsx ./scripts/seed-certificates.ts",
+    "pre-deploy-check": "bun run pre-deploy-check.ts"
   },
   "dependencies": {
     "@ai-sdk/google": "^2.0.17",
