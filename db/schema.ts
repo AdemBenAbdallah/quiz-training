@@ -116,6 +116,80 @@ export const userPayment = pgTable("user_payment", {
     .notNull(),
 });
 
+// New multi-certificate support tables
+export const certificates = pgTable("certificates", {
+  id: text("id").primaryKey(),
+  slug: text("slug").notNull().unique(),
+  name: text("name").notNull(),
+  description: text("description"),
+  totalLevels: integer("total_levels").notNull().default(8),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at")
+    .$defaultFn(() => new Date())
+    .notNull(),
+  updatedAt: timestamp("updated_at")
+    .$defaultFn(() => new Date())
+    .notNull(),
+});
+
+// Enhanced progress tables with certificate support (nullable for backward compatibility)
+export const userLevelProgressV2 = pgTable("user_level_progress_v2", {
+  id: text("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  certificateId: text("certificate_id")
+    .notNull()
+    .references(() => certificates.id, { onDelete: "cascade" }),
+  levelId: integer("level_id").notNull(),
+  passed: boolean("passed").notNull().default(false),
+  createdAt: timestamp("created_at")
+    .$defaultFn(() => new Date())
+    .notNull(),
+  updatedAt: timestamp("updated_at")
+    .$defaultFn(() => new Date())
+    .notNull(),
+});
+
+export const userQuizProgressV2 = pgTable("user_quiz_progress_v2", {
+  id: text("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  certificateId: text("certificate_id")
+    .notNull()
+    .references(() => certificates.id, { onDelete: "cascade" }),
+  levelId: integer("level_id").notNull(),
+  partId: integer("part_id").notNull(),
+  passed: boolean("passed").notNull().default(false),
+  createdAt: timestamp("created_at")
+    .$defaultFn(() => new Date())
+    .notNull(),
+  updatedAt: timestamp("updated_at")
+    .$defaultFn(() => new Date())
+    .notNull(),
+});
+
+export const userPaymentV2 = pgTable("user_payment_v2", {
+  id: text("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  certificateId: text("certificate_id")
+    .notNull()
+    .references(() => certificates.id, { onDelete: "cascade" }),
+  paymentId: text("payment_id").notNull().unique(),
+  status: text("status").notNull().default("pending"),
+  amount: integer("amount"),
+  currency: text("currency").default("USD"),
+  createdAt: timestamp("created_at")
+    .$defaultFn(() => new Date())
+    .notNull(),
+  updatedAt: timestamp("updated_at")
+    .$defaultFn(() => new Date())
+    .notNull(),
+});
+
 export const schema = {
   user,
   session,
@@ -124,4 +198,9 @@ export const schema = {
   userLevelProgress,
   userQuizProgress,
   userPayment,
+  // New multi-certificate tables
+  certificates,
+  userLevelProgressV2,
+  userQuizProgressV2,
+  userPaymentV2,
 };

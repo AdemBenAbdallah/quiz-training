@@ -1,0 +1,866 @@
+[
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/156016-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 557Topic #: 1",
+    "question": "A developer is designing a game that stores data in an Amazon DynamoDB table. The partition key of the table is the country of the player. After a sudden increase in the number of players in a specific country, the developer notices ProvisionedThroughputExceededException errors. What should the developer do to resolve these errors?",
+    "choices": [
+      "A. Use strongly consistent table reads.",
+      "B. Revise the primary key to use more unique identifiers.",
+      "C. Use pagination to reduce the size of the items that the queries return.",
+      "D. Use the Scan operation to retrieve the data."
+    ],
+    "answers": ["B"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/154534-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 555Topic #: 1",
+    "question": "A developer created several AWS Lambda functions that write data to a single Amazon S3 bucket. The developer configured all the Lambda functions to send logs and metrics to Amazon CloudWatch. The developer receives reports that one of the Lambda functions writes data to the bucket very slowly. The developer needs to measure the latency between the problematic Lambda function and the S3 bucket. Which solution will meet this requirement?",
+    "choices": [
+      "A. Enable AWS X-Ray on the Lambda function. In the generated trace map, select the line between Lambda and Amazon S3.",
+      "B. Query the Lambda function\u2019s log file in Amazon CloudWatch Logs Insights. Return the average of the auto-discovered @duration field.",
+      "C. Enable CloudWatch Lambda Insights on the function. View the latency graph that CloudWatch Lambda Insights provides.",
+      "D. Enable AWS X-Ray on the Lambda function. Select Amazon S3 in the latency graph to view the latency histogram."
+    ],
+    "answers": ["A"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/157446-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 554Topic #: 1",
+    "question": "A developer has an application that runs in AWS Account A. The application must retrieve an AWS Secrets Manager secret that is encrypted by an AWS Key Management Service (AWS KMS) key from AWS Account B. The application\u2019s role has permissions to access the secret in Account B. The developer must add a statement to the KMS key\u2019s key policy to allow the role in Account A to use the KMS key in Account B. The permissions must grant least privilege access to the role. Which permissions will meet these requirements?",
+    "choices": [
+      "A. kms:Decrypt and kms:DescribeKey",
+      "B. secretsmanager:DescribeSecret and secretsmanager:GetSecretValue",
+      "C. kms:*",
+      "D. secretsmanager:*"
+    ],
+    "answers": ["A"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/157447-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 553Topic #: 1",
+    "question": "A company is creating a new feature for existing software. Before the company fully releases a new version of the software, the company wants to test the feature. The company needs to gather feedback about the feature from a small group of users while the current software version remains deployed. If the testing validates the feature, the company needs to deploy the new software version to all other users at the same time. Which deployment strategy will meet these requirements?",
+    "choices": [
+      "A. All-at-once deployment",
+      "B. Canary deploymentMost Voted",
+      "C. In-place deployment",
+      "D. Linear deployment"
+    ],
+    "answers": ["B"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/157448-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 552Topic #: 1",
+    "question": "A company stores data in an Amazon S3 bucket. The data is updated multiple times every day from an application that runs on a server in the company\u2019s on-premises data center. The company enables S3 Versioning on the S3 bucket. After some time, the company observes multiple versions of the same objects in the S3 bucket. The company needs the S3 bucket to keep the current version of each object and the version immediately previous to the current version. Which solution will meet these requirements?",
+    "choices": [
+      "A. Configure an S3 bucket policy to retain one newer noncurrent version of the objects.",
+      "B. Configure an S3 Lifecycle rule to retain one newer noncurrent version of the objects.Most Voted",
+      "C. Enable S3 Object Lock. Configure an S3 Object Lock policy to retain one newer noncurrent version of the objects.",
+      "D. Suspend S3 Versioning. Modify the application code to check the number of object versions before updating the objects."
+    ],
+    "answers": ["B"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/156015-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 551Topic #: 1",
+    "question": "An application includes an Amazon DynamoDB table that is named orders. The table has a primary partition key of id and a global secondary index (GSI) that is named an accountIndex. The GSI has a partition key of accountId and a sort key of orderDateTime. A developer needs to create an AWS Lambda function to retrieve the orders that have an accountId of 100. Which solution will meet this requirement by using the LEAST read capacity?",
+    "choices": [
+      "A. Define a DynamoDB API request for the GetItem action with the following parameters:",
+      "B. Define a DynamoDB API request for the BatchGetItem action with the following parameters:",
+      "C. Define a DynamoDB API request for the Scan action with the following parameters:",
+      "D. Define a DynamoDB API request for the Query action with the following parameters:Most Voted"
+    ],
+    "answers": ["D"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/157510-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 550Topic #: 1",
+    "question": "A developer is building an application that stores sensitive user data. The application includes an Amazon CloudFront distribution and multiple AWS Lambda functions that handle user requests. The user requests contain over 20 data fields. Each application transaction contains sensitive data that must be encrypted. Only specific parts of the application need to have the ability to decrypt the data. Which solution will meet these requirements?",
+    "choices": [
+      "A. Associate the CloudFront distribution with a Lambda@Edge function. Configure the function to perform field-level asymmetric encryption by using a user-defined RSA public key that is stored in AWS Key Management Service (AWS KMS).Most Voted",
+      "B. Integrate AWS WAF with CloudFront to protect the sensitive data. Use a Lambda function and self-managed keys to perform the encryption and decryption processes.",
+      "C. Configure the CloudFront distribution to use WebSockets by forwarding all viewer request headers to the origin. Create an asymmetric AWS KMS key. Configure the CloudFront distribution to use field-level encryption. Use the AWS KMS key.",
+      "D. Configure the cache behavior in the CloudFront distribution to require HTTPS for communication between viewers and CloudFront. Configure GoudFront to require users to access the files by using either signed URLs or signed cookies."
+    ],
+    "answers": ["A"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/157490-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 549Topic #: 1",
+    "question": "A developer is building an application that consists of many AWS Lambda functions. The Lambda functions connect to a single Amazon RDS database. The developer needs to implement a solution to store the database credentials securely. When the credentials are updated, the Lambda functions must be able to use the new credentials without requiring a code update or a configuration update. Which solution will meet these requirements?",
+    "choices": [
+      "A. Store the credentials as a secret in AWS Secrets Manager. Access the secret at runtime from within the Lambda functions.Most Voted",
+      "B. Store the credentials as a secret in AWS Secrets Manager. Access the credentials in environment variables by using the containerDefinitions and valueFrom elements in reference to the secret value.",
+      "C. Store the credentials as a SecureString parameter in AWS Systems Manager Parameter Store. Add a trigger to pass the credentials to the Lambda functions when the Lambda functions run.",
+      "D. Store the credentials as a SecureString parameter in AWS Systems Manager Parameter Store. Add a reference to the parameter in an environment variable in the Lambda functions."
+    ],
+    "answers": ["A"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/154460-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 548Topic #: 1",
+    "question": "A developer is creating a new application that will give users the ability to upload documents to Amazon S3. The contents of the documents must not be accessible to any third party. Which type of encryption will meet this requirement?",
+    "choices": [
+      "A. Client-side encryption by using the S3 Encryption Client with a Raw RSA wrapping key that is stored on the user\u2019s device",
+      "B. Server-side encryption with S3 managed keys (SSE-S3)",
+      "C. Server-side encryption with AWS KMS keys (SSE-KMS)Most Voted",
+      "D. Dual-layer server-side encryption with AWS KMS keys (DSSE-KMS)"
+    ],
+    "answers": ["A"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/157499-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 547Topic #: 1",
+    "question": "A developer is designing an event-driven architecture. An AWS Lambda function that processes data needs to push processed data to a subset of four consumer Lambda functions. The data must be routed based on the value of one field in the data. Which solution will meet these requirements with the LEAST operational overhead?",
+    "choices": [
+      "A. Create an Amazon Simple Queue Service (Amazon SQS) queue and event source mapping for each consumer Lambda function. Add message routing logic to the data-processing Lambda function.",
+      "B. Create an Amazon Simple Notification Service (Amazon SNS) topic. Subscribe the four consumer Lambda functions to the topic. Add message filtering logic to each consumer Lambda function. Subscribe the data-processing Lambda function to the SNS topic.",
+      "C. Create a separate Amazon Simple Notification Service (Amazon SNS) topic and subscription for each consumer Lambda function. Add message routing logic to the data-processing Lambda function to publish to the appropriate topic.",
+      "D. Create a single Amazon Simple Notification Service (Amazon SNS) topic. Subscribe the four consumer Lambda functions to the topic. Add SNS subscription filter policies to each subscription. Configure the data-processing Lambda function to publish to the topic.Most Voted"
+    ],
+    "answers": ["D"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/154507-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 546Topic #: 1",
+    "question": "A developer is building the authentication mechanism for a new mobile app. Users need to be able to sign up, sign in, and access secured backend AWS resources. Which solution will meet these requirements?",
+    "choices": [
+      "A. Use AWS Identity and Access Management Access Analyzer to generate IAM policies. Create an IAM role. Attach the policies to the role. Integrate the IAM role with an identity provider that the mobile app uses.",
+      "B. Create an IAM policy that grants access to the backend resources. Create an IAM role. Attach the policy to the role. Create an Amazon API Gateway endpoint. Attach the role to the endpoint. Integrate the endpoint with the mobile app.",
+      "C. Create an Amazon Cognito identity pool. Configure permissions by choosing a default IAM role for authenticated users or guest users in the identity pool. Associate the identity pool with an identity provider. Integrate the identity pool with the mobile app.",
+      "D. Create an Amazon Cognito user pool. Configure the security requirements by choosing a password policy, multi-factor authentication (MFA) requirements, and user account recovery options. Create an app client. Integrate the app client with the mobile app.Most Voted"
+    ],
+    "answers": ["D"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/156701-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 545Topic #: 1",
+    "question": "A company is using the AWS Serverless Application Model (AWS SAM) to develop a social media application. A developer needs a quick way to test AWS Lambda functions locally by using test event payloads. The developer needs the structure of these test event payloads to match the actual events that AWS services create. Which solution will meet these requirements with the LEAST development effort?",
+    "choices": [
+      "A. Create shareable test Lambda events. Use these test Lambda events for local testing.",
+      "B. Store manually created test event payloads locally. Use the sam local invoke command with the file path to the payloads.",
+      "C. Store manually created test event payloads in an Amazon S3 bucket. Use the sam local invoke command with the S3 path to the payloads.",
+      "D. Use the sam local generate-event command to create test payloads for local testing."
+    ],
+    "answers": ["D"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/152886-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 457Topic #: 1",
+    "question": "A developer is building an application that uses an AWS Lambda function to process data. The application requires minimum latency. The Lambda function must have predictable function start times. All setup activities for the execution environment must happen before invocation of the Lambda function. Which solution will meet these requirements?",
+    "choices": [
+      "A. Increase the memory of the Lambda function to the maximum amount. Configure an Amazon EventBridge rule to schedule invocations of the Lambda function every minute to keep the execution environment active.",
+      "B. Optimize the static initialization code that runs when a new execution environment is prepared for the first time. Decrease and compress the size of the Lambda function package and the imported libraries and dependencies.",
+      "C. Increase the reserved concurrency of the Lambda function to the maximum value for unreserved account concurrency. Run any setup activities manually before the initial invocation of the Lambda function.",
+      "D. Publish a new version of the Lambda function. Configure provisioned concurrency for the Lambda function with the required minimum number of execution environments.Most Voted"
+    ],
+    "answers": ["D"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/151547-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 456Topic #: 1",
+    "question": "An application ingests data from an Amazon Kinesis data stream. The shards in the data stream are set for normal traffic. During tests for peak traffic, the application ingests data slowly. A developer needs to adjust the data stream to handle the peak traffic. What should the developer do to meet this requirement MOST cost-effectively?",
+    "choices": [
+      "A. Install the Kinesis Producer Library (KPL) to ingest data into the data stream.",
+      "B. Switch to on-demand capacity mode for the data stream. Specify a partition key when writing data to the data stream.",
+      "C. Decrease the amount of time that data is kept in the data stream by using the DecreaseStreamRetentionPeriod API operation.",
+      "D. Increase the shard count in the data stream by using the UpdateShardCount API operation.Most Voted"
+    ],
+    "answers": ["D"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/151627-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 455Topic #: 1",
+    "question": "An application stores user data in Amazon S3 buckets in multiple AWS Regions. A developer needs to implement a solution that analyzes the user data in the S3 buckets to find sensitive information. The analysis findings from all the S3 buckets must be available in the eu-west-2 Region. Which solution will meet these requirements with the LEAST development effort?",
+    "choices": [
+      "A. Create an AWS Lambda function to generate findings. Program the Lambda function to send the findings to another S3 bucket in eu-west-2.",
+      "B. Configure Amazon Macie to generate findings. Use Amazon EventBridge to create rules that copy the findings to eu-west-2.Most Voted",
+      "C. Configure Amazon Inspector to generate findings. Use Amazon EventBridge to create rules that copy the findings to eu-west-2.",
+      "D. Configure Amazon Macie to generate findings and to publish the findings to AWS CloudTrail. Use a CloudTrail trail to copy the results to eu-west-2."
+    ],
+    "answers": ["B"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/157514-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question": "A developer built an application that uses AWS Lambda functions to process images. The developer wants to improve image processing times throughout the day. The developer needs to create an Amazon CloudWatch Logs Insights query that shows the average, slowest, and fastest processing time in 1-minute intervals. Which query will meet these requirements?",
+    "question_number": "Question #: 454Topic #: 1",
+    "choices": [
+      "A. fields @timestamp, @message | parse @message \"Processing time: * ms\" as processingTime | stats avg(processingTime) as avgTime, min(processingTime) as minTime, max(processingTime) as maxTime by bin(1m)",
+      "B. fields @timestamp, @message | filter @message like /Processing time/ | stats avg(@duration) as avgTime, min(@duration) as minTime, max(@duration) as maxTime by bin(1m)",
+      "C. fields @timestamp, @message | parse @message \"Execution time: * ms\" as execTime | stats avg(execTime) as avgTime, min(execTime) as minTime, max(execTime) as maxTime by bin(1m)",
+      "D. fields @timestamp, @message | filter @message like /Execution time/ | stats avg(@duration) as avgTime, min(@duration) as minTime, max(@duration) as maxTime by bin(1m)"
+    ],
+    "answers": ["A"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/151333-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 453Topic #: 1",
+    "question": "A company is developing a serverless application that requires storage of sensitive API keys as environment variables for various services. The application requires the automatic rotation of the encryption keys every year. Which solution will meet these requirements with no development effort?",
+    "choices": [
+      "A. Encrypt the environment variables by using AWS Secrets Manager. Set up automatic rotation in Secrets Manager.",
+      "B. Encrypt the environment variables by using AWS Key Management Service (AWS KMS) customer managed keys. Enable automatic key rotation.Most Voted",
+      "C. Encrypt the environment variables by using AWS Key Management Service (AWS KMS) AWS managed keys. Configure a custom AWS Lambda function to automate key rotation.",
+      "D. Encrypt the environment variables by using AWS Systems Manager Parameter Store. Set up automatic rotation in Parameter Store."
+    ],
+    "answers": ["B"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150946-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 452Topic #: 1",
+    "question": "A developer needs to fix an AWS CodeDeploy deployment that failed. During the failed deployment, the developer received the following error message: \u201cThe overall deployment failed because too many individual instances failed deployment, too few healthy instances are available for deployment, or some instances in your deployment group are experiencing problems. (Error code: HEALTH-CONSTRAINTS)\u201d What are the possible causes of the failed deployment? (Choose two.)",
+    "choices": [
+      "A. The CodeDeploy agent was not running on the instances that CodeDeploy was trying to deploy to.Most Voted",
+      "B. The unified Amazon CloudWatch agent was not running on the instances that CodeDeploy was trying to deploy to.",
+      "C. The developer\u2019s IAM role did not have the necessary permissions to perform code deployment to the instances.",
+      "D. CodeDeploy was trying to deploy to instances that were attached to an IAM instance profile that did not have the required permissions.",
+      "E. CodeDeploy was trying to deploy to instances that were not set up with correct CodeDeploy health checks.Most Voted"
+    ],
+    "answers": ["A", "E"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150775-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 451Topic #: 1",
+    "question": "A developer is using an AWS Lambda function to process data. The developer needs to extract custom metrics about processing times from the Lambda logs. The developer needs to analyze the metrics, set alarms, and detect issues in real time. Which solution will meet these requirements?",
+    "choices": [
+      "A. Publish custom metric data to AWS CloudTrail by using the PutMetricData API operation. Classify and collect the metrics. Create graphs and alarms in CloudTrail for the custom metrics.",
+      "B. Use the open source client libraries provided by Amazon to generate the logs in the Amazon CloudWatch embedded metric format. Use CloudWatch to create the required graphs and alarms for the custom metrics.Most Voted",
+      "C. Use Amazon CloudWatch Logs Insights to create custom metrics by querying the logs that come from the Lambda function. Use CloudWatch to create the required graphs and alarms for the custom metrics.",
+      "D. Create an Amazon Kinesis data stream to stream log events in real time from Lambda. Specify an Amazon S3 bucket as the destination for the Kinesis data stream. Use Amazon CloudWatch to visualize the log data and to set alarms."
+    ],
+    "answers": ["B", "C"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150773-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 450Topic #: 1",
+    "question": "A developer has an application that uses AWS Lambda functions and AWS CloudFormation templates. Usage of the application has increased. As a result, the Lambda functions are encountering rate limit errors when they retrieve data. The Lambda functions retrieve an advanced parameter from AWS Systems Manager Parameter Store on every call. The parameter changes only during new deployments. Because the application\u2019s usage is unpredictable, the developer needs a way to avoid the rate limiting. Which solution will meet these requirements MOST cost-effectively?",
+    "choices": [
+      "A. Configure the Lambda functions to use reserved concurrency that is equal to the last month\u2019s average number of concurrent invocations.",
+      "B. Add a retry mechanism with exponential backoff to the call to Parameter Store.",
+      "C. Request a service quota increase for Parameter Store GetParameter API operations to match the expected usage of the Lambda functions.",
+      "D. Add an SSM dynamic reference as an environment variable to the Lambda functions resource in the CloudFormation templates.Most Voted"
+    ],
+    "answers": ["D"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/303080-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 449Topic #: 1",
+    "question": "A developer is creating a web application to upload and store private data. The application will encrypt private data and then will upload the data to an Amazon S3 bucket. The developer needs to implement a solution to automatically find any unencrypted private data in the S3 bucket. The solution must monitor the security and access control of the S3 bucket and must provide a notification if there are any security issues. Which solution will meet these requirements?",
+    "choices": [
+      "A. Use AWS Step Functions to run Amazon Athena queries. Configure Athena to find unencrypted private data and to monitor for security issues in the S3 bucket. Start the queries when new objects are added to the S3 bucket. Configure Athena to provide a notification if security issues are detected.",
+      "B. Enable Amazon Macie for the S3 bucket. Set up custom criteria to find unencrypted private data in the S3 bucket. Set up AWS User Notifications to provide a notification when Macie detects security issues.Most Voted",
+      "C. Enable Amazon Inspector for the AWS account. Use Amazon Inspector to scan the S3 bucket to find unencrypted private data and to monitor for security issues. Set up Amazon EventBridge to provide a notification when Amazon Inspector detects security issues.",
+      "D. Create an Amazon Kinesis data stream. Configure Amazon S3 to send new object notifications to the stream. Create an AWS Lambda function that runs every 10 minutes to check the stream for unencrypted private data and to monitor for security issues. Program the Lambda function to provide a notification when security issues are detected."
+    ],
+    "answers": ["B"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150940-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 448Topic #: 1",
+    "question": "A developer is building an application on AWS. The application has an Amazon API Gateway API that sends requests to an AWS Lambda function. The API is experiencing increased latency because the Lambda function has limited available CPU to fulfill the requests. Before the developer deploys the API into production, the developer must configure the Lambda function to have more CPU. Which solution will meet this requirement?",
+    "choices": [
+      "A. Increase the virtual CPU (vCPU) cores quota of the Lambda function.",
+      "B. Increase the amount of memory that is allocated to the Lambda function.Most Voted",
+      "C. Increase the ephemeral storage size of the Lambda function.",
+      "D. Increase the timeout value of the Lambda function."
+    ],
+    "answers": ["B"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/103721-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 47Topic #: 1",
+    "question": "An application uses an Amazon EC2 Auto Scaling group. A developer notices that EC2 instances are taking a long time to become available during scale-out events. The UserData script is taking a long time to run. The developer must implement a solution to decrease the time that elapses before an EC2 instance becomes available. The solution must make the most recent version of the application available at all times and must apply all available security updates. The solution also must minimize the number of images that are created. The images must be validated. Which combination of steps should the developer take to meet these requirements? (Choose two.)",
+    "choices": [
+      "A. Use EC2 Image Builder to create an Amazon Machine Image (AMI). Install all the patches and agents that are needed to manage and run the application. Update the Auto Scaling group launch configuration to use the AMI.Most Voted",
+      "B. Use EC2 Image Builder to create an Amazon Machine Image (AMI). Install the latest version of the application and all the patches and agents that are needed to manage and run the application. Update the Auto Scaling group launch configuration to use the AMI.",
+      "C. Set up AWS CodeDeploy to deploy the most recent version of the application at runtime.Most Voted",
+      "D. Set up AWS CodePipeline to deploy the most recent version of the application at runtime.",
+      "E. Remove any commands that perform operating system patching from the UserData script."
+    ],
+    "answers": ["A", "B"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/303078-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 446Topic #: 1",
+    "question": "A developer adds new dependencies to an existing AWS Lambda function. The developer cannot deploy the Lambda function because the unzipped deployment package exceeds the maximum size quota for the Lambda function. The instruction set architecture of the Lambda function is x86_64. The developer must implement a solution to deploy the Lambda function with the new dependencies. Which solution will meet these requirements?",
+    "choices": [
+      "A. Create a snapshot of all the dependencies. Configure the Lambda function to use the snapshot.",
+      "B. Change the instruction set architecture of the Lambda function to use an arm64 architecture.",
+      "C. Associate an Amazon Elastic Block Store (Amazon EBS) volume with the Lambda function. Store all the dependencies on the EBS volume.",
+      "D. Create and deploy a Lambda container image with all the dependencies.Most Voted"
+    ],
+    "answers": ["D"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/148536-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 445Topic #: 1",
+    "question": "A developer is creating a script to automate the deployment process for a serverless application. The developer wants to use an existing AWS Serverless Application Model (AWS SAM) template for the application. What should the developer use for the project? (Choose two.)",
+    "choices": [
+      "A. Call aws cloudformation package to create the deployment package. Call aws cloudformation deploy to deploy the package afterward.Most Voted",
+      "B. Call sam package to create the deployment package. Call sam deploy to deploy the package afterward.Most Voted",
+      "C. Call aws s3 cp to upload the AWS SAM template to Amazon S3. Call aws lambda update-function-code to create the application.",
+      "D. Create a ZIP package locally and call aws serverlessrepo create-applicatiion to create the application.",
+      "E. Create a ZIP package and upload it to Amazon S3. Call aws cloudformation create-stack to create the application."
+    ],
+    "answers": ["A", "B"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/149825-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 444Topic #: 1",
+    "question": "A developer is creating a database of products. Queries for frequently accessed products must have retrieval times of microseconds. To ensure data consistency, the application cache must be updated whenever products are added, changed, or deleted. Which solution will meet these requirements?",
+    "choices": [
+      "A. Set up an Amazon DynamoDB database and a DynamoDB Accelerator (DAX) cluster.",
+      "B. Set up an Amazon RDS database and an Amazon ElastiCache for Redis cluster. Implement a lazy loading caching strategy with ElastiCache.",
+      "C. Setup an Amazon DynamoDB database that has an in-memory cache. Implement a lazy loading caching strategy in the application.",
+      "D. Set up an Amazon RDS database and an Amazon DynamoDB Accelerator (DAX) cluster. Specify a TTL setting for the DAX cluster."
+    ],
+    "answers": ["A"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/148960-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 443Topic #: 1",
+    "question": "A gaming application stores scores for players in an Amazon DynamoDB table that has four attributes: user_id, user_name, user_score, and user_rank. The users are allowed to update their names only. A user is authenticated by web identity federation. Which set of conditions should be added in the policy attached to the role for the dynamodb:PutItem API call?",
+    "choices": [
+      "A. {\"dynamodb:LeadingKeys\": [\"${aws:userid}\"], \"dynamodb:Attributes\": [\"user_name\"]}",
+      "B. {\"dynamodb:LeadingKeys\": [\"${aws:userid}\"], \"dynamodb:Attributes\": [\"user_score\"]}",
+      "C. {\"dynamodb:LeadingKeys\": [\"${aws:userid}\"], \"dynamodb:Attributes\": [\"user_rank\"]}",
+      "D. {\"dynamodb:LeadingKeys\": [\"${aws:userid}\"], \"dynamodb:Attributes\": [\"user_id\"]}"
+    ],
+    "answers": ["A"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/153821-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 442Topic #: 1",
+    "question": "A developer is working on an ecommerce application that stores data in an Amazon RDS for MySQL cluster. The developer needs to implement a caching layer for the application to retrieve information about the most viewed products. Which solution will meet these requirements?",
+    "choices": [
+      "A. Edit the RDS for MySQL cluster by adding a cache node. Configure the cache endpoint instead of the cluster endpoint in the application.",
+      "B. Create an Amazon ElastiCache for Redis cluster. Update the application code to use the ElastiCache for Redis cluster endpoint.",
+      "C. Create an Amazon DynamoDB Accelerator (DAX) cluster in front of the RDS for MySQL cluster. Configure the application to connect to the DAX endpoint instead of the RDS endpoint.",
+      "D. Configure the RDS for MySQL cluster to add a standby instance in a different Availability Zone. Configure the application to read the data from the standby instance."
+    ],
+    "answers": ["B"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/148959-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 441Topic #: 1",
+    "question": "A developer hosts a static website on Amazon S3 and connects the website to an Amazon CloudFront distribution. The website uses a custom domain name that points to the CloudFront URL. The developer has set up a continuous integration and continuous delivery (CI/CD) pipeline. The pipeline automatically runs when changes occur in an AWS CodeCommit repository. The pipeline has a source stage and then a build stage. The build stage invokes an AWS CodeBuild project that references a buildspec.yml file. The buildspec.yml file builds the code and deploys the static files to the S3 bucket. The pipeline runs successfully, and the latest website files are visible in the S3 bucket and at the S3 website URL. However, when the developer accesses the website through the CloudFront domain, the updates are not reflected on the website. What should the developer configure the buildspec.yml file to do to resolve this issue?",
+    "choices": [
+      "A. Properly synchronize the objects in the S3 bucket with new files from the source stage.",
+      "B. Delete the previous website files in the S3 bucket and redeploy the website files.",
+      "C. Invalidate the file caches for the primary CloudFront distribution.",
+      "D. Modify the cross-origin resource sharing (CORS) policy of the S3 bucket and redeploy the website files."
+    ],
+    "answers": ["C"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/148958-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 440Topic #: 1",
+    "question": "A company uses AWS to run its learning management system (LMS) application. The application runs on Amazon EC2 instances behind an Application Load Balancer (ALB). The application's domain name is managed in Amazon Route 53. The application is deployed in a single AWS Region, but the company wants to improve application performance for users all over the world. Which solution will improve global performance with the LEAST operational overhead?",
+    "choices": [
+      "A. Set up an Amazon CloudFront distribution that uses the ALB as the origin server. Configure Route 53 to create a DNS alias record that points the application's domain name to the CloudFront distribution URL.",
+      "B. Launch more EC2 instances behind the ALConfigure the ALB to use session affinity (sticky sessions). Create a Route 53 alias record for the ALB by using a geolocation routing policy.",
+      "C. Create an AWS Client VPN endpoint in the VPInstruct users to connect to the VPN to access the application. Create a Route 53 alias record for the VPN endpoint. Configure Route 53 to use a geolocation routing policy.",
+      "D. Deploy the application to multiple Regions across the world. Create a Route 53 alias record for the ALB by using a latency-based routing policy."
+    ],
+    "answers": ["A"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/148957-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 439Topic #: 1",
+    "question": "A developer is creating a solution to track an account's Amazon S3 buckets over time. The developer has created an AWS Lambda function that will run on a schedule. The function will list the account's S3 buckets and will store the list in an Amazon DynamoDB table. The developer receives a permissions error when the developer runs the function with the AWSLambdaBasicExecutionRole AWS managed policy. Which combination of permissions should the developer use to resolve this error? (Choose two.)",
+    "choices": [
+      "A. Cross-account IAM role",
+      "B. Permission for the Lambda function to list buckets in Amazon S3Most Voted",
+      "C. Permission for the Lambda function to write in DynamoDBMost Voted",
+      "D. Permission for Amazon S3 to invoke the Lambda function",
+      "E. Permission for DynamoDB to invoke the Lambda function"
+    ],
+    "answers": ["B", "C"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150938-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 438Topic #: 1",
+    "question": "A company has a virtual reality (VR) game. The game has a serverless backend that consists of Amazon API Gateway, AWS Lambda, and Amazon DynamoDB. Recently, the company noticed a sudden increase of new users globally. The company also noticed delays in the retrieval of user data. Which AWS service or feature can the company use to reduce the database response time to microseconds?",
+    "choices": [
+      "A. Amazon ElastiCache",
+      "B. DynamoDB Accelerator (DAX)Most Voted",
+      "C. DynamoDB auto scaling",
+      "D. Amazon CloudFront"
+    ],
+    "answers": ["B"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/303051-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 437Topic #: 1",
+    "question": "A company has an ecommerce platform. A developer is designing an Amazon DynamoDB table to store customer order data for the platform. The table uses the order ID as the partition key. The developer needs to modify the table to get all order IDs that are associated with a given customer email address in a single query. The solution must give the developer the ability to query order IDs by other item attributes in the future. Which solution will meet these requirements?",
+    "choices": [
+      "A. Configure the partition key to use the customer email address as the sort key.",
+      "B. Update the table to use the customer email address as the partition key.",
+      "C. Create a local secondary index (LSI) with the customer email address as the sort key.",
+      "D. Create a global secondary index (GSI) with the customer email address as the partition key.Most Voted"
+    ],
+    "answers": ["D"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/151546-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 436Topic #: 1",
+    "question": "A developer is creating a video search application for a global company. The video files have an average size of 2.5 TB. The video storage system must provide instant access to the video files for the first 90 days. After the first 90 days, the video files can take more than 10 minutes to load. Which solution will meet these requirements MOST cost-effectively?",
+    "choices": [
+      "A. Upload the video files to the Amazon Elastic File System (Amazon EFS) Standard storage class for the first 90 days. After 90 days, transition the video files to the EFS Standard-Infrequent Access (Standard-IA) storage class.",
+      "B. Upload the video files to Amazon S3. Use the S3 Glacier Deep Archive storage class for the first 90 days. After 90 days, transition the video file to the S3 Glacier Flexible Retrieval storage class.",
+      "C. Use Amazon Elastic Block Store (Amazon EBS) to store the video files for the first 90 days. After 90 days, transition the video files to the Amazon S3 Glacier Deep Archive storage class.",
+      "D. Upload the video files to Amazon S3. Use the S3 Glacier Instant Retrieval storage class for the first 90 days. After 90 days, transition the video files to the S3 Glacier Flexible Retrieval storage class.Most Voted"
+    ],
+    "answers": ["D"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150942-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 435Topic #: 1",
+    "question": "A company has a serverless application that uses an Amazon API Gateway API to invoke an AWS Lambda function. A developer creates a fix for a defect in the Lambda function code. The developer wants to deploy this fix to the production environment. To test the changes, the developer needs to send 10% of the live production traffic to the updated Lambda function version. Which combination of steps will meet these requirements? (Choose two.)",
+    "choices": [
+      "A. Publish a new version of the Lambda function that contains the updated code.Most Voted",
+      "B. Set up a new stage in API Gateway with a new Lambda function version. Enable weighted routing in API Gateway stages.",
+      "C. Create an alias for the Lambda function. Configure weighted routing on the alias. Specify a 10% weight for the new Lambda function version.Most Voted",
+      "D. Set up a routing policy on a Network Load Balancer. Configure 10% of the traffic to go to the new Lambda function version.",
+      "E. Set up a weighted routing policy by using Amazon Route 53. Configure 10% of the traffic to go to the new Lambda function version."
+    ],
+    "answers": ["A", "C"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/156702-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 434Topic #: 1",
+    "question": "A developer is writing an application that will run on Amazon EC2 instances in an Auto Scaling group. The developer wants to externalize the session state to support the application. Which AWS services or resources can the developer use to meet these requirements? (Choose two.)",
+    "choices": [
+      "A. Amazon DynamoDB",
+      "B. Amazon Cognito",
+      "C. Amazon ElastiCache",
+      "D. Application Load Balancer",
+      "E. Amazon Simple Queue Service (Amazon SQS)"
+    ],
+    "answers": ["A", "C"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/148956-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 433Topic #: 1",
+    "question": "A developer uses Amazon S3 Event Notifications to invoke AWS Lambda functions. The Lambda functions process images after the images are uploaded to S3 buckets. The developer has set up a development S3 bucket, a production S3 bucket, a development Lambda function, and a production Lambda function in the same AWS account. The developer notices that uploads to the development S3 bucket wrongly invoke the production Lambda function. The developer must prevent development data from affecting the production Lambda function. What should the developer do to meet these requirements?",
+    "choices": [
+      "A. Update the execution role for the production Lambda function. Add a policy that allows the execution role to read from only the production S3 bucket.",
+      "B. Update the S3 bucket policy for the production S3 bucket to invoke the production Lambda function. Update the S3 bucket policy for the development S3 bucket to invoke the development Lambda function.",
+      "C. Separate the development environment and the production environment into their own AWS accounts. Update the execution role for each Lambda function. Add a policy that allows the execution role to read from only the S3 bucket that is in the same account.",
+      "D. Separate the development environment and the production environment into their own AWS accounts. Add a resource policy to the Lambda functions to allow only S3 bucket events in the same account to invoke the functions.Most Voted"
+    ],
+    "answers": ["D"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147042-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 432Topic #: 1",
+    "question": "A company processes incoming documents from an Amazon S3 bucket. Users upload documents to an S3 bucket using a web user interface. Upon receiving files in S3, an AWS Lambda function is invoked to process the files, but the Lambda function times out intermittently. If the Lambda function is configured with the default settings, what will happen to the S3 event when there is a timeout exception?",
+    "choices": [
+      "A. Notification of a failed S3 event is sent as an email through Amazon SNS.",
+      "B. The S3 event is sent to the default Dead Letter Queue.",
+      "C. The S3 event is processed until it is successful.",
+      "D. The S3 event is discarded after the event is retried twice."
+    ],
+    "answers": ["C"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/134068-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 257Topic #: 1",
+    "question": "A developer is building an application that will use an Amazon API Gateway API with an AWS Lambda backend. The team that will develop the frontend requires immediate access to the API endpoints to build the UI. To prepare the backend application for integration, the developer needs to set up endpoints. The endpoints need to return predefined HTTP status codes and JSON responses for the frontend team. The developer creates a method for an API resource. Which solution will meet these requirements?",
+    "choices": [
+      "A. Set the integration type to AWS_PROXY. Provision Lambda functions to return hardcoded JSON data.",
+      "B. Set the integration type to MOCK. Configure the method's integration request and integration response to associate a JSON responses with specific HTTP status codes.Most Voted",
+      "C. Set the integration type to HTTP_PROXY. Configure API Gateway to pass all requests to an external placeholder API. which the team will build.",
+      "D. Set the integration type to MOCK. Use a method request to define HTTP status codes. Use an integration request to define JSON responses."
+    ],
+    "answers": ["B"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/134067-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 256Topic #: 1",
+    "question": "A developer is building a serverless application that runs on AWS. The developer wants to create an accelerated development workflow that deploys incremental changes to AWS for testing. The developer wants to deploy the incremental changes but does not want to fully deploy the entire application to AWS for every code commit. What should the developer do to meet these requirements?",
+    "choices": [
+      "A. Use the AWS Serverless Application Model (AWS SAM) to build the application. Use the sam sync command to deploy the incremental changes.Most Voted",
+      "B. Use the AWS Serverless Application Model (AWS SAM) to build the application. Use the sam init command to deploy the incremental changes.",
+      "C. Use the AWS Cloud Development Kit (AWS CDK) to build the application. Use the cdk synth command to deploy the incremental changes.",
+      "D. Use the AWS Cloud Development Kit (AWS CDK) to build the application. Use the cdk bootstrap command to deploy the incremental changes."
+    ],
+    "answers": ["A"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/134248-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 255Topic #: 1",
+    "question": "A company runs a batch processing application by using AWS Lambda functions and Amazon API Gateway APIs with deployment stages for development, user acceptance testing, and production. A development team needs to configure the APIs in the deployment stages to connect to third-party service endpoints. Which solution will meet this requirement?",
+    "choices": [
+      "A. Store the third-party service endpoints in Lambda layers that correspond to the stage.",
+      "B. Store the third-party service endpoints in API Gateway stage variables that correspond to the stage.Most Voted",
+      "C. Encode the third-party service endpoints as query parameters in the API Gateway request URL.",
+      "D. Store the third-party service endpoint for each environment in AWS AppConfig."
+    ],
+    "answers": ["B"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124865-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 254Topic #: 1",
+    "question": "A developer is creating a machine learning (ML) pipeline in AWS Step Functions that contains AWS Lambda functions. The developer has configured an Amazon Simple Queue Service (Amazon SQS) queue to deliver ML model parameters to the ML pipeline to train ML models. The developer uploads the trained models are uploaded to an Amazon S3 bucket. The developer needs a solution that can locally test the ML pipeline without making service integration calls to Amazon SQS and Amazon S3. Which solution will meet these requirements?",
+    "choices": [
+      "A. Use the Amazon CodeGuru Profiler to analyze the Lambda functions used in the AWS Step Functions pipeline.",
+      "B. Use the AWS Step Functions Local Docker Image to run and locally test the Lambda functions.",
+      "C. Use the AWS Serverless Application Model (AWS SAM) CLI to run and locally test the Lambda functions.",
+      "D. Use AWS Step Functions Local with mocked service integrations.Most Voted"
+    ],
+    "answers": ["D"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124864-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 253Topic #: 1",
+    "question": "A company has migrated an application to Amazon EC2 instances. Automatic scaling is working well for the application user interface. However, the process to deliver shipping requests to the company\u2019s warehouse staff is encountering issues. Duplicate shipping requests are arriving, and some requests are lost or arrive out of order. The company must avoid duplicate shipping requests and must process the requests in the order that the requests arrive. Requests are never more than 250 KB in size and take 5-10 minutes to process. A developer needs to rearchitect the application to improve the reliability of the delivery and processing of the requests. What should the developer do to meet these requirements?",
+    "choices": [
+      "A. Create an Amazon Kinesis Data Firehose delivery stream to process the requests. Create an Amazon Kinesis data stream. Modify the application to write the requests to the Kinesis data stream.",
+      "B. Create an AWS Lambda function to process the requests. Create an Amazon Simple Notification Service (Amazon SNS) topic. Subscribe the Lambda function to the SNS topic. Modify the application to write the requests to the SNS topic.",
+      "C. Create an AWS Lambda function to process the requests. Create an Amazon Simple Queue Service (Amazon SQS) standard queue. Set the SQS queue as an event source for the Lambda function. Modify the application to write the requests to the SQS queue.",
+      "D. Create an AWS Lambda function to process the requests. Create an Amazon Simple Queue Service (Amazon SQS) FIFO queue. Set the SQS queue as an event source for the Lambda function. Modify the application to write the requests to the SQS queue.Most Voted"
+    ],
+    "answers": ["D"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124863-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 252Topic #: 1",
+    "question": "A company\u2019s developer is creating an application that uses Amazon API Gateway. The company wants to ensure that only users in the Sales department can use the application. The users authenticate to the application by using federated credentials from a third-party identity provider (IdP) through Amazon Cognito. The developer has set up an attribute mapping to map an attribute that is named Department and to pass the attribute to a custom AWS Lambda authorizer. To test the access limitation, the developer sets their department to Engineering in the IdP and attempts to log in to the application. The developer is denied access. The developer then updates their department to Sales in the IdP and attempts to log in. Again, the developer is denied access. The developer checks the logs and discovers that access is being denied because the developer\u2019s access token has a department value of Engineering. Which of the following is a possible reason that the developer\u2019s department is still being reported as Engineering instead of Sales?",
+    "choices": [
+      "A. Authorization caching is enabled in the custom Lambda authorizer.Most Voted",
+      "B. Authorization caching is enabled on the Amazon Cognito user pool.",
+      "C. The IAM role for the custom Lambda authorizer does not have a Department tag.",
+      "D. The IAM role for the Amazon Cognito user pool does not have a Department tag."
+    ],
+    "answers": ["A"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124862-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 251Topic #: 1",
+    "question": "A developer has created a data collection application that uses Amazon API Gateway, AWS Lambda, and Amazon S3. The application\u2019s users periodically upload data files and wait for the validation status to be reflected on a processing dashboard. The validation process is complex and time-consuming for large files. Some users are uploading dozens of large files and have to wait and refresh the processing dashboard to see if the files have been validated. The developer must refactor the application to immediately update the validation result on the user\u2019s dashboard without reloading the full dashboard. What is the MOST operationally efficient solution that meets these requirements?",
+    "choices": [
+      "A. Integrate the client with an API Gateway WebSocket API. Save the user-uploaded files with the WebSocket connection ID. Push the validation status to the connection ID when the processing is complete to initiate an update of the user interface.Most Voted",
+      "B. Launch an Amazon EC2 micro instance, and set up a WebSocket server. Send the user-uploaded file and user detail to the EC2 instance after the user uploads the file. Use the WebSocket server to send updates to the user interface when the uploaded file is processed.",
+      "C. Save the user\u2019s email address along with the user-uploaded file. When the validation process is complete, send an email notification through Amazon Simple Notification Service (Amazon SNS) to the user who uploaded the file.",
+      "D. Save the user-uploaded file and user detail to Amazon DynamoDB. Use Amazon DynamoDB Streams with Amazon Simple Notification Service (Amazon SNS) push notifications to send updates to the browser to update the user interface."
+    ],
+    "answers": ["A", "D"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124861-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 250Topic #: 1",
+    "question": "A company uses AWS CloudFormation to deploy an application that uses an Amazon API Gateway REST API with AWS Lambda function integration. The application uses Amazon DynamoDB for data persistence. The application has three stages: development, testing, and production. Each stage uses its own DynamoDB table. The company has encountered unexpected issues when promoting changes to the production stage. The changes were successful in the development and testing stages. A developer needs to route 20% of the traffic to the new production stage API with the next production release. The developer needs to route the remaining 80% of the traffic to the existing production stage. The solution must minimize the number of errors that any single customer experiences. Which approach should the developer take to meet these requirements?",
+    "choices": [
+      "A. Update 20% of the planned changes to the production stage. Deploy the new production stage. Monitor the results. Repeat this process five times to test all planned changes.",
+      "B. Update the Amazon Route 53 DNS record entry for the production stage API to use a weighted routing policy. Set the weight to a value of 80. Add a second record for the production domain name. Change the second routing policy to a weighted routing policy. Set the weight of the second policy to a value of 20. Change the alias of the second policy to use the testing stage API.",
+      "C. Deploy an Application Load Balancer (ALB) in front of the REST API. Change the production API Amazon Route 53 record to point traffic to the ALB. Register the production and testing stages as targets of the ALB with weights of 80% and 20%, respectively.",
+      "D. Configure canary settings for the production stage API. Change the percentage of traffic directed to canary deployment to 20%. Make the planned updates to the production stage. Deploy the changesMost Voted"
+    ],
+    "answers": ["D"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124860-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 249Topic #: 1",
+    "question": "A developer needs to use Amazon DynamoDB to store customer orders. The developer\u2019s company requires all customer data to be encrypted at rest with a key that the company generates. What should the developer do to meet these requirements?",
+    "choices": [
+      "A. Create the DynamoDB table with encryption set to None. Code the application to use the key to decrypt the data when the application reads from the table. Code the application to use the key to encrypt the data when the application writes to the table.",
+      "B. Store the key by using AWS Key Management Service (AWS KMS). Choose an AWS KMS customer managed key during creation of the DynamoDB table. Provide the Amazon Resource Name (ARN) of the AWS KMS key.Most Voted",
+      "C. Store the key by using AWS Key Management Service (AWS KMS). Create the DynamoDB table with default encryption. Include the kms:Encrypt parameter with the Amazon Resource Name (ARN) of the AWS KMS key when using the DynamoDB software development kit (SDK).",
+      "D. Store the key by using AWS Key Management Service (AWS KMS). Choose an AWS KMS AWS managed key during creation of the DynamoDB table. Provide the Amazon Resource Name (ARN) of the AWS KMS key."
+    ],
+    "answers": ["B"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124859-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 248Topic #: 1",
+    "question": "A company is using AWS Elastic Beanstalk to manage web applications that are running on Amazon EC2 instances. A developer needs to make configuration changes. The developer must deploy the changes to new instances only. Which types of deployment can the developer use to meet this requirement? (Choose two.)",
+    "choices": [
+      "A. All at once",
+      "B. ImmutableMost Voted",
+      "C. Rolling",
+      "D. Blue/greenMost Voted",
+      "E. Rolling with additional batch"
+    ],
+    "answers": ["B", "D"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124858-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 247Topic #: 1",
+    "question": "A company deploys a photo-processing application to an Amazon EC2 instance. The application needs to process each photo in less than 5 seconds. If processing takes longer than 5 seconds, the company\u2019s development team must receive a notification. How can a developer implement the required time measurement and notification with the LEAST operational overhead?",
+    "choices": [
+      "A. Create an Amazon CloudWatch custom metric. Each time a photo is processed, publish the processing time as a metric value. Create a CloudWatch alarm that is based on a static threshold of 5 seconds. Notify the development team by using an Amazon Simple Notification Service (Amazon SNS) topic.Most Voted",
+      "B. Create an Amazon Simple Queue Service (Amazon SQS) queue. Each time a photo is processed, publish the processing time to the queue. Create an application to consume from the queue and to determine whether any values are more than 5 seconds. Notify the development team by using an Amazon Simple Notification Service (Amazon SNS) topic.",
+      "C. Create an Amazon CloudWatch custom metric. Each time a photo is processed, publish the processing time as a metric value. Create a CloudWatch alarm that enters ALARM state if the average of values is greater than 5 seconds. Notify the development team by sending an Amazon Simple Email Service (Amazon SES) message.",
+      "D. Create an Amazon Kinesis data stream. Each time a photo is processed, publish the processing time to the data stream. Create an Amazon CloudWatch alarm that enters ALARM state if any values are more than 5 seconds. Notify the development team by using an Amazon Simple Notification Service (Amazon SNS) topic."
+    ],
+    "answers": ["A", "C"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124748-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 246Topic #: 1",
+    "question": "An online sales company is developing a serverless application that runs on AWS. The application uses an AWS Lambda function that calculates order success rates and stores the data in an Amazon DynamoDB table. A developer wants an efficient way to invoke the Lambda function every 15 minutes. Which solution will meet this requirement with the LEAST development effort?",
+    "choices": [
+      "A. Create an Amazon EventBridge rule that has a rate expression that will run the rule every 15 minutes. Add the Lambda function as the target of the EventBridge rule.Most Voted",
+      "B. Create an AWS Systems Manager document that has a script that will invoke the Lambda function on Amazon EC2. Use a Systems Manager Run Command task to run the shell script every 15 minutes.",
+      "C. Create an AWS Step Functions state machine. Configure the state machine to invoke the Lambda function execution role at a specified interval by using a Wait state. Set the interval to 15 minutes.",
+      "D. Provision a small Amazon EC2 instance. Set up a cron job that invokes the Lambda function every 15 minutes."
+    ],
+    "answers": ["A"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124831-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 245Topic #: 1",
+    "question": "A developer is building a new application that will be deployed on AWS. The developer has created an AWS CodeCommit repository for the application. The developer has initialized a new project for the application by invoking the AWS Cloud Development Kit (AWS CDK) cdk init command. The developer must write unit tests for the infrastructure as code (IaC) templates that the AWS CDK generates. The developer also must run a validation tool across all constructs in the CDK application to ensure that critical security configurations are activated. Which combination of actions will meet these requirements with the LEAST development overhead? (Choose two.)",
+    "choices": [
+      "A. Use a unit testing framework to write custom unit tests against the cdk.out file that the AWS CDK generates. Run the unit tests in a continuous integration and continuous delivery (CI/CD) pipeline that is invoked after any commit to the repository.",
+      "B. Use the CDK assertions module to integrate unit tests with the application. Run the unit tests in a continuous integration and continuous delivery (CI/CD) pipeline that is invoked after any commit to the repository.Most Voted",
+      "C. Use the CDK runtime context to set key-value pairs that must be present in the cdk.out file that the AWS CDK generates. Fail the stack synthesis if any violations are present.",
+      "D. Write a script that searches the application for specific key configuration strings. Configure the script to produce a report of any security violations.",
+      "E. Use the CDK Aspects class to create custom rules to apply to the CDK application. Fall the stack synthesis if any violations are present.Most Voted"
+    ],
+    "answers": ["B", "E"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124787-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 244Topic #: 1",
+    "question": "An AWS Lambda function is running in a company\u2019s shared AWS account. The function needs to perform an additional ec2:DescribeInstances action that is directed at the company\u2019s development accounts. A developer must configure the required permissions across the accounts. How should the developer configure the permissions to adhere to the principle of least privilege?",
+    "choices": [
+      "A. Create an IAM role in the shared account. Add the ec2:DescribeInstances permission to the role. Establish a trust relationship between the development accounts for this role. Update the Lambda function IAM role in the shared account by adding the ec2:DescribeInstances permission to the role.",
+      "B. Create an IAM role in the development accounts. Add the ec2:DescribeInstances permission to the role. Establish a trust relationship with the shared account for this role. Update the Lambda function IAM role in the shared account by adding the iam:AssumeRole permissions.Most Voted",
+      "C. Create an IAM role in the shared account. Add the ec2:DescribeInstances permission to the role. Establish a trust relationship between the development accounts for this role. Update the Lambda function IAM role in the shared account by adding the iam:AssumeRole permissions.",
+      "D. Create an IAM role in the development accounts. Add the ec2:DescribeInstances permission to the role. Establish a trust relationship with the shared account for this role. Update the Lambda function IAM role in the shared account by adding the ec2:DescribeInstances permission to the role."
+    ],
+    "answers": ["B"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124747-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 243Topic #: 1",
+    "question": "A developer is building a serverless application by using AWS Serverless Application Model (AWS SAM) on multiple AWS Lambda functions. When the application is deployed, the developer wants to shift 10% of the traffic to the new deployment of the application for the first 10 minutes after deployment. If there are no issues, all traffic must switch over to the new version. Which change to the AWS SAM template will meet these requirements?",
+    "choices": [
+      "A. Set the Deployment Preference Type to Canary10Percent10Minutes. Set the AutoPublishAlias property to the Lambda alias.Most Voted",
+      "B. Set the Deployment Preference Type to Linear10PercentEvery10Minutes. Set AutoPublishAlias property to the Lambda alias.",
+      "C. Set the Deployment Preference Type to Canary10Percent10Minutes. Set the PreTraffic and PostTraffic properties to the Lambda alias.",
+      "D. Set the Deployment Preference Type to Linear10PercentEvery10Minutes. Set PreTraffic and PostTraffic properties to the Lambda alias."
+    ],
+    "answers": ["A"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124830-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 242Topic #: 1",
+    "question": "A company is using AWS CodePipeline to deliver one of its applications. The delivery pipeline is triggered by changes to the main branch of an AWS CodeCommit repository and uses AWS CodeBuild to implement the test and build stages of the process and AWS CodeDeploy to deploy the application. The pipeline has been operating successfully for several months and there have been no modifications. Following a recent change to the application\u2019s source code, AWS CodeDeploy has not deployed the updated application as expected. What are the possible causes? (Choose two.)",
+    "choices": [
+      "A. The change was not made in the main branch of the AWS CodeCommit repository.Most Voted",
+      "B. One of the earlier stages in the pipeline failed and the pipeline has terminated.Most Voted",
+      "C. One of the Amazon EC2 instances in the company\u2019s AWS CodePipeline cluster is inactive.",
+      "D. The AWS CodePipeline is incorrectly configured and is not invoking AWS CodeDeploy.",
+      "E. AWS CodePipeline does not have permissions to access AWS CodeCommit."
+    ],
+    "answers": ["A", "B"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124828-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 241Topic #: 1",
+    "question": "A company is creating a REST service using an Amazon API Gateway with AWS Lambda integration. The service must run different versions for testing purposes. What would be the BEST way to accomplish this?",
+    "choices": [
+      "A. Use an X-Version header to denote which version is being called and pass that header to the Lambda function(s).",
+      "B. Create an API Gateway Lambda authorizer to route API clients to the correct API version.",
+      "C. Create an API Gateway resource policy to isolate versions and provide context to the Lambda function(s).",
+      "D. Deploy the API versions as unique stages with unique endpoints and use stage variables to provide further context.Most Voted"
+    ],
+    "answers": ["D"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124827-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 240Topic #: 1",
+    "question": "A company recently deployed an AWS Lambda function. A developer notices an increase in the function throttle metrics in Amazon CloudWatch. What are the MOST operationally efficient solutions to reduce the function throttling? (Choose two.)",
+    "choices": [
+      "A. Migrate the function to Amazon Elastic Kubernetes Service (Amazon EKS).",
+      "B. Increase the maximum age of events in Lambda.",
+      "C. Increase the function\u2019s reserved concurrency.Most Voted",
+      "D. Add the lambda:GetFunctionConcurrency action to the execution role.",
+      "E. Request a service quota change for increased concurrency.Most Voted"
+    ],
+    "answers": ["C"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124826-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 239Topic #: 1",
+    "question": "A developer created a web API that receives requests by using an internet-facing Application Load Balancer (ALB) with an HTTPS listener. The developer configures an Amazon Cognito user pool and wants to ensure that every request to the API is authenticated through Amazon Cognito. What should the developer do to meet this requirement?",
+    "choices": [
+      "A. Add a listener rule to the listener to return a fixed response if the Authorization header is missing. Set the fixed response to 401 Unauthorized.",
+      "B. Create an authentication action for the listener rules of the ALSet the rule action type to authenticate-cognito. Set the OnUnauthenticatedRequest field to \u201cdeny.\u201dMost Voted",
+      "C. Create an Amazon API Gateway API. Configure all API methods to be forwarded to the ALB endpoint. Create an authorizer of the COGNITO_USER_POOLS type. Configure every API method to use that authorizer.",
+      "D. Create a new target group that includes an AWS Lambda function target that validates the Authorization header by using Amazon Cognito. Associate the target group with the listener."
+    ],
+    "answers": ["B", "C"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124783-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 238Topic #: 1",
+    "question": "A developer is working on an application that is deployed on an Amazon EC2 instance. The developer needs a solution that will securely transfer files from the application to an Amazon S3 bucket. What should the developer do to meet these requirements in the MOST secure way?",
+    "choices": [
+      "A. Create an IAM user. Create an access key for the IAM user. Store the access key in the application\u2019s environment variables.",
+      "B. Create an IAM role. Create an access key for the IAM role. Store the access key in the application\u2019s environment variables.",
+      "C. Create an IAM role. Configure the IAM role to access the specific Amazon S3 API calls the application requires. Associate the IAM role with the EC2 instance.Most Voted",
+      "D. Configure an S3 bucket policy for the S3 bucket. Configure the S3 bucket policy to allow access for the EC2 instance ID."
+    ],
+    "answers": ["C"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124824-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 237Topic #: 1",
+    "question": "A developer is writing an application to encrypt files outside of AWS before uploading the files to an Amazon S3 bucket. The encryption must be symmetric and must be performed inside the application. How can the developer implement the encryption in the application to meet these requirements?",
+    "choices": [
+      "A. Create a data key in AWS Key Management Service (AWS KMS). Use the AWS Encryption SDK to encrypt the files.Most Voted",
+      "B. Create a Hash-Based Message Authentication Code (HMAC) key in AWS Key Management Service (AWS KMS). Use the AWS Encryption SDK to encrypt the files.",
+      "C. Create a data key pair in AWS Key Management Service (AWS KMS). Use the AWS CLI to encrypt the files.",
+      "D. Create a data key in AWS Key Management Service (AWS KMS). Use the AWS CLI to encrypt the files."
+    ],
+    "answers": ["A"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124825-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 236Topic #: 1",
+    "question": "A company has an online web application that includes a product catalog. The catalog is stored in an Amazon S3 bucket that is named DOC-EXAMPLE-BUCKET. The application must be able to list the objects in the S3 bucket and must be able to download objects through an IAM policy. Which policy allows MINIMUM access to meet these requirements?",
+    "choices": [
+      "A. Create an IAM policy that allows the 's3:ListBucket' action on 'arn:aws:s3:::DOC-EXAMPLE-BUCKET' and the 's3:GetObject' action on 'arn:aws:s3:::DOC-EXAMPLE-BUCKET/*'.",
+      "B. Create an IAM policy that allows the 's3:ListBucket' action on 'arn:aws:s3:::DOC-EXAMPLE-BUCKET'.",
+      "C. Create an IAM policy that allows the 's3:GetObject' action on 'arn:aws:s3:::DOC-EXAMPLE-BUCKET/*'.",
+      "D. Create an IAM policy that allows the 's3:ListBucket' action on 'arn:aws:s3:::DOC-EXAMPLE-BUCKET' and the 's3:PutObject' action on 'arn:aws:s3:::DOC-EXAMPLE-BUCKET/*'."
+    ],
+    "answers": ["A"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124822-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 235Topic #: 1",
+    "question": "A company has a three-tier application that is deployed in Amazon Elastic Container Service (Amazon ECS). The application is using an Amazon RDS for MySQL DB instance. The application performs more database reads than writes. During times of peak usage, the application\u2019s performance degrades. When this performance degradation occurs, the DB instance\u2019s ReadLatency metric in Amazon CloudWatch increases suddenly. How should a developer modify the application to improve performance?",
+    "choices": [
+      "A. Use Amazon ElastiCache to cache query results.Most Voted",
+      "B. Scale the ECS cluster to contain more ECS instances.",
+      "C. Add read capacity units (RCUs) to the DB instance.",
+      "D. Modify the ECS task definition to increase the task memory."
+    ],
+    "answers": ["A"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124821-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 234Topic #: 1",
+    "question": "A developer is troubleshooting an application in an integration environment. In the application, an Amazon Simple Queue Service (Amazon SQS) queue consumes messages and then an AWS Lambda function processes the messages. The Lambda function transforms the messages and makes an API call to a third-party service. There has been an increase in application usage. The third-party API frequently returns an HTTP 429 Too Many Requests error message. The error message prevents a significant number of messages from being processed successfully. How can the developer resolve this issue?",
+    "choices": [
+      "A. Increase the SQS event source\u2019s batch size setting.",
+      "B. Configure provisioned concurrency for the Lambda function based on the third-party API\u2019s documented rate limits.",
+      "C. Increase the retry attempts and maximum event age in the Lambda function\u2019s asynchronous configuration.",
+      "D. Configure maximum concurrency on the SQS event source based on the third-party service\u2019s documented rate limits.Most Voted"
+    ],
+    "answers": ["D"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/126181-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 233Topic #: 1",
+    "question": "A developer has created a large AWS Lambda function. Deployment of the function is failing because of an InvalidParameterValueException error. The error message indicates that the unzipped size of the function exceeds the maximum supported value. Which actions can the developer take to resolve this error? (Choose two.)",
+    "choices": [
+      "A. Submit a quota increase request to AWS Support to increase the function to the required size.",
+      "B. Use a compression algorithm that is more efficient than ZIP.",
+      "C. Break up the function into multiple smaller functions.Most Voted",
+      "D. Zip the .zip file twice to compress the file more.",
+      "E. Move common libraries, function dependencies, and custom runtimes into Lambda layers.Most Voted"
+    ],
+    "answers": ["C", "E"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124820-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 232Topic #: 1",
+    "question": "A developer wants to reduce risk when deploying a new version of an existing AWS Lambda function. To test the Lambda function, the developer needs to split the traffic between the existing version and the new version of the Lambda function. Which solution will meet these requirements?",
+    "choices": [
+      "A. Configure a weighted routing policy in Amazon Route 53. Associate the versions of the Lambda function with the weighted routing policy.",
+      "B. Create a function alias. Configure the alias to split the traffic between the two versions of the Lambda function.Most Voted",
+      "C. Create an Application Load Balancer (ALB) that uses the Lambda function as a target. Configure the ALB to split the traffic between the two versions of the Lambda function.",
+      "D. Create the new version of the Lambda function as a Lambda layer on the existing version. Configure the function to split the traffic between the two layers."
+    ],
+    "answers": ["B"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124819-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 231Topic #: 1",
+    "question": "A developer is creating an AWS Lambda function that will connect to an Amazon RDS for MySQL instance. The developer wants to store the database credentials. The database credentials need to be encrypted and the database password needs to be automatically rotated. Which solution will meet these requirements?",
+    "choices": [
+      "A. Store the database credentials as environment variables for the Lambda function. Set the environment variables to rotate automatically.",
+      "B. Store the database credentials in AWS Secrets Manager. Set up managed rotation on the database credentials.Most Voted",
+      "C. Store the database credentials in AWS Systems Manager Parameter Store as secure string parameters. Set up managed rotation on the parameters.",
+      "D. Store the database credentials in the X-Amz-Security-Token parameter. Set up managed rotation on the parameter."
+    ],
+    "answers": ["B"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124818-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 230Topic #: 1",
+    "question": "A developer registered an AWS Lambda function as a target for an Application Load Balancer (ALB) using a CLI command. However, the Lambda function is not being invoked when the client sends requests through the ALB. Why is the Lambda function not being invoked?",
+    "choices": [
+      "A. A Lambda function cannot be registered as a target for an ALB.",
+      "B. A Lambda function can be registered with an ALB using AWS Management Console only.",
+      "C. The permissions to invoke the Lambda function are missing.Most Voted",
+      "D. Cross-zone is not enabled on the ALB."
+    ],
+    "answers": ["C"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124815-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 229Topic #: 1",
+    "question": "A developer is planning to use an Amazon API Gateway and AWS Lambda to provide a REST API. The developer will have three distinct environments to manage: development, test, and production. How should the application be deployed while minimizing the number of resources to manage?",
+    "choices": [
+      "A. Create a separate API Gateway and separate Lambda function for each environment in the same Region.",
+      "B. Assign a Region for each environment and deploy API Gateway and Lambda to each Region.",
+      "C. Create one API Gateway with multiple stages with one Lambda function with multiple aliases.Most Voted",
+      "D. Create one API Gateway and one Lambda function, and use a REST parameter to identify the environment."
+    ],
+    "answers": ["C"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124778-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 228Topic #: 1",
+    "question": "A company is hosting a workshop for external users and wants to share the reference documents with the external users for 7 days. The company stores the reference documents in an Amazon S3 bucket that the company owns. What is the MOST secure way to share the documents with the external users?",
+    "choices": [
+      "A. Use S3 presigned URLs to share the documents with the external users. Set an expiration time of 7 days.Most Voted",
+      "B. Move the documents to an Amazon WorkDocs folder. Share the links of the WorkDocs folder with the external users.",
+      "C. Create temporary IAM users that have read-only access to the S3 bucket. Share the access keys with the external users. Expire the credentials after 7 days.",
+      "D. Create a role that has read-only access to the S3 bucket. Share the Amazon Resource Name (ARN) of this role with the external users."
+    ],
+    "answers": ["A"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124816-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 227Topic #: 1",
+    "question": "A developer has built an application that inserts data into an Amazon DynamoDB table. The table is configured to use provisioned capacity. The application is deployed on a burstable nano Amazon EC2 instance. The application logs show that the application has been failing because of a ProvisionedThroughputExceededException error. Which actions should the developer take to resolve this issue? (Choose two.)",
+    "choices": [
+      "A. Move the application to a larger EC2 instance.",
+      "B. Increase the number of read capacity units (RCUs) that are provisioned for the DynamoDB table.",
+      "C. Reduce the frequency of requests to DynamoDB by implementing exponential backoff.Most Voted",
+      "D. Increase the frequency of requests to DynamoDB by decreasing the retry delay.",
+      "E. Change the capacity mode of the DynamoDB table from provisioned to on-demand.Most Voted"
+    ],
+    "answers": ["C", "E"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124817-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 226Topic #: 1",
+    "question": "Given the following AWS CloudFormation template: What is the MOST efficient way to reference the new Amazon S3 bucket from another AWS CloudFormation template?",
+    "choices": [
+      "A. Add an Export declaration to the Outputs section of the original template and use ImportValue in other templates.Most Voted",
+      "B. Add Exported: true to the Content.Bucket in the original template and use ImportResource in other templates.",
+      "C. Create a custom AWS CloudFormation resource that gets the bucket name from the ContentBucket resource of the first stack.",
+      "D. Use Fn::Include to include the existing template in other templates and use the ContentBucket resource directly."
+    ],
+    "answers": ["A"]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/124775-exam-aws-certified-developer-associate-dva-c02-topic-1/",
+    "question_number": "Question #: 225Topic #: 1",
+    "question": "An application is real-time processing millions of events that are received through an API. What service could be used to allow multiple consumers to process the data concurrently and MOST cost-effectively?",
+    "choices": [
+      "A. Amazon SNS with fanout to an SQS queue for each application",
+      "B. Amazon SNS with fanout to an SQS FIFO (first-in, first-out) queue for each application",
+      "C. Amazon Kinesis Firehose",
+      "D. Amazon Kinesis Data StreamsMost Voted"
+    ],
+    "answers": ["D"]
+  }
+]

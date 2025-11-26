@@ -1,0 +1,15 @@
+{
+  "certificates": [
+    {
+      "id": "aws-developer",
+      "slug": "aws-developer",
+      "name": "AWS Certified Developer Associate",
+      "description": "DVA-C02 certification exam preparation",
+      "totalLevels": 8,
+      "isActive": true,
+      "isDefault": true,
+      "badgeColor": "bg-orange-500"
+    }
+  ],
+  "defaultCertificate": "aws-developer"
+}

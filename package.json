@@ -18,7 +18,8 @@
     "db:generate": "drizzle-kit generate",
     "send-reminders": "tsx ./scripts/send-reminder-emails.ts",
     "workflow:inspect": "npx workflow inspect runs --web",
-    "workflow:dev": "npx workflow dev"
+    "workflow:dev": "npx workflow dev",
+    "seed:certificates": "tsx ./scripts/seed-certificates.ts"
   },
   "dependencies": {
     "@ai-sdk/google": "^2.0.17",

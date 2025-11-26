@@ -1,4 +1,5 @@
 import Footer from "@/components/footer/Footer";
+import CertificateSelector from "@/components/CertificateSelector";
 import { ClientProvider } from "@/components/landing/client-provider";
 import Faq from "@/components/landing/faq";
 import Hero from "@/components/landing/hero";
@@ -21,6 +22,7 @@ export default async function HomePage() {
         <div className="relative">
           <Navigation />
           <Hero />
+          <CertificateSelector />
           <HowItWorks />
           <Review />
           <Faq />
