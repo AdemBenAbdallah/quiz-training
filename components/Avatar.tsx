@@ -13,7 +13,7 @@ import {
 import Link from "next/link";
 import { LogOut, User } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
-import { useUser } from "@/hook/useUser";
+import { useUser } from "@/hooks/useUser";
 import { useRouter } from "next/navigation";
 import { Suspense } from "react";
 

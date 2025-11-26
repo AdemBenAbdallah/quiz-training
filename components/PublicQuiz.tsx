@@ -3,7 +3,7 @@
 import QuestionCard from "@/components/QuestionCard";
 import QuestionExplainDialog from "@/components/QuestionExplainDialog";
 import { Button } from "@/components/ui/button";
-import { useUser } from "@/hook/useUser";
+import { useUser } from "@/hooks/useUser";
 import rawQuestions from "@/public/quiz/level1.json";
 import { Choice, Question } from "@/types/quiz";
 import { AnimatePresence, motion } from "framer-motion";

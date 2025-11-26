@@ -2,7 +2,21 @@
 
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { QuizNavigationState, QuizNavigationActions } from "../hooks/useQuizNavigation";
+
+interface QuizNavigationState {
+  currentQuestionIndex: number;
+  progress: number;
+  canGoNext: boolean;
+  canGoPrevious: boolean;
+  isLastQuestion: boolean;
+}
+
+interface QuizNavigationActions {
+  goToNextQuestion: () => void;
+  goToPreviousQuestion: () => void;
+  goToQuestion: (index: number) => void;
+  reset: () => void;
+}
 
 interface QuizNavigationProps {
   navigation: QuizNavigationState & QuizNavigationActions;
