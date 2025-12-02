@@ -83,8 +83,8 @@ export default function CompletionModal({
         <div className="py-6 space-y-6">
           {/* Description text */}
           <p className="text-center text-gray-600 text-sm leading-relaxed">
-            Unlock full access to all 5<br />
-            levels, 250+ AWS-style
+            Unlock full access to all 8<br />
+            levels, 400+ AWS-style
             <br />
             questions, and get our
             <br />

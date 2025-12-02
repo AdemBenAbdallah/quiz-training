@@ -10,16 +10,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import Link from "next/link";
-import { LogOut, User } from "lucide-react";
-import { authClient } from "@/lib/auth-client";
 import { useUser } from "@/hooks/useUser";
-import { useRouter } from "next/navigation";
-import { Suspense } from "react";
+import { authClient } from "@/lib/auth-client";
+import { LogOut, User } from "lucide-react";
+import Link from "next/link";
 
 const AvatarMenu = ({ setOpen }: { setOpen: (open: boolean) => void }) => {
   const { session, isLoading } = useUser();
-  const router = useRouter();
 
   const getName = () => {
     if (!session?.user?.name) return "";
@@ -33,7 +30,9 @@ const AvatarMenu = ({ setOpen }: { setOpen: (open: boolean) => void }) => {
     await authClient.signOut({
       fetchOptions: {
         onSuccess: () => {
-          router.push("/");
+          if (typeof window !== "undefined") {
+            window.location.href = "/";
+          }
         },
       },
     });
@@ -56,7 +55,7 @@ const AvatarMenu = ({ setOpen }: { setOpen: (open: boolean) => void }) => {
           <DropdownMenuContent className="w-48" align="end">
             <DropdownMenuLabel>{session.user.name}</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <Link href="/levels">
+            <Link href="/certificates">
               <DropdownMenuItem>
                 <User className="mr-2 h-4 w-4" />
                 <span>Levels</span>

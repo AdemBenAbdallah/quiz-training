@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { user, userQuizProgress } from "@/db/schema";
+import { user, userLevelProgress } from "@/db/schema";
 import { and, eq, isNull, lte, or } from "drizzle-orm";
 import { AlertCircle, Clock, Mail, RefreshCw, Users } from "lucide-react";
 
@@ -28,18 +28,18 @@ async function getWorkflowStats(): Promise<WorkflowStats> {
   const inactiveUsers = await db
     .select()
     .from(user)
-    .leftJoin(userQuizProgress, eq(user.id, userQuizProgress.userId))
-    .where(and(lte(user.createdAt, twoDaysAgo), isNull(userQuizProgress.id)));
+    .leftJoin(userLevelProgress, eq(user.id, userLevelProgress.userId))
+    .where(and(lte(user.createdAt, twoDaysAgo), isNull(userLevelProgress.id)));
 
   // Get users who haven't received reminders in the last 7 days
   const eligibleForReminder = await db
     .select()
     .from(user)
-    .leftJoin(userQuizProgress, eq(user.id, userQuizProgress.userId))
+    .leftJoin(userLevelProgress, eq(user.id, userLevelProgress.userId))
     .where(
       and(
         lte(user.createdAt, twoDaysAgo),
-        isNull(userQuizProgress.id),
+        isNull(userLevelProgress.id),
         // Only send reminders to users who haven't received one in the last 7 days
         or(
           isNull(user.lastReminderSentAt),

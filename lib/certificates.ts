@@ -1,18 +1,22 @@
 import { Certificate, CertificateMetadata } from "@/types/certificate";
 
 // Import certificate configurations
-import certificatesIndex from "@/public/quiz/certificates/index.json";
+import ansc01Metadata from "@/public/quiz/ansc01/metadata.json";
 import awsDeveloperMetadata from "@/public/quiz/aws-developer/metadata.json";
+import certificatesIndex from "@/public/quiz/certificates/index.json";
+import demoMetadata from "@/public/quiz/demo/metadata.json";
 
 // Certificate metadata mapping
 const certificateMetadata: Record<string, CertificateMetadata> = {
   "aws-developer": awsDeveloperMetadata as CertificateMetadata,
+    "demo": demoMetadata as CertificateMetadata,
+    "ansc01": ansc01Metadata as CertificateMetadata,
 };
 
 // Dynamic import function for quiz levels
 export async function loadCertificateLevel(
   certificateSlug: string,
-  level: number
+  level: number,
 ): Promise<any[]> {
   try {
     const levelData = await import(
@@ -20,7 +24,10 @@ export async function loadCertificateLevel(
     );
     return levelData.default;
   } catch (error) {
-    console.error(`Failed to load level ${level} for certificate ${certificateSlug}:`, error);
+    console.error(
+      `Failed to load level ${level} for certificate ${certificateSlug}:`,
+      error,
+    );
     return [];
   }
 }
@@ -40,17 +47,21 @@ export function getAvailableCertificates(): Certificate[] {
 }
 
 // Get certificate metadata
-export function getCertificateMetadata(slug: string): CertificateMetadata | null {
+export function getCertificateMetadata(
+  slug: string,
+): CertificateMetadata | null {
   return certificateMetadata[slug] || null;
 }
 
 // Get default certificate
 export function getDefaultCertificate(): Certificate | null {
   const defaultSlug = certificatesIndex.defaultCertificate;
-  const cert = certificatesIndex.certificates.find((c: any) => c.slug === defaultSlug);
-  
+  const cert = certificatesIndex.certificates.find(
+    (c: any) => c.slug === defaultSlug,
+  );
+
   if (!cert) return null;
-  
+
   return {
     id: cert.id,
     slug: cert.slug,
@@ -71,9 +82,9 @@ export function certificateExists(slug: string): boolean {
 // Get certificate by slug
 export function getCertificateBySlug(slug: string): Certificate | null {
   const cert = certificatesIndex.certificates.find((c: any) => c.slug === slug);
-  
+
   if (!cert) return null;
-  
+
   return {
     id: cert.id,
     slug: cert.slug,

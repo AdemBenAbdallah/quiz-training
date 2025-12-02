@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Progress } from "@/components/ui/progress";
 import { Question, Choice } from "@/types/quiz";
-import { TQuizParts, TLevelParts } from "@/app/(preview)/parts";
 import { useProgress } from "@/hooks/useProgress";
 import { handleAnswerSelection, calculateScore } from "@/lib/selection";
 import { QuizHeader } from "./QuizHeader";
@@ -16,14 +15,12 @@ import QuizScore from "@/components/score";
 import QuizReview from "@/components/quiz-overview";
 
 interface QuizContainerProps {
-  idx: number;
   levelId: number;
   questions: Question[];
   title: string;
 }
 
 export const QuizContainer = ({
-  idx,
   levelId,
   questions,
   title = "Quiz",
@@ -44,13 +41,9 @@ export const QuizContainer = ({
 
   // Progression state
   const { data, updateProgress } = useProgress();
-  const quizParts = data?.quizPartsByLevel[levelId] || null;
-  const levelParts = data?.levelParts || null;
-  const currentPart = quizParts?.data.find((part) => part.id === +idx);
-  const isPartAccessible = Boolean(currentPart?.accessible);
-  const isLastPart = Boolean(
-    quizParts && Number(idx) === quizParts.data.length,
-  );
+  const levels = data?.levels || [];
+  const currentLevel = levels.find((level) => level.id === levelId);
+  const isLevelAccessible = Boolean(currentLevel?.accessible);
 
   // Update progress when question changes
   useEffect(() => {
@@ -75,8 +68,6 @@ export const QuizContainer = ({
       setAnswers(newAnswers);
     }
   };
-
-
 
   const submitQuiz = () => {
     const correctAnswers = calculateScore(answers, questions);
@@ -130,15 +121,13 @@ export const QuizContainer = ({
   };
 
   // Progression actions
-  const passToNextPart = useCallback(async () => {
-    if (!quizParts) return;
-
+  const passToNextLevel = useCallback(async () => {
     try {
-      await updateProgress(levelId, idx);
+      await updateProgress(levelId);
     } catch (error) {
       console.error("Error updating progress:", error);
     }
-  }, [quizParts, levelId, idx, updateProgress]);
+  }, [levelId, updateProgress]);
 
   // Handle quiz completion and progression
   const handleQuizSubmit = async () => {
@@ -146,10 +135,10 @@ export const QuizContainer = ({
 
     try {
       if (correctAnswers === questions.length) {
-        passToNextPart();
+        passToNextLevel();
       }
     } catch (error) {
-      console.error("Error progressing to next part:", error);
+      console.error("Error progressing to next level:", error);
     }
   };
 
@@ -159,8 +148,17 @@ export const QuizContainer = ({
     resetNavigation();
   };
 
-  if (!isPartAccessible) {
-    return null;
+  if (!isLevelAccessible) {
+    return (
+      <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold mb-4">Level Not Accessible</h2>
+          <p className="text-muted-foreground">
+            You need to complete the previous level or purchase access to continue.
+          </p>
+        </div>
+      </div>
+    );
   }
 
   const currentQuestion = questions[currentQuestionIndex];

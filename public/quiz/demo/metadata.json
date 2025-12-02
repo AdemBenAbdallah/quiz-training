@@ -1,0 +1,10 @@
+{
+  "slug": "demo",
+  "name": "Demo Certificate",
+  "description": "A demo certificate to test the multi-certificate system",
+  "totalLevels": 2,
+  "questionsPerLevel": [3, 3],
+  "heroTitle": "Demo Certificate - Test the System",
+  "heroDescription": "This is a demo certificate to test the multi-certificate functionality with sample questions.",
+  "badgeColor": "bg-blue-500"
+}

@@ -1,0 +1,937 @@
+[
+  {
+    "url": "https://www.google.com/search?q=ANS-C01+topic+1+question+269+discussion",
+    "question_number": "Question #: 269Topic #: 1",
+    "question": "AnyCompany deploys and manages networking resources in its AWS network account, named Account-A. AnyCompany acquires Example Corp, which has an application that runs behind an Application Load Balancer (ALB) in Example Corp's AWS account, named Account-B.Example Corp needs to use AWS Global Accelerator to create an accelerator to publish the application to users. AnyCompany's networking team will manage the accelerator.Which solution will meet these requirements with the LEAST management overhead?",
+    "choices": [
+      "Create an accelerator in Account-В. Use a cross-account role from Account-A to grant the networking team access to manage the accelerator.",
+      "Deploy a Network Load Balancer (NLB) in Account-A to route traffic to the ALB in Account-В. Create an accelerator, and set the NLB as the endpoint in Account-A.",
+      "Create a cross-account Global Accelerator attachment in Account-В for the Account-A principal. Create an accelerator in Account-A by using the shared attachment.Most Voted",
+      "Create an accelerator in Account-A. Use AWS Resource Access Management (AWS RAM) to share the accelerator with Account-В. Associate the ALB in Account-В with the accelerator in Account-A."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/170993-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 270Topic #: 1",
+    "question": "A company has two AWS Direct Connect connections between Direct Connect locations and the company's on-premises environment in the US. The company uses the connections to communicate with AWS workloads that run in the us-east-1 Region. The company has a transit gateway that connects several VPCs. The Direct Connect connections terminate at a Direct Connect gateway and the transit VIFs to the transit gateway.The company recently acquired a smaller company that is based in Europe. The newly acquired company has only on-premises workloads. The newly acquired company does not expect to run workloads on AWS for the next 3 years. However, the newly acquired company requires connectivity to the parent company's AWS resources in us-east-1 and to the parent company's on-premises environment in the US. The parent company wants to use two new Direct Connect connections in Europe to provide the required connectivity.Which solution will meet these requirements with the LEAST operational overhead for the newly acquired company?",
+    "choices": [
+      "Associate new transit VIFs to the existing Direct Connect gateway. Configure the new transit VIFs to use Direct Connect SiteLink.",
+      "Associate new transit VIFs to a new Direct Connect gateway and to a new transit gateway in the eu-west-1 Region. Use transit gateway peering to connect the transit gateways.",
+      "Associate new private VIFs to the existing Direct Connect gateway. Configure the existing transit VIFs and the new private VIFs to use Direct Connect SiteLink.",
+      "Associate new private VIFs to a new Direct Connect gateway and to a new VPC in us-east-1. Configure the existing transit VIFs and the new private VIFs to use Direct Connect SiteLink and AWS PrivateLink endpoints in the new VPC."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/171132-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 271Topic #: 1",
+    "question": "A company is establishing hybrid cloud connectivity from an on-premises environment to AWS in the us-east-1 Region. The company is using a 10 Gbps AWS Direct Connect dedicated connection. The company has two accounts in AWS. Account A has transit gateways in four AWS Regions. Account В has transit gateways in three Regions. The company does not plan to expand.To meet security requirements the company's accounts must have separate cloud infrastructure.Which solution will meet these requirements MOST cost-effectively?",
+    "choices": [
+      "Create one Direct Connect gateway in us-east-1. Use AWS Resource Access Manager (AWS RAM) to share the Direct Connect gateway with each account. Create a transit VIF for Account Associate the four transit gateways in Account A to the Direct Connect gateway. Create a transit VIF for Account B. Associate the three transit gateways in Account В to the Direct Connect gateway.",
+      "Create one Direct Connect gateway in us-east-1 for Account A. Create a second Direct Connect gateway in us-east-1 for Account Create a transit VIF for Account A. Associate the four transit gateways in Account A to the Direct Connect gateway in Account A. Create a transit VIF for Account Associate the three transit gateways in Account В to the Direct Connect gateway in Account В.Most Voted",
+      "Create one Direct Connect gateway in us-east-1. Use AWS Resource Access Manager (AWS RAM) to share the Direct Connect gateway with each account. Create a transit VIF for Account A. Associate the four transit gateways in Account A to the Direct Connect gateway. Order a new 10 Gbps Direct Connect dedicated connection for Account B. Create a transit VIF on the new Direct Connect connection for Account B. Associate the three transit gateways in Account В to the Direct Connect gateway.",
+      "Create one Direct Connect gateway in us-east-1 for Account A. Create a second Direct Connect gateway in us-east-1 for Account B. Create a transit VIF for Account A. Associate the four transit gateways in Account A to the Direct Connect gateway in Account A. Order a new 10 Gbps Direct Connect dedicated connection for Account В. Create a transit VIF on the new Direct Connect connection for Account В. Associate the three transit gateways in Account В to the Direct Connect gateway in Account В."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/169822-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 272Topic #: 1",
+    "question": "A company runs an application across multiple AWS Regions and multiple Availability Zones. The company needs to expand to a new AWS Region. Low latency is critical to the functionality of the application.A network engineer needs to gather metrics for the latency between the existing. Regions and the new Region. The network engineer must gather metrics for at least the previous 30 days.Which solution will meet these requirements?",
+    "choices": [
+      "Configure an AWS Network Access Analyzer Network Access Scope, and use the analysis to review the latency.",
+      "Set up AWS Network Manager Infrastructure Performance. Publish network performance metrics to Amazon CloudWatch.Most Voted",
+      "Use an Amazon VPC Reachability Analyzer path to review the latency.",
+      "Set up VPC Flow Logs. Publish log metrics to Amazon CloudWatch."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/169825-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 268Topic #: 1",
+    "question": "A media company is planning to host an event that the company will live stream to users. The company wants to use Amazon CloudFront.A network engineer creates a primary origin and a secondary origin for CloudFront. The engineer needs to ensure that the primary origin can fail over to the secondary origin within 15 seconds if a disruption occurs.Which solution will meet this requirement with the LEAST operational overhead?",
+    "choices": [
+      "Configure a Lambda@Edge function to check the health status of both origins every 10 seconds. Reroute incoming requests when the origin health status is unhealthy.",
+      "Create a Network Load Balancer (NLB) in front of both origins Configure the NLB as the origin in CloudFront.",
+      "Set the CloudFront origin connection timeout value to 5 seconds Set the origin connection attempts value to 2.Most Voted",
+      "Configure a Lambda@Edge function to monitor incoming requests for an origin response. Reroute incoming requests if no response is received from the primary origin within 10 seconds."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/170992-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 267Topic #: 1",
+    "question": "A company wants to analyze TCP internet traffic. The traffic originates from Amazon EC2 instances in the company’s VPC. The EC2 instances initiate connections through a NAT gateway.The company wants to capture data about the traffic including source and destination IP addresses ports, and the first 8 bytes of the TCP segments of the traffic. The company needs to collect, store, and analyze all the required data points.Which solution will meet these requirements?",
+    "choices": [
+      "Configure the EC2 instances to be VPC traffic mirror sources. Deploy software on the traffic mirror target to forward the data to Amazon CloudWatch Logs. Analyze the data by using CloudWatch Logs Insights",
+      "Configure the NAT gateway to be a VPC traffic mirror source. Deploy software on the traffic mirror target to forward the data to an Amazon S3 bucket. Analyze the data by using Amazon Athena.Most Voted",
+      "Turn on VPC Flow Logs for the EC2 instances. Specify the default format and set Amazon CloudWatch Logs as the log destination. Analyze the flow log data by using CloudWatch Logs Insights.",
+      "Turn on VPC Flow Logs for the EC2 instances. Specify a custom format and set Amazon S3 as the log destination. Analyze the flow log data by using Amazon Athena."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/169828-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 266Topic #: 1",
+    "question": "A company operates in multiple AWS Regions. The company has deployed transit gateways in each Region. The company uses AWS Organizations to operate multiple AWS accounts in one organization.The company needs to capture all VPC flow log data when a new VPC is created. The company needs to send flow logs to a specific Amazon S3 bucket.Which solution will meet these requirements with the LEAST administrative effort?",
+    "choices": [
+      "Update IAM permissions for each user to include a condition that ensures users can create VPCs only when VPC Flow Logs is enabled and configured correctly.",
+      "Create a custom AWS Config rule with automatic remediation that verifies VPC Flow Logs is enabled and configured correctly. Apply the AWS Config rule to the organization.Most Voted",
+      "Enable VPC Flow Logs on each transit gateway. Configure VPC Flow Logs to send flow logs to the specified S3 bucket.",
+      "Deploy a serverless application that uses AWS CloudTrail to monitor for VPC creation events in each account. Configure the application to apply the correct VPC Flow Logs configuration."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/170991-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 265Topic #: 1",
+    "question": "A company has an AWS environment that includes multiple VPCs that are connected by a transit gateway. The company wants to use a certificate-based AWS Site-to-Site VPN connection to establish connectivity between an on-premises environment and the AWS environment. The company does not have a static public IP address for the on-premises environment.Which combination of steps should the company take to establish VPN connectivity between the transit gateway and the on-premises environment? (Choose two.)",
+    "choices": [
+      "Create a public certificate in AWS Certificate Manager (ACM).",
+      "Create a private certificate in AWS Certificate Manager (ACM).Most Voted",
+      "Configure the Site-to-Site VPN tunnels to use the pre-shared key (PSK).",
+      "Create a customer gateway. Specify the current dynamic IP address of the customer gateway device's external interface.",
+      "E.Create a customer gateway. Do not specify the IP address of the customer gateway device.Most Voted"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/170990-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 264Topic #: 1",
+    "question": "A company has two teams: Team A and Team B. Team A has VPCs that run in Account A. The team uses a transit gateway (TGW-A) to route traffic between workloads that run in the different VPCs. Similarly, Team В has VPCs that run in Account B. Team В uses a different transit gateway (TGW-B) to route traffic between workloads that run in the different VPCs.The company's network team manages the routing for Team A and Team В. The network team wants to retire TGW-B and use a single transit gateway to manage routing for the VPCs of both teams.Which solution will meet this requirement with the LEAST operational overhead?",
+    "choices": [
+      "Create a resource share for TGW-A Share TGW-A with Account B. Create VPC attachments for the VPCs in Account В. Configure routing for the VPCs in TGW-A route tables. Update the route tables of the VPCs in Account В to forward traffic to TGW-Delete TGW-B attachments and TGW-B.Most Voted",
+      "Create a resource share for TGW-A. Share TGW-A with Account В. Replicate the TGW-B configuration to TGW-A to automatically start routing changes for the VPCs in Account В. Delete TGW-B when routing changes are complete.",
+      "Create a new transit gateway (TGW-C) in Account A. Create a resource share for TGW-Share TGW-C with Account B. Create VPC attachments for the VPCs in Account A and Account В. Configure routing for all the VPCs in TGW-C route tables. Update the route tables for the VPCs in Account A and Account В to forward traffic to TGW-Delete TGW-A attachments and TGW-B attachments. Delete TGW-A and TGW-B.",
+      "Create a new transit gateway (TGW-C) in a new account (Account C). Create a resource share for TGW-C. Share TGW-C with Account A and Account B. Create VPC attachments for the VPCs in Account A and Account В. Configure routing for all the VPCs in TGW-C route tables. Update the route tables for the VPCs in Account A and Account В to forward traffic to TGW-C. Delete TGW-A attachments and TGW-B attachments. Delete TGW-A and TGW-B."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/154669-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 263Topic #: 1",
+    "question": "A company has several AWS Site-to-Site VPN connections between an on-premises customer gateway and a transit gateway. The company's application uses IPv4 to communicate through the VPN connections.The company has updated the VPC to be dual stack and wants to transition to using IPv6-only for new workloads. When the company tries to communicate through the existing VPN connections, IPv6 traffic fails.Which solution will provide IPv6 support with the LEAST operational overhead?",
+    "choices": [
+      "Create a new Site-to-Site VPN connection that supports IPv6.",
+      "Create a new Site-to-Site VPN connection to a self-managed Amazon EC2 instance that runs open source software.",
+      "Update the existing Site-to-Site VPN connections to support IPv6.",
+      "Update the on-premises customer gateway's public IP address from IPv4 to IPv6."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/154670-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 262Topic #: 1",
+    "question": "A company uses transit gateways to route traffic between the company's VPCs. Each transit gateway has a single route table. Each route table contains attachments and routes for the VPCs that are in the same AWS Region as the transit gateway. The route tables in each VPC also contain routes to all the other VPC CIDR ranges that are available through the transit gateways. Some VPCs route to local NAT gateways.The company plans to add many new VPCs soon. A network engineer needs a solution to add new VPC CIDR ranges to the route tables in each VPC.Which solution will meet these requirements in the MOST operationally efficient way?",
+    "choices": [
+      "Create a new customer-managed prefix list. Add all VPC CIDR ranges to the new prefix list. Update the route tables in each VPC to use the new prefix list ID as the destination and the appropriate transit gateway ID as the target.",
+      "Turn on default route table propagation for the transit gateway route tables. Turn on route propagation for each route table in each VPC.",
+      "Update the route tables in each VPC to use 0.0.0.010 as the destination and the appropriate transit gateway ID as the target.",
+      "Turn on default route table association for the transit gateway route tables. Turn on route propagation for each route table in each VPC."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/154674-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 261Topic #: 1",
+    "question": "A company runs a workload in a single VPC on AWS. The company’s architecture contains several interface VPC endpoints for AWS services, including Amazon CloudWatch Logs and AWS Key Management Service (AWS KMS). The endpoints are configured to use a shared security group. The security group is not used for any other workloads or resources.After a security review of the environment, the company determined that the shared security group is more permissive than necessary. The company wants to make the rules associated with the security group more restrictive. The changes to the security group rules must not prevent the resources in the VPC from using AWS services through interface VPC endpoints. The changes must prevent unnecessary access.The security group currently uses the following rules:• Inbound - Rule 1Protocol: TCP -Port: 443 -Source: 0.0.0.0/0 -• Inbound - Rule 2Protocol: TCP -Port: 443 -Source: VPC CIDR -• Outbound - Rule 1Protocol: All -Port: All -Destination: 0.0.0.0/0 -Which rule or rules should the company remove to meet with these requirements?",
+    "choices": [
+      "Outbound - Rule 2",
+      "Inbound - Rule 1 and Outbound - Rule 1Most Voted",
+      "Inbound - Rule 2 and Outbound - Rule 1",
+      "Outbound - Rule 1"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/154074-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 260Topic #: 1",
+    "question": "A company deployed an application in two AWS Regions in one AWS account. The company has one VPC in each Region. The VPCs use non-overlapping private CIDR ranges.The company needs to connect both VPCs to a single on-premises data center to test the application. The application requires up to 800 Mbps of throughput. A network engineer needs to establish connectivity between the VPCs and the on-premises data center.Which solution will meet this requirement with the LEAST operational overhead?",
+    "choices": [
+      "Order a 2 Gbps Direct Connect connection for the data center. Configure a virtual private gateway in each VPC. Create a private VIF for each virtual private gateway, and associate the virtual private gateways with the Direct Connect connection. Configure static routes in the VPC route tables and in the data center router.",
+      "Order a 2 Gbps Direct Connect connection for the data center. Configure a virtual private gateway in each VPC. Create a private VIF for each virtual private gateway, and associate the virtual private gateways with the Direct Connect connection. Configure Open Shortest Path First (OSPF) routing between the private VIF and the data center.",
+      "Configure a customer gateway and a virtual private gateway in each VPConfigure an AWS Site-to-Site VPN connection between the data center and each VPConfigure static routes in each VPC route table to point to the subnets in the data center.",
+      "Configure a customer gateway and a virtual private gateway in each VPC. Configure an AWS Site-to-Site VPN connection between the data center and each VPC. Configure BGP routing between the VPCs and the data center.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/154073-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 259Topic #: 1",
+    "question": "A company has multiple VPCs with subnets that use IPv4. Traffic from the VPCs to the internet uses a NAT gateway. The company wants to transition to IPv6.A network engineer creates multiple IPv6-only subnets in an existing testing VPC. The network engineer deploys a new Amazon EC2 instance that has an IPv6 address into one of the subnets. During testing, the network engineer discovers that the new EC2 instance is not able to communicate with an IPv4-only service through the internet. The network engineer needs to enable the IPv6 EC2 instance to communicate with the IPv4-only service.Which solution will meet this requirement?",
+    "choices": [
+      "Enable DNS64 for the IPv6-only subnets. Update the route tables for the IPv6-only subnets to send traffic through the NAT gateway.Most Voted",
+      "Enable NAT64 for the testing VPC. Reconfigure the existing NAT gateway to support IPv6.",
+      "Enable DNS64 for the new EC2 instance. Create a new egress-only internet gateway that supports IPv6.",
+      "Enable NAT64 for each route table. Create a new NAT gateway that supports both IPv4 and IPv6."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/154072-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 258Topic #: 1",
+    "question": "A company has a transit gateway in a single AWS account. The company sends flow logs for the transit gateway to an Amazon CloudWatch Logs log group.The company created an AWS Lambda function to analyze the logs. The Lambda function sends a notification to an Amazon Simple Notification Service (Amazon SNS) topic when a VPC generates traffic that is dropped by the transit gateway. Each notification contains the account ID. VPC ID, and total amount of dropped packets.The company wants to subscribe a new Lambda function to the SNS topic. The new Lambda function must automatically prevent the traffic that is identified in each notification from leaving a VPC by applying a network ACL to the transit gateway attachment subnets in the VPC that generates the traffic.Which solution will meet these requirements?",
+    "choices": [
+      "Configure the existing Lambda function to add the destination IP addresses of the dropped traffic to each SNS notification. Configure the new Lambda function to create an outbound rule by using the destination IP addresses in the network ACL.Most Voted",
+      "Configure the existing Lambda function to add the source IP addresses of the dropped traffic to each SNS notification. Configure the new Lambda function to create an inbound rule by using the source IP addresses in the network ACL.",
+      "Configure the existing Lambda function to add the source IP addresses of the dropped traffic to each SNS notification. Configure the new Lambda function to create an outbound rule by using the source IP addresses in the network ACL.",
+      "Configure the existing Lambda function to add the destination IP addresses of the dropped traffic to each SNS notification. Configure the new Lambda function to create an inbound rule by using the destination IP addresses in the network ACL."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/154066-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 257Topic #: 1",
+    "question": "A company has multiple AWS Site-to-Site VPN connections between an on-premises environment and multiple VPCs. The Site-to-Site VPN connections use virtual private gateways and are configured with IPv4 addresses. The company hosts several internal applications in the VPCs.Application users have reported that the applications are performing slowly. A network engineer notices excessive latency in the network path that the VPN connections use. The network engineer needs to resolve the excessive latency.Which solution will meet this requirement?",
+    "choices": [
+      "Use AWS Global Accelerator to deploy an accelerator on the existing Site-to-Site VPN connections.",
+      "Deploy a transit gateway and a new accelerated Site-to-Site VPN connection.Most Voted",
+      "Replace the existing Site-to-Site VPN connections with new Site-to-Site VPN connections that use IPv6.",
+      "Replace the existing Site-to-Site VPN connections with AWS PrivateLink connections."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/154065-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 256Topic #: 1",
+    "question": "A company uses AWS Network Firewall to protect outgoing traffic for multiple VPCs that are in the same AWS account. Each VPC contains Amazon EC2 instances that host the company's applications. Each EC2 instance is tagged with the name of the application it hosts. The EC2 instances are in Auto Scaling groups.A Network Firewall stateful rule group must remain up-to-date, even when an Auto Scaling group launches and terminates EC2 instances.Which solution will meet this requirement with the LEAST implementation and administrative effort?",
+    "choices": [
+      "Create a network ACL for each application. Reference the network ACL in the stateful rule group.",
+      "Create a prefix list for each application. Reference the prefix list in the stateful rule group.",
+      "Create an AWS Lambda function that queries the EC2 instance tags for each application name and then updates the stateful rule group with the IP address of each instance.",
+      "Create a resource group for each application name. Reference the Amazon Resource Name (ARN) for the resource groups in the stateful rule group.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/154055-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 255Topic #: 1",
+    "question": "A company hosts application servers on premises and on Amazon EC2 instances in a VPC. The application servers access data that is hosted in an Amazon S3 bucket through the public internet. The EC2 instances in the VPC use an AWS Site-to-Site VPN for connectivity with the on-premises application servers.New company regulations state that all traffic between the application servers and the S3 bucket must remain private and must not use public IP addresses.Which solution will meet these requirements MOST cost-effectively?",
+    "choices": [
+      "Configure an S3 gateway endpoint Modify the route table with the appropriate route for the endpoint. Access the S3 bucket through the gateway endpoint from the EC2 instances.",
+      "Configure an S3 interface endpoint. Update the on-premises servers and EC2 instances to use the interface endpoint DNS name to access the S3 bucket.",
+      "Configure an S3 interface endpoint. Update the on-premises servers to use the interface endpoint DNS name to access the S3 bucket. Configure an S3 gateway endpoint. Modify the route table so that the EC2 instances use the gateway endpoint.Most Voted",
+      "Configure an S3 gateway endpoint. Modify the route table with the appropriate route for the endpoint. Use an S3 bucket policy to restrict access to the gateway endpoint. Configure a proxy server fleet behind a Network Load Balancer in the VPC so that the on-premises servers can access the S3 bucket."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/154064-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 254Topic #: 1",
+    "question": "A company uses AWS Site-to-Site VPN connections to encrypt traffic between the company's on-premises location and a single VPC. The Site-to-Site VPN connections use two 1 Gbps AWS Direct Connect connections with public VIFs. The company plans to add 15 additional VPCs in the same AWS Region.The company must maintain the same level of encryption that the Site-to-Site VPN connections currently provide for each connection between the on-premises location and the new VPCs. The new connections must not use public IP addresses. The bandwidth of the Site-to-Site VPN connections will remain less than the current provisioned speed.Which combination of steps will meet these requirements with LEAST operational overhead? (Choose three.)",
+    "choices": [
+      "Create a transit gateway and a Direct Connect gateway. Associate the transit gateway with the Direct Connect gateway. Attach all the new VPCs to the transit gateway.",
+      "For each new VPC, create a new Direct Connect private VIF to a Direct Connect gateway. Associate all VPCs with the Direct Connect gateway.",
+      "Assign a private IP CIDR block to the transit gateway.",
+      "Assign a public IP CIDR block to the transit gateway.",
+      "E.Create a transit VIF to the Direct Connect gateway. Create a Site-to-Site VPN private IP VPN connection.",
+      "F.Create a public VICreate a Site-to-Site VPN public IP VPN connection."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/154062-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 253Topic #: 1",
+    "question": "A company has an application VPC and a networking VPC that are connected through VPC peering. The networking VPC contains a Network Load Balancer (NLB). The application VPC contains Amazon EC2 instances that run an application. The EC2 instances are part of a target group that is associated with the NLB in the networking VPC.The company configures a third VPC and peers it to the networking VPC. The new VPC contains a new version of the existing application. The new version of the application runs on new EC2 instances in an application subnet. The new version of the application runs in a different Availability Zone than that original version of the application.The company needs to establish connectivity between the NLB and the new version of the application.Which combination of steps will meet this requirement? (Choose three.)",
+    "choices": [
+      "Register the new application EC2 instances with the NLB by using the instance IDs.",
+      "Register the new application EC2 instances with the NLB by using instance IP addresses.Most Voted",
+      "Configure the NLB in the Availability Zone where the new application EC2 instances run.Most Voted",
+      "Configure the NLB to use zonal shift.",
+      "E.Configure the network ACL for the application subnet in the new VPC to allow outbound connections.",
+      "F.Configure the network ACL for the application subnet in the new VPC to allow inbound connections and outbound connections.Most Voted"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/154681-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 252Topic #: 1",
+    "question": "A company is migrating its internet VPN connections to dedicated AWS Direct Connect connections. The company needs to set up the Direct Connect connections so that all network communications are encrypted in transit.Which combination of steps will meet this requirement? (Choose three.)",
+    "choices": [
+      "Create new Direct Connect connections while requesting MACsec ports.Most Voted",
+      "Create a MACsec Connectivity Association Key Name (CKN) and Connectivity Association Key (CAK) pair. Associate the pair with each new connection.Most Voted",
+      "Update the on-premises routers to use MACsec and the shared Connectivity Association Key Name (CKN) and Connectivity Association Key (CAK) pair.Most Voted",
+      "Create a shared key for an IPsec connection.",
+      "E.Configure a new Direct Connect gateway. Associate the shared key with the new Direct Connect gateway.",
+      "F.Set up IPsec on the on-premises router. Associate the shared key with the IPsec configuration."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/154059-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 251Topic #: 1",
+    "question": "A company runs workloads in multiple VPCs. The company needs to securely access a workload in one of the VPCs, named VPC-A, from an on-premises data center. A network engineer sets up an AWS Site-to-Site VPN connection to a transit gateway. The network engineer configures dynamic routing for the connection, and communication works properly.Recently, the owner of VPC-A added another CIDR range to the VPC. The VPC-A owner created workloads that use the additional CIDR range.The company's on-premises network is unable to reach the new workloads. The network engineer needs to resolve the network connectivity issue and ensure that connectivity will not be affected if additional VPC CIDR ranges are added to the VPC in the future.Which solution will meet these requirements with the MOST operational efficiency?",
+    "choices": [
+      "Configure route propagation for VPC-A to the VPN attachment route table.Most Voted",
+      "Manually update the VPN attachment route table to include the new CIDR range.",
+      "Configure an Amazon EventBridge rule to invoke an AWS Lambda function when the rule to matches an update to the VPC-A CIDR range. Configure the Lambda function to update the VPN attachment route table.",
+      "Configure an Amazon CloudWatch alarm to invoke an AWS Lambda function when there is an update to the VPC-A CIDR range. Configure the Lambda function to update the VPN attachment route table. Restart the VPN tunnels."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/154057-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 250Topic #: 1",
+    "question": "A company runs applications in two VPCs that are in separate AWS Regions. One VPC is in the us-east-1 Region. The second VPC is in the us-west-1 Region. The company needs to establish connectivity between the two VPCs. The company also needs to connect the VPCs to applications that run in an on-premises data center.The current traffic requirement between the VPCs is 50 ТВ per month. The company expects traffic volume between the VPCs to increase. The traffic requirement from the VPCs to the on-premises data center is 10 ТВ per month. The company expects the traffic between the VPCs and the data center to remain constant.Which solution will meet these requirements MOST cost-effectively?",
+    "choices": [
+      "Create a transit gateway in each Region. Create VPN connections from the transit gateways to the on-premises firewall. Create a peering connection between the transit gateways.",
+      "Create a virtual private gateway in each Region. Create VPN connections from the on-premises firewall to the virtual private gateways. Configure the on-premises firewall to route the traffic between the two VPCs.",
+      "Create a virtual private gateway in each Region. Create VPN connections from the on-premises firewall to the virtual private gateways. Create a VPC peering connection between the two VPCs.Most Voted",
+      "Create a virtual private gateway in each Region. Create VPN connections from the on-premises firewall to the virtual private gateways. Create a VPN connection between the virtual private gateways."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/154058-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 249Topic #: 1",
+    "question": "A US-based company is expanding its business to Europe. A network engineer needs to extend the company's network infrastructure by setting up a new hub and spoke architecture in the eu-west-1 Region. The network engineer uses a transit gateway peering connection to connect the new resources in eu-west-1 to an existing environment in the us-east-1 Region.The hub and spoke architecture in each AWS Region includes an inspection VPC that uses AWS Network Firewall to centralize traffic inspection for each Region. To reduce costs, the network engineer decides to inspect inter-Region traffic by using the inspection VPC in the Region that originates the traffic. The network engineer configures the transit gateway route tables accordingly for each Region.When the network engineer tests the new architecture, communication within each Region works as expected. However, the network engineer finds that inter-Region communication is not working. The network engineer must resolve the inter-Region communication issue.Which solution will meet this requirement?",
+    "choices": [
+      "Configure Open Shortest Path First (OSPF) routing on the transit gateway peering connection to propagate the VPC CIDR blocks from each Region to the remote peer.",
+      "Use AWS Resource Access Manager (AWS RAM) to share access between the transit gateways. Enable the Allow sharing with anyone setting.",
+      "Prevent asymmetric routing in the inspection VPCs by ensuring that both requests and responses are inspected by the same inspection VPC",
+      "Enable Appliance mode on both the transit gateway attachments for the inspection VPC.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/153988-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 248Topic #: 1",
+    "question": "A company needs to capture and log traffic for Nitro-based Amazon EC2 instances to comply with regulations. The company's network team has prepared a solution that enables VPC traffic mirroring and sends traffic to a second set of EC2 instances in an Auto Scaling group.The network team has added a Network Load Balancer (NLB) in front of the EC2 instances the traffic will be sent to. However, the solution does not send any mirrored traffic to the EC2 instances that are behind the NLB.How should the network team configure traffic mirroring to use the NLB endpoint?",
+    "choices": [
+      "Select the NLB as a source for traffic mirroring. Use a UDP listener.",
+      "Select the NLB as a target for traffic mirroring. Use a TCP listener and a UDP listener.",
+      "Select the NLB as a target for traffic mirroring. Use a TCP listener.",
+      "Select the NLB as a target for traffic mirroring. Use a UDP listener.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/153987-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 247Topic #: 1",
+    "question": "A company has a hybrid environment that connects an on-premises data center to the AWS Cloud. The hybrid environment uses a 10 Gbps AWS Direct Connect dedicated connection. The Direct Connect connection has multiple private VIFs that terminate in multiple VPCs.To comply with regulations, the company must encrypt all WAN traffic, regardless of the underlying transport. The company needs to implement an encryption solution that will not affect the company's bandwidth capacity.Which solution will meet these requirements?",
+    "choices": [
+      "Create a public VIF. Configure a new AWS Site-to-Site VPN connection to use the new public VIF.",
+      "Configure MAC security (MACsec) support on the port of the existing Direct Connect connection. Change the encryption mode to must_encrypt.",
+      "Configure a new Direct Connect connection that supports MAC security (MACSec) Associate the existing VIFs to the new Direct Connect connection.Most Voted",
+      "Create a public VIF. Configure a new private IP VPN that uses the Direct Connect connection."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/153983-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 246Topic #: 1",
+    "question": "A company has five VPCs in the us-east-1 Region. The company hosts an internal web application in us-east-1. One of the company's VPCs. named VPC-A, needs to connect to an external partner's AWS environment. The partner’s environment is in the same AWS Region where the partner hosts a new version of the company's web application. The partner hosts its version of the application in a VPC named VPC-B.The company has Amazon EC2 instances in VPC-A that need to connect to the web application in VPC-B A network engineer notices that the partner's VPC-B and the company's VPC-A use the same IP space. The network engineer needs a solution to allow the EC2 instances to connect to the web application. The solution must not negatively affect the exiting environment of the company or the partner.Which combination of steps should the network engineer take meet these requirements? (Choose two.)",
+    "choices": [
+      "Establish a VPC peering connection between VPC-A to VPC-B.",
+      "Ensure the partner creates a VPC endpoint service that uses a Network Load Balancer in VPC-B.Most Voted",
+      "Deploy a VPC endpoint in VPC-A that uses a VPC endpoint service that is shared by the partner.Most Voted",
+      "Deploy a new routable VPC CIDR block as a secondary CIDR block to both VPC-A and VPC-B. Deploy a public NAT gateway in VPC-A.",
+      "E.Establish an AWS Site-to-Site VPN connection between VPC-A and VPC-B."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/153982-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 245Topic #: 1",
+    "question": "A company hosts an application on Amazon EC2 instances behind an Application Load Balancer (ALB). The instances are part of an Amazon EC2 Auto Scaling group.To comply with new security standards, the company must capture all application access data, including server response codes, request paths, latency, and client IP addresses. The company also needs to query the captured data for performance analysis.Which solution will meet these requirements?",
+    "choices": [
+      "Enable VPC flow logs on the ALB subnets. Store the logs to an Amazon S3 bucket. Query the logs in the S3 bucket by using Amazon Athena.",
+      "Configure Amazon VPC Traffic Mirroring on all EC2 elastic network interfaces. Deploy a third-party monitoring appliance from AWS Marketplace in a private subnet. Use Amazon Data Firehose to send all mirrored traffic to the monitoring appliance. Query the logs directly from the monitoring appliance.",
+      "Configure Amazon CloudWatch detailed monitoring on the EC2 instances Include all available logs. Use Amazon Data Firehose to send all the collected logs to an Amazon S3 bucket. Query the data directly from the S3 bucket.",
+      "Enable access logs on the ALB. Store the logs in an Amazon S3 bucket. Query the logs in the S3 bucket by using Amazon Athena."
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/153976-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 244Topic #: 1",
+    "question": "A company is planning to migrate to AWS and use multiple VPCs in multiple AWS Regions. A network engineer must connect the eu-west-1 and eu-central-1 Regions to the company headquarters and branch office, respectively.The network engineer created a production VPC, named Prod A, with a CIDR block of 10.0.0.0/16. Prod A runs in an account in eu-west-1. The network engineer then created another production VPC, named Prod B, with a CIDR block of 10.1.0.0/16. Prod В runs in a different account in eu-central-1.The network engineer performed the following steps to try to achieve the required connectivity:1. Created one transit gateway in each Region2. Shared and accepted the transit gateways with the production accounts in both Regions3. Configured the peering attachment between both transit gateways4. Attached both VPCs to the respective Region transit gateway5. Created both transit gateway route tables and associated the attachments with the route tables6. Configured a static route in both transit gateway route tables to send traffic to the remote VPC in the other Region7. Activated route propagation on the VPC route tables in each RegionAfter the configuration, the network engineer tried to connect from Prod A to Prod B. However, the connection was unsuccessful.What should the network engineer do to achieve the required connectivity?",
+    "choices": [
+      "Modify the IP address of the peering attachment to a wider range.",
+      "Delete the static routes that were in the transit gateway route table to send traffic to the remote VPC and enable route propagation instead.",
+      "Create a new route destined to 10.0.0.0/8 in both production VPC route tables with the Region transit gateway as the target.Most Voted",
+      "Modify the transit gateway route tables from the production accounts to propagate routes dynamically between the production VPCs."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/153969-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 243Topic #: 1",
+    "question": "A company is planning to use an AWS Transit Gateway hub and spoke architecture to migrate to AWS. The current on-premises multi-protocol label switching (MPLS) network has strict controls that enforce network segmentation by using MPLS VPNs. The company has provisioned two 10 Gbps AWS Direct Connect connections to provide resilient, high-speed, low-latency connectivity to AWS.A security engineer needs to apply the concept of network segmentation to the AWS environment to ensure that virtual routing and forwarding (VRF) is logically separated for each of the company's software development environments. The number of MPLS VPNs will increase in the future. On-premises MPLS VPNs will have overlapping address space. The company's AWS network design must support overlapping address space for the VPNs.Which solution will meet these requirements with the LEAST operational overhead?",
+    "choices": [
+      "Deploy a software-defined WAN (SD-WAN) head-end virtual appliance and an SD-WAN controller into a Transit Gateway Connect VPC. Configure the company's edge routers to be managed by the new SD-WAN controller and to use SD-WAN to segment the traffic into the defined segments for each of the company's development environments.",
+      "Configure IPsec VPNs on the company edge routers for each MPLS VPN for each of the company's development environments. Attach each IPsec VPN tunnel to a discrete MPLS VPN. Configure AWS Site-to-Site VPN connections that terminate at a transit gateway for each MPLS VPN. Configure a transit gateway route table that matches the MPLS VPN for each Transit Gateway VPN attachment.",
+      "Create a transit VPC that terminates at the AWS Site-to-Site VRF-aware IPsec VPN. Configure IPsec VPN connections to each VPC for each of the company's development environment VRFs.",
+      "Configure a Transit Gateway Connect attachment for each MPLS VPN between the company's edge routers and Transit Gateway. Configure a transit gateway route table that matches the MPLS VPN for each of the company's development environments.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/153964-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 242Topic #: 1",
+    "question": "A company is planning to host a secure web application across multiple Amazon EC2 instances. The application will have an associated DNS domain in an Amazon Route 53 hosted zone.The company wants to protect the domain from DNS poisoning attacks. The company also wants to allow web browsers to authenticate into the application by using a trusted third party.Which combination of actions will meet these requirements?",
+    "choices": [
+      "Configure the Route 53 hosted zone to use DNS Security Extensions (DNSSEC). Install self-signed X.509 certificates on the EC2 instances.",
+      "Configure a Name Authority Pointer (NAPTR) record in the Route 53 hosted zone. Install X 509 certificates that are signed by a public certificate authority on the EC2 instances.",
+      "Configure the Route 53 hosted zone to use DNS Security Extensions (DNSSEC). Install X.509 certificates that are signed by a public certificate authority on the EC2 instances.",
+      "Configure a Name Authority Pointer (NAPTR) record in the Route 53 hosted zone. Install self-signed X.509 certificates on the EC2 instances."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/153963-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 241Topic #: 1",
+    "question": "A company’s data center is connected to a single AWS Region by an AWS Direct Connect dedicated connection. The company has a single VPC in the Region. The company stores logs for all its applications locally in the data center.The company must keep all application logs for 7 years. The company decides to copy all application logs to an Amazon S3 bucket.Which solution will meet these requirements?",
+    "choices": [
+      "Create a public VIF on the Direct Connect connection. Create an Amazon S3 gateway endpoint in the VPC.",
+      "Create a private VIF on the Direct Connect connection. Create an Amazon S3 gateway endpoint in the VPC.",
+      "Create a private VIF on the Direct Connect connection. Create an Amazon S3 interface endpoint in the VPC.Most Voted",
+      "Create a public VIF on the Direct Connect connection. Create an Amazon S3 interface endpoint in the VPC."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/154121-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 240Topic #: 1",
+    "question": "A global company is establishing network connections between the company's primary and secondary data centers and a VPC. A network engineer needs to maximize resiliency and fault tolerance for the connections. The network bandwidth must be greater than 10 Gbps.Which solution will meet these requirements MOST cost-effectively?",
+    "choices": [
+      "Set up a 100 Gbps connection at the primary data center that terminates at an AWS Direct Connect location. Set up a second 100 Gbps connection at the secondary data center that terminates at a second Direct Connect location. Ensure the connections are managed by separate providers.",
+      "Set up a 10 Gbps connection at the primary data center that terminates at an AWS Direct Connect location. Set up a second 10 Gbps connection at the secondary data center that terminates at a second Direct Connect location. Ensure the connections are managed by separate providers.",
+      "Set up two 10 Gbps connections at the primary data center that terminate at one AWS Direct Connect location. Ensure the connections are managed by separate providers. Set up two 10 Gbps connections at the secondary data center that terminate at a second Direct Connect location. Ensure the connections are managed by separate providers.",
+      "Set up a 10 Gbps connection at the primary data center that terminates at an AWS Direct Connect location. Set up an AWS Site-to-Site VPN connection at the secondary data center that terminates at a virtual private gateway in the same Region as the company’s VPC."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/155745-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 239Topic #: 1",
+    "question": "A company has 10 Amazon EC2 instances that run web server software in a production VPC. The company also has 10 web servers that run in an on-premises data center. The company has a 10 Gbps AWS Direct Connect connection between the on-premises data center and the production VPC. The data center uses the 10.100.0.0/20 CIDR block.The company needs to implement a load balancing solution that receives HTTPS traffic from thousands of external users. The solution must distribute the traffic across the web servers on AWS and the web servers in the data center. Regardless of the location of the web servers, HTTPS requests must go to the same web server for the duration of the session.Which solution will meet these requirements?",
+    "choices": [
+      "Deploy a Network Load Balancer (NLB) in the production VPC. Create one target group for the EC2 Instances and a second target group for the on-premises servers. Specify IP as the target type. Register the EC2 instances and the on-premises servers with the target groups. Enable connection draining on the NLB.",
+      "Deploy an Application Load Balancer (ALB) in the production VPC. Create one target group for the EC2 Instances and a second target group for the on-premises servers. Specify IP as the target type. Register the EC2 instances and the on-premises servers with the target groups. Enable application-based sticky sessions on the ALB.Most Voted",
+      "Deploy a Network Load Balancer (NLB) in the production VPCreate one target group for the EC2 Instances and a second target group for the on-premises servers. Specify instance as the target type. Register the EC2 instances and the on-premises servers with the target groups. Enable sticky sessions on the NLB.",
+      "Deploy an Application Load Balancer (ALB) in the production VPC. Create one target group for the EC2 Instances and a second target group for the on-premises servers. Specify instance as the target type. Register the EC2 instances and the on-premises servers with the target groups. Enable application-based sticky sessions on the ALB."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/155744-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 238Topic #: 1",
+    "question": "A company runs workloads in multiple VPCs in the us-east-1 Region. The VPCs are connected to a transit gateway. An AWS Direct Connect connection provides private connectivity between a data center that is in the US and the transit gateway. A Direct Connect gateway is associated with the transit gateway.The company has recently opened a new office location in London. The company plans to launch cloud services in multiple VPCs in the eu-west-2 Region. Users in the new London office must have private access to the workloads that run in us-east-1. Users in the US data center must have access to any workloads that are created in eu-west-2. A network engineer must implement a flexible solution that provides users the required access. The solution must be able to accommodate future growth.Which solution will meet these requirements with the LEAST operational effort?",
+    "choices": [
+      "Create an AWS Site-to-Site VPN connection from the London office to the Direct Connect gateway in us-east-1.",
+      "Establish a new Direct Connect connection for the London office. Attach the new Direct Connect connection to the existing Direct Connect gateway. Create a transit gateway in eu-west-2. Associate the new transit gateway with the existing Direct Connect gateway. Create a peering connection between the transit gateways in us-east-1 and eu-west-2.Most Voted",
+      "Create an AWS Site-to-Site VPN connection from the London office to each of the VPCs that are in us-east-1.",
+      "Establish a new AWS Direct Connect connection for the London office Create a new Direct Connect gateway and a transit gateway in eu-west-2. Attach the new Direct Connect connection to the new Direct Connect gateway. Create a peering connection between the transit gateways in us-east-1 and eu-west-2."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/153961-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 237Topic #: 1",
+    "question": "A finance company runs multiple applications on Amazon EC2 instances in two VPCs that are within a single AWS Region. The company uses one VPC for stock trading applications. The company uses the second VPC for financial applications. Both VPCs are connected to a transit gateway that is configured as a multicast router.In the stock trading VPC, an EC2 instance that has an IP address of 10.128.10.2 sends trading data over a multicast network to the 239.10.10.10 IP address on UDP Port 5102. The company recently launched two new EC2 instances in the financial application VPC. The new EC2 instances need to receive the multicast stock trading data from the EC2 instance that is in the stock trading VPC.Which combination of steps should the company take to meet this requirement? (Choose three.)",
+    "choices": [
+      "Add the elastic network interfaces of the two new EC2 instances as members of the multicast group by using the group IP address of 239.10.10.10.Most Voted",
+      "Add an inbound rule to the security groups that are attached to the multicast receiver instances. Configure the rule as follows:Protocol: IGMP Version 2. Port: 5102, and Source: 239 10.10.10/32",
+      "Create associations to two EC2 instance IDs on the financial application VPC transit gateway attachment under the transit gateway multicast domain.",
+      "Create an association to EC2 instance subnets on the financial application VPC transit gateway attachment under the transit gateway multicast domain.D. Add an inbound rule to the security groups that are attached to the multicast receiver instances. Configure the rule as follows:Protocol: IGMP Version 2. Port: All, and Source: 0 0.0.0/32Most Voted",
+      "E.Add an inbound rule to the security groups that are attached to the multicast receiver instances. Configure the rule as follows.Protocol: UDP, Port: 5102, and Source: 10.128.10.2/32"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/155231-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 236Topic #: 1",
+    "question": "A logistics company has multiple VPCs in an AWS Region. The company uses a transit gateway to connect the VPCs. The company has several on-premises offices that connect to the transit gateway by using AWS Site-to-Site VPN connections over the internet. The company has configured one transit gateway VPN attachment for each office.Route propagation is enabled on all route tables. Each Site-to-Site VPN connection uses two tunnels in an active-passive configuration. The company configured each office with appropriate static routes on both the Site-to-Site VPN connection and the office’s customer gateway.The company wants to use both IPsec tunnels of every office to maximize the overall VPN connection bandwidth.Which design changes are necessary to meet these requirements?",
+    "choices": [
+      "Create an AWS Transit Gateway Connect attachment for each office Use the existing VPN attachments as the transport for the new Connect attachments. Set up a Generic RoutingEncapsulation (GRE) tunnel on each customer gateway that terminates on the Connect attachment for each office. Move the static routes from the transit gateway VPN attachment to the customer gateway for the transit gateway Connect attachment.",
+      "Enable equal-cost multi-path (ECMP) routing on the transit gateway. Ensure ECMP is supported by and enabled on the customer gateways. Enable ECMP on the Site-to-Site VPN connection. Ensure static routes on the customer gateways have equal metrics and administrative distance.",
+      "Enable equal-cost multi-path (ECMP) routing on the transit gateway. (Ensure ECMP is supported by and enabled on the customer gateways. Change the routing configuration between the transit gateway and the customer gateways from static routing to BGP. Remove related static routes from the customer gateways.",
+      "Enable equal-cost multi-path (ECMP) routing on the transit gateway. Ensure ECMP is supported by and enabled on the customer gateways. Change the routing configuration between the transit gateway and the customer gateways from static routing to BGP. Ensure the customer gateway applies the correct community strings to give the transit gateway the ability to perform ECMP forwarding."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/153958-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 235Topic #: 1",
+    "question": "A company has VPCs in the us-east-1 Region that are connected to each other through a transit gateway. A network engineer needs to establish an AWS Direct Connect connection between the company's on-premises data center and the transit gateway for the migration of a workload.The Direct Connect connection is UP according to the ConnectionState metric in Amazon CloudWatch. However, the VIF is DOWN. The network engineer has verified the transit VIF and BGP configurations on the on-premises router and has found no issues. However, the network engineer is unable to ping the Amazon peer IP address.Which combination of steps should the network engineer take to troubleshoot this issue? (Choose three.)",
+    "choices": [
+      "Verify that the correct IP address and subnet mask are in use for the subinterface on the router.Most Voted",
+      "Ensure that VLAN trunking is disabled on the router.",
+      "Verify that the router has a MAC address entry from the AWS endpoint in the Address Resolution Protocol (ARP) table.Most Voted",
+      "Verify that the optical signal that is received over the cross connect is optimal.",
+      "E.Ensure that the correct VLAN tag is applied on the subinterface configuration on the router.Most Voted",
+      "F.Ensure that TCP port 179 is not being blocked at the on-premises router."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/151608-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 234Topic #: 1",
+    "question": "A company has configured an AWS Cloud WAN core network with edge locations in the us-east-1 Region and the us-west-1 Region. Each edge location has two segments: development and staging. The segments use the default core network policy.The company has attached VPCs to the core network. A development VPC is attached to the development segment in us-east-1 and is configured to use the 10.0.0.0/16 CIDR block. A staging VPC is attached to the staging segment in us-west-1 and is configured to use the 10.5.0.0/16 CIDR block. The company has updated the route tables for both VPCs with a route that directs any traffic for 0.0.0.0/0 to the core network.The company’s network team needs to establish communication between the two VPCs by using the AWS Cloud WAN core network. The network team is not receiving a response during tests of communication between the VPCs. The network team has verified that security groups and network ACLs are not blocking the traffic.What should the network team do to establish this communication?",
+    "choices": [
+      "Update both VPC route tables to have a new static route. Configure a route on the development VPC to direct the traffic for 10.0.0.0/16 to the development VPC attachment. Configure a route on the staging VPC to direct the traffic for 10.5.0.0/16 to the staging VPC attachment.",
+      "Update the segment filter to allow traffic on the development and staging segments.",
+      "Set the isolate-attachments parameter to False for the development and staging segments.",
+      "Update the core network policy to add a static route for each segment. Configure a route to direct the traffic for 10.0.0.0/16 to the development VPC attachment. Configure a route to direct the traffic for 10.5.0.0/16 to the staging VPC attachment.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/153076-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 233Topic #: 1",
+    "question": "A network engineer needs to provide a list of IP addresses that are sending traffic to an Amazon EC2 instance. VPC flow logs are enabled. The EC2 instance has a single network interface and two assigned IP addresses. However, the flow logs are logging traffic only for the primary IP address. The network engineer needs to determine whether any traffic is being sent to the second IP address of the EC2 instance.What should the network engineer do to locate the traffic flow for the second IP address?",
+    "choices": [
+      "Create a new flow log that includes the pkt-dstaddr field to capture the original destination IP address of the traffic.Most Voted",
+      "Create a new flow log that includes the dstaddr field to capture the original destination IP address of the traffic.",
+      "Create a new flow log that includes the pkt-srcaddr field to capture the original destination IP address of the traffic.",
+      "Create a new flow log that includes the srcaddr field to capture the original destination IP address of the traffic."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/153955-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 232Topic #: 1",
+    "question": "A company wants to implement a distributed architecture on AWS that uses a Gateway Load Balancer (GWLB) and GWLB endpoints.The company has chosen a hub-and-spoke model. The model includes a GWLB and virtual appliances that are deployed into a centralized appliance VPC and GWLB endpoints. The model also includes internet gateways that are configured in spoke VPCs.Which sequence of traffic flow to the internet from the spoke VPC is correct?",
+    "choices": [
+      "1. An application in a spoke VPC sends traffic to the GWLB endpoint based on the VPC route table configuration.2. Traffic is delivered securely and privately to the GWLB.3. The GWLB sends the traffic to a virtual appliance for inspection.4. Return traffic flows back to the GWLB endpoint and out to the internet through the internet gateway.Most Voted",
+      "1. An application in a spoke VPC sends traffic to the GWLB endpoint based on the VPC route table configuration.2. Traffic is delivered securely and privately to the GWLB endpoint.3. The GWLB sets the X-Forwarded-For request header and sends the traffic to a virtual appliance for inspection.4. Return traffic flows back to the GWLB and out to the internet through an internet gateway.",
+      "1. An application in a spoke VPC sends traffic to the GWLB endpoint.2. Traffic is delivered securely and privately to the GWLB.3. The GWLB sets the X-Forwarded-For request header and sends the traffic to a virtual appliance for inspection.4. Return traffic flows back to the GWLB endpoint and out to the internet through the internet gateway.",
+      "1. An application in a spoke VPC sends traffic to the GWLB.2. Traffic is delivered securely and privately to the GWLB endpoint.3. The GWLB sends the traffic to a virtual appliance for inspection.4. Return traffic flows back to the GWLB and out to the internet through an internet gateway."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/154148-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 231Topic #: 1",
+    "question": "A company hosts a highly available, scalable, and resilient application on Amazon EC2 instances that are part of an Auto Scaling group. A network engineer is planning to integrate IPv6 support with the application deployment in phases. The first phase is to enable IPv6 service consumption on the public Network Load Balancers (NLBs) that are deployed across the infrastructure. The target groups for the NLBS are configured as the Auto Scaling groups of the EC2 instances that host the application. The NLBs are configured for dual-stack operation.During the testing of the first phase, the IPv6 application queries are not reaching the backend servers.What is the cause of this issue?",
+    "choices": [
+      "The subnets where the EC2 instances are deployed do not have IPv6 addresses configured.Most Voted",
+      "The route tables for the NLB subnets do not have IPV6 routing configured.",
+      "The route tables for the EC2 subnets do not have IPV6 routing configured.",
+      "The security groups that are associated with the NLBs do not allow IPv6 traffic."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/151575-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 230Topic #: 1",
+    "question": "A company is using AWS Cloud WAN with one edge location in the us-east-1 Region and one edge location in the us-west-1 Region. A shared services segment exists at both edge locations. Each shared services segment has a VPC attachment to each inspection VPC in each Region. The inspection VPCs inspect traffic from a WAN by using AWS Network Firewall.The company creates a new segment for a new business unit (BU) in the us-east-1 edge location. The new BU has three VPCs that are attached to the new BU segment. To comply with regulations, the BU VPCs must not communicate with each other. All internet-bound traffic must be inspected in the inspection VPC.The company updates VPC route tables so any traffic that is bound for internet goes to the AWS Cloud WAN core network.The company plans to add more VPCs for the new BU in the future. All future VPCs must comply with regulations.Which solution will meet these requirements in the MOST operationally efficient way? (Choose two.)",
+    "choices": [
+      "Update the network policy to share the shared services segment with the BU segment.Most Voted",
+      "Create a network policy to share the inspection service segment with the BU segment.",
+      "Set the isolate-attachments field to True for the BU segment.Most Voted",
+      "Set the isolate-attachments field to False for the BU segment.",
+      "E.Update the network policy to add static routes for the BU segment. Configure the shared services segment to route traffic related to VPC CIDR blocks to each respective VPC attachment."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/153935-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 229Topic #: 1",
+    "question": "A company has a VPC that includes application workloads that run on Amazon EC2 instances in a single AWS Region. The company wants to use AWS Local Zones to deploy an extension of the application workloads that run in the Region. The extended workloads in the Local Zone need to communicate bidirectionally with the workloads in the VPC in the Region.Which solution will meet these requirements MOST cost-effectively?",
+    "choices": [
+      "Create a new VPC in the Local Zone. Attach all the VPCs to a transit gateway. Configure routing for the transit gateway and the VPCs. Deploy instances in the new VPC.",
+      "Deploy a third-party appliance in a new VPC in the Region. Create a new VPC in the Local Zone. Create VPN connections to the appliance for the VPCs. Deploy instances in the new VPC in the Local Zone.",
+      "Create a new subnet in the Local Zone. Deploy a third-party appliance in the VPC with interfaces in each subnet. Configure the new subnet to route the Local Zone through the appliance. Deploy instances in the new subnet.",
+      "Create a new subnet in the Local Zone. Configure the new subnet to use a CIDR block that is within the VPC’s CIDR block. Deploy instances in the new subnet in the Local Zone.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/138178-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 228Topic #: 1",
+    "question": "A company has two business units (BUs). The company operates in the us-east-1 Region and the us-west-1 Region. The company plans to extend to more Regions in the future. Each BU has a VPC in each Region. Each Region has a transit gateway with the BU VPCs attached. The transit gateways in both Regions are peered.The company will create several more BUs in the future and will need to isolate some of the BUs from the other BUs. The company wants to migrate to an architecture to incorporate more Regions and BUs.Which solution will meet these requirements with the MOST operational efficiency?",
+    "choices": [
+      "Create a new transit gateway for each new BU in each Region. Peer the new transit gateways with the existing transit gateways. Update the route tables to control traffic between BUs.",
+      "Create an AWS Cloud WAN core network with an edge location in both Regions. Configure a segment for each BU with VPC attachments to the new BU VPCs. Use segment actions to control traffic between segments.Most Voted",
+      "Create an AWS Cloud WAN core network with an edge location in both Regions. Configure a segment for each BU with VPC attachments to the new BU VPCs. Configure the segments to isolate attachments to control traffic between segments.",
+      "Attach new VPCs to the existing transit gateways. Update route tables to control traffic between BUs."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/151605-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 227Topic #: 1",
+    "question": "A network engineer needs to monitor internet metrics for an application that is in a VPC. The metrics include user experiences such as health events, latency, and traffic insights.The network engineer sets up Amazon CloudWatch Internet Monitor for the application. The engineer wants to push the internet health events to a third-party target.Which solution will meet these requirements with the LEAST implementation effort?",
+    "choices": [
+      "Create a third-party API endpoint in Amazon EventBridge. Configure internet Monitor to send the events to the third-party API endpoint in EventBridge.",
+      "Create a third-party API endpoint in Amazon EventBridge. Create a rule in EventBridge that uses Internet Monitor as the source and the third-party API endpoint in EventBridge as the destination.Most Voted",
+      "Create a third-party API endpoint in internet Monitor. Configure Internet Monitor to send the events to an Amazon S3 bucket. Configure an AWS Lambda function to send the events to the third-party API endpoint in Internet Monitor.",
+      "Create a third-party API endpoint in Internet Monitor. Configure Internet Monitor to send the events to the third-party API endpoint in Internet Monitor."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/151603-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 226Topic #: 1",
+    "question": "A company is running its application servers on Amazon EC2 instances. The EC2 instances run in separate VPCs that are connected by a transit gateway. The EC2 instances launch in a private subnet with a route to the transit gateway for internal and external connectivity. The external connectivity is provided by a VPC with firewall devices that perform an inspection for packets that ingress and egress through an internet gateway.A network engineer needs to help the company’s application team increase the payload size per packet delivery between the EC2 instances. All network connectivity must be through the transit gatewayWhat should the network engineer do to meet these requirements?",
+    "choices": [
+      "Enable jumbo frames on the transit gateway. Instruct the application team to set the maximum transmission unit (MTU) of the system’s network interfaces to 9001 bytes.",
+      "Instruct the application team to set the maximum transmission unit (MTU) of the VPC to 8500 bytes.",
+      "Instruct the application team to set up enhanced networking on the system by using the enhanced networking adapter. Set the maximum transmission unit (MTU) to 9001 bytes.",
+      "Instruct the application team to set the maximum transmission unit (MTU) of the system’s network interfaces to 8500 bytes.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/151599-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 225Topic #: 1",
+    "question": "A company is building an internet-facing application that is hosted on an Amazon Elastic Kubernetes Service (Amazon EKS) cluster. The company is using the Amazon VPC Container Network Interface (CNI) plugin for Kubernetes for pod networking connectivity. The company needs to expose its application to the internet by using a Network Load Balancer (NLB).The pods that host the application must have visibility of the source IP address that is contained in the original packet that the NLB receives.How should the network engineer configure the NLB and Amazon EKS settings to achieve these goals?",
+    "choices": [
+      "Specify the ip target type for the NLB. Set the externalTrafficPolicy attribute to Local in the Kubernetes service specification.Most Voted",
+      "Specify the instance target type for the NLSet the externalTrafficPolicy attribute to Cluster in the Kubernetes service specification.",
+      "Specify the instance target type for the NLB. Set the externalTrafficPolicy attribute to Local in the Kubernetes service specification.",
+      "Specify the ip target type for the NLB. Set the externalTrafficPolicy attribute to Cluster in the Kubernetes service specification."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/151552-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 224Topic #: 1",
+    "question": "A banking company has an application that must connect to specific public IP addresses from a VPC. A network engineer has configured routes in the route table that is associated with the application’s subnet to the required public IP addresses through an internet gateway.The network engineer needs to set up email notifications that will alert the network engineer when a user adds a default route to the application subnet's route table with the internet gateway as a target.Which solution will meet these requirements with the LEAST implementation effort?",
+    "choices": [
+      "Create an AWS Lambda function that reads the routes in the route table and sends an email notification. Configure the Lambda function to send an email notification if any route is configured with 0.0.0.0/0 or ::/0 CIDRs to the internet gateway. Configure the Lambda function to run every minute.",
+      "Create an AWS Lambda function that will be invoked by an Amazon EC2 CreateRoute API call. Configure the Lambda function to send an email notification. Configure the Lambda function to send an email notification if any route is configured with 0.0.0.0/0 or ::/0 CIDRs to the internet gateway.",
+      "Create AWS Config rules for the route table by using the internet-gateway-authorized-vpc-only managed rule. Create an Amazon EventBridge rule to match the AWS Config rule and to route to an Amazon Simple Notification Service (Amazon SNS) topic to send an email notification.",
+      "Create an AWS Config rule for the route table by using the no-unrestricted-route-to-igw managed rule. Create an Amazon EventBridge rule to match the AWS Config rule and to route to an Amazon Simple Notification Service (Amazon SNS) topic to send an email notification.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/151576-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 223Topic #: 1",
+    "question": "A company is developing an API-based application on AWS for its process workflow requirements. The API will be invoked by clients in the company’s on-premises data centers. The company has set up an AWS Direct Connect connection between on premises and AWS. A network engineer decides to implement the API as a private REST API in Amazon API Gateway. The network engineer wants to ensure that clients can reach the API endpoint through private communication.Which solution can the network engineer use to invoke the API without any additional infrastructure setup?",
+    "choices": [
+      "Create an interface VPC endpoint for API Gateway with private DNS names enabled. Access the API by using the private DNS name of the endpoint.",
+      "Create an interface VPC endpoint for API Gateway with private DNS names enabled. Access the API by using an Amazon Route 53 alias of the endpoint.",
+      "Create an interface VPC endpoint for API Gateway. Associate the endpoint with the private REST API, Access the API by using an Amazon Route 53 alias of the endpoint.",
+      "Create an interface VPC endpoint for API Gateway with private DNS names enabled. Access the API by using the public DNS name of the endpoint.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/151584-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 222Topic #: 1",
+    "question": "A retail company is migrating its on-premises application to the AWS Cloud. Currently, the company has two on-premises data center locations. One data center is on the east coast of the United States, and one data center is on the west coast.Each data center hosts four database systems. The largest database system stores 500 GB of data. The data centers are interconnected by two 10 GbE circuits for data synchronization. Each data center has two separate 1 GbE upstream internet connections. The company plans to have eight total VPCs to service its multiple business units. Four VPCs will be in the us-east-1 Region, and four will be in the us-west-2 Region.A network engineer needs to design a connectivity solution that allows VPC-to-VPC connectivity. The solution must also allow secure connections between the on-premises data centers and AWS during the migration process. The company expects spikes in traffic among the VPCs during database synchronization. The company wants to run the migration plan during one weekend and as soon as technically possible. The company also wants to minimize long-term operational and human resources costs.Which combination of steps will meet these requirements? (Choose two.)",
+    "choices": [
+      "Deploy one transit gateway and attach all VPCs to it. Update the transit gateway and VPC route tables to allow any VPC to connect to any other VPC.",
+      "Configure VPC peering between all the VPCs. Update the VPC route tables to allow connectivity.Most Voted",
+      "Provision two AWS Direct Connect connections from two Direct Connect locations that serve us-east-1 and us-west-2 to provide connectivity between the data centers and AWS.",
+      "Provision one transit gateway VPN attachment for each data center to build connectivity between the on-premises data centers and AWS VPCs.",
+      "E.Provision one AWS Site-to-Site VPN connection for each data center and for each VPC to build connectivity between the on-premises data centers and AWS VPCs.Most Voted"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/151578-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 221Topic #: 1",
+    "question": "A company is migrating its on-premises network from its data center in Virginia to its data center in New York. The AWS Direct Connect connections for the Virginia and New York data center locations are both associated to the us-east-1 Region. The company needs to migrate a private VIF on an existing Direct Connect hosted connection from Virginia to New York. The company's on-premises network uses the connection to access VPCs through a Direct Connect gateway in us-east-1.The company has already requested a new Direct Connect hosted connection from the new data center to the New York Direct Connect location.Which solution will meet these requirements with the LEAST downtime?",
+    "choices": [
+      "Create a new private VIF on the new Direct Connect hosted connection. Create a new Direct Connect gateway and attach the gateway to the new private VIF. Configure BGP routing on the new private VIF as a backup route. Perform the switchover during a maintenance window by shutting down BGP on the existing private VIF. Decommission the existing Direct Connect connection.",
+      "Create a new private VIF on the new Direct Connect hosted connection. Attach the new private VIF to the existing Direct Connect gateway. Configure BGP routing on the new private VIF as a backup route. Perform the switchover during a maintenance window by shutting down BGP on the existing private VIF. Decommission the existing Direct Connect connection.Most Voted",
+      "During a maintenance window, migrate the existing private VIF to the new Direct Connect hosted connection. Attach the existing private VIF to the existing Direct Connect gateway. Decommission the existing Direct Connect connection.",
+      "During a maintenance window, delete the existing private VIF and create a new private VIF to the new Direct Connect hosted connection. Attach the new private VIF to the existing Direct Connect gateway. Decommission the existing Direct Connect hosted connection."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/146250-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 220Topic #: 1",
+    "question": "A company has many application VPCs that use AWS Site-to-Site VPN connections for connectivity to an on-premises location. The company’s network team wants to gradually migrate to AWS Transit Gateway to provide VPC-to-VPC connectivity.The network team sets up a transit gateway that uses equal-cost multi-path (ECMP) routing. The network team attaches two temporary VPCs to the transit gateway for testing. The test VPCs contain Amazon EC2 instances to confirm connectivity over the transit gateway between the on-premises location and the VPCs. The network team creates two new Site-to-Site VPN connections to the transit gateway.During testing, the network team cannot reach the required bandwidth of 2.5 Gbps over the pair of new Site-o-Site VPN connections.Which combination of steps should the network team take to improve bandwidth performance and minimize network congestion? (Choose three.)",
+    "choices": [
+      "Enable acceleration for the existing Site-to-Site VPN connections to the transit gateway.",
+      "Create new accelerated Site-to-Site VPN connections to the transit gateway.Most Voted",
+      "Advertise the on-premises prefix to AWS with the same BGP AS_PATH attribute across all the Site-to-Site VPN connections.Most Voted",
+      "Advertise the on-premises prefix to AWS with a different BGP AS_PATH attribute across all the Site-to-Site VPN connections.",
+      "E.Verify that the transit gateway attachments are present in the Availability Zones of the test VPC.",
+      "F.Verify that the on-premises location is sending traffic by using multiple lows.Most Voted"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/146608-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 219Topic #: 1",
+    "question": "A company uses the us-east-1 Region and the ap-south-1 Region for its business units (BUs). The BUS are named BU-1 and BU-Z. For each BU, there are two VPCs in us-east-1 and one VPC in ap-south-1.Because of workload isolation requirements, resources can communicate within the same BU but cannot communicate with resources in the other BU. The company plans to add more BUs and plans to expand into more RegionsWhich solution will meet these requirements with the MOST operational efficiency?",
+    "choices": [
+      "Configure an AWS Cloud WAN network that operates in the required Regions. Attach all BU VPCs to the AWS Cloud WAN core network. Update the AWS Cloud WAN segment actions to configure new routes to deny traffic between the different BU segments.",
+      "Configure a transit gateway in each Region. Configure peering between the transit gateways. Attach the BU VPCs to the transit gateway in the corresponding Region. Configure the transit gateway and VPC route tables to isolate traffic between BU VPCs.",
+      "Configure an AWS Cloud WAN network that operates in the required Regions. Attach all BU VPCs to the AWS Cloud WAN core network. Update the core network policy by setting the isolate-attachments parameter for each segment.",
+      "Configure an AWS Cloud WAN network that operates in the required Regions. Create AWS Cloud WAN segments for each BU Configure VPC attachments for each BU’s VPCs to the corresponding BU segment.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/146538-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 218Topic #: 1",
+    "question": "A company has a VPC in the AWS Cloud. The company recently acquired a competitor that also has a VPC the AWS Cloud. A network engineer discovers an IP address overlap between the two VPCs. Both VPCs require access to an AWS Marketplace partner service.Which solution will ensure interoperability among the VPC hosted services and the AWS Markelplace partner service?",
+    "choices": [
+      "Configure VPC peering with static routing between the VPCs. Configure an AWS Site-to-Site VPN connection with static routing to the partner service.",
+      "Configure a NAT gateway in the VPCs. Configure default routes in each VPC to point to the local NAT gateway. Attach each NAT gateway to a transit gateway. Configure an AWS Site-to-Site VPN connection with static routing to the partner service.",
+      "Configure AWS PrivateLink to facilitate connectivity between the VPCs and the partner service. Use the DNS name that is created with the associated interface endpoints to route traffic between the VPCs and the partner service.Most Voted",
+      "Configure a NAT instance in the VPCs. Configure default routes in each VPC to point to the local NAT instance. Configure an interface endpoint in each VPC to connect to the partner service. Use the DNS name that is created with the associated interface endpoints to route traffic between the VPCs and the partner service."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/146537-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 217Topic #: 1",
+    "question": "A financial company offers investment forecasts and recommendations to authorized users through the internet. All the services are hosted in the AWS Cloud. A new compliance requirement states that all the internet service traffic from any host must be logged and retained for 2 years. In its development AWS accounts, the company has designed, tested, and verified a solution that uses Amazon VPC Traffic Mirroring with a Network Load Balancer (NLB) as the traffic mirror target. While the solution runs in one AWS account, the solution mirrors the traffic to another AWS account.A network engineer notices that not all traffic is mirrored when the solution is deployed into the production environment. The network engineer also notices that this behavior is random.Which statements are possible explanations for why not all the traffic is mirrored? (Choose two.)",
+    "choices": [
+      "The security groups are misconfigured on the production AWS account that hosts the company’s services.",
+      "The Amazon EC2 instance that is being monitored cannot handle the extra traffic that Traffic Mirroring has introduced.",
+      "The IAM policy that allows the creation of traffic mirror sessions is misconfigured",
+      "The mirrored traffic has a lower priority than the production traffic and is being dropped when network congestion occurs.Most Voted",
+      "E.The NLB is experiencing warm-up delay because of sudden and significant increases in traffic.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/146536-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 216Topic #: 1",
+    "question": "A company is using third-party firewall appliances to monitor and inspect traffic on premises. The company wants to use the same model on AWS. The Company has a single VPC with an internet gateway. The VPC has a fleet of web servers that run on Amazon EC2 instances that are managed by an Auto Scaling group.The company’s network team needs to work with the security team to establish inline inspection of all packets that are sent to and from the web servers. The solution must scale as the fleet of virtual firewall appliances scalesWhich combination of steps should the network team take to implement this solution? (Choose three.)",
+    "choices": [
+      "Create a new VPC, and deploy a fleet of firewall appliances. Create a Gateway Load Balancer. Add the firewall appliances as targets.Most Voted",
+      "Create a security group for use with the firewall appliances, and allow port 443. Allow a port for the Galeway Load Balancer to perform health checks.",
+      "Create a security group for use with the firewall appliances, and allow port 6081. Allow a port for the Gateway Load Balancer to perform health checks.Most Voted",
+      "Deploy a fleet of firewall appliances to the existing VPC. Create a Gateway Load Balancer. Add the firewall appliances as targets.",
+      "E.Update the internet gateway route table and the web server route table to send traffic to and from the internet to the VPC endpoint ID of the Gateway Load Balancer. Update the subnet route table that is associated with the Gateway Load Balancer endpoint to direct internet traffic to the internet gateway.",
+      "F.Create a new route table inside the web server VPC. Create a new edge association with the internet gateway. Update the internet gateway route table and the web server route table to send traffic to and from the internet to the VPC endpoint ID of the Gateway Load Balancer. Update the subnet route table that is associated with the Gateway Load Balancer endpoint to direct internet traffic to the internet gateway.Most Voted"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/145686-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 215Topic #: 1",
+    "question": "A company’s network engineer must implement a cloud-based networking environment for a network operations team to centrally manage. Other Teams will use the environment. Each team must be able to deploy infrastructure to the environment and must be able to manage its own resources. The environment must feature IPv4 and IPv6 support and must provide internet connectivity in a dual-stack configuration.The company has an organization in AWS Organizations that contains a workload account for the teams. The network engineer creates a new networking account in the organization.Which combination of steps should the network engineer take next to meet the requirements? (Choose three.)",
+    "choices": [
+      "Create a new VPC. Associate an IPv4 CIDR block of 10.0.0.0/16 and specify an IPv6 block of 2001:db8:c5a:6000::/56. Provision subnets by assigning /24 IPv4 CIDR blocks and /64 IPv6 CIDR blocks.",
+      "Create a new VPC. Associate an IPv4 CIDR block of 10.0.0.0/16 and use an Amazon-provided IPV6 CIDR block. Provision subnets by assigning /24 IPv4 CIDR blocks and /64 IPV6 CIDR blocks.Most Voted",
+      "Enable sharing of resources within the organization by using AWS Resource Access Manager (AWS RAM). Create a resource share in the networking account, select the provisioned subnets, and share the provisioned subnets with the target workload account. Use the workload account to accept the resource share through AWS RAM.Most Voted",
+      "Enable sharing of resources within the organization by using AWS Resource Access Manager (AWS RAM). Create a resource share in the networking account, select the new VPC, and share the new VPC with the target workload account. Use the workload account to accept the resource share through AWS RAM.",
+      "E.Create an internet gateway and an egress-only internal gateway. Deploy NAT gateways to the public subnets. Associate the internet gateway with the new VPC. Update the route tables. Associate the route tables with the relevant subnets.Most Voted",
+      "F.Create an internet gateway. Deploy NAT instances to public subnets. Update the route tables. Associate the route tables with the relevant subnets."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/145685-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 214Topic #: 1",
+    "question": "A company ran out of IP address space in one of the Availability Zones in an AWS Region that the company uses. The Availability Zone that is out of space is assigned the 10.10.1.0/24 CIDR block. The company manages its networking configurations in an AWS CloudFormation stack. The company’ VPC is assigned the 10 10.0.0/16 CIDR block and has available capacity in the 10.10.1.0/22 CIDR block.How should a network specialist add more IP address space in the existing VPC with the LEAST operational overhead?",
+    "choices": [
+      "Update the AWS::EC2::Subnet resource for the Availability Zone in the CloudFormation stack. Change the CidrBlock property to 10.10.1.0/22.",
+      "Update the AWS::EC2::VPC resource in the CloudFormation stack. Change the CidrBlock property to 10.10.1.0/22.",
+      "Copy the CloudFormation stack. Set the AWS::EC2::VPC resource CidrBlock property to 10.10.0.0/16. Set the AWS::EC2::Subnet resource CidrBlock property to 10.10.1.0/22 for the Availability Zone.",
+      "Create a new AWS::EC2::Subnet resource for the Availability Zone in the CloudFormation stack. Set the CidrBlock property to 10.10.2.0/24.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/145570-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 213Topic #: 1",
+    "question": "A company is replatforming a legacy data processing solution to AWS. The company deploys the solution on Amazon EC2 Instances in private subnets that are in one VPC.The solution uses Amazon S3 for abject storage. Both the data that the solution processes and the data the solution produces are stored in Amazon S3. The solution uses Amazon DynamoDB to save its own state. The company collects flow logs for the VPC. The solution uses one NAT gateway to register its license through the internet. A software vendor provides a specific hostname so the solution can register its license.The company notices that the AWS bill exceeds the projected budget for the solution. A network engineer uses AWS Cost Explorer to investigate the bill. The network engineer notices that the USE2-NatGateway-Bytes($) usage type is the root cause of the higher than expected bill.What should the network engineer do to resolve the issue? (Choose two.)",
+    "choices": [
+      "Set up Amazon VPC Traffic Mirroring. Analyze the traffic to identify the traffic that the NAT gateway processes.",
+      "Examine the VPC flow logs to identity the traffic that traverses the NAT gateway.Most Voted",
+      "Set up an AWS Cost and Usage Report in the AWS Billing and Cost Management console. Examine the report to find more details about the NAT gateway charges.",
+      "Verify that the security groups attached to the EC2 instances allow outgoing traffic only to the IP addresses that the hostname resolves to, the VPC CIDR block, and the AWS IP address ranges for Amazon S3 and DynamoDB.",
+      "E.Verify that the gateway VPC endpoints for Amazon S3 and DynamoDB are both set up and associated with the route tables of the private subnets.Most Voted"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/145684-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 212Topic #: 1",
+    "question": "A company has two data centers that are interconnected with multiple redundant links from different suppliers. The company Uses IP addresses that are within the 172.16,0.0/16 CIDR block. The company is running iBGP between the two data centers by using a private Autonomous System Number (ASN) and IGP.The company is moving toward a hybrid setup in which the company will initially use one VPC in the AWS Cloud. An AWS Direct Connect connection runs from the first data center to a Direct Connect gateway by using a private VIF. On the connection, the company advertises a summarized route for the 172.16.0.0/16 network. The company is planning to set up a second summarized route from the second data center to a different Direct Connect location.The company needs to implement a solution to route traffic to and from AWS through the first Direct Connect connection. The solution must use the second Direct Connect connection for failover purposes only.Which solution will meet these requirements?",
+    "choices": [
+      "Prepend the private ASN on the BGP announcements to AWS from the second data center. Add a second VIF in the first Direct Connect connection. Advertise the same network without any prepends from the first data center. Implement the same setup for the BGP announcement from AWS to the two data centers.",
+      "Tag the BGP announcements with the local preference BGP community tags. Set the tag to high preference for the first data center. Set the tag to low preference for the second data center.Configure the second data center’s router to have a lower local preference for the direct AWS BGP advertisements than for the advertisement from the fist data center.Most Voted",
+      "Configure the Direct Connect gateway to prefer routing through the Direct Connect connection with the first data center. Configure the second data center’s router to have a lower local preference for the direct AWS BGP advertisements than for the advertisement from the first data center.",
+      "Configure the focal AWS Region BGP community tag on the BGP route that is advertised from the fist data center. Configure AS_PATH prepends on the BGP announcements from the second data center."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/103112-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 211Topic #: 1",
+    "question": "A company’s network engineer needs to design a new solution to help troubleshoot and detect network anomalies. The network engineer has configured Traffic Mirroring. However, the mirrored traffic is overwhelming the Amazon EC2 instance that is the traffic mirror target. The EC2 instance hosts tools that the company’s security team uses to analyze the traffic. The network engineer needs to design a highly available solution that can scale to meet the demand of the mirrored traffic.Which solution will meet these requirements?",
+    "choices": [
+      "Deploy a Network Load Balancer (NLB) as the traffic mirror target. Behind the NLB. deploy a fleet of EC2 instances in an Auto Scaling group. Use Traffic Mirroring as necessary.Most Voted",
+      "Deploy an Application Load Balancer (ALB) as the traffic mirror target. Behind the ALB, deploy a fleet of EC2 instances in an Auto Scaling group. Use Traffic Mirroring only during non-business hours.",
+      "Deploy a Gateway Load Balancer (GLB) as the traffic mirror target. Behind the GLB. deploy a fleet of EC2 instances in an Auto Scaling group. Use Traffic Mirroring as necessary.",
+      "Deploy an Application Load Balancer (ALB) with an HTTPS listener as the traffic mirror target. Behind the ALB. deploy a fleet of EC2 instances in an Auto Scaling group. Use Traffic Mirroring only during active events or business hours."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/145678-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 210Topic #: 1",
+    "question": "A company has an internal web-based application that employees use. The company hosts the application over a VPN in the company’s on-premises network. The application runs on a fleet of Amazon EC2 instances in a private subnet behind a Network Load Balancer (NLB) in the same subnet. The instances are in an Amazon EC2 Auto Scaling group.During a recent security incident, SQL injection occurred on the application. A network engineer must implement a solution to prevent SQL injection attacks in the future.Which combination of steps will meet these requirements? (Choose three.)",
+    "choices": [
+      "Create an AWS WAF web ACL that includes rules to block SQL injection attacks.Most Voted",
+      "Create an Amazon CloudFront distribution. Specify the EC2 instances as the origin.",
+      "Replace the NLB with an Application Load Balancer.Most Voted",
+      "Associate the AWS WAF web ACL with the NLB.",
+      "E.Associate the AWS WAF web ACL with the Application Load Balancer.Most Voted",
+      "F.Associate the AWS WAF web ACL with the Amazon CloudFront distribution."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/145674-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 209Topic #: 1",
+    "question": "A company has VPCs across 50 AWS accounts and is using AWS Organizations. The company wants to implement web filtering. The requirements for how the traffic must be filtered are the same for all the VPCs. A network engineer plans to use AWS Network Firewall. The network engineer needs to implement a solution that minimizes the number of firewall policies and rule groups that are necessary for this web filtering.Which combination of steps will meet these requirements? (Choose three.)",
+    "choices": [
+      "Create a firewall policy or rule group in each account.",
+      "Use SCPs to share the firewall policy or rule group.",
+      "Create a firewall policy or rule group in the management accountMost Voted",
+      "Use AWS Resource Access Manager (AWS RAM) to share the firewall policy or rule group.Most Voted",
+      "E.Enable sharing within Organizations.Most Voted",
+      "F.Create OUs to share the firewall policy or rule group."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/145673-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 208Topic #: 1",
+    "question": "An online retail company is running a web application in the us-wast-2 Region and serves consumers in the United States. The company plans to expand across several countries in Europe and wants to provide low latency for all its users.The application needs to identify the users’ IP addresses and provide localized content based on the users’ geographic location. The application uses HTTP GET and POST methods for its functionality. The company also needs to develop a failover mechanism that works for GET and POST methods and is based on health checks. The failover must occur in less than 1 minute for all clients.Which solution will meet these requirements?",
+    "choices": [
+      "Configure a Network Load Balancer (NLB) for the application in each environment in the new AWS Regions. Create an AWS Global Accelerator accelerator that has endpoint groups that point to the NLBs in each Region.",
+      "Configure an Application Load Balancer (ALB) for the application in each environment in the new AWS Regions. Create an AWS Global Accelerator accelerator that has endpoint groups that point to the ALBs in each Region.Most Voted",
+      "Configure an Application Load Balancer (ALB) for the application in each environment in the new AWS Regions. Create Amazon Route 53 public hosted zones that have failover routing policies.",
+      "Configure a Network Load Balancer (NLB) for the application in each environment in the new AWS Regions. Create an Amazon CloudFront distribution. Configure an origin group with origin failover options."
+    ],
+    "answers": [
+      "B."
+    ]
+  }
+]

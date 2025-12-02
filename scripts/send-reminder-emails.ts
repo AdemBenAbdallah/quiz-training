@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import { and, eq, isNull, lte } from "drizzle-orm";
 import { Resend } from "resend";
 import { db } from "../db";
-import { userQuizProgress, user as userSchema } from "../db/schema";
+import { userLevelProgress, user as userSchema } from "../db/schema";
 
 dotenv.config();
 
@@ -79,9 +79,9 @@ async function sendReminderEmails() {
     const inactiveUsers = await db
       .select()
       .from(userSchema)
-      .leftJoin(userQuizProgress, eq(userSchema.id, userQuizProgress.userId))
+      .leftJoin(userLevelProgress, eq(userSchema.id, userLevelProgress.userId))
       .where(
-        and(lte(userSchema.createdAt, twoDaysAgo), isNull(userQuizProgress.id)),
+        and(lte(userSchema.createdAt, twoDaysAgo), isNull(userLevelProgress.id)),
       );
 
     console.log(`Found ${inactiveUsers.length} inactive users.`);

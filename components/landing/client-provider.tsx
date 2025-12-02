@@ -1,8 +1,8 @@
 "use client";
 
+import SignUp from "@/components/Signup";
 import { useRouter } from "next/navigation";
 import React, { createContext, useContext, useState } from "react";
-import SignUp from "@/components/Signup";
 
 type ClientContextType = {
   handleStart: () => void;
@@ -20,17 +20,21 @@ export function useClientProvider() {
 }
 
 export function ClientProvider({
-  session,
   children,
+  session,
 }: {
-  session: any;
   children: React.ReactNode;
+  session: any;
 }) {
   const [openSignUp, setOpenSignUp] = useState(false);
   const router = useRouter();
 
   const handleStart = () => {
-    session ? router.push("/levels") : setOpenSignUp(true);
+    if (session) {
+      router.push("/certificates");
+    } else {
+      setOpenSignUp(true);
+    }
   };
 
   return (

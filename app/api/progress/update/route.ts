@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db";
-import { userLevelProgress, userQuizProgress } from "@/db/schema";
+import { userLevelProgress } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
 import { auth } from "@/lib/auth";
-import { QuizParts } from "@/app/(preview)/parts";
 
 export async function POST(request: NextRequest) {
   try {
@@ -17,88 +16,45 @@ export async function POST(request: NextRequest) {
 
     const userId = session.user.id;
     const body = await request.json();
-    const { type, levelId, partId } = body;
+    const { type, levelId } = body;
 
-    if (type === "quiz_part") {
-      // Mark current part as passed
-      const existingQuizProgress = await db
+    if (type === "level_complete") {
+      // Mark level as passed
+      const existingLevelProgress = await db
         .select()
-        .from(userQuizProgress)
+        .from(userLevelProgress)
         .where(
           and(
-            eq(userQuizProgress.userId, userId),
-            eq(userQuizProgress.levelId, levelId),
-            eq(userQuizProgress.partId, partId),
+            eq(userLevelProgress.userId, userId),
+            eq(userLevelProgress.levelId, levelId),
           ),
         );
 
-      if (existingQuizProgress.length > 0) {
+      if (existingLevelProgress.length > 0) {
         // Update existing record
         await db
-          .update(userQuizProgress)
+          .update(userLevelProgress)
           .set({
             passed: true,
             updatedAt: new Date(),
           })
           .where(
             and(
-              eq(userQuizProgress.userId, userId),
-              eq(userQuizProgress.levelId, levelId),
-              eq(userQuizProgress.partId, partId),
-            ),
-          );
-      } else {
-        // Create new record marking this part as passed
-        await db.insert(userQuizProgress).values({
-          id: `${userId}_${levelId}_${partId}`,
-          userId,
-          levelId,
-          partId,
-          passed: true,
-        });
-      }
-
-      // Check if this was the last part of the level
-      const quizParts = QuizParts(levelId);
-      const isLastPart = partId === quizParts.data.length;
-
-      if (isLastPart) {
-        // Mark current level as passed
-        const existingLevelProgress = await db
-          .select()
-          .from(userLevelProgress)
-          .where(
-            and(
               eq(userLevelProgress.userId, userId),
               eq(userLevelProgress.levelId, levelId),
             ),
           );
-
-        if (existingLevelProgress.length > 0) {
-          await db
-            .update(userLevelProgress)
-            .set({
-              passed: true,
-              updatedAt: new Date(),
-            })
-            .where(
-              and(
-                eq(userLevelProgress.userId, userId),
-                eq(userLevelProgress.levelId, levelId),
-              ),
-            );
-        } else {
-          await db.insert(userLevelProgress).values({
-            id: `${userId}_${levelId}`,
-            userId,
-            levelId: levelId,
-            passed: true,
-          });
-        }
-
-        console.log(`Level ${levelId} completed for user: ${userId}`);
+      } else {
+        // Create new record marking this level as passed
+        await db.insert(userLevelProgress).values({
+          id: `${userId}_${levelId}`,
+          userId,
+          levelId,
+          passed: true,
+        });
       }
 
+      console.log(`Level ${levelId} completed for user: ${userId}`);
       return NextResponse.json({ success: true });
     }
 

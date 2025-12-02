@@ -22,6 +22,12 @@ export const dodoPayments = new DodoPayments({
 });
 
 export const auth = betterAuth({
+  session: {
+    cookieCache: {
+      enabled: true,
+      maxAge: 60 * 60, // 1 hour
+    },
+  },
   database: drizzleAdapter(db, {
     provider: "pg",
     schema,

@@ -1,5 +1,5 @@
-import useSWR from "swr";
 import { authClient } from "@/lib/auth-client";
+import useSWR from "swr";
 
 const fetchSession = async () => {
   const { data, error } = await authClient.getSession();

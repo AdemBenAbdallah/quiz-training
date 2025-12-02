@@ -1,15 +1,13 @@
 "use client";
 
-import { QuizParts } from "@/app/(preview)/parts";
 import Quiz from "@/components/quiz";
 import { cleanOptions } from "@/lib/explain-utils";
 import { loadCertificateLevel } from "@/lib/certificates";
 import { quizLevels } from "@/public/quiz";
 import { useState, useEffect } from "react";
 
-interface QuizPartProps {
+interface QuizLevelProps {
   levelId: number;
-  partId: number;
   certificateSlug?: string; // Optional for backward compatibility
 }
 
@@ -18,7 +16,7 @@ const extractQuestionNumber = (questionNumberStr: string): string => {
   return match ? `Question: ${match[1]}` : "";
 };
 
-export default function QuizPartV2({ levelId, partId, certificateSlug }: QuizPartProps) {
+export default function QuizLevel({ levelId, certificateSlug }: QuizLevelProps) {
   const [quizData, setQuizData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -51,15 +49,7 @@ export default function QuizPartV2({ levelId, partId, certificateSlug }: QuizPar
     return <div className="flex justify-center items-center min-h-64">Loading quiz...</div>;
   }
 
-  const level = levelId || 1;
-  const part = partId || 1;
-
-  const { data: quizParts } = QuizParts(level);
-
-  const startIdx = quizParts[part - 1]?.start || 0;
-  const endIdx = quizParts[part - 1]?.end || 0;
-
-  const quizQuestions = quizData.slice(startIdx, endIdx).map((q: any) => {
+  const quizQuestions = quizData.map((q: any) => {
     const rawChoices = q.choices;
     const limited = rawChoices.slice(0, 5);
     return {
@@ -75,9 +65,8 @@ export default function QuizPartV2({ levelId, partId, certificateSlug }: QuizPar
   return (
     <div className="flex flex-col gap-4">
       <Quiz
-        idx={part}
         levelId={levelId}
-        title={`Quiz Part ${part}`}
+        title={`Level ${levelId}`}
         questions={quizQuestions}
       />
     </div>

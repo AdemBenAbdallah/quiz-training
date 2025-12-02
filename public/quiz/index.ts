@@ -17,6 +17,13 @@ import awsDeveloperLevel6 from "./aws-developer/level6.json";
 import awsDeveloperLevel7 from "./aws-developer/level7.json";
 import awsDeveloperLevel8 from "./aws-developer/level8.json";
 
+// Import ANS-C01 certificate levels
+import ansc01Level1 from "./ansc01/level1.json";
+import ansc01Level2 from "./ansc01/level2.json";
+import ansc01Level3 from "./ansc01/level3.json";
+import ansc01Level4 from "./ansc01/level4.json";
+import ansc01Level5 from "./ansc01/level5.json";
+
 // Legacy quiz levels for backward compatibility
 export const quizLevels = [
   level1,
@@ -40,5 +47,12 @@ export const certificateLevels = {
     awsDeveloperLevel6,
     awsDeveloperLevel7,
     awsDeveloperLevel8,
+  ],
+  ansc01: [
+    ansc01Level1,
+    ansc01Level2,
+    ansc01Level3,
+    ansc01Level4,
+    ansc01Level5,
   ],
 };

@@ -1,5 +1,5 @@
-import Footer from "@/components/footer/Footer";
 import CertificateSelector from "@/components/CertificateSelector";
+import Footer from "@/components/footer/Footer";
 import { ClientProvider } from "@/components/landing/client-provider";
 import Faq from "@/components/landing/faq";
 import Hero from "@/components/landing/hero";
@@ -11,9 +11,17 @@ import { headers } from "next/headers";
 import { Suspense } from "react";
 
 export default async function HomePage() {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
+  let session = null;
+
+  // Handle prerendering gracefully
+  try {
+    session = await auth.api.getSession({
+      headers: await headers(),
+    });
+  } catch (error) {
+    // During prerendering, headers() will throw, so we continue without session
+    console.log("Session not available during prerendering");
+  }
 
   return (
     <ClientProvider session={session}>
