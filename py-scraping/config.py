@@ -66,6 +66,25 @@ CERTIFICATIONS = {
         },
         "total_questions": 1100,
         "search_query_template": "{exam} topic {topic} question {question} discussion"
+    },
+
+    "CLF-C02": {
+        "name": "AWS Certified Cloud Practitioner",
+        "topics": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        "question_ranges": {
+            1: (719, 1),
+            2: (719, 1),
+            3: (719, 1),
+            4: (719, 1),
+            5: (719, 1),
+            6: (719, 1),
+            7: (719, 1),
+            8: (719, 1),
+            9: (719, 1),
+            10: (719, 1),
+        },
+        "total_questions": 719,
+        "search_query_template": "AWS Cloud Practitioner topic {topic} question {question} discussion"
     }
 }
 

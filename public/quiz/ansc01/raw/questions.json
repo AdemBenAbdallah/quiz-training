@@ -3958,5 +3958,1342 @@
     "answers": [
       "A."
     ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/170993-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 270Topic #: 1",
+    "question": "A company has two AWS Direct Connect connections between Direct Connect locations and the company's on-premises environment in the US. The company uses the connections to communicate with AWS workloads that run in the us-east-1 Region. The company has a transit gateway that connects several VPCs. The Direct Connect connections terminate at a Direct Connect gateway and the transit VIFs to the transit gateway.The company recently acquired a smaller company that is based in Europe. The newly acquired company has only on-premises workloads. The newly acquired company does not expect to run workloads on AWS for the next 3 years. However, the newly acquired company requires connectivity to the parent company's AWS resources in us-east-1 and to the parent company's on-premises environment in the US. The parent company wants to use two new Direct Connect connections in Europe to provide the required connectivity.Which solution will meet these requirements with the LEAST operational overhead for the newly acquired company?",
+    "choices": [
+      "Associate new transit VIFs to the existing Direct Connect gateway. Configure the new transit VIFs to use Direct Connect SiteLink.",
+      "Associate new transit VIFs to a new Direct Connect gateway and to a new transit gateway in the eu-west-1 Region. Use transit gateway peering to connect the transit gateways.",
+      "Associate new private VIFs to the existing Direct Connect gateway. Configure the existing transit VIFs and the new private VIFs to use Direct Connect SiteLink.",
+      "Associate new private VIFs to a new Direct Connect gateway and to a new VPC in us-east-1. Configure the existing transit VIFs and the new private VIFs to use Direct Connect SiteLink and AWS PrivateLink endpoints in the new VPC."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/169824-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 269Topic #: 1",
+    "question": "AnyCompany deploys and manages networking resources in its AWS network account, named Account-A. AnyCompany acquires Example Corp, which has an application that runs behind an Application Load Balancer (ALB) in Example Corp's AWS account, named Account-B.Example Corp needs to use AWS Global Accelerator to create an accelerator to publish the application to users. AnyCompany's networking team will manage the accelerator.Which solution will meet these requirements with the LEAST management overhead?",
+    "choices": [
+      "Create an accelerator in Account-В. Use a cross-account role from Account-A to grant the networking team access to manage the accelerator.",
+      "Deploy a Network Load Balancer (NLB) in Account-A to route traffic to the ALB in Account-В. Create an accelerator, and set the NLB as the endpoint in Account-A.",
+      "Create a cross-account Global Accelerator attachment in Account-В for the Account-A principal. Create an accelerator in Account-A by using the shared attachment.Most Voted",
+      "Create an accelerator in Account-A. Use AWS Resource Access Management (AWS RAM) to share the accelerator with Account-В. Associate the ALB in Account-В with the accelerator in Account-A."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/169825-exam-aws-certified-advanced-networking-specialty-ans-c01/",
+    "question_number": "Question #: 268Topic #: 1",
+    "question": "A media company is planning to host an event that the company will live stream to users. The company wants to use Amazon CloudFront.A network engineer creates a primary origin and a secondary origin for CloudFront. The engineer needs to ensure that the primary origin can fail over to the secondary origin within 15 seconds if a disruption occurs.Which solution will meet this requirement with the LEAST operational overhead?",
+    "choices": [
+      "Configure a Lambda@Edge function to check the health status of both origins every 10 seconds. Reroute incoming requests when the origin health status is unhealthy.",
+      "Create a Network Load Balancer (NLB) in front of both origins Configure the NLB as the origin in CloudFront.",
+      "Set the CloudFront origin connection timeout value to 5 seconds Set the origin connection attempts value to 2.Most Voted",
+      "Configure a Lambda@Edge function to monitor incoming requests for an origin response. Reroute incoming requests if no response is received from the primary origin within 10 seconds."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/129620-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 267Topic #: 1",
+    "question": "Which AWS service or resource can provide discounts on some AWS service costs in exchange for a spending commitment?",
+    "choices": [
+      "Amazon Detective",
+      "AWS Pricing Calculator",
+      "Savings PlansMost Voted",
+      "Basic Support"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/129619-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 266Topic #: 1",
+    "question": "A company wants to run a simulation for 3 years without interruptions.Which Amazon EC2 instance purchasing option will meet these requirements MOST cost-effectively?",
+    "choices": [
+      "Spot Instances",
+      "Reserved InstancesMost Voted",
+      "Dedicated Hosts",
+      "On-Demand Instances"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/129618-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 265Topic #: 1",
+    "question": "How does the AWS Enterprise Support Concierge team help users?",
+    "choices": [
+      "Supporting application development",
+      "Providing architecture guidance",
+      "Answering billing and account inquiriesMost Voted",
+      "Answering questions regarding technical support cases"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/129560-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 264Topic #: 1",
+    "question": "A company wants to receive alerts to monitor its overall operating costs for its AWS public cloud infrastructure.Which AWS offering will meet these requirements?",
+    "choices": [
+      "Amazon EventBridge",
+      "Compute Savings Plans",
+      "AWS BudgetsMost Voted",
+      "Migration Evaluator"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/129695-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 263Topic #: 1",
+    "question": "A company wants to migrate petabytes of data from its on-premises data center to AWS. The company does not want to use an internet connection to perform the migration.Which AWS service will meet these requirements?",
+    "choices": [
+      "AWS DataSync",
+      "Amazon Connect",
+      "AWS SnowmobileMost Voted",
+      "AWS Direct Connect"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147760-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 717Topic #: 1",
+    "question": "A company needs to run some of its workload in the AWS Cloud. The company needs to keep some of the workload in its own on-site data center due to compliance reasons.Which AWS service will meet these requirements?",
+    "choices": [
+      "AWSConfig",
+      "AWS OutpostsMost Voted",
+      "Amazon Lightsail",
+      "Amazon Connect"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147759-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 716Topic #: 1",
+    "question": "Which AWS service can manage permissions for AWS resources by using policies?",
+    "choices": [
+      "Amazon Inspector",
+      "Amazon Detective",
+      "AWS Identity and Access Management (IAM)Most Voted",
+      "Amazon GuardDuty"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147758-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 715Topic #: 1",
+    "question": "A company wants to connect its supported AWS services and VPCs. The company does not want to expose its internal traffic to the public internet.Which AWS service will meet these requirements?",
+    "choices": [
+      "Amazon Inspector",
+      "AWS PrivateLinkMost Voted",
+      "Amazon Connect",
+      "AWS Internet Gateway"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147757-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 714Topic #: 1",
+    "question": "A company wants to run its application on Amazon EC2 instances. The company needs to keep the application on-premises to meet a compliance requirement.Which AWS offering will meet these requirements?",
+    "choices": [
+      "Dedicated Instances",
+      "Amazon CloudFront",
+      "AWS Fargate",
+      "AWS OutpostsMost Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147756-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 713Topic #: 1",
+    "question": "A company needs to block SQL injection attacks.Which AWS service or feature provides this functionality?",
+    "choices": [
+      "AWS WAFMost Voted",
+      "Network ACLs",
+      "Security groups",
+      "AWS Trusted Advisor"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147187-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 712Topic #: 1",
+    "question": "Which AWS service can migrate Amazon EC2 instances from one AWS Region to another?",
+    "choices": [
+      "AWS Application Migration ServiceMost Voted",
+      "AWS Database Migration Service (AWS DMS)",
+      "AWS DataSync",
+      "AWS Migration Hub"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147755-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 711Topic #: 1",
+    "question": "A company needs to provision uninterruptible Amazon EC2 instances, when needed, and pay for compute capacity by the second.Which EC2 instance purchasing option will meet these requirements?",
+    "choices": [
+      "Reserved Instances",
+      "Spot Instances",
+      "On-Demand InstancesMost Voted",
+      "Dedicated Instances"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147754-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 710Topic #: 1",
+    "question": "A company wants to consolidate its call centers to improve the customer voice and chat experience with call center agents.Which AWS service or tool will meet these requirements?",
+    "choices": [
+      "Amazon Simple Notification Service (Amazon SNS)",
+      "AWS Support Center",
+      "Amazon Cognito",
+      "Amazon ConnectMost Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147753-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 709Topic #: 1",
+    "question": "A company is learning about the perspectives of the AWS Cloud Adoption Framework (AWS CAF).Which perspective of the AWS CAF addresses the strategy management capability?",
+    "choices": [
+      "Business perspective",
+      "People perspective",
+      "Governance perspective",
+      "Operations perspective"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147186-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 708Topic #: 1",
+    "question": "A company has an on-premises application. The application has processing times of less than 5 minutes and is invoked only a few times each day. The company wants to move the application to the AWS Cloud.Which AWS service will support this application MOST cost-effectively?",
+    "choices": [
+      "Amazon Elastic Container Service (Amazon ECS)",
+      "AWS LambdaMost Voted",
+      "Amazon Elastic Kubernetes Service (Amazon EKS)",
+      "Amazon EC2"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147752-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 707Topic #: 1",
+    "question": "A company has deployed several public applications behind Application Load Balancers. The company wants to improve the performance of the applications.Which AWS service will meet these requirements?",
+    "choices": [
+      "AWS Global AcceleratorMost Voted",
+      "Amazon Connect",
+      "Amazon ElastiCache",
+      "Amazon CloudWatch"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147751-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 706Topic #: 1",
+    "question": "A company plans to launch an ecommerce website that contains many images for a product catalog. The company wants to keep the cost of running the website within a specific budget.Which AWS service or tool should the company use to monitor the ongoing costs of the website?",
+    "choices": [
+      "AWS Cost ExplorerMost Voted",
+      "AWS SDKs",
+      "EC2 Image Builder",
+      "AWS CloudFormation"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147750-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 705Topic #: 1",
+    "question": "A company wants to test a new application.Which AWS principle will help the company test the application?",
+    "choices": [
+      "Make long-term commitments in exchange for a cost discount.",
+      "Scale up and down when needed without any long-term commitments.",
+      "Have total control over the application infrastructure.",
+      "Manage all of the maintenance tasks associated with the cloud."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147749-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 704Topic #: 1",
+    "question": "A company wants to allow its employees to work remotely from home. The company's employees use Windows or Linux desktops. The company's employees need access from anywhere and at anytime by using any supported devices.Which AWS service will meet these requirements?",
+    "choices": [
+      "Amazon Workspaces",
+      "Amazon AppStream 2.0",
+      "Amazon Keyspaces (for Apache Cassandra)",
+      "AWS Cloud9"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147185-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 703Topic #: 1",
+    "question": "A company is planning to migrate to the AWS Cloud. The company needs to understand the existing on-premises usage and configuration. The company does not want to replicate its workloads to AWS, yet.Which AWS service or tool will meet these requirements?",
+    "choices": [
+      "AWS Application Discovery ServiceMost Voted",
+      "AWS Application Migration Service",
+      "Cloud Migration Factory",
+      "AWS Transfer Family"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147748-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 702Topic #: 1",
+    "question": "A company wants to run its application's code without having to provision and manage servers.Which AWS service will meet this requirement?",
+    "choices": [
+      "AWS Glue",
+      "AWS LambdaMost Voted",
+      "AWS CodeDeploy",
+      "Amazon CodeGuru"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147111-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 701Topic #: 1",
+    "question": "A company runs an uninterruptible Amazon EC2 workload on AWS 24 hours a day, 7 days a week. The company will require the same instance family and instance type to run the workload for the next 12 months.Which combination of purchasing options should the company choose to MOST optimize costs? (Choose two.)",
+    "choices": [
+      "Standard Reserved InstanceMost Voted",
+      "Convertible Reserved Instance",
+      "Compute Savings Plan",
+      "Spot Instance",
+      "E.All Upfront paymentMost Voted"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/145956-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 700Topic #: 1",
+    "question": "A company wants an Amazon S3 solution that provides access to object storage within single-digit milliseconds.Which solution will meet these requirements?",
+    "choices": [
+      "S3 Express One ZoneMost Voted",
+      "S3 Standard",
+      "S3 Glacier Flexible Retrieval",
+      "S3 Glacier Instant Retrieval"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147747-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 699Topic #: 1",
+    "question": "A company wants to improve employee productivity by providing a way for employees to search for questions and retrieve specific answers. The company wants to use a single intelligent search interface.Which AWS service will meet these requirements?",
+    "choices": [
+      "Amazon Connect",
+      "Amazon KendraMost Voted",
+      "Amazon Lex",
+      "Amazon Comprehend"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147746-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 698Topic #: 1",
+    "question": "A company is releasing a business-critical application. Before the release, the company needs strategic planning assistance from AWS. During the release, the company needs AWS infrastructure event management and real-time support.What should the company do to meet these requirements?",
+    "choices": [
+      "Access AWS Trusted Advisor",
+      "Contact the AWS Partner Network (APN)",
+      "Sign up for AWS Enterprise SupportMost Voted",
+      "Contact AWS Professional Services"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147745-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 697Topic #: 1",
+    "question": "A company purchased Amazon EC2 Standard Reserved Instances (RIs) for a workload in the AWS Cloud. The company needs to move part of the workload to an instance family that does not match the instance family of these Standard RIs.How can the company take advantage of the Standard RIs that it no longer needs?",
+    "choices": [
+      "Contact the AWS Support team, and ask the team to sell the Standard RIs",
+      "Sell the Standard RIs on the Amazon EC2 Reserved Instance Marketplace",
+      "Sell the Standard RIs as a third-party seller on the AWS Marketplace",
+      "Convert the Standard RIs to Savings Plans"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147744-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 696Topic #: 1",
+    "question": "Which AWS service supports MySQL database engines?",
+    "choices": [
+      "Amazon Dynamo DВ",
+      "Amazon RDSMost Voted",
+      "Amazon DocumentDB (with MongoDB compatibility)",
+      "Amazon ElastiCache"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/146263-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 695Topic #: 1",
+    "question": "A company wants to visualize and manage AWS Cloud costs and usage for a specific period of time.Which AWS service or feature will meet these requirements?",
+    "choices": [
+      "Cost ExplorerMost Voted",
+      "Consolidated billing",
+      "AWS Organizations",
+      "AWS Budgets"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147743-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 694Topic #: 1",
+    "question": "A company plans to onboard new employees that will be working remotely. The company needs to set up Windows virtual desktops to create a working environment for the new employees. The employees must be able access the working environment from anywhere and by using their computer or a web browser.Which AWS service or feature will meet these requirements?",
+    "choices": [
+      "Dedicated Hosts",
+      "AWS Global Accelerator",
+      "Amazon WorkspacesMost Voted",
+      "Amazon CloudFront"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147742-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 693Topic #: 1",
+    "question": "Which AWS offering can analyze a company’s AWS environment to discover security vulnerabilities on Amazon EC2 instances?",
+    "choices": [
+      "Amazon InspectorMost Voted",
+      "Amazon Macie",
+      "AWS Shield Standard",
+      "Security groups"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147741-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 692Topic #: 1",
+    "question": "A company has developed a new In-house application. The company does not have a way to determine or predict the usage demand that the application will create.Which AWS Cloud computing benefit is the company seeking?",
+    "choices": [
+      "Easy to use",
+      "Cost-effective",
+      "Secure",
+      "Scalable and high performance"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/146791-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 691Topic #: 1",
+    "question": "For which use case are Amazon EC2 On-Demand Instances MOST cost-effective?",
+    "choices": [
+      "Compute-intensive video transcoding that can be restarted if necessary",
+      "An instance in continual use for 1 month to conduct quality assurance testsMost Voted",
+      "An instance that runs a web server that will run for 1 year",
+      "An instance that runs a database that will run for 3 years"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147740-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 690Topic #: 1",
+    "question": "A company has multiple AWS accounts. The company needs to receive a consolidated bill from AWS and must centrally manage security and compliance.Which AWS service or feature should the company use to meet these requirements?",
+    "choices": [
+      "AWS Cost and Usage Report",
+      "AWS OrganizationsMost Voted",
+      "AWS Config",
+      "AWS Security Hub"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147739-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 689Topic #: 1",
+    "question": "Which type of workload should a company run on Amazon EC2 Spot Instances?",
+    "choices": [
+      "A steady-state workload that requires a particular EC2 instance configuration for a long period of time",
+      "A workload that can be interrupted and can control costsMost Voted",
+      "A steady-state workload that does not require a long-term commitment",
+      "A workload that cannot be interrupted and can control costs"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147738-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 688Topic #: 1",
+    "question": "A company wants to provide low latency to its users around the world.Which feature of the AWS Cloud meet this requirement?",
+    "choices": [
+      "Global infrastructure",
+      "Pay as-you-go pricing",
+      "Managed services",
+      "Economy of scale"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/145417-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 687Topic #: 1",
+    "question": "Which design principle aligns with performance efficiency pillar of the AWS Well-Architected Framework?",
+    "choices": [
+      "Using serverless architecturesMost Voted",
+      "Scaling horizontally",
+      "Measuring the cost of workloads",
+      "Using managed services"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147737-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 686Topic #: 1",
+    "question": "A company plans to migrate its application from on premises to the AWS Cloud. The company needs to gather usage and configuration data for the application components.Which AWS service will meet these requirements?",
+    "choices": [
+      "AWS Database Migration Service (AWS DMS)",
+      "AWS Transfer Family",
+      "AWS Application Discovery Service",
+      "AWS Global Accelerator"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147736-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 685Topic #: 1",
+    "question": "A company wants a fully managed service that centralizes and automates data protection across AWS services and hybrid workloads.Which AWS service will meet these requirements?",
+    "choices": [
+      "AWS Artifact",
+      "AWS Backup",
+      "AWS Batch",
+      "AWS Shield"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147735-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 684Topic #: 1",
+    "question": "A company needs to run an application on Amazon EC2 instances without interruption.Which EC2 instance purchasing option will meet this requirement MOST cost-effectively?",
+    "choices": [
+      "Standard Reserved InstancesMost Voted",
+      "Convertible Reserved Instances",
+      "On-Demand Instances",
+      "Spot Instances"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147734-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 683Topic #: 1",
+    "question": "A company wants to explore and analyze data in Amazon S3 by using a programming language.Which AWS service will meet these requirements?",
+    "choices": [
+      "Amazon Kendra",
+      "Amazon Athena",
+      "Amazon Comprehend",
+      "Amazon SageMaker"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147733-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 682Topic #: 1",
+    "question": "Which AWS service or tool provides recommendations to help users get rightsized Amazon EC2 instances based on historical workload usage data?",
+    "choices": [
+      "AWS Pricing Calculator",
+      "AWS Compute OptimizerMost Voted",
+      "AWS App Runner",
+      "AWS Systems Manager"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147732-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 681Topic #: 1",
+    "question": "A company wants to build, train, and deploy machine learning (ML) models.Which AWS service can the company use to meet this requirement?",
+    "choices": [
+      "Amazon Personalize",
+      "Amazon Comprehend",
+      "Amazon Forecast",
+      "Amazon SageMakerMost Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147731-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 680Topic #: 1",
+    "question": "A company has multiple SQL-based databases located in a data center. The company needs to migrate all database servers to the AWS Cloud to reduce the cost of operating physical servers.Which AWS service or resource will meet these requirements with the LEAST operational overhead?",
+    "choices": [
+      "Amazon EC2 instances",
+      "Amazon RDS",
+      "Amazon DynamoDB",
+      "OpenSearch"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147730-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 679Topic #: 1",
+    "question": "Which pillar of the AWS Well-Architected Framework focuses on the ability to recover automatically from service interruptions?",
+    "choices": [
+      "Security",
+      "Performance efficiency",
+      "Operational excellence",
+      "Reliability"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147729-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 678Topic #: 1",
+    "question": "Which AWS Well-Architected Framework concept represents a system's ability to remain functional when the system encounters operational problems?",
+    "choices": [
+      "Consistency",
+      "Elasticity",
+      "Durability",
+      "Latency"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147728-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 677Topic #: 1",
+    "question": "A company wants to migrate critical on-premises production systems to Amazon EC2 instances. The production instances will be used for at least 3 years. The company wants a pricing option that will minimize cost.Which solution will meet these requirements?",
+    "choices": [
+      "On-Demand Instances",
+      "Reserved Instances",
+      "Spot Instances",
+      "AWS Free Tier"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147727-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 676Topic #: 1",
+    "question": "Which AWS Cloud Adoption Framework (AWS CAF) perspective focuses on real-time insights and answers questions about strategy?",
+    "choices": [
+      "Operations",
+      "People",
+      "Business",
+      "Platform"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147726-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 675Topic #: 1",
+    "question": "A company has moved all its infrastructure to the AWS Cloud. To plan ahead for each quarter, the finance team wants to track the cost and usage data of all resources from previous months. The finance team wants to automatically generate reports that contains the data.Which AWS service or feature should the finance team use to meet these requirements?",
+    "choices": [
+      "Amazon Detective",
+      "AWS Pricing Calculator",
+      "AWS Budgets",
+      "AWS Savings Plans"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147725-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 674Topic #: 1",
+    "question": "A company wants to deploy a web application as a containerized application. The company wants to use a managed service that can automatically create container images from source code and deploy the containerized application.Which AWS service will meet these requirements?",
+    "choices": [
+      "AWS Elastic Beanstalk",
+      "Amazon Elastic Container Service (Amazon ECS)",
+      "AWS App Runner",
+      "Amazon EC2"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147724-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 673Topic #: 1",
+    "question": "A company wants to migrate to the AWS Cloud. The company needs the ability to acquire resources when the resources are necessary. The company also needs the ability to release those resources when the resources are no longer necessary.Which architecture concept of the AWS Cloud meets these requirements?",
+    "choices": [
+      "Elasticity",
+      "Availability",
+      "Reliability",
+      "Durability"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147723-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 672Topic #: 1",
+    "question": "A company wants to build graph queries for real-time fraud pattern detection.Which AWS service will meet this requirement?",
+    "choices": [
+      "Amazon Neptune",
+      "Amazon DynamoDB",
+      "Amazon Timestream",
+      "Amazon Forecast"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147722-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 671Topic #: 1",
+    "question": "A company that is planning to migrate to the AWS Cloud is based in an isolated area that has limited internet connectivity. The company needs to perform local data processing on premises. The company needs a solution that can operate without a stable internet connection.Which AWS service will meet these requirements?",
+    "choices": [
+      "Amazon S3",
+      "AWS Snowball Edge",
+      "AWS Storage Gateway",
+      "AWS Backup"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147721-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 670Topic #: 1",
+    "question": "A company is planning to migrate to the AWS Cloud. The company is conducting organizational transformation and wants to become more responsive to customer inquiries and feedback.Which task should the company perform to meet these requirements, according to the AWS Cloud Adoption Framework (AWS CAF)? (Choose two.)",
+    "choices": [
+      "Realign teams to focus on products and value streams.Most Voted",
+      "Create new value propositions with new products and services.",
+      "Use agile methods to rapidly iterate and evolve.Most Voted",
+      "Use a new data and analytics platform to create actionable insights.",
+      "E.Migrate and modernize legacy infrastructure."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147720-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 669Topic #: 1",
+    "question": "Which benefits does a company gain when the company moves from on-premises IT architecture to the AWS Cloud? (Choose two.)",
+    "choices": [
+      "Reduced or eliminated tasks for hardware troubleshooting, capacity planning, and procurement",
+      "Elimination of the need for trained IT staff",
+      "Automatic security configuration of all applications that are migrated to the cloud",
+      "Elimination of the need for disaster recovery planning",
+      "E.Faster deployment of new features and applications"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147719-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 668Topic #: 1",
+    "question": "A company has data lakes designed for high performance computing (HPC) workloads.Which Amazon EC2 instance type should the company use to meet these requirements?",
+    "choices": [
+      "General purpose instances",
+      "Compute optimized instancesMost Voted",
+      "Memory optimized instances",
+      "Storage optimized instances"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147718-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 667Topic #: 1",
+    "question": "A company wants to migrate its server-based applications to the AWS Cloud. The company wants to determine the total cost of ownership for its compute resources that will be hosted on the AWS Cloud.Which combination of AWS services or tools will meet these requirements? (Choose two.)",
+    "choices": [
+      "AWS Pricing CalculatorMost Voted",
+      "Migration EvaluatorMost Voted",
+      "AWS Support Center",
+      "AWS Application Discovery Service",
+      "E.AWS Database Migration Service (AWS DMS)"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147717-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 666Topic #: 1",
+    "question": "Which option is an advantage of AWS Cloud computing that minimizes variable costs?",
+    "choices": [
+      "High availability",
+      "Economies of scale",
+      "Global reach",
+      "Agility"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147716-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 665Topic #: 1",
+    "question": "A company needs stateless network filtering for its VPC.Which AWS service, tool, or feature will meet this requirement?",
+    "choices": [
+      "AWS PrivateLink",
+      "Security group",
+      "Network access control list (ACL)",
+      "AWS WAF"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147715-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 664Topic #: 1",
+    "question": "A company wants to migrate its on-premises SQL Server database to the AWS Cloud. The company wants AWS to handle the day-to-day administration of the database.Which AWS service will meet the company's requirements?",
+    "choices": [
+      "Amazon EC2 for Microsoft SQL Server",
+      "Amazon DynamoDB",
+      "Amazon RDS",
+      "Amazon Aurora"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147714-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 663Topic #: 1",
+    "question": "A company deployed an application in multiple AWS Regions around the world. The company wants to improve the application’s performance and availability.Which AWS service will meet these requirements?",
+    "choices": [
+      "AWS Global Accelerator",
+      "Amazon DataZone",
+      "AWS Cloud Map",
+      "AWS Auto Scaling"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147713-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 662Topic #: 1",
+    "question": "Which AWS service is a fully managed NoSQL database service?",
+    "choices": [
+      "Amazon RDS",
+      "Amazon Redshift",
+      "Amazon DynamoDB",
+      "Amazon Aurora"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/146257-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 661Topic #: 1",
+    "question": "A company wants to transfer a virtual Windows Server 2022 that is currently running in its own data center to AWS. The company wants to automatically convert the existing server to run directly on AWS infrastructure instead of visualized hardware.Which AWS service will meet these requirements?",
+    "choices": [
+      "AWS DataSync",
+      "AWS Database Migration Service (AWS DMS)",
+      "AWS Application Discovery Service",
+      "AWS Application Migration ServiceMost Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147687-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 660Topic #: 1",
+    "question": "A company stores data in an Amazon S3 bucket.Which task is the responsibility of AWS?",
+    "choices": [
+      "Configure an S3 Lifecycle policy.",
+      "Activate S3 Versioning.",
+      "Configure S3 bucket policies.",
+      "Protect the infrastructure that supports S3 storage."
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147686-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 659Topic #: 1",
+    "question": "Which design principle is related to the reliability pillar according to the AWS Well-Architected Framework?",
+    "choices": [
+      "Test recovery procedures",
+      "Experiment more often",
+      "Go global in minutes",
+      "Analyze and attribute to expenditure"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147685-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 658Topic #: 1",
+    "question": "What is the total volume of data that can be stored in Amazon S3?",
+    "choices": [
+      "10 PB",
+      "50 PB",
+      "100 PB",
+      "Virtually unlimited"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/146255-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 657Topic #: 1",
+    "question": "A company hosts a web application on AWS. The company has improved the availability of its application by provisioning multiple Amazon EC2 instances. The company wants to distribute its traffic across the EC2 instances while providing a single point of contact to the web clients.Which AWS service can distribute the traffic to multiple EC2 instances as targets?",
+    "choices": [
+      "VPC endpoints",
+      "Application Load BalancerMost Voted",
+      "NAT gateway",
+      "Internet gateway"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147684-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 656Topic #: 1",
+    "question": "In which situations should a company create an IAM user instead of an IAM role?",
+    "choices": [
+      "When an application that runs on Amazon EC2 instances requires access to other AWS services",
+      "When the company creates AWS access credentials for individualsMost Voted",
+      "When the company creates an application that runs on a mobile phone that makes requests to AWS",
+      "When the company needs to add users to IAM groups",
+      "E.When users are authenticated in the corporate network and want to be able to use AWS without having to sign in a second time"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147683-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 655Topic #: 1",
+    "question": "To assist companies with Payment Card Industry Data Security Standard (PCI DSS) compliance in the cloud, AWS provides:",
+    "choices": [
+      "physical Inspections of data centers by appointment.",
+      "required PCI compliance certifications for any application running on AWS.",
+      "an AWS Attestation of Compliance (AOC) report for specific AWS services.",
+      "professional PCI compliance services."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/146253-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 654Topic #: 1",
+    "question": "An administrator observed that multiple AWS resources were deleted yesterday.Which AWS service will help identify the cause and determine which user deleted the resources?",
+    "choices": [
+      "AWS CloudTrailMost Voted",
+      "Amazon Inspector",
+      "Amazon GuardDuty",
+      "AWS Trusted Advisor"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147682-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 653Topic #: 1",
+    "question": "A company wants to use an AWS networking solution that can act as a centralized gateway between multiple VPCs and on-premises networks.Which AWS service or feature will meet this requirement?",
+    "choices": [
+      "Gateway VPC endpoint",
+      "AWS Direct Connect",
+      "AWS Transit Gateway",
+      "AWS PrivateLink"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147681-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 652Topic #: 1",
+    "question": "What is the recommended use case for Amazon EC2 On-Demand Instances?",
+    "choices": [
+      "A steady-state workload that requires a particular EC2 instance configuration for a long period of time",
+      "A workload that can be interrupted for a project that requires the lowest possible cost",
+      "An unpredictable workload that does not require a long-term commitmentMost Voted",
+      "A workload that is expected to run for longer than 1 year"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147680-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 651Topic #: 1",
+    "question": "A company needs to run some of its workloads on premises to comply with regulatory guidelines. The company wants to use the AWS Cloud to run workloads that are not required to be on premises. The company also wants to be able to use the same API calls for the on-premises workloads and the cloud workloads.Which AWS service or feature should the company use to meet these requirements?",
+    "choices": [
+      "Dedicated Hosts",
+      "AWS OutpostsMost Voted",
+      "Availability Zones",
+      "AWS Wavelength"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147679-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 650Topic #: 1",
+    "question": "Which AWS service is always available free of charge to users?",
+    "choices": [
+      "Amazon Athena",
+      "AWS Identity and Access Management (IAM)Most Voted",
+      "AWS Secrets Manager",
+      "Amazon ElastiCache"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147678-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 649Topic #: 1",
+    "question": "Which AWS service should a company use to organize, characterize, and search large numbers of images?",
+    "choices": [
+      "Amazon Transcribe",
+      "Amazon RekognitionMost Voted",
+      "Amazon Aurora",
+      "Amazon QuickSight"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147677-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 648Topic #: 1",
+    "question": "Which of the following is a customer responsibility according to the AWS shared responsibility model?",
+    "choices": [
+      "Apply security patches for Amazon S3 infrastructure devices.",
+      "Provide physical security for AWS datacenters.",
+      "Install operating system updates on Lambda@Edge.",
+      "Implement multi-factor authentication (MFA) for IAM user accounts."
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/146252-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 647Topic #: 1",
+    "question": "A company wants to continuously improve processes and procedures to deliver business value.Which pillar of the AWS Well-Architected Framework does this goal represent?",
+    "choices": [
+      "Performance efficiency",
+      "Operational excellenceMost Voted",
+      "Reliability",
+      "Sustainability"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147676-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 646Topic #: 1",
+    "question": "Which AWS services are serverless? (Choose two.)",
+    "choices": [
+      "AWS FargateMost Voted",
+      "Amazon Managed Streaming for Apache Kafka",
+      "Amazon EMR",
+      "Amazon S3Most Voted",
+      "E.Amazon EC2"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147675-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 645Topic #: 1",
+    "question": "A company wants an AWS service that can automate software deployment in Amazon EC2 instances and on-premises instances.Which AWS service will meet this requirement?",
+    "choices": [
+      "AWS CodeCommit",
+      "AWS CodeBuild",
+      "AWS CodeDeploy",
+      "AWS CodePipeline"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147674-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 644Topic #: 1",
+    "question": "A company wants to securely access an Amazon S3 bucket from an Amazon EC2 instance without accessing the internet.What should the company use to accomplish this goal?",
+    "choices": [
+      "VPN connection",
+      "Internet gateway",
+      "VPC endpointMost Voted",
+      "NAT gateway"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147673-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 643Topic #: 1",
+    "question": "Which AWS service uses edge locations to cache content?",
+    "choices": [
+      "Amazon Kinesis",
+      "Amazon Simple Queue Service (Amazon SQS)",
+      "Amazon CloudFrontMost Voted",
+      "Amazon Route 53"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147672-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 642Topic #: 1",
+    "question": "A company is migrating to the AWS Cloud instead of running its infrastructure on premises.Which of the following are advantages of this migration? (Choose two.)",
+    "choices": [
+      "Elimination of the need to perform security auditing",
+      "Increased global reach and agility",
+      "Ability to deploy globally in minutes",
+      "Elimination of the cost of IT staff members",
+      "E.Redundancy by default for all compute services"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147671-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 641Topic #: 1",
+    "question": "Which AWS service or tool provides a visualization of historical AWS spending patterns and projections of future AWS costs?",
+    "choices": [
+      "AWS Cost and Usage Report",
+      "AWS Budgets",
+      "Cost Explorer",
+      "Amazon Cloud Watch"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147670-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 640Topic #: 1",
+    "question": "A company has an AWS Business Support plan. The company needs to gain access to the AWS DDoS Response Team (DRT) to help mitigate DDoS events.Which AWS service or resource must the company use to meet these requirements?",
+    "choices": [
+      "AWS Shield Standard",
+      "AWS Enterprise Support",
+      "AWS WAF",
+      "AWS Shield Advanced"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147669-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 639Topic #: 1",
+    "question": "A company wants a cost-effective option when running its applications in an Amazon EC2 instance for short time periods. The applications can be interrupted.Which EC2 instance type will meet these requirements?",
+    "choices": [
+      "Spot Instances",
+      "On-Demand Instances",
+      "Reserved Instances",
+      "Dedicated Instances"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147668-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 638Topic #: 1",
+    "question": "A company wants the ability to automatically acquire resources as needed and release the resources when they are no longer needed.Which cloud concept describes this functionality?",
+    "choices": [
+      "Availability",
+      "Elasticity",
+      "Durability",
+      "Reliability"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147667-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 637Topic #: 1",
+    "question": "A company wants to track the monthly cost and usage of all Amazon EC2 instances in a specific AWS environment.Which AWS service or tool will meet these requirements?",
+    "choices": [
+      "AWS Cost Anomaly Detection",
+      "AWS BudgetsMost Voted",
+      "AWS Compute Optimizer",
+      "AWS Trusted Advisor"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147666-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 636Topic #: 1",
+    "question": "Which AWS service integrates with other AWS services to provide the ability to encrypt data at rest?",
+    "choices": [
+      "AWS Key Management Service (AWS KMS)Most Voted",
+      "AWS Certificate Manager (ACM)",
+      "AWS Identity and Access Management (IAM)",
+      "AWS Security Hub"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147665-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 635Topic #: 1",
+    "question": "A company migrated its systems to the AWS Cloud. The systems are rightsized, and a security review did not reveal any issues. The company must ensure that additional developments, integrations, changes, and system usage growth do not jeopardize this optimized AWS infrastructure.Which AWS service should the company use to report ongoing optimization and security?",
+    "choices": [
+      "AWS Trusted AdvisorMost Voted",
+      "AWS Health Dashboard",
+      "Amazon Connect",
+      "AWS Systems Manager"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147664-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 634Topic #: 1",
+    "question": "A company has a workload that will run continuously for 1 year. The workload cannot tolerate service interruptions.Which Amazon EC2 purchasing option will be MOST cost-effective?",
+    "choices": [
+      "All Upfront Reserved InstancesMost Voted",
+      "Partial Upfront Reserved Instances",
+      "Dedicated Instances",
+      "On-Demand Instances"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147663-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 633Topic #: 1",
+    "question": "Which AWS service or tool provides users with a graphical interface that they can use to manage AWS services?",
+    "choices": [
+      "AWS Copilot",
+      "AWS CLI",
+      "AWS Management ConsoleMost Voted",
+      "AWS software development kits (SDKs)"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147662-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 632Topic #: 1",
+    "question": "Which AWS service uses speech-to-text conversion to help users create meeting notes?",
+    "choices": [
+      "Amazon Polly",
+      "Amazon Textract",
+      "Amazon Rekognition",
+      "Amazon TranscribeMost Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/147760-exam-aws-certified-cloud-practitioner-clf-c02-topic-1/",
+    "question_number": "Question #: 717Topic #: 1",
+    "question": "A company needs to run some of its workload in the AWS Cloud. The company needs to keep some of the workload in its own on-site data center due to compliance reasons.Which AWS service will meet these requirements?",
+    "choices": [
+      "AWSConfig",
+      "AWS OutpostsMost Voted",
+      "Amazon Lightsail",
+      "Amazon Connect"
+    ],
+    "answers": [
+      "B."
+    ]
   }
 ]

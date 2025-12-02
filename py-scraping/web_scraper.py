@@ -32,20 +32,20 @@ except ImportError as e:
 # Import configuration
 try:
     from config import DEFAULT_CONFIG, get_config_for_exam
-    CONFIG = DEFAULT_CONFIG.copy()
+    CONFIG = get_config_for_exam("CLF-C02")
+    # Add topic and question range for CLF-C02
     CONFIG.update({
-        "current_exam": "ANS-C01",
         "topic": 1,
-        "start_question": 272,
-        "end_question": 1
+        "start_question": 719,
+        "end_question": 200
     })
 except ImportError:
     # Fallback configuration if config.py is not available
     CONFIG = {
-        "current_exam": "ANS-C01",
+        "current_exam": "CLF-C02",
         "topic": 1,
-        "start_question": 272,
-        "end_question": 1,
+        "start_question": 719,
+        "end_question": 200,
         "delay_range": (2, 5),
         "max_retries": 3,
         "request_timeout": 30,
@@ -156,6 +156,15 @@ class QuizScraper:
             self.driver.get(search_url)
             time.sleep(3)  # Wait for results to load
 
+            # Check for CAPTCHA
+            if self.check_and_handle_captcha():
+                print("⏸️  CAPTCHA detected and handled, continuing...")
+                # Wait a bit more after CAPTCHA
+                time.sleep(5)
+                # Reload the search page
+                self.driver.get(search_url)
+                time.sleep(3)
+
             # Find and click the VERY FIRST search result
             try:
                 # Try multiple selectors for the first result
@@ -201,6 +210,75 @@ class QuizScraper:
             print(f"❌ Error searching for question {question_num}: {e}")
             return None
 
+    def check_and_handle_captcha(self) -> bool:
+        """Check for CAPTCHA and wait for manual solving"""
+        try:
+            # Common CAPTCHA indicators
+            captcha_indicators = [
+                'iframe[src*="recaptcha"]',
+                'iframe[src*="hcaptcha"]',
+                '.g-recaptcha',
+                '.h-captcha',
+                'div[id*="captcha"]',
+                'div[class*="captcha"]'
+            ]
+
+            for indicator in captcha_indicators:
+                try:
+                    captcha_element = self.driver.find_element(By.CSS_SELECTOR, indicator)
+                    if captcha_element:
+                        print("🚨 CAPTCHA DETECTED!")
+                        print("⚠️  Please solve the CAPTCHA manually in the browser window.")
+                        print("⏱️  You have 4 minutes to solve it...")
+                        print("✅ After solving, press Enter here to continue, or type 'skip' to skip this question")
+
+                        # Wait for user to solve CAPTCHA
+                        import select
+                        import sys
+                        import time
+
+                        start_time = time.time()
+                        timeout = 240  # 4 minutes
+
+                        while time.time() - start_time < timeout:
+                            # Check if user pressed Enter or typed skip
+                            if sys.stdin in select.select([sys.stdin], [], [], 1)[0]:
+                                user_input = sys.stdin.readline().strip().lower()
+                                if user_input == 'skip':
+                                    print("⏭️  Skipping question due to CAPTCHA")
+                                    return False
+                                else:
+                                    print("✅ Continuing after manual CAPTCHA solving")
+                                    return True
+                            else:
+                                remaining = int(timeout - (time.time() - start_time))
+                                print(f"⏳ Time remaining: {remaining} seconds...", end='\r')
+
+                                # Check if CAPTCHA is resolved by looking for content
+                                try:
+                                    # Try to find if the page has loaded content (CAPTCHA solved)
+                                    body_text = self.driver.find_element(By.TAG_NAME, 'body').text
+                                    if len(body_text) > 100:  # If page has substantial content
+                                        print("✅ CAPTCHA appears to be resolved automatically!")
+                                        return True
+                                except:
+                                    pass
+
+                            # Add a small delay to prevent high CPU usage
+                            time.sleep(1)
+
+                        print("\n⏰ Time's up! Skipping question...")
+                        return False
+                except:
+                    continue
+
+            # No CAPTCHA detected
+            return False
+
+        except Exception as e:
+            print(f"⚠️  Error checking for CAPTCHA: {e}")
+            return False
+
     def extract_question_data(self, url: str, question_num: int) -> Optional[Dict]:
         """Extract question data from examtopics page"""
         try:
@@ -211,6 +289,15 @@ class QuizScraper:
 
             self.driver.get(url)
             time.sleep(random.uniform(2, 4))  # Wait for page load
+
+            # Check for CAPTCHA on examtopics page
+            if self.check_and_handle_captcha():
+                print("⏸️  CAPTCHA detected on examtopics page, continuing...")
+                # Wait a bit more after CAPTCHA
+                time.sleep(5)
+                # Reload the page
+                self.driver.get(url)
+                time.sleep(random.uniform(2, 4))
 
             # DEBUG: Show page title and URL
             page_title = self.driver.title or ""

@@ -2,6 +2,44 @@
 
 A comprehensive quiz training platform for cloud certification preparation, featuring interactive quizzes, progress tracking, and AI-powered service information.
 
+## 🚀 Deployment
+
+### Vercel Deployment
+
+This app is designed to deploy seamlessly to Vercel:
+
+1. **Connect your GitHub repository** to Vercel
+2. **Set environment variables** in Vercel dashboard:
+   - `DATABASE_URL`
+   - `NEXTAUTH_SECRET`
+   - `NEXTAUTH_URL`
+   - `GOOGLE_CLIENT_ID`
+   - `GOOGLE_CLIENT_SECRET`
+   - `GEMINI_API_KEY`
+   - `REDIS_URL`
+3. **Build command**: `bun run build`
+4. **Output directory**: `.next`
+
+### Python Scripts
+
+The `py-scraping/` directory contains development tools for adding new certificates. These Python scripts:
+
+- Are **ignored during Vercel deployment**
+- Run locally to generate quiz content
+- Create static JSON files used by the frontend
+- Do NOT affect production deployment
+
+**To add new certificates:**
+
+```bash
+cd py-scraping
+uv run python web_scraper.py
+uv run python process_certificate.py NEW-CERT
+uv run python integrate_certificate.py NEW-CERT
+```
+
+**Note**: Only commit the generated JSON files to GitHub, not the Python scripts (they're in `.gitignore`).
+
 ## Features
 
 - **Multi-Certificate Support**: Prepare for multiple cloud certifications (AWS Developer, Azure, GCP, etc.)
