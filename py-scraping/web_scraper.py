@@ -32,28 +32,28 @@ except ImportError as e:
 # Import configuration
 try:
     from config import DEFAULT_CONFIG, get_config_for_exam
-    CONFIG = get_config_for_exam("CLF-C02")
-    # Add topic and question range for CLF-C02
+    CONFIG = get_config_for_exam("DEA-C01")
+    # Add topic and question range for DEA-C01
     CONFIG.update({
         "topic": 1,
-        "start_question": 719,
-        "end_question": 200
+        "start_question": 261,
+        "end_question": 1
     })
 except ImportError:
     # Fallback configuration if config.py is not available
     CONFIG = {
-        "current_exam": "CLF-C02",
+        "current_exam": "DEA-C01",
         "topic": 1,
-        "start_question": 719,
-        "end_question": 200,
+        "start_question": 261,
+        "end_question": 1,
         "delay_range": (2, 5),
         "max_retries": 3,
         "request_timeout": 30,
-        "output_dir": "../public/quiz/aws-developer/raw/",
-        "levels_config": "../public/quiz/aws-developer/metadata.json",
+        "output_dir": "../public/quiz/deac01/raw",
+        "levels_config": "../public/quiz/deac01/metadata.json",
         "state_file": "state.json",
         "exam_domain": "examtopics.com",
-        "headless": True,
+        "headless": False,
         "browser_timeout": 30
     }
 
@@ -148,31 +148,28 @@ class QuizScraper:
     def search_question_url(self, question_num: int) -> Optional[str]:
         """Search for question URL using Google and click first result"""
         try:
-            # Create Google search query
-            query = f"{CONFIG['current_exam']} topic {CONFIG['topic']} question {question_num} discussion"
-            search_url = f"https://www.google.com/search?q={query.replace(' ', '+')}"
+            # Create shorter search query to avoid truncation
+            query = f"{CONFIG['current_exam']} question {question_num} examtopics"
+            search_url = f"https://duckduckgo.com/?q={query.replace(' ', '+')}"
 
-            print(f"🔍 Searching Google for: {query}")
+            print(f"🔍 Searching DuckDuckGo for: {query}")
             self.driver.get(search_url)
-            time.sleep(3)  # Wait for results to load
+            time.sleep(random.uniform(2, 4))  # Wait for results to load
 
-            # Check for CAPTCHA
+            # DuckDuckGo doesn't trigger CAPTCHA as often, but still check
             if self.check_and_handle_captcha():
                 print("⏸️  CAPTCHA detected and handled, continuing...")
                 # Wait a bit more after CAPTCHA
                 time.sleep(5)
-                # Reload the search page
-                self.driver.get(search_url)
-                time.sleep(3)
 
-            # Find and click the VERY FIRST search result
+            # Find and click the FIRST examtopics result
             try:
-                # Try multiple selectors for the first result
+                # Try multiple selectors for DuckDuckGo results
                 first_result_selectors = [
-                    'h3 a',           # Main result title
-                    'div.g a',        # Standard result
-                    '.tF2Cxc a',      # Another result style
-                    '.yuRUbf a'       # Yet another style
+                    'a[data-testid="result-title-a"]',  # New DuckDuckGo
+                    '.result__a',                        # Classic DuckDuckGo
+                    'article a[href*="examtopics"]',    # Article links
+                    'a[href*="examtopics.com"]'         # Any examtopics link
                 ]
 
                 first_result = None
@@ -180,18 +177,20 @@ class QuizScraper:
                     try:
                         first_result = self.driver.find_element(By.CSS_SELECTOR, selector)
                         if first_result:
-                            print(f"🖱️  Found first result with selector: {selector}")
-                            break
+                            href = first_result.get_attribute("href") or ""
+                            if "examtopics.com" in href:
+                                print(f"🖱️  Found examtopics result with selector: {selector}")
+                                break
                     except:
                         continue
 
                 if first_result:
-                    # Click the first result
+                    # Click the result
                     first_result.click()
-                    print(f"🖱️  Clicked first search result")
+                    print(f"🖱️  Clicked examtopics result")
 
                     # Wait for navigation
-                    time.sleep(3)
+                    time.sleep(random.uniform(2, 3))
 
                     # Get the final URL
                     current_url = self.driver.current_url
@@ -199,7 +198,7 @@ class QuizScraper:
 
                     return current_url
                 else:
-                    print(f"❌ Could not find any search results")
+                    print(f"❌ Could not find examtopics results")
                     return None
 
             except Exception as e:

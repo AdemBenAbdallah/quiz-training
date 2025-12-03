@@ -1,0 +1,187 @@
+[
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/316745-exam-aws-certified-data-engineer-associate-dea-c01-topic-1/",
+    "question_number": "Question #: 261Topic #: 1",
+    "question": "A gaming company uses AWS Glue to perform read and write operations on Apache Iceberg tables for real-time streaming data. The data in the Iceberg tables is in Apache Parquet format. The company is experiencing slow query performance.Which solutions will improve query performance? (Choose two.)",
+    "choices": [
+      "Use AWS Glue Data Catalog to generate column-level statistics for the Iceberg tables on a schedule.",
+      "Use AWS Glue Data Catalog to automatically compact the Iceberg tables.",
+      "Use AWS Glue Data Catalog to automatically optimize indexes for the Iceberg tables.",
+      "Use AWS Glue Data Catalog to enable copy-on-write for the Iceberg tables.",
+      "E.Use AWS Glue Data Catalog to generate views for the Iceberg tables."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/316743-exam-aws-certified-data-engineer-associate-dea-c01-topic-1/",
+    "question_number": "Question #: 260Topic #: 1",
+    "question": "A company has a data processing pipeline that runs multiple SQL queries in sequence against an Amazon Redshift cluster. The company merges with a second company. The original company modifies a query that aggregates sales revenue data to join sales tables from both companies. The sales table for the first company is named Table S1. The sales table for the second company is named Table S2. Table S1 contains 10 billion records. Table S2 contains 900 million records.The query becomes slow after the modification. A data engineer must improve the query performance.Which solutions will meet these requirements? (Choose two.)",
+    "choices": [
+      "Use the KEY distribution style for both sales tables. Select a low cardinality column to use for the join.",
+      "Use the KEY distribution style for both sales tables. Select a high cardinality column to use for the join.",
+      "Use the EVEN distribution style for Table S1. Use the ALL distribution style for Table S2.",
+      "Use the Amazon Redshift query optimizer to review and select optimizations to implement.",
+      "E.Use Amazon Redshift Advisor to review and select optimizations to implement."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/316746-exam-aws-certified-data-engineer-associate-dea-c01-topic-1/",
+    "question_number": "Question #: 259Topic #: 1",
+    "question": "A company uses a data stream in Amazon Kinesis Data Streams to collect transactional data from multiple sources. The company uses an AWS Glue extract, transform, and load (ETL) pipeline to look for outliers in the data from the stream. When the workflow detects an outlier, it sends a notification to an Amazon Simple Notification Service (Amazon SNS) topic. The SNS topic initiates a second workflow to retrieve logs for the outliers and stores the logs in an Amazon S3 bucket.The company experiences delays in the notifications to the SNS topic during periods when the data stream is processing a high volume of data. When the company examines Amazon CloudWatch logs, the company notices a high value for the glue.driver.BlockManager.disk.diskSpaceUsed_MB metric when the traffic is high. The company must resolve this issue.Which solution will meet this requirement with the LEAST operational effort?",
+    "choices": [
+      "Increase the number of data processing units (DPUs) in AWS Glue ETL jobs.",
+      "Use Amazon EMR to manage the ETL pipeline instead of AWS Glue.",
+      "Use AWS Step Functions to orchestrate a parallel workflow state.",
+      "Enable auto scaling for the AWS Glue ETL jobs."
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/315508-exam-aws-certified-data-engineer-associate-dea-c01-topic-1/",
+    "question_number": "Question #: 258Topic #: 1",
+    "question": "A company stores information about its subscribers in an Amazon S3 bucket. The company runs an analysis every time a subscriber ends their subscription. The company uses AWS Lambda functions to respond to events from the S3 bucket by performing analyses.The Lambda functions clean data from the S3 bucket and initiate an AWS Glue workflow. The Lambda functions have 128 MB of memory and 512 MB of ephemeral storage. The Lambda functions have a timeout of 15 seconds.All three functions successfully finish running. However, CPU usage is often near 100%, which causes slow performance. The company wants to improve the performance of the functions and reduce the total runtime of the pipeline.Which solution will meet these requirements?",
+    "choices": [
+      "Increase the memory of the Lambda functions to 512 MB.",
+      "Increase the number of retries by using the Maximum Retry Attempts setting.",
+      "Configure the Lambda functions to run in the company's VPC.",
+      "Increase the timeout value for the Lambda functions from 15 seconds to 30 seconds."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/316747-exam-aws-certified-data-engineer-associate-dea-c01-topic-1/",
+    "question_number": "Question #: 257Topic #: 1",
+    "question": "A ride-sharing company stores records for all rides in an Amazon DynamoDB table. The table includes the following columns and types of values:The table currently contains billions of items. The table is partitioned by RideID and uses TripStartTime as the sort key. The company wants to use the data to build a personal interface to give drivers the ability to view the rides that each driver has completed, based on RideStatus. The solution must access the necessary data without scanning the entire table.Which solution will meet these requirements?",
+    "choices": [
+      "Create a local secondary index (LSI) on DriverID.",
+      "Create a global secondary index (GSI) that uses RiderID as the partition key and RideStatus as the sort key.",
+      "Create a global secondary index (GSI) that uses DriverID as the partition key and RideStatus as the sort key.",
+      "Create a filter expression that uses RiderID and RideStatus."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/316744-exam-aws-certified-data-engineer-associate-dea-c01-topic-1/",
+    "question_number": "Question #: 255Topic #: 1",
+    "question": "A data engineer is building a solution to detect sensitive information that is stored in a data lake across multiple Amazon S3 buckets. The solution must detect personally identifiable information (PII) that is in a proprietary data format.Which solution will meet these requirements with the LEAST operational overhead?",
+    "choices": [
+      "Use the AWS Glue Detect PII transform with specific patterns.",
+      "Use Amazon Made with managed data identifiers.",
+      "Use an AWS Lambda function with custom regular expressions.",
+      "Use Amazon Athena with a SQL query to match the custom formats."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/142580-exam-aws-certified-data-engineer-associate-dea-c01-topic-1/",
+    "question_number": "Question #: 261Topic #: 1",
+    "question": "A data engineer notices that Amazon Athena queries are held in a queue before the queries run.How can the data engineer prevent the queries from queueing?",
+    "choices": [
+      "Increase the query result limit.",
+      "Configure provisioned capacity for an existing workgroup.",
+      "Use federated queries.",
+      "Allow users who run the Athena queries to an existing workgroup."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/142580-exam-aws-certified-data-engineer-associate-dea-c01-topic-1/",
+    "question_number": "Question #: 260Topic #: 1",
+    "question": "A data engineer notices that Amazon Athena queries are held in a queue before the queries run.How can the data engineer prevent the queries from queueing?",
+    "choices": [
+      "Increase the query result limit.",
+      "Configure provisioned capacity for an existing workgroup.",
+      "Use federated queries.",
+      "Allow users who run the Athena queries to an existing workgroup."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/142580-exam-aws-certified-data-engineer-associate-dea-c01-topic-1/",
+    "question_number": "Question #: 259Topic #: 1",
+    "question": "A data engineer notices that Amazon Athena queries are held in a queue before the queries run.How can the data engineer prevent the queries from queueing?",
+    "choices": [
+      "Increase the query result limit.",
+      "Configure provisioned capacity for an existing workgroup.",
+      "Use federated queries.",
+      "Allow users who run the Athena queries to an existing workgroup."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/316743-exam-aws-certified-data-engineer-associate-dea-c01-topic-1/",
+    "question_number": "Question #: 260Topic #: 1",
+    "question": "A company has a data processing pipeline that runs multiple SQL queries in sequence against an Amazon Redshift cluster. The company merges with a second company. The original company modifies a query that aggregates sales revenue data to join sales tables from both companies. The sales table for the first company is named Table S1. The sales table for the second company is named Table S2. Table S1 contains 10 billion records. Table S2 contains 900 million records.The query becomes slow after the modification. A data engineer must improve the query performance.Which solutions will meet these requirements? (Choose two.)",
+    "choices": [
+      "Use the KEY distribution style for both sales tables. Select a low cardinality column to use for the join.",
+      "Use the KEY distribution style for both sales tables. Select a high cardinality column to use for the join.",
+      "Use the EVEN distribution style for Table S1. Use the ALL distribution style for Table S2.",
+      "Use the Amazon Redshift query optimizer to review and select optimizations to implement.Most Voted",
+      "E.Use Amazon Redshift Advisor to review and select optimizations to implement."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/316746-exam-aws-certified-data-engineer-associate-dea-c01-topic-1/",
+    "question_number": "Question #: 259Topic #: 1",
+    "question": "A company uses a data stream in Amazon Kinesis Data Streams to collect transactional data from multiple sources. The company uses an AWS Glue extract, transform, and load (ETL) pipeline to look for outliers in the data from the stream. When the workflow detects an outlier, it sends a notification to an Amazon Simple Notification Service (Amazon SNS) topic. The SNS topic initiates a second workflow to retrieve logs for the outliers and stores the logs in an Amazon S3 bucket.The company experiences delays in the notifications to the SNS topic during periods when the data stream is processing a high volume of data. When the company examines Amazon CloudWatch logs, the company notices a high value for the glue.driver.BlockManager.disk.diskSpaceUsed_MB metric when the traffic is high. The company must resolve this issue.Which solution will meet this requirement with the LEAST operational effort?",
+    "choices": [
+      "Increase the number of data processing units (DPUs) in AWS Glue ETL jobs.",
+      "Use Amazon EMR to manage the ETL pipeline instead of AWS Glue.Most Voted",
+      "Use AWS Step Functions to orchestrate a parallel workflow state.",
+      "Enable auto scaling for the AWS Glue ETL jobs."
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/315508-exam-aws-certified-data-engineer-associate-dea-c01-topic-1/",
+    "question_number": "Question #: 258Topic #: 1",
+    "question": "A company stores information about its subscribers in an Amazon S3 bucket. The company runs an analysis every time a subscriber ends their subscription. The company uses AWS Lambda functions to respond to events from the S3 bucket by performing analyses.The Lambda functions clean data from the S3 bucket and initiate an AWS Glue workflow. The Lambda functions have 128 MB of memory and 512 MB of ephemeral storage. The Lambda functions have a timeout of 15 seconds.All three functions successfully finish running. However, CPU usage is often near 100%, which causes slow performance. The company wants to improve the performance of the functions and reduce the total runtime of the pipeline.Which solution will meet these requirements?",
+    "choices": [
+      "Increase the memory of the Lambda functions to 512 MB.Most Voted",
+      "Increase the number of retries by using the Maximum Retry Attempts setting.",
+      "Configure the Lambda functions to run in the company's VPC.",
+      "Increase the timeout value for the Lambda functions from 15 seconds to 30 seconds."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/316747-exam-aws-certified-data-engineer-associate-dea-c01-topic-1/",
+    "question_number": "Question #: 257Topic #: 1",
+    "question": "A ride-sharing company stores records for all rides in an Amazon DynamoDB table. The table includes the following columns and types of values:The table currently contains billions of items. The table is partitioned by RideID and uses TripStartTime as the sort key. The company wants to use the data to build a personal interface to give drivers the ability to view the rides that each driver has completed, based on RideStatus. The solution must access the necessary data without scanning the entire table.Which solution will meet these requirements?",
+    "choices": [
+      "Create a local secondary index (LSI) on DriverID.",
+      "Create a global secondary index (GSI) that uses RiderID as the partition key and RideStatus as the sort key.",
+      "Create a global secondary index (GSI) that uses DriverID as the partition key and RideStatus as the sort key.",
+      "Create a filter expression that uses RiderID and RideStatus.Most Voted"
+    ],
+    "answers": [
+      "C."
+    ]
+  }
+]

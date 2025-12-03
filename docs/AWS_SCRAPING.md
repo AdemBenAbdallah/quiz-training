@@ -6,13 +6,13 @@ This document outlines the AWS certification exams that will be scraped for quiz
 
 ## Certifications to be Scraped
 
-### 1. CLF-C02 (Cloud Practitioner)
+### 1. CLF-C02 (Cloud Practitioner) done
 
 - **Total Questions:** 719
 - **Target Range:** Questions 200-719
 - **Focus:** Foundational AWS cloud concepts, services, and terminology
 
-### 2. AIF-C01 (AI Practitioner)
+### 2. AIF-C01 (AI Practitioner) done
 
 - **Total Questions:** 330
 - **Target Range:** Questions 1-330

@@ -70,32 +70,83 @@ CERTIFICATIONS = {
 
     "CLF-C02": {
         "name": "AWS Certified Cloud Practitioner",
-        "topics": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        "topics": [1],
         "question_ranges": {
-            1: (719, 1),
-            2: (719, 1),
-            3: (719, 1),
-            4: (719, 1),
-            5: (719, 1),
-            6: (719, 1),
-            7: (719, 1),
-            8: (719, 1),
-            9: (719, 1),
-            10: (719, 1),
+            1: (719, 200),
         },
         "total_questions": 719,
         "search_query_template": "AWS Cloud Practitioner topic {topic} question {question} discussion"
+    },
+
+    "AIF-C01": {
+        "name": "AWS Certified AI Practitioner",
+        "topics": [1],
+        "question_ranges": {
+            1: (330, 1),
+        },
+        "total_questions": 330,
+        "search_query_template": "AIF-C01 topic {topic} question {question} discussion"
+    },
+
+    "DEA-C01": {
+        "name": "AWS Certified Data Engineer - Associate",
+        "topics": [1],
+        "question_ranges": {
+            1: (261, 1),
+        },
+        "total_questions": 261,
+        "search_query_template": "DEA-C01 topic {topic} question {question} discussion"
+    },
+
+    "DOP-C02": {
+        "name": "AWS Certified DevOps Engineer - Professional",
+        "topics": [1],
+        "question_ranges": {
+            1: (390, 1),
+        },
+        "total_questions": 390,
+        "search_query_template": "DOP-C02 topic {topic} question {question} discussion"
+    },
+
+    "MLA-C01": {
+        "name": "AWS Certified Machine Learning Engineer - Associate",
+        "topics": [1],
+        "question_ranges": {
+            1: (145, 1),
+        },
+        "total_questions": 145,
+        "search_query_template": "MLA-C01 topic {topic} question {question} discussion"
+    },
+
+    "MLS-C01": {
+        "name": "AWS Certified Machine Learning - Specialty",
+        "topics": [1],
+        "question_ranges": {
+            1: (369, 1),
+        },
+        "total_questions": 369,
+        "search_query_template": "MLS-C01 topic {topic} question {question} discussion"
+    },
+
+    "SCS-C02": {
+        "name": "AWS Certified Security - Specialty",
+        "topics": [1],
+        "question_ranges": {
+            1: (307, 1),
+        },
+        "total_questions": 307,
+        "search_query_template": "SCS-C02 topic {topic} question {question} discussion"
     }
 }
 
 
 # Global scraper configuration
 SCRAPER_CONFIG = {
-    "delay_range": (2, 5),  # Random delay between requests (seconds)
+    "delay_range": (3, 6),  # Random delay between requests (seconds)
     "max_retries": 3,  # Maximum retry attempts per question
     "request_timeout": 30,  # HTTP request timeout (seconds)
     "browser_timeout": 30,  # Browser page load timeout (seconds)
-    "headless": False,  # Run browser in headless mode
+    "headless": False,  # Run browser in headless mode (False helps avoid detection)
     "exam_domain": "examtopics.com",  # Domain to filter search results
     "state_file": "state.json",  # State management file
     "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
