@@ -146,20 +146,19 @@ class QuizScraper:
             return False
 
     def search_question_url(self, question_num: int) -> Optional[str]:
-        """Search for question URL using Google and click first result"""
+        """Search for question URL using DuckDuckGo"""
         try:
-            # Create shorter search query to avoid truncation
-            query = f"{CONFIG['current_exam']} question {question_num} examtopics"
+            # Create search query with quotes and site restriction
+            query = f'"{CONFIG["current_exam"]}" "question {question_num}" site:examtopics.com'
             search_url = f"https://duckduckgo.com/?q={query.replace(' ', '+')}"
 
             print(f"🔍 Searching DuckDuckGo for: {query}")
             self.driver.get(search_url)
             time.sleep(random.uniform(2, 4))  # Wait for results to load
 
-            # DuckDuckGo doesn't trigger CAPTCHA as often, but still check
+            # Check for CAPTCHA
             if self.check_and_handle_captcha():
                 print("⏸️  CAPTCHA detected and handled, continuing...")
-                # Wait a bit more after CAPTCHA
                 time.sleep(5)
 
             # Find and click the FIRST examtopics result
@@ -208,6 +207,7 @@ class QuizScraper:
         except Exception as e:
             print(f"❌ Error searching for question {question_num}: {e}")
             return None
+
 
     def check_and_handle_captcha(self) -> bool:
         """Check for CAPTCHA and wait for manual solving"""
@@ -411,7 +411,10 @@ class QuizScraper:
                 # Search for URL
                 url = self.search_question_url(question_num)
                 if not url:
-                    print(f"❌ Could not find URL for question {question_num}")
+                    # No results found - move to next question, don't retry
+                    print(f"⚠️  No search results found for question {question_num}, moving to next...")
+                    self.state['last_processed_question'] = question_num
+                    self.save_state()
                     return False
 
                 # Extract question data
@@ -429,6 +432,14 @@ class QuizScraper:
 
                     print(f"✅ Successfully scraped question {question_num}")
                     return True
+                else:
+                    # Failed to extract data, but this counts as processed
+                    print(f"⚠️  Failed to extract data for question {question_num}")
+                    self.state['last_processed_question'] = question_num
+                    if question_num not in self.state['failed_questions']:
+                        self.state['failed_questions'].append(question_num)
+                    self.save_state()
+                    return False
 
             except Exception as e:
                 print(f"❌ Attempt {attempt + 1} failed for question {question_num}: {e}")
@@ -438,8 +449,9 @@ class QuizScraper:
         # Mark as failed if all retries exhausted
         if question_num not in self.state['failed_questions']:
             self.state['failed_questions'].append(question_num)
+        self.state['last_processed_question'] = question_num
         self.save_state()
-        print(f"❌ Question {question_num} marked as failed")
+        print(f"❌ Question {question_num} marked as failed after {max_retries} attempts")
         return False
 
     def save_question_to_raw_file(self, question_data: Dict):
