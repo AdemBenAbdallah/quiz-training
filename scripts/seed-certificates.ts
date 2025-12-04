@@ -10,15 +10,9 @@ const seedCertificates = async () => {
       {
         slug: "aws-developer",
         name: "AWS Certified Developer Associate",
-        description: "DVA-C02 certification exam preparation with 500+ practice questions",
+        description:
+          "DVA-C02 certification exam preparation with 500+ practice questions",
         totalLevels: 8,
-        isActive: true,
-      },
-      {
-        slug: "demo",
-        name: "Demo Certificate",
-        description: "A demo certificate to test the multi-certificate system",
-        totalLevels: 2,
         isActive: true,
       },
       // Future certificates can be added here

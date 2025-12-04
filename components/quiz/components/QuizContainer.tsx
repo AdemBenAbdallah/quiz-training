@@ -1,18 +1,19 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { Progress } from "@/components/ui/progress";
-import { Question, Choice } from "@/types/quiz";
-import { useProgress } from "@/hooks/useProgress";
-import { handleAnswerSelection, calculateScore } from "@/lib/selection";
-import { QuizHeader } from "./QuizHeader";
-import { QuizNavigation } from "./QuizNavigation";
-import { QuizActions } from "./QuizActions";
+import ChatAssistantDialog from "@/components/ChatAssistantDialog";
 import QuestionCard from "@/components/QuestionCard";
 import QuestionExplainDialog from "@/components/QuestionExplainDialog";
-import QuizScore from "@/components/score";
 import QuizReview from "@/components/quiz-overview";
+import QuizScore from "@/components/score";
+import { Progress } from "@/components/ui/progress";
+import { useProgress } from "@/hooks/useProgress";
+import { calculateScore, handleAnswerSelection } from "@/lib/selection";
+import { Choice, Question } from "@/types/quiz";
+import { AnimatePresence, motion } from "framer-motion";
+import { useCallback, useEffect, useState } from "react";
+import { QuizActions } from "./QuizActions";
+import { QuizHeader } from "./QuizHeader";
+import { QuizNavigation } from "./QuizNavigation";
 
 interface QuizContainerProps {
   levelId: number;
@@ -38,6 +39,10 @@ export const QuizContainer = ({
   // Navigation state
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [progress, setProgress] = useState(0);
+
+  // Dialog state
+  const [isExplainDialogOpen, setIsExplainDialogOpen] = useState(false);
+  const [isChatDialogOpen, setIsChatDialogOpen] = useState(false);
 
   // Progression state
   const { data, updateProgress } = useProgress();
@@ -154,7 +159,8 @@ export const QuizContainer = ({
         <div className="text-center">
           <h2 className="text-2xl font-bold mb-4">Level Not Accessible</h2>
           <p className="text-muted-foreground">
-            You need to complete the previous level or purchase access to continue.
+            You need to complete the previous level or purchase access to
+            continue.
           </p>
         </div>
       </div>
@@ -169,15 +175,15 @@ export const QuizContainer = ({
     selectAnswer(currentQuestionIndex, answer);
   };
 
-  const handleCopy = () => {
-    const text = currentQuestion.question + currentQuestion.options.join(", ");
-    navigator.clipboard.writeText(text);
-  };
-
   return (
     <div className="min-h-screen bg-background text-foreground">
       <main className="container mx-auto px-4 py-12 max-w-4xl">
-        <QuizHeader title={title} handleCopyAction={handleCopy} />
+        <QuizHeader
+          title={title}
+          onExplainClick={() => setIsExplainDialogOpen(true)}
+          onChatClick={() => setIsChatDialogOpen(true)}
+          isExplainDisabled={isCurrentQuestionSubmitted}
+        />
 
         <div className="relative">
           {!isQuizComplete && (
@@ -207,9 +213,18 @@ export const QuizContainer = ({
                       showCorrectAnswer={isCurrentQuestionSubmitted}
                     />
 
-                    {!isCurrentQuestionSubmitted && (
-                      <QuestionExplainDialog question={currentQuestion} />
-                    )}
+                    <QuestionExplainDialog
+                      question={currentQuestion}
+                      open={isExplainDialogOpen}
+                      onOpenChange={setIsExplainDialogOpen}
+                    />
+
+                    <ChatAssistantDialog
+                      question={currentQuestion}
+                      selectedAnswers={currentAnswers}
+                      open={isChatDialogOpen}
+                      onOpenChange={setIsChatDialogOpen}
+                    />
 
                     <QuizNavigation
                       navigation={{
@@ -234,10 +249,7 @@ export const QuizContainer = ({
                     />
 
                     <div className="space-y-12">
-                      <QuizReview
-                        questions={questions}
-                        userAnswers={answers}
-                      />
+                      <QuizReview questions={questions} userAnswers={answers} />
                     </div>
 
                     <QuizActions

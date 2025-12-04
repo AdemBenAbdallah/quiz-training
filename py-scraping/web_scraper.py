@@ -32,28 +32,28 @@ except ImportError as e:
 # Import configuration
 try:
     from config import DEFAULT_CONFIG, get_config_for_exam
-    CONFIG = get_config_for_exam("DEA-C01")
-    # Add topic and question range for DEA-C01
+    CONFIG = get_config_for_exam("MLS-C01")
+    # Add topic and question range for ANS-C01
     CONFIG.update({
         "topic": 1,
-        "start_question": 261,
+        "start_question": 369,
         "end_question": 1
     })
 except ImportError:
     # Fallback configuration if config.py is not available
     CONFIG = {
-        "current_exam": "DEA-C01",
+        "current_exam": "MLS-C01",
         "topic": 1,
-        "start_question": 261,
+        "start_question": 369,
         "end_question": 1,
         "delay_range": (2, 5),
         "max_retries": 3,
         "request_timeout": 30,
-        "output_dir": "../public/quiz/deac01/raw",
-        "levels_config": "../public/quiz/deac01/metadata.json",
+        "output_dir": "../public/quiz/mlsc01/raw",
+        "levels_config": "../public/quiz/mlsc01/metadata.json",
         "state_file": "state.json",
         "exam_domain": "examtopics.com",
-        "headless": False,
+        "headless": True,
         "browser_timeout": 30
     }
 
@@ -62,21 +62,26 @@ class QuizScraper:
     """Main scraper class with state management"""
 
     def __init__(self, resume_mode: bool = False):
-        self.state = self.load_state()
         self.resume_mode = resume_mode
+        self.state = self.load_state()
         self.driver = None
         self.session_start_time = datetime.now()
 
     def load_state(self) -> Dict:
         """Load previous scraping state"""
         state_file = CONFIG["state_file"]
-        if os.path.exists(state_file):
+        if os.path.exists(state_file) and self.resume_mode:
             try:
                 with open(state_file, 'r', encoding='utf-8') as f:
-                    return json.load(f)
+                    state = json.load(f)
+                    print(f"📂 Loaded existing state from {state_file}")
+                    return state
             except (json.JSONDecodeError, FileNotFoundError) as e:
                 print(f"⚠️  Warning: Could not load state file: {e}")
-                return self.get_default_state()
+                print("🔄 Starting fresh...")
+
+        # Fresh start
+        print("🆕 Starting with fresh state")
         return self.get_default_state()
 
     def get_default_state(self) -> Dict:
@@ -87,7 +92,7 @@ class QuizScraper:
             "current_topic": CONFIG["topic"],
             "start_question": CONFIG["start_question"],
             "end_question": CONFIG["end_question"],
-            "last_processed_question": CONFIG["start_question"] - 1,
+            "last_processed_question": 0,  # No questions processed yet
             "failed_questions": [],
             "completed_questions": [],
             "scraping_session": {
@@ -149,7 +154,7 @@ class QuizScraper:
         """Search for question URL using DuckDuckGo"""
         try:
             # Create search query with quotes and site restriction
-            query = f'"{CONFIG["current_exam"]}" "question {question_num}" site:examtopics.com'
+            query = f'{CONFIG["current_exam"]} question {question_num} site:examtopics.com'
             search_url = f"https://duckduckgo.com/?q={query.replace(' ', '+')}"
 
             print(f"🔍 Searching DuckDuckGo for: {query}")
@@ -491,8 +496,13 @@ class QuizScraper:
 
     def get_next_question(self) -> Optional[int]:
         """Get next question to scrape"""
-        last_processed = self.state.get('last_processed_question', CONFIG["start_question"] + 1)
-        next_q = last_processed - 1
+        last_processed = self.state.get('last_processed_question', 0)
+
+        # If no questions processed yet (last_processed_question is 0), start from start_question
+        if last_processed == 0:
+            next_q = CONFIG["start_question"]
+        else:
+            next_q = last_processed - 1
 
         if next_q < self.state['end_question']:
             print("⚠️  All questions completed!")

@@ -11,16 +11,6 @@
       "badgeColor": "bg-orange-500"
     },
     {
-      "id": "demo",
-      "slug": "demo",
-      "name": "Demo Certificate",
-      "description": "A demo certificate to test the multi-certificate system",
-      "totalLevels": 2,
-      "isActive": true,
-      "isDefault": false,
-      "badgeColor": "bg-blue-500"
-    },
-    {
       "id": "ansc01",
       "slug": "ansc01",
       "name": "AWS Certified Advanced Networking - Specialty",

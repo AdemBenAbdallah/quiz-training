@@ -18,19 +18,19 @@ This document outlines the AWS certification exams that will be scraped for quiz
 - **Target Range:** Questions 1-330
 - **Focus:** AWS AI services and machine learning concepts
 
-### 3. DEA-C01 (Data Analytics)
+### 3. DEA-C01 (Data Analytics) done
 
 - **Total Questions:** 261
 - **Target Range:** Questions 1-261
 - **Focus:** AWS data analytics services and solutions
 
-### 4. DOP-C02 (DevOps Engineer)
+### 4. DOP-C02 (DevOps Engineer) done
 
 - **Total Questions:** 390
 - **Target Range:** Questions 1-390
 - **Focus:** AWS DevOps practices, CI/CD, and automation
 
-### 5. MLA-C01 (Machine Learning Associate)
+### 5. MLA-C01 (Machine Learning Associate) done
 
 - **Total Questions:** 145
 - **Target Range:** Questions 1-145
@@ -42,7 +42,7 @@ This document outlines the AWS certification exams that will be scraped for quiz
 - **Target Range:** Questions 1-369
 - **Focus:** Advanced AWS machine learning services and ML engineering
 
-### 7. SCS-C02 (Security)
+### 7. SCS-C02 (Security) done
 
 - **Total Questions:** 307
 - **Target Range:** Questions 1-307

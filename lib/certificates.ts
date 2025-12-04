@@ -4,13 +4,11 @@ import { Certificate, CertificateMetadata } from "@/types/certificate";
 import ansc01Metadata from "@/public/quiz/ansc01/metadata.json";
 import awsDeveloperMetadata from "@/public/quiz/aws-developer/metadata.json";
 import certificatesIndex from "@/public/quiz/certificates/index.json";
-import demoMetadata from "@/public/quiz/demo/metadata.json";
 
 // Certificate metadata mapping
 const certificateMetadata: Record<string, CertificateMetadata> = {
   "aws-developer": awsDeveloperMetadata as CertificateMetadata,
-    "demo": demoMetadata as CertificateMetadata,
-    "ansc01": ansc01Metadata as CertificateMetadata,
+  ansc01: ansc01Metadata as CertificateMetadata,
 };
 
 // Dynamic import function for quiz levels
