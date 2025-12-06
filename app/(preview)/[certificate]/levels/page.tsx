@@ -1,4 +1,3 @@
-import CertificateHero from "@/components/CertificateHero";
 import CertificateLevels from "@/components/CertificateLevels";
 import Footer from "@/components/footer/Footer";
 import { ClientProvider } from "@/components/landing/client-provider";
@@ -32,7 +31,6 @@ export default async function CertificateLevelsPage({
       <div className="relative min-h-screen text-white">
         <div className="absolute inset-0 bg-gradient-to-b from-neutral-900 via-black to-black" />
         <div className="relative">
-          <CertificateHero certificateSlug={certificate} />
           <CertificateLevels certificateSlug={certificate} />
           <Suspense fallback={<div>Loading...</div>}>
             <Footer />
@@ -42,5 +40,3 @@ export default async function CertificateLevelsPage({
     </ClientProvider>
   );
 }
-
-

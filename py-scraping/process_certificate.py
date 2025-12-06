@@ -11,6 +11,7 @@ import sys
 from datetime import datetime
 from typing import Dict, List, Tuple
 
+
 class CertificateConfig:
     """Configuration for certificate question distribution"""
 

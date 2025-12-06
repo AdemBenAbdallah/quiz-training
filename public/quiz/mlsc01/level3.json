@@ -1,0 +1,930 @@
+[
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/98527-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 210Topic #: 1",
+    "question": "A retail company wants to build a recommendation system for the company's website. The system needs to provide recommendations for existing users and needs to base those recommendations on each user's past browsing history. The system also must filter out any items that the user previously purchased.Which solution will meet these requirements with the LEAST development effort?",
+    "choices": [
+      "Train a model by using a user-based collaborative filtering algorithm on Amazon SageMaker. Host the model on a SageMaker real-time endpoint. Configure an Amazon API Gateway API and an AWS Lambda function to handle real-time inference requests that the web application sends. Exclude the items that the user previously purchased from the results before sending the results back to the web application.",
+      "Use an Amazon Personalize PERSONALIZED_RANKING recipe to train a model. Create a real-time filter to exclude items that the user previously purchased. Create and deploy a campaign on Amazon Personalize. Use the GetPersonalizedRanking API operation to get the real-time recommendations.",
+      "Use an Amazon Personalize USER_PERSONALIZATION recipe to train a model. Create a real-time filter to exclude items that the user previously purchased. Create and deploy a campaign on Amazon Personalize. Use the GetRecommendations API operation to get the real-time recommendations.Most Voted",
+      "Train a neural collaborative filtering model on Amazon SageMaker by using GPU instances. Host the model on a SageMaker real-time endpoint. Configure an Amazon API Gateway API and an AWS Lambda function to handle real-time inference requests that the web application sends. Exclude the items that the user previously purchased from the results before sending the results back to the web application."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/98541-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 209Topic #: 1",
+    "question": "A finance company needs to forecast the price of a commodity. The company has compiled a dataset of historical daily prices. A data scientist must train various forecasting models on 80% of the dataset and must validate the efficacy of those models on the remaining 20% of the dataset.How should the data scientist split the dataset into a training dataset and a validation dataset to compare model performance?",
+    "choices": [
+      "Pick a date so that 80% of the data points precede the date. Assign that group of data points as the training dataset. Assign all the remaining data points to the validation dataset.Most Voted",
+      "Pick a date so that 80% of the data points occur after the date. Assign that group of data points as the training dataset. Assign all the remaining data points to the validation dataset.",
+      "Starting from the earliest date in the dataset, pick eight data points for the training dataset and two data points for the validation dataset. Repeat this stratified sampling until no data points remain.",
+      "Sample data points randomly without replacement so that 80% of the data points are in the training dataset. Assign all the remaining data points to the validation dataset."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/88837-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 208Topic #: 1",
+    "question": "A company is using a legacy telephony platform and has several years remaining on its contract. The company wants to move to AWS and wants to implement the following machine learning features:•\tCall transcription in multiple languages•\tCategorization of calls based on the transcript•\tDetection of the main customer issues in the calls•\tCustomer sentiment analysis for each line of the transcript, with positive or negative indication and scoring of that sentimentWhich AWS solution will meet these requirements with the LEAST amount of custom model training?",
+    "choices": [
+      "Use Amazon Transcribe to process audio calls to produce transcripts, categorize calls, and detect issues. Use Amazon Comprehend to analyze sentiment.",
+      "Use Amazon Transcribe to process audio calls to produce transcripts. Use Amazon Comprehend to categorize calls, detect issues, and analyze sentiment",
+      "Use Contact Lens for Amazon Connect to process audio calls to produce transcripts, categorize calls, detect issues, and analyze sentiment.Most Voted",
+      "Use Contact Lens for Amazon Connect to process audio calls to produce transcripts. Use Amazon Comprehend to categorize calls, detect issues, and analyze sentiment."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/89267-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 207Topic #: 1",
+    "question": "A company is building an application that can predict spam email messages based on email text. The company can generate a few thousand human-labeled datasets that contain a list of email messages and a label of \"spam\" or \"not spam\" for each email message. A machine learning (ML) specialist wants to use transfer learning with a Bidirectional Encoder Representations from Transformers (BERT) model that is trained on English Wikipedia text data.What should the ML specialist do to initialize the model to fine-tune the model with the custom data?",
+    "choices": [
+      "Initialize the model with pretrained weights in all layers except the last fully connected layer.",
+      "Initialize the model with pretrained weights in all layers. Stack a classifier on top of the first output position. Train the classifier with the labeled data.",
+      "Initialize the model with random weights in all layers. Replace the last fully connected layer with a classifier. Train the classifier with the labeled data.",
+      "Initialize the model with pretrained weights in all layers. Replace the last fully connected layer with a classifier. Train the classifier with the labeled data.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/89069-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 206Topic #: 1",
+    "question": "A company wants to deliver digital car management services to its customers. The company plans to analyze data to predict the likelihood of users changing cars. The company has 10 TB of data that is stored in an Amazon Redshift cluster. The company's data engineering team is using Amazon SageMaker Studio for data analysis and model development. Only a subset of the data is relevant for developing the machine learning models. The data engineering team needs a secure and cost-effective way to export the data to a data repository in Amazon S3 for model development.Which solutions will meet these requirements? (Choose two.)",
+    "choices": [
+      "Launch multiple medium-sized instances in a distributed SageMaker Processing job. Use the prebuilt Docker images for Apache Spark to query and plot the relevant data and to export the relevant data from Amazon Redshift to Amazon S3.",
+      "Launch multiple medium-sized notebook instances with a PySpark kernel in distributed mode. Download the data from Amazon Redshift to the notebook cluster. Query and plot the relevant data. Export the relevant data from the notebook cluster to Amazon S3.",
+      "Use AWS Secrets Manager to store the Amazon Redshift credentials. From a SageMaker Studio notebook, use the stored credentials to connect to Amazon Redshift with a Python adapter. Use the Python client to query the relevant data and to export the relevant data from Amazon Redshift to Amazon S3.Most Voted",
+      "Use AWS Secrets Manager to store the Amazon Redshift credentials. Launch a SageMaker extra-large notebook instance with block storage that is slightly larger than 10 TB. Use the stored credentials to connect to Amazon Redshift with a Python adapter. Download, query, and plot the relevant data. Export the relevant data from the local notebook drive to Amazon S3.",
+      "E.Use SageMaker Data Wrangler to query and plot the relevant data and to export the relevant data from Amazon Redshift to Amazon S3.Most Voted"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/89266-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 205Topic #: 1",
+    "question": "A machine learning (ML) specialist has prepared and used a custom container image with Amazon SageMaker to train an image classification model. The ML specialist is performing hyperparameter optimization (HPO) with this custom container image to produce a higher quality image classifier.The ML specialist needs to determine whether HPO with the SageMaker built-in image classification algorithm will produce a better model than the model produced by HPO with the custom container image. All ML experiments and HPO jobs must be invoked from scripts inside SageMaker Studio notebooks.How can the ML specialist meet these requirements in the LEAST amount of time?",
+    "choices": [
+      "Prepare a custom HPO script that runs multiple training jobs in SageMaker Studio in local mode to tune the model of the custom container image. Use the automatic model tuning capability of SageMaker with early stopping enabled to tune the model of the built-in image classification algorithm. Select the model with the best objective metric value.",
+      "Use SageMaker Autopilot to tune the model of the custom container image. Use the automatic model tuning capability of SageMaker with early stopping enabled to tune the model of the built-in image classification algorithm. Compare the objective metric values of the resulting models of the SageMaker AutopilotAutoML job and the automatic model tuning job. Select the model with the best objective metric value.",
+      "Use SageMaker Experiments to run and manage multiple training jobs and tune the model of the custom container image. Use the automatic model tuning capability of SageMaker to tune the model of the built-in image classification algorithm. Select the model with the best objective metric value.Most Voted",
+      "Use the automatic model tuning capability of SageMaker to tune the models of the custom container image and the built-in image classification algorithm at the same time. Select the model with the best objective metric value."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/88838-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 204Topic #: 1",
+    "question": "A retail company uses a machine learning (ML) model for daily sales forecasting. The model has provided inaccurate results for the past 3 weeks. At the end of each day, an AWS Glue job consolidates the input data that is used for the forecasting with the actual daily sales data and the predictions of the model. The AWS Glue job stores the data in Amazon S3.The company's ML team determines that the inaccuracies are occurring because of a change in the value distributions of the model features. The ML team must implement a solution that will detect when this type of change occurs in the future.Which solution will meet these requirements with the LEAST amount of operational overhead?",
+    "choices": [
+      "Use Amazon SageMaker Model Monitor to create a data quality baseline. Confirm that the emit_metrics option is set to Enabled in the baseline constraints file. Set up an Amazon CloudWatch alarm for the metric.Most Voted",
+      "Use Amazon SageMaker Model Monitor to create a model quality baseline. Confirm that the emit_metrics option is set to Enabled in the baseline constraints file. Set up an Amazon CloudWatch alarm for the metric.",
+      "Use Amazon SageMaker Debugger to create rules to capture feature values Set up an Amazon CloudWatch alarm for the rules.",
+      "Use Amazon CloudWatch to monitor Amazon SageMaker endpoints. Analyze logs in Amazon CloudWatch Logs to check for data drift."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/89213-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 203Topic #: 1",
+    "question": "An ecommerce company wants to train a large image classification model with 10,000 classes. The company runs multiple model training iterations and needs to minimize operational overhead and cost. The company also needs to avoid loss of work and model retraining.Which solution will meet these requirements?",
+    "choices": [
+      "Create the training jobs as AWS Batch jobs that use Amazon EC2 Spot Instances in a managed compute environment.",
+      "Use Amazon EC2 Spot Instances to run the training jobs. Use a Spot Instance interruption notice to save a snapshot of the model to Amazon S3 before an instance is terminated.",
+      "Use AWS Lambda to run the training jobs. Save model weights to Amazon S3.",
+      "Use managed spot training in Amazon SageMaker. Launch the training jobs with checkpointing enabled.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/89051-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 202Topic #: 1",
+    "question": "A company's machine learning (ML) specialist is designing a scalable data storage solution for Amazon SageMaker. The company has an existing TensorFlow-based model that uses a train.py script. The model relies on static training data that is currently stored in TFRecord format.What should the ML specialist do to provide the training data to SageMaker with the LEAST development overhead?",
+    "choices": [
+      "Put the TFRecord data into an Amazon S3 bucket. Use AWS Glue or AWS Lambda to reformat the data to protobuf format and store the data in a second S3 bucket. Point the SageMaker training invocation to the second S3 bucket.",
+      "Rewrite the train.py script to add a section that converts TFRecord data to protobuf format. Point the SageMaker training invocation to the local path of the data. Ingest the protobuf data instead of the TFRecord data.",
+      "Use SageMaker script mode, and use train.py unchanged. Point the SageMaker training invocation to the local path of the data without reformatting the training data.",
+      "Use SageMaker script mode, and use train.py unchanged. Put the TFRecord data into an Amazon S3 bucket. Point the SageMaker training invocation to the S3 bucket without reformatting the training data.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/89262-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 201Topic #: 1",
+    "question": "An automotive company is using computer vision in its autonomous cars. The company has trained its models successfully by using transfer learning from a convolutional neural network (CNN). The models are trained with PyTorch through the use of the Amazon SageMaker SDK. The company wants to reduce the time that is required for performing inferences, given the low latency that is required for self-driving.Which solution should the company use to evaluate and improve the performance of the models?",
+    "choices": [
+      "Use Amazon CloudWatch algorithm metrics for visibility into the SageMaker training weights, gradients, biases, and activation outputs. Compute the filter ranks based on this information. Apply pruning to remove the low-ranking filters. Set the new weights. Run a new training job with the pruned model.",
+      "Use SageMaker Debugger for visibility into the training weights, gradients, biases, and activation outputs. Adjust the model hyperparameters, and look for lower inference times. Run a new training job.",
+      "Use SageMaker Debugger for visibility into the training weights, gradients, biases, and activation outputs. Compute the filter ranks based on this information. Apply pruning to remove the low-ranking filters. Set the new weights. Run a new training job with the pruned model.Most Voted",
+      "Use SageMaker Model Monitor for visibility into the ModelLatency metric and OverheadLatency metric of the model after the model is deployed. Adjust the model hyperparameters, and look for lower inference times. Run a new training job."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/88924-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 200Topic #: 1",
+    "question": "A company is building a machine learning (ML) model to classify images of plants. An ML specialist has trained the model using the Amazon SageMaker built-in Image Classification algorithm. The model is hosted using a SageMaker endpoint on an ml.m5.xlarge instance for real-time inference. When used by researchers in the field, the inference has greater latency than is acceptable. The latency gets worse when multiple researchers perform inference at the same time on their devices. Using Amazon CloudWatch metrics, the ML specialist notices that the ModelLatency metric shows a high value and is responsible for most of the response latency.The ML specialist needs to fix the performance issue so that researchers can experience less latency when performing inference from their devices.Which action should the ML specialist take to meet this requirement?",
+    "choices": [
+      "Change the endpoint instance to an ml.t3 burstable instance with the same vCPU number as the ml.m5.xlarge instance has.",
+      "Attach an Amazon Elastic Inference ml.eia2.medium accelerator to the endpoint instance.Most Voted",
+      "Enable Amazon SageMaker Autopilot to automatically tune performance of the model.",
+      "Change the endpoint instance to use a memory optimized ML instance."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/89151-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 199Topic #: 1",
+    "question": "A manufacturing company needs to identify returned smartphones that have been damaged by moisture. The company has an automated process that produces 2,000 diagnostic values for each phone. The database contains more than five million phone evaluations. The evaluation process is consistent, and there are no missing values in the data. A machine learning (ML) specialist has trained an Amazon SageMaker linear learner ML model to classify phones as moisture damaged or not moisture damaged by using all available features. The model's F1 score is 0.6.Which changes in model training would MOST likely improve the model's F1 score? (Choose two.)",
+    "choices": [
+      "Continue to use the SageMaker linear learner algorithm. Reduce the number of features with the SageMaker principal component analysis (PCA) algorithm.Most Voted",
+      "Continue to use the SageMaker linear learner algorithm. Reduce the number of features with the scikit-learn multi-dimensional scaling (MDS) algorithm.",
+      "Continue to use the SageMaker linear learner algorithm. Set the predictor type to regressor.",
+      "Use the SageMaker k-means algorithm with k of less than 1,000 to train the model.",
+      "E.Use the SageMaker k-nearest neighbors (k-NN) algorithm. Set a dimension reduction target of less than 1,000 to train the model.Most Voted"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/89150-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 198Topic #: 1",
+    "question": "A company wants to predict the classification of documents that are created from an application. New documents are saved to an Amazon S3 bucket every 3 seconds. The company has developed three versions of a machine learning (ML) model within Amazon SageMaker to classify document text. The company wants to deploy these three versions to predict the classification of each document.Which approach will meet these requirements with the LEAST operational overhead?",
+    "choices": [
+      "Configure an S3 event notification that invokes an AWS Lambda function when new documents are created. Configure the Lambda function to create three SageMaker batch transform jobs, one batch transform job for each model for each document.",
+      "Deploy all the models to a single SageMaker endpoint. Treat each model as a production variant. Configure an S3 event notification that invokes an AWS Lambda function when new documents are created. Configure the Lambda function to call each production variant and return the results of each model.Most Voted",
+      "Deploy each model to its own SageMaker endpoint Configure an S3 event notification that invokes an AWS Lambda function when new documents are created. Configure the Lambda function to call each endpoint and return the results of each model.",
+      "Deploy each model to its own SageMaker endpoint. Create three AWS Lambda functions. Configure each Lambda function to call a different endpoint and return the results. Configure three S3 event notifications to invoke the Lambda functions when new documents are created."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/89148-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 197Topic #: 1",
+    "question": "A company has a podcast platform that has thousands of users. The company has implemented an anomaly detection algorithm to detect low podcast engagement based on a 10-minute running window of user events such as listening, pausing, and exiting the podcast. A machine learning (ML) specialist is designing the data ingestion of these events with the knowledge that the event payload needs some small transformations before inference.How should the ML specialist design the data ingestion to meet these requirements with the LEAST operational overhead?",
+    "choices": [
+      "Ingest event data by using a GraphQLAPI in AWS AppSync. Store the data in an Amazon DynamoDB table. Use DynamoDB Streams to call an AWS Lambda function to transform the most recent 10 minutes of data before inference.",
+      "Ingest event data by using Amazon Kinesis Data Streams. Store the data in Amazon S3 by using Amazon Kinesis Data Firehose. Use AWS Glue to transform the most recent 10 minutes of data before inference.Most Voted",
+      "Ingest event data by using Amazon Kinesis Data Streams. Use an Amazon Kinesis Data Analytics for Apache Flink application to transform the most recent 10 minutes of data before inference.",
+      "Ingest event data by using Amazon Managed Streaming for Apache Kafka (Amazon MSK). Use an AWS Lambda function to transform the most recent 10 minutes of data before inference."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/89093-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 193Topic #: 1",
+    "question": "A machine learning (ML) specialist at a retail company is forecasting sales for one of the company's stores. The ML specialist is using data from the past 10 years. The company has provided a dataset that includes the total amount of money in sales each day for the store. Approximately 5% of the days are missing sales data.The ML specialist builds a simple forecasting model with the dataset and discovers that the model performs poorly. The performance is poor around the time of seasonal events, when the model consistently predicts sales figures that are too low or too high.Which actions should the ML specialist take to try to improve the model's performance? (Choose two.)",
+    "choices": [
+      "Add information about the store's sales periods to the dataset.Most Voted",
+      "Aggregate sales figures from stores in the same proximity.",
+      "Apply smoothing to correct for seasonal variation.Most Voted",
+      "Change the forecast frequency from daily to weekly.",
+      "E.Replace missing values in the dataset by using linear interpolation."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/88927-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 192Topic #: 1",
+    "question": "A newspaper publisher has a table of customer data that consists of several numerical and categorical features, such as age and education history, as well as subscription status. The company wants to build a targeted marketing model for predicting the subscription status based on the table data.Which Amazon SageMaker built-in algorithm should be used to model the targeted marketing?",
+    "choices": [
+      "Random Cut Forest (RCF)",
+      "XGBoostMost Voted",
+      "Neural Topic Model (NTM)",
+      "DeepAR forecasting"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/88731-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 189Topic #: 1",
+    "question": "An ecommerce company wants to use machine learning (ML) to monitor fraudulent transactions on its website. The company is using Amazon SageMaker to research, train, deploy, and monitor the ML models.The historical transactions data is in a .csv file that is stored in Amazon S3. The data contains features such as the user's IP address, navigation time, average time on each page, and the number of clicks for each session. There is no label in the data to indicate if a transaction is anomalous.Which models should the company use in combination to detect anomalous transactions? (Choose two.)",
+    "choices": [
+      "IP InsightsMost Voted",
+      "K-nearest neighbors (k-NN)",
+      "Linear learner with a logistic function",
+      "Random Cut Forest (RCF)Most Voted",
+      "E.XGBoost"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/88925-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 188Topic #: 1",
+    "question": "A machine learning (ML) specialist wants to bring a custom training algorithm to Amazon SageMaker. The ML specialist implements the algorithm in a Docker container that is supported by SageMaker.How should the ML specialist package the Docker container so that SageMaker can launch the training correctly?",
+    "choices": [
+      "Specify the server argument in the ENTRYPOINT instruction in the Dockerfile.",
+      "Specify the training program in the ENTRYPOINT instruction in the Dockerfile.Most Voted",
+      "Include the path to the training data in the docker build command when packaging the container.",
+      "Use a COPY instruction in the Dockerfile to copy the training program to the /opt/ml/train directory."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/74925-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 185Topic #: 1",
+    "question": "A retail company collects customer comments about its products from social media, the company website, and customer call logs. A team of data scientists and engineers wants to find common topics and determine which products the customers are referring to in their comments. The team is using natural language processing (NLP) to build a model to help with this classification.Each product can be classified into multiple categories that the company defines. These categories are related but are not mutually exclusive. For example, if there is mention of \"Sample Yogurt\" in the document of customer comments, then \"Sample Yogurt\" should be classified as \"yogurt,\" \"snack,\" and \"dairy product.\"The team is using Amazon Comprehend to train the model and must complete the project as soon as possible.Which functionality of Amazon Comprehend should the team use to meet these requirements?",
+    "choices": [
+      "Custom classification with multi-class mode",
+      "Custom classification with multi-label modeMost Voted",
+      "Custom entity recognition",
+      "Built-in models"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/75149-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 184Topic #: 1",
+    "question": "An energy company has wind turbines, weather stations, and solar panels that generate telemetry data. The company wants to perform predictive maintenance on these devices. The devices are in various locations and have unstable internet connectivity.A team of data scientists is using the telemetry data to perform machine learning (ML) to conduct anomaly detection and predict maintenance before the devices start to deteriorate. The team needs a scalable, secure, high-velocity data ingestion mechanism. The team has decided to use Amazon S3 as the data storage location.Which approach meets these requirements?",
+    "choices": [
+      "Ingest the data by using an HTTP API call to a web server that is hosted on Amazon EC2. Set up EC2 instances in an Auto Scaling configuration behind an Elastic Load Balancer to load the data into Amazon S3.",
+      "Ingest the data over Message Queuing Telemetry Transport (MQTT) to AWS IoT Core. Set up a rule in AWS IoT Core to use Amazon Kinesis Data Firehose to send data to an Amazon Kinesis data stream that is configured to write to an S3 bucket.",
+      "Ingest the data over Message Queuing Telemetry Transport (MQTT) to AWS IoT Core. Set up a rule in AWS IoT Core to direct all MQTT data to an Amazon Kinesis Data Firehose delivery stream that is configured to write to an S3 bucket.Most Voted",
+      "Ingest the data over Message Queuing Telemetry Transport (MQTT) to Amazon Kinesis data stream that is configured to write to an S3 bucket."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/75279-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 183Topic #: 1",
+    "question": "A data scientist is evaluating a GluonTS on Amazon SageMaker DeepAR model. The evaluation metrics on the test set indicate that the coverage score is 0.489 and 0.889 at the 0.5 and 0.9 quantiles, respectively.What can the data scientist reasonably conclude about the distributional forecast related to the test set?",
+    "choices": [
+      "The coverage scores indicate that the distributional forecast is poorly calibrated. These scores should be approximately equal to each other at all quantiles.",
+      "The coverage scores indicate that the distributional forecast is poorly calibrated. These scores should peak at the median and be lower at the tails.",
+      "The coverage scores indicate that the distributional forecast is correctly calibrated. These scores should always fall below the quantile itself.",
+      "The coverage scores indicate that the distributional forecast is correctly calibrated. These scores should be approximately equal to the quantile itself.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/75045-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 182Topic #: 1",
+    "question": "A data scientist is reviewing customer comments about a company's products. The data scientist needs to present an initial exploratory analysis by using charts and a word cloud. The data scientist must use feature engineering techniques to prepare this analysis before starting a natural language processing (NLP) model.Which combination of feature engineering techniques should the data scientist use to meet these requirements? (Choose two.)",
+    "choices": [
+      "Named entity recognition",
+      "Coreference",
+      "StemmingMost Voted",
+      "Term frequency-inverse document frequency (TF-IDF)Most Voted",
+      "E.Sentiment analysis"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/74970-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 181Topic #: 1",
+    "question": "A real-estate company is launching a new product that predicts the prices of new houses. The historical data for the properties and prices is stored in .csv format in an Amazon S3 bucket. The data has a header, some categorical fields, and some missing values. The company's data scientists have used Python with a common open-source library to fill the missing values with zeros. The data scientists have dropped all of the categorical fields and have trained a model by using the open-source linear regression algorithm with the default parameters.The accuracy of the predictions with the current model is below 50%. The company wants to improve the model performance and launch the new product as soon as possible.Which solution will meet these requirements with the LEAST operational overhead?",
+    "choices": [
+      "Create a service-linked role for Amazon Elastic Container Service (Amazon ECS) with access to the S3 bucket. Create an ECS cluster that is based on an AWS Deep Learning Containers image. Write the code to perform the feature engineering. Train a logistic regression model for predicting the price, pointing to the bucket with the dataset. Wait for the training job to complete. Perform the inferences.",
+      "Create an Amazon SageMaker notebook with a new IAM role that is associated with the notebook. Pull the dataset from the S3 bucket. Explore different combinations of feature engineering transformations, regression algorithms, and hyperparameters. Compare all the results in the notebook, and deploy the most accurate configuration in an endpoint for predictions.",
+      "Create an IAM role with access to Amazon S3, Amazon SageMaker, and AWS Lambda. Create a training job with the SageMaker built-in XGBoost model pointing to the bucket with the dataset. Specify the price as the target feature. Wait for the job to complete. Load the model artifact to a Lambda function for inference on prices of new houses.",
+      "Create an IAM role for Amazon SageMaker with access to the S3 bucket. Create a SageMaker AutoML job with SageMaker Autopilot pointing to the bucket with the dataset. Specify the price as the target attribute. Wait for the job to complete. Deploy the best model for predictions.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/75022-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 180Topic #: 1",
+    "question": "A company has an ecommerce website with a product recommendation engine built in TensorFlow. The recommendation engine endpoint is hosted by AmazonSageMaker. Three compute-optimized instances support the expected peak load of the website.Response times on the product recommendation page are increasing at the beginning of each month. Some users are encountering errors. The website receives the majority of its traffic between 8 AM and 6 PM on weekdays in a single time zone.Which of the following options are the MOST effective in solving the issue while keeping costs to a minimum? (Choose two.)",
+    "choices": [
+      "Configure the endpoint to use Amazon Elastic Inference (EI) accelerators.Most Voted",
+      "Create a new endpoint configuration with two production variants.",
+      "Configure the endpoint to automatically scale with the InvocationsPerInstance metric.Most Voted",
+      "Deploy a second instance pool to support a blue/green deployment of models.",
+      "E.Reconfigure the endpoint to use burstable instances."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/74972-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 179Topic #: 1",
+    "question": "A manufacturing company wants to use machine learning (ML) to automate quality control in its facilities. The facilities are in remote locations and have limited internet connectivity. The company has 20 ׀¢׀’ of training data that consists of labeled images of defective product parts. The training data is in the corporate on- premises data center.The company will use this data to train a model for real-time defect detection in new parts as the parts move on a conveyor belt in the facilities. The company needs a solution that minimizes costs for compute infrastructure and that maximizes the scalability of resources for training. The solution also must facilitate the company's use of an ML model in the low-connectivity environments.Which solution will meet these requirements?",
+    "choices": [
+      "Move the training data to an Amazon S3 bucket. Train and evaluate the model by using Amazon SageMaker. Optimize the model by using SageMaker Neo. Deploy the model on a SageMaker hosting services endpoint.",
+      "Train and evaluate the model on premises. Upload the model to an Amazon S3 bucket. Deploy the model on an Amazon SageMaker hosting services endpoint.",
+      "Move the training data to an Amazon S3 bucket. Train and evaluate the model by using Amazon SageMaker. Optimize the model by using SageMaker Neo. Set up an edge device in the manufacturing facilities with AWS IoT Greengrass. Deploy the model on the edge device.Most Voted",
+      "Train the model on premises. Upload the model to an Amazon S3 bucket. Set up an edge device in the manufacturing facilities with AWS IoT Greengrass. Deploy the model on the edge device."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/75200-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 178Topic #: 1",
+    "question": "A machine learning (ML) specialist is using Amazon SageMaker hyperparameter optimization (HPO) to improve a model's accuracy. The learning rate parameter is specified in the following HPO configuration:During the results analysis, the ML specialist determines that most of the training jobs had a learning rate between 0.01 and 0.1. The best result had a learning rate of less than 0.01. Training jobs need to run regularly over a changing dataset. The ML specialist needs to find a tuning mechanism that uses different learning rates more evenly from the provided range between MinValue and MaxValue.Which solution provides the MOST accurate result?",
+    "choices": [
+      "Modify the HPO configuration as follows:Select the most accurate hyperparameter configuration form this HPO job.",
+      "Run three different HPO jobs that use different learning rates form the following intervals for MinValue and MaxValue while using the same number of training jobs for each HPO job: ✑ [0.01, 0.1] ✑ [0.001, 0.01] ✑ [0.0001, 0.001] Select the most accurate hyperparameter configuration form these three HPO jobs.",
+      "Modify the HPO configuration as follows:Select the most accurate hyperparameter configuration form this training job.Most Voted",
+      "Run three different HPO jobs that use different learning rates form the following intervals for MinValue and MaxValue. Divide the number of training jobs for each HPO job by three: ✑ [0.01, 0.1] ✑ [0.001, 0.01] [0.0001, 0.001]Select the most accurate hyperparameter configuration form these three HPO jobs."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/74871-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 177Topic #: 1",
+    "question": "A retail company wants to update its customer support system. The company wants to implement automatic routing of customer claims to different queues to prioritize the claims by category.Currently, an operator manually performs the category assignment and routing. After the operator classifies and routes the claim, the company stores the claim's record in a central database. The claim's record includes the claim's category.The company has no data science team or experience in the field of machine learning (ML). The company's small development team needs a solution that requires no ML expertise.Which solution meets these requirements?",
+    "choices": [
+      "Export the database to a .csv file with two columns: claim_label and claim_text. Use the Amazon SageMaker Object2Vec algorithm and the .csv file to train a model. Use SageMaker to deploy the model to an inference endpoint. Develop a service in the application to use the inference endpoint to process incoming claims, predict the labels, and route the claims to the appropriate queue.",
+      "Export the database to a .csv file with one column: claim_text. Use the Amazon SageMaker Latent Dirichlet Allocation (LDA) algorithm and the .csv file to train a model. Use the LDA algorithm to detect labels automatically. Use SageMaker to deploy the model to an inference endpoint. Develop a service in the application to use the inference endpoint to process incoming claims, predict the labels, and route the claims to the appropriate queue.",
+      "Use Amazon Textract to process the database and automatically detect two columns: claim_label and claim_text. Use Amazon Comprehend custom classification and the extracted information to train the custom classifier. Develop a service in the application to use the Amazon Comprehend API to process incoming claims, predict the labels, and route the claims to the appropriate queue.",
+      "Export the database to a .csv file with two columns: claim_label and claim_text. Use Amazon Comprehend custom classification and the .csv file to train the custom classifier. Develop a service in the application to use the Amazon Comprehend API to process incoming claims, predict the labels, and route the claims to the appropriate queue.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/75431-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 176Topic #: 1",
+    "question": "A machine learning (ML) specialist needs to extract embedding vectors from a text series. The goal is to provide a ready-to-ingest feature space for a data scientist to develop downstream ML predictive models. The text consists of curated sentences in English. Many sentences use similar words but in different contexts. There are questions and answers among the sentences, and the embedding space must differentiate between them.Which options can produce the required embedding vectors that capture word context and sequential QA information? (Choose two.)",
+    "choices": [
+      "Amazon SageMaker seq2seq algorithm",
+      "Amazon SageMaker BlazingText algorithm in Skip-gram modeMost Voted",
+      "Amazon SageMaker Object2Vec algorithmMost Voted",
+      "Amazon SageMaker BlazingText algorithm in continuous bag-of-words (CBOW) mode",
+      "E.Combination of the Amazon SageMaker BlazingText algorithm in Batch Skip-gram mode with a custom recurrent neural network (RNN)"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/74922-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 174Topic #: 1",
+    "question": "An ecommerce company sends a weekly email newsletter to all of its customers. Management has hired a team of writers to create additional targeted content. A data scientist needs to identify five customer segments based on age, income, and location. The customers' current segmentation is unknown. The data scientist previously built an XGBoost model to predict the likelihood of a customer responding to an email based on age, income, and location.Why does the XGBoost model NOT meet the current requirements, and how can this be fixed?",
+    "choices": [
+      "The XGBoost model provides a true/false binary output. Apply principal component analysis (PCA) with five feature dimensions to predict a segment.",
+      "The XGBoost model provides a true/false binary output. Increase the number of classes the XGBoost model predicts to five classes to predict a segment.",
+      "The XGBoost model is a supervised machine learning algorithm. Train a k-Nearest-Neighbors (kNN) model with K = 5 on the same dataset to predict a segment.",
+      "The XGBoost model is a supervised machine learning algorithm. Train a k-means model with K = 5 on the same dataset to predict a segment.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/128599-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 274Topic #: 1",
+    "question": "A medical device company is building a machine learning (ML) model to predict the likelihood of device recall based on customer data that the company collects from a plain text survey. One of the survey questions asks which medications the customer is taking. The data for this field contains the names of medications that customers enter manually. Customers misspell some of the medication names. The column that contains the medication name data gives a categorical feature with high cardinality but redundancy.What is the MOST effective way to encode this categorical feature into a numeric feature?",
+    "choices": [
+      "Spell check the column. Use Amazon SageMaker one-hot encoding on the column to transform a categorical feature to a numerical feature.",
+      "Fix the spelling in the column by using char-RNN. Use Amazon SageMaker Data Wrangler one-hot encoding to transform a categorical feature to a numerical feature.",
+      "Use Amazon SageMaker Data Wrangler similarity encoding on the column to create embeddings of vectors of real numbers.Most Voted",
+      "Use Amazon SageMaker Data Wrangler ordinal encoding on the column to encode categories into an integer between 0 and the total number of categories in the column."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/114425-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 273Topic #: 1",
+    "question": "A network security vendor needs to ingest telemetry data from thousands of endpoints that run all over the world. The data is transmitted every 30 seconds in the form of records that contain 50 fields. Each record is up to 1 KB in size. The security vendor uses Amazon Kinesis Data Streams to ingest the data. The vendor requires hourly summaries of the records that Kinesis Data Streams ingests. The vendor will use Amazon Athena to query the records and to generate the summaries. The Athena queries will target 7 to 12 of the available data fields.Which solution will meet these requirements with the LEAST amount of customization to transform and store the ingested data?",
+    "choices": [
+      "Use AWS Lambda to read and aggregate the data hourly. Transform the data and store it in Amazon S3 by using Amazon Kinesis Data Firehose.",
+      "Use Amazon Kinesis Data Firehose to read and aggregate the data hourly. Transform the data and store it in Amazon S3 by using a short-lived Amazon EMR cluster.",
+      "Use Amazon Kinesis Data Analytics to read and aggregate the data hourly. Transform the data and store it in Amazon S3 by using Amazon Kinesis Data Firehose.Most Voted",
+      "Use Amazon Kinesis Data Firehose to read and aggregate the data hourly. Transform the data and store it in Amazon S3 by using AWS Lambda."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/114426-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 272Topic #: 1",
+    "question": "A machine learning (ML) specialist uploads 5 TB of data to an Amazon SageMaker Studio environment. The ML specialist performs initial data cleansing. Before the ML specialist begins to train a model, the ML specialist needs to create and view an analysis report that details potential bias in the uploaded data.Which combination of actions will meet these requirements with the LEAST operational overhead? (Choose two.)",
+    "choices": [
+      "Use SageMaker Clarify to automatically detect data biasMost Voted",
+      "Turn on the bias detection option in SageMaker Ground Truth to automatically analyze data features.",
+      "Use SageMaker Model Monitor to generate a bias drift report.",
+      "Configure SageMaker Data Wrangler to generate a bias report.Most Voted",
+      "E.Use SageMaker Experiments to perform a data check"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/114483-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 271Topic #: 1",
+    "question": "A machine learning (ML) specialist is training a multilayer perceptron (MLP) on a dataset with multiple classes. The target class of interest is unique compared to the other classes in the dataset, but it does not achieve an acceptable recall metric. The ML specialist varies the number and size of the MLP's hidden layers, but the results do not improve significantly.Which solution will improve recall in the LEAST amount of time?",
+    "choices": [
+      "Add class weights to the MLP's loss function, and then retrain.Most Voted",
+      "Gather more data by using Amazon Mechanical Turk, and then retrain.",
+      "Train a k-means algorithm instead of an MLP.",
+      "Train an anomaly detection model instead of an MLP."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/114427-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 264Topic #: 1",
+    "question": "A company needs to deploy a chatbot to answer common questions from customers. The chatbot must base its answers on company documentation.Which solution will meet these requirements with the LEAST development effort?",
+    "choices": [
+      "Index company documents by using Amazon Kendra. Integrate the chatbot with Amazon Kendra by using the Amazon Kendra Query API operation to answer customer questions.Most Voted",
+      "Train a Bidirectional Attention Flow (BiDAF) network based on past customer questions and company documents. Deploy the model as a real-time Amazon SageMaker endpoint. Integrate the model with the chatbot by using the SageMaker Runtime InvokeEndpoint API operation to answer customer questions.",
+      "Train an Amazon SageMaker Blazing Text model based on past customer questions and company documents. Deploy the model as a real-time SageMaker endpoint. Integrate the model with the chatbot by using the SageMaker Runtime InvokeEndpoint API operation to answer customer questions.",
+      "Index company documents by using Amazon OpenSearch Service. Integrate the chatbot with OpenSearch Service by using the OpenSearch Service k-nearest neighbors (k-NN) Query API operation to answer customer questions."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/112451-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 240Topic #: 1",
+    "question": "A machine learning (ML) engineer at a bank is building a data ingestion solution to provide transaction features to financial ML models. Raw transactional data is available in an Amazon Kinesis data stream.The solution must compute rolling averages of the ingested data from the data stream and must store the results in Amazon SageMaker Feature Store. The solution also must serve the results to the models in near real time.Which solution will meet these requirements?",
+    "choices": [
+      "Load the data into an Amazon S3 bucket by using Amazon Kinesis Data Firehose. Use a SageMaker Processing job to aggregate the data and to load the results into SageMaker Feature Store as an online feature group.",
+      "Write the data directly from the data stream into SageMaker Feature Store as an online feature group. Calculate the rolling averages in place within SageMaker Feature Store by using the SageMaker GetRecord API operation.",
+      "Consume the data stream by using an Amazon Kinesis Data Analytics SQL application that calculates the rolling averages. Generate a result stream. Consume the result stream by using a custom AWS Lambda function that publishes the results to SageMaker Feature Store as an online feature group.Most Voted",
+      "Load the data into an Amazon S3 bucket by using Amazon Kinesis Data Firehose. Use a SageMaker Processing job to load the data into SageMaker Feature Store as an offline feature group. Compute the rolling averages at query time."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/112450-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 239Topic #: 1",
+    "question": "An engraving company wants to automate its quality control process for plaques. The company performs the process before mailing each customized plaque to a customer. The company has created an Amazon S3 bucket that contains images of defects that should cause a plaque to be rejected. Low-confidence predictions must be sent to an internal team of reviewers who are using Amazon Augmented AI (Amazon A2I).Which solution will meet these requirements?",
+    "choices": [
+      "Use Amazon Textract for automatic processing. Use Amazon A2I with Amazon Mechanical Turk for manual review.",
+      "Use Amazon Rekognition for automatic processing. Use Amazon A2I with a private workforce option for manual review.Most Voted",
+      "Use Amazon Transcribe for automatic processing. Use Amazon A2I with a private workforce option for manual review.",
+      "Use AWS Panorama for automatic processing. Use Amazon A2I with Amazon Mechanical Turk for manual review."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/112449-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 238Topic #: 1",
+    "question": "A company operates an amusement park. The company wants to collect, monitor, and store real-time traffic data at several park entrances by using strategically placed cameras. The company’s security team must be able to immediately access the data for viewing. Stored data must be indexed and must be accessible to the company’s data science team.Which solution will meet these requirements MOST cost-effectively?",
+    "choices": [
+      "Use Amazon Kinesis Video Streams to ingest, index, and store the data. Use the built-in integration with Amazon Rekognition for viewing by the security team.",
+      "Use Amazon Kinesis Video Streams to ingest, index, and store the data. Use the built-in HTTP live streaming (HLS) capability for viewing by the security team.Most Voted",
+      "Use Amazon Rekognition Video and the GStreamer plugin to ingest the data for viewing by the security team. Use Amazon Kinesis Data Streams to index and store the data.",
+      "Use Amazon Kinesis Data Firehose to ingest, index, and store the data. Use the built-in HTTP live streaming (HLS) capability for viewing by the security team."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/103030-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 233Topic #: 1",
+    "question": "An online advertising company is developing a linear model to predict the bid price of advertisements in real time with low-latency predictions. A data scientist has trained the linear model by using many features, but the model is overfitting the training dataset. The data scientist needs to prevent overfitting and must reduce the number of features.Which solution will meet these requirements?",
+    "choices": [
+      "Retrain the model with L1 regularization applied.Most Voted",
+      "Retrain the model with L2 regularization applied.",
+      "Retrain the model with dropout regularization applied.",
+      "Retrain the model by using more data."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/98763-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 219Topic #: 1",
+    "question": "A sports analytics company is providing services at a marathon. Each runner in the marathon will have their race ID printed as text on the front of their shirt. The company needs to extract race IDs from images of the runners.Which solution will meet these requirements with the LEAST operational overhead?",
+    "choices": [
+      "Use Amazon Rekognition.Most Voted",
+      "Use a custom convolutional neural network (CNN).",
+      "Use the Amazon SageMaker Object Detection algorithm.",
+      "Use Amazon Lookout for Vision."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/88943-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 196Topic #: 1",
+    "question": "A company is using Amazon SageMaker to build a machine learning (ML) model to predict customer churn based on customer call transcripts. Audio files from customer calls are located in an on-premises VoIP system that has petabytes of recorded calls. The on-premises infrastructure has high-velocity networking and connects to the company's AWS infrastructure through a VPN connection over a 100 Mbps connection.The company has an algorithm for transcribing customer calls that requires GPUs for inference. The company wants to store these transcriptions in an Amazon S3 bucket in the AWS Cloud for model development.Which solution should an ML specialist use to deliver the transcriptions to the S3 bucket as quickly as possible?",
+    "choices": [
+      "Order and use an AWS Snowball Edge Compute Optimized device with an NVIDIA Tesla module to run the transcription algorithm. Use AWS DataSync to send the resulting transcriptions to the transcription S3 bucket.Most Voted",
+      "Order and use an AWS Snowcone device with Amazon EC2 Inf1 instances to run the transcription algorithm. Use AWS DataSync to send the resulting transcriptions to the transcription S3 bucket.",
+      "Order and use AWS Outposts to run the transcription algorithm on GPU-based Amazon EC2 instances. Store the resulting transcriptions in the transcription S3 bucket.",
+      "Use AWS DataSync to ingest the audio files to Amazon S3. Create an AWS Lambda function to run the transcription algorithm on the audio files when they are uploaded to Amazon S3. Configure the function to write the resulting transcriptions to the transcription S3 bucket."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/89137-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 195Topic #: 1",
+    "question": "A geospatial analysis company processes thousands of new satellite images each day to produce vessel detection data for commercial shipping. The company stores the training data in Amazon S3. The training data incrementally increases in size with new images each day.The company has configured an Amazon SageMaker training job to use a single ml.p2.xlarge instance with File input mode to train the built-in Object Detection algorithm. The training process was successful last month but is now failing because of a lack of storage. Aside from the addition of training data, nothing has changed in the model training process.A machine learning (ML) specialist needs to change the training configuration to fix the problem. The solution must optimize performance and must minimize the cost of training.Which solution will meet these requirements?",
+    "choices": [
+      "Modify the training configuration to use two ml.p2.xlarge instances.",
+      "Modify the training configuration to use Pipe input mode.Most Voted",
+      "Modify the training configuration to use a single ml.p3.2xlarge instance.",
+      "Modify the training configuration to use Amazon Elastic File System (Amazon EFS) instead of Amazon S3 to store the input training data."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/74877-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 172Topic #: 1",
+    "question": "A data scientist has a dataset of machine part images stored in Amazon Elastic File System (Amazon EFS). The data scientist needs to use Amazon SageMaker to create and train an image classification machine learning model based on this dataset. Because of budget and time constraints, management wants the data scientist to create and train a model with the least number of steps and integration work required.How should the data scientist meet these requirements?",
+    "choices": [
+      "Mount the EFS file system to a SageMaker notebook and run a script that copies the data to an Amazon FSx for Lustre file system. Run the SageMaker training job with the FSx for Lustre file system as the data source.",
+      "Launch a transient Amazon EMR cluster. Configure steps to mount the EFS file system and copy the data to an Amazon S3 bucket by using S3DistCp. Run the SageMaker training job with Amazon S3 as the data source.",
+      "Mount the EFS file system to an Amazon EC2 instance and use the AWS CLI to copy the data to an Amazon S3 bucket. Run the SageMaker training job with Amazon S3 as the data source.",
+      "Run a SageMaker training job with an EFS file system as the data source.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/74810-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 171Topic #: 1",
+    "question": "A machine learning (ML) specialist wants to create a data preparation job that uses a PySpark script with complex window aggregation operations to create data for training and testing. The ML specialist needs to evaluate the impact of the number of features and the sample count on model performance.Which approach should the ML specialist use to determine the ideal data transformations for the model?",
+    "choices": [
+      "Add an Amazon SageMaker Debugger hook to the script to capture key metrics. Run the script as an AWS Glue job.",
+      "Add an Amazon SageMaker Experiments tracker to the script to capture key metrics. Run the script as an AWS Glue job.",
+      "Add an Amazon SageMaker Debugger hook to the script to capture key parameters. Run the script as a SageMaker processing job.",
+      "Add an Amazon SageMaker Experiments tracker to the script to capture key parameters. Run the script as a SageMaker processing job.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/74809-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 170Topic #: 1",
+    "question": "A retail company is selling products through a global online marketplace. The company wants to use machine learning (ML) to analyze customer feedback and identify specific areas for improvement. A developer has built a tool that collects customer reviews from the online marketplace and stores them in an Amazon S3 bucket. This process yields a dataset of 40 reviews. A data scientist building the ML models must identify additional sources of data to increase the size of the dataset.Which data sources should the data scientist use to augment the dataset of reviews? (Choose three.)",
+    "choices": [
+      "Emails exchanged by customers and the company's customer service agentsMost Voted",
+      "Social media posts containing the name of the company or its productsMost Voted",
+      "A publicly available collection of news articles",
+      "A publicly available collection of customer reviewsMost Voted",
+      "E.Product sales revenue figures for the company",
+      "F.Instruction manuals for the company's products"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/74998-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 169Topic #: 1",
+    "question": "A company is building a new version of a recommendation engine. Machine learning (ML) specialists need to keep adding new data from users to improve personalized recommendations. The ML specialists gather data from the users' interactions on the platform and from sources such as external websites and social media.The pipeline cleans, transforms, enriches, and compresses terabytes of data daily, and this data is stored in Amazon S3. A set of Python scripts was coded to do the job and is stored in a large Amazon EC2 instance. The whole process takes more than 20 hours to finish, with each script taking at least an hour. The company wants to move the scripts out of Amazon EC2 into a more managed solution that will eliminate the need to maintain servers.Which approach will address all of these requirements with the LEAST development effort?",
+    "choices": [
+      "Load the data into an Amazon Redshift cluster. Execute the pipeline by using SQL. Store the results in Amazon S3.",
+      "Load the data into Amazon DynamoDB. Convert the scripts to an AWS Lambda function. Execute the pipeline by triggering Lambda executions. Store the results in Amazon S3.",
+      "Create an AWS Glue job. Convert the scripts to PySpark. Execute the pipeline. Store the results in Amazon S3.Most Voted",
+      "Create a set of individual AWS Lambda functions to execute each of the scripts. Build a step function by using the AWS Step Functions Data Science SDK. Store the results in Amazon S3."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/75262-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 168Topic #: 1",
+    "question": "A data engineer at a bank is evaluating a new tabular dataset that includes customer data. The data engineer will use the customer data to create a new model to predict customer behavior. After creating a correlation matrix for the variables, the data engineer notices that many of the 100 features are highly correlated with each other.Which steps should the data engineer take to address this issue? (Choose two.)",
+    "choices": [
+      "Use a linear-based algorithm to train the model.",
+      "Apply principal component analysis (PCA).Most Voted",
+      "Remove a portion of highly correlated features from the dataset.Most Voted",
+      "Apply min-max feature scaling to the dataset.",
+      "E.Apply one-hot encoding category-based variables."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/74997-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 167Topic #: 1",
+    "question": "A company has video feeds and images of a subway train station. The company wants to create a deep learning model that will alert the station manager if any passenger crosses the yellow safety line when there is no train in the station. The alert will be based on the video feeds. The company wants the model to detect the yellow line, the passengers who cross the yellow line, and the trains in the video feeds. This task requires labeling. The video data must remain confidential.A data scientist creates a bounding box to label the sample data and uses an object detection model. However, the object detection model cannot clearly demarcate the yellow line, the passengers who cross the yellow line, and the trains.Which labeling approach will help the company improve this model?",
+    "choices": [
+      "Use Amazon Rekognition Custom Labels to label the dataset and create a custom Amazon Rekognition object detection model. Create a private workforce. Use Amazon Augmented AI (Amazon A2I) to review the low-confidence predictions and retrain the custom Amazon Rekognition model.",
+      "Use an Amazon SageMaker Ground Truth object detection labeling task. Use Amazon Mechanical Turk as the labeling workforce.",
+      "Use Amazon Rekognition Custom Labels to label the dataset and create a custom Amazon Rekognition object detection model. Create a workforce with a third-party AWS Marketplace vendor. Use Amazon Augmented AI (Amazon A2I) to review the low-confidence predictions and retrain the custom Amazon Rekognition model.",
+      "Use an Amazon SageMaker Ground Truth semantic segmentation labeling task. Use a private workforce as the labeling workforce.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/75399-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 166Topic #: 1",
+    "question": "A company wants to create a data repository in the AWS Cloud for machine learning (ML) projects. The company wants to use AWS to perform complete ML lifecycles and wants to use Amazon S3 for the data storage. All of the company's data currently resides on premises and is 40 ׀¢׀’ in size.The company wants a solution that can transfer and automatically update data between the on-premises object storage and Amazon S3. The solution must support encryption, scheduling, monitoring, and data integrity validation.Which solution meets these requirements?",
+    "choices": [
+      "Use the S3 sync command to compare the source S3 bucket and the destination S3 bucket. Determine which source files do not exist in the destination S3 bucket and which source files were modified.",
+      "Use AWS Transfer for FTPS to transfer the files from the on-premises storage to Amazon S3.",
+      "Use AWS DataSync to make an initial copy of the entire dataset. Schedule subsequent incremental transfers of changing data until the final cutover from on premises to AWS.Most Voted",
+      "Use S3 Batch Operations to pull data periodically from the on-premises storage. Enable S3 Versioning on the S3 bucket to protect against accidental overwrites."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/76486-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 165Topic #: 1",
+    "question": "A data scientist is using the Amazon SageMaker Neural Topic Model (NTM) algorithm to build a model that recommends tags from blog posts. The raw blog post data is stored in an Amazon S3 bucket in JSON format. During model evaluation, the data scientist discovered that the model recommends certain stopwords such as \"a,\" \"an,\" and \"the\" as tags to certain blog posts, along with a few rare words that are present only in certain blog entries. After a few iterations of tag review with the content team, the data scientist notices that the rare words are unusual but feasible. The data scientist also must ensure that the tag recommendations of the generated model do not include the stopwords.What should the data scientist do to meet these requirements?",
+    "choices": [
+      "Use the Amazon Comprehend entity recognition API operations. Remove the detected words from the blog post data. Replace the blog post data source in the S3 bucket.",
+      "Run the SageMaker built-in principal component analysis (PCA) algorithm with the blog post data from the S3 bucket as the data source. Replace the blog post data in the S3 bucket with the results of the training job.",
+      "Use the SageMaker built-in Object Detection algorithm instead of the NTM algorithm for the training job to process the blog post data.",
+      "Remove the stopwords from the blog post data by using the CountVectorizer function in the scikit-learn library. Replace the blog post data in the S3 bucket with the results of the vectorizer.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/77501-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 164Topic #: 1",
+    "question": "A data scientist is working on a public sector project for an urban traffic system. While studying the traffic patterns, it is clear to the data scientist that the traffic behavior at each light is correlated, subject to a small stochastic error term. The data scientist must model the traffic behavior to analyze the traffic patterns and reduce congestion.How will the data scientist MOST effectively model the problem?",
+    "choices": [
+      "The data scientist should obtain a correlated equilibrium policy by formulating this problem as a multi-agent reinforcement learning problem.Most Voted",
+      "The data scientist should obtain the optimal equilibrium policy by formulating this problem as a single-agent reinforcement learning problem.",
+      "Rather than finding an equilibrium policy, the data scientist should obtain accurate predictors of traffic flow by using historical data through a supervised learning approach.",
+      "Rather than finding an equilibrium policy, the data scientist should obtain accurate predictors of traffic flow by using unlabeled simulated data representing the new traffic patterns in the city and applying an unsupervised learning approach."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/75059-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 163Topic #: 1",
+    "question": "A machine learning specialist is developing a regression model to predict rental rates from rental listings. A variable named Wall_Color represents the most prominent exterior wall color of the property. The following is the sample data, excluding all other variables:The specialist chose a model that needs numerical input data.Which feature engineering approaches should the specialist use to allow the regression model to learn from the Wall_Color data? (Choose two.)",
+    "choices": [
+      "Apply integer transformation and set Red = 1, White = 5, and Green = 10.",
+      "Add new columns that store one-hot representation of colors.Most Voted",
+      "Replace the color name string by its length.",
+      "Create three columns to encode the color in RGB format.",
+      "E.Replace each color name by its training set frequency.Most Voted"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/74920-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 160Topic #: 1",
+    "question": "A power company wants to forecast future energy consumption for its customers in residential properties and commercial business properties. Historical power consumption data for the last 10 years is available. A team of data scientists who performed the initial data analysis and feature selection will include the historical power consumption data and data such as weather, number of individuals on the property, and public holidays.The data scientists are using Amazon Forecast to generate the forecasts.Which algorithm in Forecast should the data scientists use to meet these requirements?",
+    "choices": [
+      "Autoregressive Integrated Moving Average (AIRMA)",
+      "Exponential Smoothing (ETS)",
+      "Convolutional Neural Network - Quantile Regression (CNN-QR)Most Voted",
+      "Prophet"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/74806-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 159Topic #: 1",
+    "question": "A company that manufactures mobile devices wants to determine and calibrate the appropriate sales price for its devices. The company is collecting the relevant data and is determining data features that it can use to train machine learning (ML) models. There are more than 1,000 features, and the company wants to determine the primary features that contribute to the sales price.Which techniques should the company use for feature selection? (Choose three.)",
+    "choices": [
+      "Data scaling with standardization and normalization",
+      "Correlation plot with heat mapsMost Voted",
+      "Data binning",
+      "Univariate selectionMost Voted",
+      "E.Feature importance with a tree-based classifierMost Voted",
+      "F.Data augmentation"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/75080-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 158Topic #: 1",
+    "question": "A data scientist is training a text classification model by using the Amazon SageMaker built-in BlazingText algorithm. There are 5 classes in the dataset, with 300 samples for category A, 292 samples for category B, 240 samples for category C, 258 samples for category D, and 310 samples for category E.The data scientist shuffles the data and splits off 10% for testing. After training the model, the data scientist generates confusion matrices for the training and test sets.What could the data scientist conclude form these results?",
+    "choices": [
+      "Classes C and D are too similar.Most Voted",
+      "The dataset is too small for holdout cross-validation.",
+      "The data distribution is skewed.",
+      "The model is overfitting for classes B and E."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/74934-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 157Topic #: 1",
+    "question": "An ecommerce company is automating the categorization of its products based on images. A data scientist has trained a computer vision model using the AmazonSageMaker image classification algorithm. The images for each product are classified according to specific product lines. The accuracy of the model is too low when categorizing new products. All of the product images have the same dimensions and are stored within an Amazon S3 bucket. The company wants to improve the model so it can be used for new products as soon as possible.Which steps would improve the accuracy of the solution? (Choose three.)",
+    "choices": [
+      "Use the SageMaker semantic segmentation algorithm to train a new model to achieve improved accuracy.",
+      "Use the Amazon Rekognition DetectLabels API to classify the products in the dataset.",
+      "Augment the images in the dataset. Use open source libraries to crop, resize, flip, rotate, and adjust the brightness and contrast of the images.Most Voted",
+      "Use a SageMaker notebook to implement the normalization of pixels and scaling of the images. Store the new dataset in Amazon S3.Most Voted",
+      "E.Use Amazon Rekognition Custom Labels to train a new model.",
+      "F.Check whether there are class imbalances in the product categories, and apply oversampling or undersampling as required. Store the new dataset in Amazon S3.Most Voted"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/74397-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 156Topic #: 1",
+    "question": "A company supplies wholesale clothing to thousands of retail stores. A data scientist must create a model that predicts the daily sales volume for each item for each store. The data scientist discovers that more than half of the stores have been in business for less than 6 months. Sales data is highly consistent from week to week. Daily data from the database has been aggregated weekly, and weeks with no sales are omitted from the current dataset. Five years (100 MB) of sales data is available in Amazon S3.Which factors will adversely impact the performance of the forecast model to be developed, and which actions should the data scientist take to mitigate them?(Choose two.)",
+    "choices": [
+      "Detecting seasonality for the majority of stores will be an issue. Request categorical data to relate new stores with similar stores that have more historical data.Most Voted",
+      "The sales data does not have enough variance. Request external sales data from other industries to improve the model's ability to generalize.",
+      "Sales data is aggregated by week. Request daily sales data from the source database to enable building a daily model.Most Voted",
+      "The sales data is missing zero entries for item sales. Request that item sales data from the source database include zero entries to enable building the model.",
+      "E.Only 100 MB of sales data is available in Amazon S3. Request 10 years of sales data, which would provide 200 MB of training data for the model."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/75415-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 155Topic #: 1",
+    "question": "A machine learning (ML) specialist is administering a production Amazon SageMaker endpoint with model monitoring configured. Amazon SageMaker ModelMonitor detects violations on the SageMaker endpoint, so the ML specialist retrains the model with the latest dataset. This dataset is statistically representative of the current production traffic. The ML specialist notices that even after deploying the new SageMaker model and running the first monitoring job, the SageMaker endpoint still has violations.What should the ML specialist do to resolve the violations?",
+    "choices": [
+      "Manually trigger the monitoring job to re-evaluate the SageMaker endpoint traffic sample.",
+      "Run the Model Monitor baseline job again on the new training set. Configure Model Monitor to use the new baseline.Most Voted",
+      "Delete the endpoint and recreate it with the original configuration.",
+      "Retrain the model again by using a combination of the original training set and the new training set."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/74991-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 154Topic #: 1",
+    "question": "A machine learning specialist needs to analyze comments on a news website with users across the globe. The specialist must find the most discussed topics in the comments that are in either English or Spanish.What steps could be used to accomplish this task? (Choose two.)",
+    "choices": [
+      "Use an Amazon SageMaker BlazingText algorithm to find the topics independently from language. Proceed with the analysis.",
+      "Use an Amazon SageMaker seq2seq algorithm to translate from Spanish to English, if necessary. Use a SageMaker Latent Dirichlet Allocation (LDA) algorithm to find the topics.",
+      "Use Amazon Translate to translate from Spanish to English, if necessary. Use Amazon Comprehend topic modeling to find the topics.Most Voted",
+      "Use Amazon Translate to translate from Spanish to English, if necessary. Use Amazon Lex to extract topics form the content.",
+      "E.Use Amazon Translate to translate from Spanish to English, if necessary. Use Amazon SageMaker Neural Topic Model (NTM) to find the topics."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/75020-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 153Topic #: 1",
+    "question": "A manufacturing company asks its machine learning specialist to develop a model that classifies defective parts into one of eight defect types. The company has provided roughly 100,000 images per defect type for training. During the initial training of the image classification model, the specialist notices that the validation accuracy is 80%, while the training accuracy is 90%. It is known that human-level performance for this type of image classification is around 90%.What should the specialist consider to fix this issue?",
+    "choices": [
+      "A longer training time",
+      "Making the network larger",
+      "Using a different optimizer",
+      "Using some form of regularizationMost Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/75321-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 152Topic #: 1",
+    "question": "A machine learning (ML) specialist must develop a classification model for a financial services company. A domain expert provides the dataset, which is tabular with 10,000 rows and 1,020 features. During exploratory data analysis, the specialist finds no missing values and a small percentage of duplicate rows. There are correlation scores of > 0.9 for 200 feature pairs. The mean value of each feature is similar to its 50th percentile.Which feature engineering strategy should the ML specialist use with Amazon SageMaker?",
+    "choices": [
+      "Apply dimensionality reduction by using the principal component analysis (PCA) algorithm.Most Voted",
+      "Drop the features with low correlation scores by using a Jupyter notebook.",
+      "Apply anomaly detection by using the Random Cut Forest (RCF) algorithm.",
+      "Concatenate the features with high correlation scores by using a Jupyter notebook."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/75436-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 151Topic #: 1",
+    "question": "A data science team is planning to build a natural language processing (NLP) application. The application's text preprocessing stage will include part-of-speech tagging and key phase extraction. The preprocessed text will be input to a custom classification algorithm that the data science team has already written and trained using Apache MXNet.Which solution can the team build MOST quickly to meet these requirements?",
+    "choices": [
+      "Use Amazon Comprehend for the part-of-speech tagging, key phase extraction, and classification tasks.",
+      "Use an NLP library in Amazon SageMaker for the part-of-speech tagging. Use Amazon Comprehend for the key phase extraction. Use AWS Deep Learning Containers with Amazon SageMaker to build the custom classifier.",
+      "Use Amazon Comprehend for the part-of-speech tagging and key phase extraction tasks. Use Amazon SageMaker built-in Latent Dirichlet Allocation (LDA) algorithm to build the custom classifier.",
+      "Use Amazon Comprehend for the part-of-speech tagging and key phase extraction tasks. Use AWS Deep Learning Containers with Amazon SageMaker to build the custom classifier.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/74996-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 150Topic #: 1",
+    "question": "A bank wants to launch a low-rate credit promotion. The bank is located in a town that recently experienced economic hardship. Only some of the bank's customers were affected by the crisis, so the bank's credit team must identify which customers to target with the promotion. However, the credit team wants to make sure that loyal customers' full credit history is considered when the decision is made.The bank's data science team developed a model that classifies account transactions and understands credit eligibility. The data science team used the XGBoost algorithm to train the model. The team used 7 years of bank transaction historical data for training and hyperparameter tuning over the course of several days.The accuracy of the model is sufficient, but the credit team is struggling to explain accurately why the model denies credit to some customers. The credit team has almost no skill in data science.What should the data science team do to address this issue in the MOST operationally efficient manner?",
+    "choices": [
+      "Use Amazon SageMaker Studio to rebuild the model. Create a notebook that uses the XGBoost training container to perform model training. Deploy the model at an endpoint. Enable Amazon SageMaker Model Monitor to store inferences. Use the inferences to create Shapley values that help explain model behavior. Create a chart that shows features and SHapley Additive exPlanations (SHAP) values to explain to the credit team how the features affect the model outcomes.",
+      "Use Amazon SageMaker Studio to rebuild the model. Create a notebook that uses the XGBoost training container to perform model training. Activate Amazon SageMaker Debugger, and configure it to calculate and collect Shapley values. Create a chart that shows features and SHapley Additive exPlanations (SHAP) values to explain to the credit team how the features affect the model outcomes.Most Voted",
+      "Create an Amazon SageMaker notebook instance. Use the notebook instance and the XGBoost library to locally retrain the model. Use the plot_importance() method in the Python XGBoost interface to create a feature importance chart. Use that chart to explain to the credit team how the features affect the model outcomes.",
+      "Use Amazon SageMaker Studio to rebuild the model. Create a notebook that uses the XGBoost training container to perform model training. Deploy the model at an endpoint. Use Amazon SageMaker Processing to post-analyze the model and create a feature importance explainability chart automatically for the credit team."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/74079-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 149Topic #: 1",
+    "question": "A company is launching a new product and needs to build a mechanism to monitor comments about the company and its new product on social media. The company needs to be able to evaluate the sentiment expressed in social media posts, and visualize trends and configure alarms based on various thresholds.The company needs to implement this solution quickly, and wants to minimize the infrastructure and data science resources needed to evaluate the messages.The company already has a solution in place to collect posts and store them within an Amazon S3 bucket.What services should the data science team use to deliver this solution?",
+    "choices": [
+      "Train a model in Amazon SageMaker by using the BlazingText algorithm to detect sentiment in the corpus of social media posts. Expose an endpoint that can be called by AWS Lambda. Trigger a Lambda function when posts are added to the S3 bucket to invoke the endpoint and record the sentiment in an Amazon DynamoDB table and in a custom Amazon CloudWatch metric. Use CloudWatch alarms to notify analysts of trends.",
+      "Train a model in Amazon SageMaker by using the semantic segmentation algorithm to model the semantic content in the corpus of social media posts. Expose an endpoint that can be called by AWS Lambda. Trigger a Lambda function when objects are added to the S3 bucket to invoke the endpoint and record the sentiment in an Amazon DynamoDB table. Schedule a second Lambda function to query recently added records and send an Amazon Simple Notification Service (Amazon SNS) notification to notify analysts of trends.",
+      "Trigger an AWS Lambda function when social media posts are added to the S3 bucket. Call Amazon Comprehend for each post to capture the sentiment in the    message and record the sentiment in an Amazon DynamoDB table. Schedule a second Lambda function to query recently added records and send an Amazon Simple Notification Service (Amazon SNS) notification to notify analysts of trends.",
+      "Trigger an AWS Lambda function when social media posts are added to the S3 bucket. Call Amazon Comprehend for each post to capture the sentiment in the message and record the sentiment in a custom Amazon CloudWatch metric and in S3. Use CloudWatch alarms to notify analysts of trends.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/74395-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 147Topic #: 1",
+    "question": "A manufacturing company uses machine learning (ML) models to detect quality issues. The models use images that are taken of the company's product at the end of each production step. The company has thousands of machines at the production site that generate one image per second on average.The company ran a successful pilot with a single manufacturing machine. For the pilot, ML specialists used an industrial PC that ran AWS IoT Greengrass with a long-running AWS Lambda function that uploaded the images to Amazon S3. The uploaded images invoked a Lambda function that was written in Python to perform inference by using an Amazon SageMaker endpoint that ran a custom model. The inference results were forwarded back to a web service that was hosted at the production site to prevent faulty products from being shipped.The company scaled the solution out to all manufacturing machines by installing similarly configured industrial PCs on each production machine. However, latency for predictions increased beyond acceptable limits. Analysis shows that the internet connection is at its capacity limit.How can the company resolve this issue MOST cost-effectively?",
+    "choices": [
+      "Set up a 10 Gbps AWS Direct Connect connection between the production site and the nearest AWS Region. Use the Direct Connect connection to upload the images. Increase the size of the instances and the number of instances that are used by the SageMaker endpoint.",
+      "Extend the long-running Lambda function that runs on AWS IoT Greengrass to compress the images and upload the compressed files to Amazon S3. Decompress the files by using a separate Lambda function that invokes the existing Lambda function to run the inference pipeline.",
+      "Use auto scaling for SageMaker. Set up an AWS Direct Connect connection between the production site and the nearest AWS Region. Use the Direct Connect connection to upload the images.",
+      "Deploy the Lambda function and the ML models onto the AWS IoT Greengrass core that is running on the industrial PCs that are installed on each machine. Extend the long-running Lambda function that runs on AWS IoT Greengrass to invoke the Lambda function with the captured images and run the inference on the edge component that forwards the results directly to the web service.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/74078-exam-aws-certified-machine-learning-specialty-topic-1/",
+    "question_number": "Question #: 146Topic #: 1",
+    "question": "A company that runs an online library is implementing a chatbot using Amazon Lex to provide book recommendations based on category. This intent is fulfilled by an AWS Lambda function that queries an Amazon DynamoDB table for a list of book titles, given a particular category. For testing, there are only three categories implemented as the custom slot types: \"comedy,\" \"adventure,` and \"documentary.`A machine learning (ML) specialist notices that sometimes the request cannot be fulfilled because Amazon Lex cannot understand the category spoken by users with utterances such as \"funny,\" \"fun,\" and \"humor.\" The ML specialist needs to fix the problem without changing the Lambda code or data in DynamoDB.How should the ML specialist fix the problem?",
+    "choices": [
+      "Add the unrecognized words in the enumeration values list as new values in the slot type.",
+      "Create a new custom slot type, add the unrecognized words to this slot type as enumeration values, and use this slot type for the slot.",
+      "Use the AMAZON.SearchQuery built-in slot types for custom searches in the database.",
+      "Add the unrecognized words as synonyms in the custom slot type.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  }
+]

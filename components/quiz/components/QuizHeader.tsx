@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { HelpCircle, MessageCircle } from "lucide-react";
+import { ArrowLeft, HelpCircle, MessageCircle } from "lucide-react";
 
 interface QuizHeaderProps {
   title: string;
@@ -9,6 +9,7 @@ interface QuizHeaderProps {
   onExplainClick: () => void;
   onChatClick: () => void;
   isExplainDisabled?: boolean;
+  onBackClick?: () => void;
 }
 
 export const QuizHeader = ({
@@ -17,13 +18,23 @@ export const QuizHeader = ({
   onExplainClick,
   onChatClick,
   isExplainDisabled = false,
+  onBackClick,
 }: QuizHeaderProps) => {
   return (
     <div className="flex items-center justify-between mb-8">
       <div className="flex items-center gap-2">
-        <h1 className="text-3xl font-bold text-center text-foreground">
-          {title}
-        </h1>
+        {onBackClick && (
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={onBackClick}
+            title="Back to certificate levels"
+            className="mr-1"
+          >
+            <ArrowLeft className="h-5 w-5" />
+          </Button>
+        )}
+        <h1 className="text-3xl font-bold text-foreground">{title}</h1>
         <div className="flex items-center gap-2">{actions}</div>
       </div>
       <div className="flex items-center gap-2">

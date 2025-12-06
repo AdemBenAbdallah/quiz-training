@@ -36,7 +36,7 @@ This document outlines the AWS certification exams that will be scraped for quiz
 - **Target Range:** Questions 1-145
 - **Focus:** AWS machine learning services and ML concepts
 
-### 6. MLS-C01 (Machine Learning Specialty)
+### 6. MLS-C01 (Machine Learning Specialty) done
 
 - **Total Questions:** 369
 - **Target Range:** Questions 1-369
@@ -48,13 +48,13 @@ This document outlines the AWS certification exams that will be scraped for quiz
 - **Target Range:** Questions 1-307
 - **Focus:** AWS security services, compliance, and best practices
 
-### 8. SAA-C03 ExamTopics
+### 8. SAA-C03 ExamTopics done wrong start from 307
 
 - **Total Questions:** 1,019
 - **Target Range:** Questions 1-500
 - **Focus:** AWS Solutions Architect Associate level content
 
-### 9. AP-C02 ExamTopics
+### 9. AP-C02 ExamTopics done
 
 - **Total Questions:** 529
 - **Target Range:** Questions 1-529

@@ -1,0 +1,648 @@
+[
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/151045-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 46Topic #: 1",
+    "question": "A company wants to use large language models (LLMs) with Amazon Bedrock to develop a chat interface for the company's product manuals. The manuals are stored as PDF files.Which solution meets these requirements MOST cost-effectively?",
+    "choices": [
+      "Use prompt engineering to add one PDF file as context to the user prompt when the prompt is submitted to Amazon Bedrock.",
+      "Use prompt engineering to add all the PDF files as context to the user prompt when the prompt is submitted to Amazon Bedrock.",
+      "Use all the PDF documents to fine-tune a model with Amazon Bedrock. Use the fine-tuned model to process user prompts.",
+      "Upload PDF documents to an Amazon Bedrock knowledge base. Use the knowledge base to provide context when users submit prompts to Amazon Bedrock."
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150924-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 45Topic #: 1",
+    "question": "An ecommerce company wants to build a solution to determine customer sentiments based on written customer reviews of products.Which AWS services meet these requirements? (Choose two.)",
+    "choices": [
+      "Amazon Lex",
+      "Amazon Comprehend",
+      "Amazon Polly",
+      "Amazon Bedrock",
+      "E.Amazon Rekognition"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/151044-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 44Topic #: 1",
+    "question": "A company is developing a new model to predict the prices of specific items. The model performed well on the training dataset. When the company deployed the model to production, the model's performance decreased significantly.What should the company do to mitigate this problem?",
+    "choices": [
+      "Reduce the volume of data that is used in training.",
+      "Add hyperparameters to the model.",
+      "Increase the volume of data that is used in training.",
+      "Increase the model training time."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150822-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 43Topic #: 1",
+    "question": "Which functionality does Amazon SageMaker Clarify provide?",
+    "choices": [
+      "Integrates a Retrieval Augmented Generation (RAG) workflow",
+      "Monitors the quality of ML models in production",
+      "Documents critical details about ML models",
+      "Identifies potential bias during data preparation"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/151043-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 42Topic #: 1",
+    "question": "A company is building a large language model (LLM) question answering chatbot. The company wants to decrease the number of actions call center employees need to take to respond to customer questions.Which business objective should the company use to evaluate the effect of the LLM chatbot?",
+    "choices": [
+      "Website engagement rate",
+      "Average call duration",
+      "Corporate social responsibility",
+      "Regulatory compliance"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/151042-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 41Topic #: 1",
+    "question": "A company is training a foundation model (FM). The company wants to increase the accuracy of the model up to a specific acceptance level.Which solution will meet these requirements?",
+    "choices": [
+      "Decrease the batch size.",
+      "Increase the epochs.",
+      "Decrease the epochs.",
+      "Increase the temperature parameter."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150821-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 40Topic #: 1",
+    "question": "A company wants to deploy a conversational chatbot to answer customer questions. The chatbot is based on a fine-tuned Amazon SageMaker JumpStart model. The application must comply with multiple regulatory frameworks.Which capabilities can the company show compliance for? (Choose two.)",
+    "choices": [
+      "Auto scaling inference endpoints",
+      "Threat detection",
+      "Data protection",
+      "Cost optimization",
+      "E.Loosely coupled microservices"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150820-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 39Topic #: 1",
+    "question": "A medical company is customizing a foundation model (FM) for diagnostic purposes. The company needs the model to be transparent and explainable to meet regulatory requirements.Which solution will meet these requirements?",
+    "choices": [
+      "Configure the security and compliance by using Amazon Inspector.",
+      "Generate simple metrics, reports, and examples by using Amazon SageMaker Clarify.",
+      "Encrypt and secure training data by using Amazon Macie.",
+      "Gather more data. Use Amazon Rekognition to add custom labels to the data."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/151094-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 38Topic #: 1",
+    "question": "A company is implementing the Amazon Titan foundation model (FM) by using Amazon Bedrock. The company needs to supplement the model by using relevant data from the company's private data sources.Which solution will meet this requirement?",
+    "choices": [
+      "Use a different FM.",
+      "Choose a lower temperature value.",
+      "Create an Amazon Bedrock knowledge base.",
+      "Enable model invocation logging."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150816-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 37Topic #: 1",
+    "question": "An AI practitioner is building a model to generate images of humans in various professions. The AI practitioner discovered that the input data is biased and that specific attributes affect the image generation and create bias in the model.Which technique will solve the problem?",
+    "choices": [
+      "Data augmentation for imbalanced classes",
+      "Model monitoring for class distribution",
+      "Retrieval Augmented Generation (RAG)",
+      "Watermark detection for images"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/151041-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 36Topic #: 1",
+    "question": "A company built a deep learning model for object detection and deployed the model to production.Which AI process occurs when the model analyzes a new image to identify objects?",
+    "choices": [
+      "Training",
+      "Inference",
+      "Model deployment",
+      "Bias correction"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150814-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 35Topic #: 1",
+    "question": "A company has terabytes of data in a database that the company can use for business analysis. The company wants to build an AI-based application that can build a SQL query from input text that employees provide. The employees have minimal experience with technology.Which solution meets these requirements?",
+    "choices": [
+      "Generative pre-trained transformers (GPT)",
+      "Residual neural network",
+      "Support vector machine",
+      "WaveNet"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150813-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 34Topic #: 1",
+    "question": "How can companies use large language models (LLMs) securely on Amazon Bedrock?",
+    "choices": [
+      "Design clear and specific prompts. Configure AWS Identity and Access Management (IAM) roles and policies by using least privilege access.",
+      "Enable AWS Audit Manager for automatic model evaluation jobs.",
+      "Enable Amazon Bedrock automatic model evaluation jobs.",
+      "Use Amazon CloudWatch Logs to make models explainable and to monitor for bias."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150812-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 33Topic #: 1",
+    "question": "Which AWS service or feature can help an AI development team quickly deploy and consume a foundation model (FM) within the team's VPC?",
+    "choices": [
+      "Amazon Personalize",
+      "Amazon SageMaker JumpStart",
+      "PartyRock, an Amazon Bedrock Playground",
+      "Amazon SageMaker endpoints"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150811-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 32Topic #: 1",
+    "question": "A company wants to create an application by using Amazon Bedrock. The company has a limited budget and prefers flexibility without long-term commitment.Which Amazon Bedrock pricing model meets these requirements?",
+    "choices": [
+      "On-Demand",
+      "Model customization",
+      "Provisioned Throughput",
+      "Spot Instance"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150810-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 31Topic #: 1",
+    "question": "An AI practitioner has a database of animal photos. The AI practitioner wants to automatically identify and categorize the animals in the photos without manual human effort.Which strategy meets these requirements?",
+    "choices": [
+      "Object detection",
+      "Anomaly detection",
+      "Named entity recognition",
+      "Inpainting"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150809-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 30Topic #: 1",
+    "question": "A company is using the Generative AI Security Scoping Matrix to assess security responsibilities for its solutions. The company has identified four different solution scopes based on the matrix.Which solution scope gives the company the MOST ownership of security responsibilities?",
+    "choices": [
+      "Using a third-party enterprise application that has embedded generative AI features.",
+      "Building an application by using an existing third-party generative AI foundation model (FM).",
+      "Refining an existing third-party generative AI foundation model (FM) by fine-tuning the model by using data specific to the business.",
+      "Building and training a generative AI model from scratch by using specific data that a customer owns."
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150808-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 29Topic #: 1",
+    "question": "A company wants to use a large language model (LLM) to develop a conversational agent. The company needs to prevent the LLM from being manipulated with common prompt engineering techniques to perform undesirable actions or expose sensitive information.Which action will reduce these risks?",
+    "choices": [
+      "Create a prompt template that teaches the LLM to detect attack patterns.",
+      "Increase the temperature parameter on invocation requests to the LLM.",
+      "Avoid using LLMs that are not listed in Amazon SageMaker.",
+      "Decrease the number of input tokens on invocations of the LLM."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150807-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 28Topic #: 1",
+    "question": "An AI company periodically evaluates its systems and processes with the help of independent software vendors (ISVs). The company needs to receive email message notifications when an ISV's compliance reports become available.Which AWS service can the company use to meet this requirement?",
+    "choices": [
+      "AWS Audit Manager",
+      "AWS Artifact",
+      "AWS Trusted Advisor",
+      "AWS Data Exchange"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/151095-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 27Topic #: 1",
+    "question": "A company has developed an ML model for image classification. The company wants to deploy the model to production so that a web application can use the model.The company needs to implement a solution to host the model and serve predictions without managing any of the underlying infrastructure.Which solution will meet these requirements?",
+    "choices": [
+      "Use Amazon SageMaker Serverless Inference to deploy the model.",
+      "Use Amazon CloudFront to deploy the model.",
+      "Use Amazon API Gateway to host the model and serve predictions.",
+      "Use AWS Batch to host the model and serve predictions."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150806-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 26Topic #: 1",
+    "question": "A security company is using Amazon Bedrock to run foundation models (FMs). The company wants to ensure that only authorized users invoke the models. The company needs to identify any unauthorized access attempts to set appropriate AWS Identity and Access Management (IAM) policies and roles for future iterations of the FMs.Which AWS service should the company use to identify unauthorized users that are trying to access Amazon Bedrock?",
+    "choices": [
+      "AWS Audit Manager",
+      "AWS CloudTrail",
+      "Amazon Fraud Detector",
+      "AWS Trusted Advisor"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150805-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 25Topic #: 1",
+    "question": "A company wants to use a large language model (LLM) on Amazon Bedrock for sentiment analysis. The company wants to classify the sentiment of text passages as positive or negative.Which prompt engineering strategy meets these requirements?",
+    "choices": [
+      "Provide examples of text passages with corresponding positive or negative labels in the prompt followed by the new text passage to be classified.",
+      "Provide a detailed explanation of sentiment analysis and how LLMs work in the prompt.",
+      "Provide the new text passage to be classified without any additional context or examples.",
+      "Provide the new text passage with a few examples of unrelated tasks, such as text summarization or question answering."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150804-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 24Topic #: 1",
+    "question": "A company wants to make a chatbot to help customers. The chatbot will help solve technical problems without human intervention.The company chose a foundation model (FM) for the chatbot. The chatbot needs to produce responses that adhere to company tone.Which solution meets these requirements?",
+    "choices": [
+      "Set a low limit on the number of tokens the FM can produce.",
+      "Use batch inferencing to process detailed responses.",
+      "Experiment and refine the prompt until the FM produces the desired responses.",
+      "Define a higher number for the temperature parameter."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150803-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 23Topic #: 1",
+    "question": "A company wants to build a generative AI application by using Amazon Bedrock and needs to choose a foundation model (FM). The company wants to know how much information can fit into one prompt.Which consideration will inform the company's decision?",
+    "choices": [
+      "Temperature",
+      "Context window",
+      "Batch size",
+      "Model size"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150802-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 22Topic #: 1",
+    "question": "Which option is a use case for generative AI models?",
+    "choices": [
+      "Improving network security by using intrusion detection systems",
+      "Creating photorealistic images from text descriptions for digital marketing",
+      "Enhancing database performance by using optimized indexing",
+      "Analyzing financial data to forecast stock market trends"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150801-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 21Topic #: 1",
+    "question": "Which feature of Amazon OpenSearch Service gives companies the ability to build vector database applications?",
+    "choices": [
+      "Integration with Amazon S3 for object storage",
+      "Support for geospatial indexing and queries",
+      "Scalable index management and nearest neighbor search capability",
+      "Ability to perform real-time analysis on streaming data"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150632-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 20Topic #: 1",
+    "question": "A company wants to use AI to protect its application from threats. The AI solution needs to check if an IP address is from a suspicious source.Which solution meets these requirements?",
+    "choices": [
+      "Build a speech recognition system.",
+      "Create a natural language processing (NLP) named entity recognition system.",
+      "Develop an anomaly detection system.",
+      "Create a fraud forecasting system."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150800-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 19Topic #: 1",
+    "question": "A company uses a foundation model (FM) from Amazon Bedrock for an AI search tool. The company wants to fine-tune the model to be more accurate by using the company's data.Which strategy will successfully fine-tune the model?",
+    "choices": [
+      "Provide labeled data with the prompt field and the completion field.",
+      "Prepare the training dataset by creating a .txt file that contains multiple lines in .csv format.",
+      "Purchase Provisioned Throughput for Amazon Bedrock.",
+      "Train the model on journals and textbooks."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150631-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 18Topic #: 1",
+    "question": "An AI practitioner wants to use a foundation model (FM) to design a search application. The search application must handle queries that have text and images.Which type of FM should the AI practitioner use to power the search application?",
+    "choices": [
+      "Multi-modal embedding model",
+      "Text embedding model",
+      "Multi-modal generation model",
+      "Image generation model"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150630-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 17Topic #: 1",
+    "question": "A company has petabytes of unlabeled customer data to use for an advertisement campaign. The company wants to classify its customers into tiers to advertise and promote the company's products.Which methodology should the company use to meet these requirements?",
+    "choices": [
+      "Supervised learning",
+      "Unsupervised learning",
+      "Reinforcement learning",
+      "Reinforcement learning from human feedback (RLHF)"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150734-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 16Topic #: 1",
+    "question": "A company is building a contact center application and wants to gain insights from customer conversations. The company wants to analyze and extract key information from the audio of the customer calls.Which solution meets these requirements?",
+    "choices": [
+      "Build a conversational chatbot by using Amazon Lex.",
+      "Transcribe call recordings by using Amazon Transcribe.",
+      "Extract information from call recordings by using Amazon SageMaker Model Monitor.",
+      "Create classification labels by using Amazon Comprehend."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150732-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 15Topic #: 1",
+    "question": "Which metric measures the runtime efficiency of operating AI models?",
+    "choices": [
+      "Customer satisfaction score (CSAT)",
+      "Training time for each epoch",
+      "Average response time",
+      "Number of training instances"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150690-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 14Topic #: 1",
+    "question": "A company wants to develop an educational game where users answer questions such as the following: \"A jar contains six red, four green, and three yellow marbles. What is the probability of choosing a green marble from the jar?\"Which solution meets these requirements with the LEAST operational overhead?",
+    "choices": [
+      "Use supervised learning to create a regression model that will predict probability.",
+      "Use reinforcement learning to train a model to return the probability.",
+      "Use code that will calculate probability by using simple rules and computations.",
+      "Use unsupervised learning to create a model that will estimate probability density."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150689-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 13Topic #: 1",
+    "question": "A financial institution is using Amazon Bedrock to develop an AI application. The application is hosted in a VPC. To meet regulatory compliance standards, the VPC is not allowed access to any internet traffic.Which AWS service or feature will meet these requirements?",
+    "choices": [
+      "AWS PrivateLink",
+      "Amazon Macie",
+      "Amazon CloudFront",
+      "Internet gateway"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150688-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 12Topic #: 1",
+    "question": "A company wants to use generative AI to increase developer productivity and software development. The company wants to use Amazon Q Developer.What can Amazon Q Developer do to help the company meet these requirements?",
+    "choices": [
+      "Create software snippets, reference tracking, and open source license tracking.",
+      "Run an application without provisioning or managing servers.",
+      "Enable voice commands for coding and providing natural language search.",
+      "Convert audio files to text documents by using ML models."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150628-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 11Topic #: 1",
+    "question": "A company wants to build an ML model by using Amazon SageMaker. The company needs to share and manage variables for model development across multiple teams.Which SageMaker feature meets these requirements?",
+    "choices": [
+      "Amazon SageMaker Feature Store",
+      "Amazon SageMaker Data Wrangler",
+      "Amazon SageMaker Clarify",
+      "Amazon SageMaker Model Cards"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150627-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 10Topic #: 1",
+    "question": "A company wants to use language models to create an application for inference on edge devices. The inference must have the lowest latency possible.Which solution will meet these requirements?",
+    "choices": [
+      "Deploy optimized small language models (SLMs) on edge devices.",
+      "Deploy optimized large language models (LLMs) on edge devices.",
+      "Incorporate a centralized small language model (SLM) API for asynchronous communication with edge devices.",
+      "Incorporate a centralized large language model (LLM) API for asynchronous communication with edge devices."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150687-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 9Topic #: 1",
+    "question": "A company wants to create a chatbot by using a foundation model (FM) on Amazon Bedrock. The FM needs to access encrypted data that is stored in an Amazon S3 bucket. The data is encrypted with Amazon S3 managed keys (SSE-S3).The FM encounters a failure when attempting to access the S3 bucket data.Which solution will meet these requirements?",
+    "choices": [
+      "Ensure that the role that Amazon Bedrock assumes has permission to decrypt data with the correct encryption key.",
+      "Set the access permissions for the S3 buckets to allow public access to enable access over the internet.",
+      "Use prompt engineering techniques to tell the model to look for information in Amazon S3.",
+      "Ensure that the S3 data does not contain sensitive information."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150728-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 8Topic #: 1",
+    "question": "A company is building a solution to generate images for protective eyewear. The solution must have high accuracy and must minimize the risk of incorrect annotations.Which solution will meet these requirements?",
+    "choices": [
+      "Human-in-the-loop validation by using Amazon SageMaker Ground Truth Plus",
+      "Data augmentation by using an Amazon Bedrock knowledge base",
+      "Image recognition by using Amazon Rekognition",
+      "Data summarization by using Amazon QuickSight Q"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150727-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 7Topic #: 1",
+    "question": "A company is using domain-specific models. The company wants to avoid creating new models from the beginning. The company instead wants to adapt pre-trained models to create models for new, related tasks.Which ML strategy meets these requirements?",
+    "choices": [
+      "Increase the number of epochs.",
+      "Use transfer learning.",
+      "Decrease the number of epochs.",
+      "Use unsupervised learning."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150626-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 6Topic #: 1",
+    "question": "A company uses Amazon SageMaker for its ML pipeline in a production environment. The company has large input data sizes up to 1 GB and processing times up to 1 hour. The company needs near real-time latency.Which SageMaker inference option meets these requirements?",
+    "choices": [
+      "Real-time inference",
+      "Serverless inference",
+      "Asynchronous inference",
+      "Batch transform"
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150691-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 5Topic #: 1",
+    "question": "A company is using a pre-trained large language model (LLM) to build a chatbot for product recommendations. The company needs the LLM outputs to be short and written in a specific language.Which solution will align the LLM response quality with the company's expectations?",
+    "choices": [
+      "Adjust the prompt.",
+      "Choose an LLM of a different size.",
+      "Increase the temperature.",
+      "Increase the Top K value."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150625-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 4Topic #: 1",
+    "question": "A company has built an image classification model to predict plant diseases from photos of plant leaves. The company wants to evaluate how many images the model classified correctly.Which evaluation metric should the company use to measure the model's performance?",
+    "choices": [
+      "R-squared score",
+      "Accuracy",
+      "Root mean squared error (RMSE)",
+      "Learning rate"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150751-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 3Topic #: 1",
+    "question": "A company wants to classify human genes into 20 categories based on gene characteristics. The company needs an ML algorithm to document how the inner mechanism of the model affects the output.Which ML algorithm meets these requirements?",
+    "choices": [
+      "Decision trees",
+      "Linear regression",
+      "Logistic regression",
+      "Neural networks"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150664-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 2Topic #: 1",
+    "question": "A law firm wants to build an AI application by using large language models (LLMs). The application will read legal documents and extract key points from the documents.Which solution meets these requirements?",
+    "choices": [
+      "Build an automatic named entity recognition system.",
+      "Create a recommendation engine.",
+      "Develop a summarization chatbot.",
+      "Develop a multi-language translation system."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/150663-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/",
+    "question_number": "Question #: 1Topic #: 1",
+    "question": "A company makes forecasts each quarter to decide how to optimize operations to meet expected demand. The company uses ML models to make these forecasts.An AI practitioner is writing a report about the trained ML models to provide transparency and explainability to company stakeholders.What should the AI practitioner include in the report to meet the transparency and explainability requirements?",
+    "choices": [
+      "Code for model training",
+      "Partial dependence plots (PDPs)",
+      "Sample data for training",
+      "Model convergence tables"
+    ],
+    "answers": [
+      "B."
+    ]
+  }
+]

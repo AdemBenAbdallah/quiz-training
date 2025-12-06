@@ -1,10 +1,11 @@
 "use client";
 
 import Quiz from "@/components/quiz";
-import { cleanOptions } from "@/lib/explain-utils";
 import { loadCertificateLevel } from "@/lib/certificates";
+import { cleanOptions } from "@/lib/explain-utils";
 import { quizLevels } from "@/public/quiz";
-import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface QuizLevelProps {
   levelId: number;
@@ -16,15 +17,27 @@ const extractQuestionNumber = (questionNumberStr: string): string => {
   return match ? `Question: ${match[1]}` : "";
 };
 
-export default function QuizLevel({ levelId, certificateSlug }: QuizLevelProps) {
+export default function QuizLevel({
+  levelId,
+  certificateSlug,
+}: QuizLevelProps) {
+  const router = useRouter();
   const [quizData, setQuizData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const handleBack = () => {
+    if (certificateSlug) {
+      router.push(`/${certificateSlug}/levels`);
+    } else {
+      router.back();
+    }
+  };
 
   useEffect(() => {
     const loadQuizData = async () => {
       try {
         let data: any[] = [];
-        
+
         if (certificateSlug) {
           // Load from new certificate structure
           data = await loadCertificateLevel(certificateSlug, levelId);
@@ -46,7 +59,11 @@ export default function QuizLevel({ levelId, certificateSlug }: QuizLevelProps) 
   }, [levelId, certificateSlug]);
 
   if (loading) {
-    return <div className="flex justify-center items-center min-h-64">Loading quiz...</div>;
+    return (
+      <div className="flex justify-center items-center min-h-64">
+        Loading quiz...
+      </div>
+    );
   }
 
   const quizQuestions = quizData.map((q: any) => {
@@ -68,6 +85,7 @@ export default function QuizLevel({ levelId, certificateSlug }: QuizLevelProps) 
         levelId={levelId}
         title={`Level ${levelId}`}
         questions={quizQuestions}
+        onBack={handleBack}
       />
     </div>
   );

@@ -1,0 +1,16 @@
+{
+  "slug": "mlac01",
+  "name": "AWS Certified Machine Learning Engineer - Associate",
+  "description": "MLA-C01 certification exam preparation",
+  "totalLevels": 3,
+  "questionsPerLevel": [50, 50, 33],
+  "levels": {
+    "1": 50,
+    "2": 50,
+    "3": 33
+  },
+  "heroTitle": "Master MLA-C01",
+  "heroDescription": "Prepare for the MLA-C01 certification exam",
+  "badgeColor": "bg-pink-500",
+  "lastUpdated": "2025-12-05"
+}

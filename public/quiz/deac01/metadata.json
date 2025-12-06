@@ -1,0 +1,17 @@
+{
+  "slug": "deac01",
+  "name": "AWS Certified Data Engineer - Associate",
+  "description": "DEA-C01 certification exam preparation",
+  "totalLevels": 4,
+  "questionsPerLevel": [65, 65, 65, 49],
+  "levels": {
+    "1": 65,
+    "2": 65,
+    "3": 65,
+    "4": 49
+  },
+  "heroTitle": "Master DEA-C01",
+  "heroDescription": "Prepare for the DEA-C01 certification exam",
+  "badgeColor": "bg-cyan-500",
+  "lastUpdated": "2025-12-05"
+}

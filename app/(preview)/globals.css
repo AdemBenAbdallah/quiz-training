@@ -181,6 +181,50 @@
 }
 
 @layer components {
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(239, 68, 68, 0.6);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(239, 68, 68, 0.8);
+  }
+
+  /* Glass morphism effects */
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .glass-subtle {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Enhanced card styles */
   .custom-card {
     overflow: hidden;
     border-radius: 1rem;
@@ -188,11 +232,445 @@
     border-style: solid;
     border-color: oklch(89.8042% 0.001746 67.800407 / 0.05);
     background-color: oklch(18.8618% 0 0 / 1);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
     box-shadow:
       0 0 #0000,
       0 0 #0000,
       0 1px 3px 0 rgba(0, 0, 0, 0.1),
       0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .custom-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    transition: left 0.5s;
+  }
+
+  .custom-card:hover::before {
+    left: 100%;
+  }
+
+  .custom-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow:
+      0 25px 50px -12px rgba(0, 0, 0, 0.25),
+      0 0 0 1px rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.3);
+  }
+
+  /* Certificate card specific styles */
+  .certificate-card {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .certificate-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(239, 68, 68, 0.05) 0%,
+      transparent 50%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .certificate-card:hover::after {
+    opacity: 1;
+  }
+
+  .certificate-card:hover {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.04) 100%
+    );
+    border-color: rgba(239, 68, 68, 0.4);
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.3),
+      0 0 30px rgba(239, 68, 68, 0.15);
+    transform: translateY(-10px) scale(1.03);
+  }
+
+  /* Level card styles */
+  .level-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.75rem;
+  }
+
+  .level-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(239, 68, 68, 0.05) 0%,
+      rgba(239, 68, 68, 0.1) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .level-card:hover::after {
+    opacity: 1;
+  }
+
+  .level-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(239, 68, 68, 0.2);
+  }
+
+  .level-card.available {
+    background: linear-gradient(
+      135deg,
+      rgba(239, 68, 68, 0.1) 0%,
+      rgba(239, 68, 68, 0.05) 100%
+    );
+    border: 1px solid rgba(239, 68, 68, 0.3);
+  }
+
+  .level-card.completed {
+    background: linear-gradient(
+      135deg,
+      rgba(34, 197, 94, 0.1) 0%,
+      rgba(34, 197, 94, 0.05) 100%
+    );
+    border: 1px solid rgba(34, 197, 94, 0.3);
+  }
+
+  .level-card.locked {
+    background: linear-gradient(
+      135deg,
+      rgba(156, 163, 175, 0.05) 0%,
+      rgba(156, 163, 175, 0.02) 100%
+    );
+    border: 1px solid rgba(156, 163, 175, 0.1);
+    opacity: 0.6;
+  }
+
+  /* Enhanced button styles */
+  .btn-primary {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .btn-primary::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+    transition: left 0.3s ease;
+    z-index: -1;
+  }
+
+  .btn-primary:hover::before {
+    left: 0;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
+  }
+
+  /* Progress bar enhancements */
+  .progress-bar {
+    background: linear-gradient(90deg, #ef4444 0%, #f97316 50%, #eab308 100%);
+    background-size: 200% 100%;
+    animation: progress-shimmer 2s infinite;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .progress-container {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 9999px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .progress-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    animation: progress-sweep 2s infinite;
+  }
+
+  /* Certificate badge animations */
+  .cert-badge {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+    position: relative;
+  }
+
+  .cert-badge::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(
+      45deg,
+      transparent,
+      rgba(239, 68, 68, 0.3),
+      transparent
+    );
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .cert-badge:hover::before {
+    opacity: 1;
+  }
+
+  .cert-badge:hover {
+    transform: scale(1.1) rotateY(5deg);
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+  }
+
+  /* Loading animations */
+  .loading-spinner {
+    border: 2px solid rgba(239, 68, 68, 0.1);
+    border-top: 2px solid #ef4444;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  .loading-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .loading-skeleton {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.1) 25%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.1) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+    border-radius: 0.5rem;
+  }
+
+  /* Floating elements */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .float-delayed {
+    animation: float 6s ease-in-out infinite 2s;
+  }
+
+  .float-slow {
+    animation: float 8s ease-in-out infinite;
+  }
+
+  /* Glow effects */
+  .glow-red {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .glow-red:hover {
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.5);
+  }
+
+  .glow-green {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .glow-green:hover {
+    box-shadow: 0 0 30px rgba(34, 197, 94, 0.5);
+  }
+
+  .glow-orange {
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .glow-orange:hover {
+    box-shadow: 0 0 30px rgba(249, 115, 22, 0.5);
+  }
+
+  /* Text gradient effects */
+  .text-gradient {
+    background: linear-gradient(135deg, #ef4444 0%, #f97316 50%, #eab308 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-white {
+    background: linear-gradient(135deg, #ffffff 0%, #e5e7eb 50%, #d1d5db 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-red {
+    background: linear-gradient(135deg, #f87171 0%, #dc2626 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Hero section enhancements */
+  .hero-bg {
+    background: radial-gradient(
+      ellipse at center,
+      rgba(239, 68, 68, 0.1) 0%,
+      transparent 70%
+    );
+    position: relative;
+  }
+
+  .hero-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      radial-gradient(
+        circle at 20% 50%,
+        rgba(239, 68, 68, 0.1) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 20%,
+        rgba(59, 130, 246, 0.1) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 40% 80%,
+        rgba(34, 197, 94, 0.1) 0%,
+        transparent 50%
+      );
+    pointer-events: none;
+  }
+
+  /* Stats section styling */
+  .stat-card {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-4px);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.08) 100%
+    );
+    border-color: rgba(239, 68, 68, 0.3);
+  }
+
+  /* Difficulty indicators */
+  .difficulty-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+
+  .difficulty-dot.active {
+    transform: scale(1.5);
+    box-shadow: 0 0 10px currentColor;
+  }
+
+  /* Enhanced focus states */
+  .focus-ring:focus {
+    outline: none;
+    ring: 2px;
+    ring-color: rgba(239, 68, 68, 0.5);
+    ring-offset: 2px;
+    ring-offset-color: transparent;
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .custom-card:hover {
+      transform: translateY(-4px) scale(1.01);
+    }
+
+    .level-card:hover {
+      transform: translateY(-2px) scale(1.01);
+    }
+
+    .cert-badge:hover {
+      transform: scale(1.05);
+    }
   }
 }
 
@@ -219,6 +697,95 @@
   animation: scroll 30s linear infinite;
 }
 
+/* Enhanced animations for certificate pages */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.6);
+  }
+}
+
+@keyframes progress-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes progress-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Enhanced utility classes */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.progress-enhanced {
+  background: linear-gradient(90deg, #ef4444 0%, #f97316 50%, #eab308 100%);
+  background-size: 200% 100%;
+  animation: progress-shimmer 2s infinite;
+  border-radius: 9999px;
+}
+
 /* Scrollbar hide utility */
 .scrollbar-hide {
   -ms-overflow-style: none;
@@ -227,4 +794,49 @@
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .custom-card:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+
+  .level-card:hover {
+    transform: translateY(-2px) scale(1.01);
+  }
+
+  .cert-badge:hover {
+    transform: scale(1.05);
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .animate-scroll {
+    animation: none;
+  }
+}
+
+/* Focus states for accessibility */
+.focus-ring:focus {
+  outline: 2px solid #ef4444;
+  outline-offset: 2px;
+}
+
+/* Selection styles */
+::selection {
+  background-color: rgba(239, 68, 68, 0.3);
+  color: white;
+}
+
+::-moz-selection {
+  background-color: rgba(239, 68, 68, 0.3);
+  color: white;
 }

@@ -32,25 +32,25 @@ except ImportError as e:
 # Import configuration
 try:
     from config import DEFAULT_CONFIG, get_config_for_exam
-    CONFIG = get_config_for_exam("MLS-C01")
+    CONFIG = get_config_for_exam("SAA-C03")
     # Add topic and question range for ANS-C01
     CONFIG.update({
         "topic": 1,
-        "start_question": 369,
-        "end_question": 1
+        "start_question":1019,
+        "end_question": 500
     })
 except ImportError:
     # Fallback configuration if config.py is not available
     CONFIG = {
-        "current_exam": "MLS-C01",
+        "current_exam": "SAA-C03",
         "topic": 1,
-        "start_question": 369,
-        "end_question": 1,
+        "start_question":1019,
+        "end_question": 500,
         "delay_range": (2, 5),
         "max_retries": 3,
         "request_timeout": 30,
-        "output_dir": "../public/quiz/mlsc01/raw",
-        "levels_config": "../public/quiz/mlsc01/metadata.json",
+        "output_dir": "../public/quiz/saac03/raw",
+        "levels_config": "../public/quiz/saac03/metadata.json",
         "state_file": "state.json",
         "exam_domain": "examtopics.com",
         "headless": True,

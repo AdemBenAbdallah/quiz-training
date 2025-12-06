@@ -1,179 +1,176 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   getAvailableCertificates,
   getDefaultCertificate,
 } from "@/lib/certificates";
 import { Certificate } from "@/types/certificate";
+import { BookOpen, Trophy } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-interface CertificateSelectorProps {
-  currentCertificate?: string;
-}
-
-export default function CertificateSelector({
-  currentCertificate,
-}: CertificateSelectorProps) {
+export default function CertificateSelector() {
   const [certificates, setCertificates] = useState<Certificate[]>([]);
   const [defaultCert, setDefaultCert] = useState<Certificate | null>(null);
 
   useEffect(() => {
     const loadData = async () => {
       const certs = getAvailableCertificates();
-      const defaultCert = getDefaultCertificate();
+      const defaultCertificate = getDefaultCertificate();
       setCertificates(certs);
-      setDefaultCert(defaultCert);
+      setDefaultCert(defaultCertificate);
     };
 
     loadData();
   }, []);
 
   if (certificates.length === 0) {
-    return <div>Loading certificates...</div>;
-  }
-
-  // If only one certificate, don't show selector
-  if (certificates.length === 1) {
-    return null;
-  }
-
-  // Get certification badge image
-  const getCertIcon = (slug: string, certName: string) => {
-    // Map certificate slugs to badge filenames
-    const badgeMap: { [key: string]: string } = {
-      clfc02: "clfc02",
-      aifc01: "aifc01",
-      deac01: "deac01",
-      dopc02: "dopc02",
-      mlac01: "mlac01",
-      mlsc01: "mlsc01",
-      ansc01: "ansc01",
-      dvac02: "dvac02",
-      scsc02: "scsc02",
-    };
-
-    const badgeName = badgeMap[slug] || slug;
-
     return (
-      <div className="relative flex justify-center items-center">
-        <div className="w-40 h-40 relative">
-          <Image
-            src={`/badges/${badgeName}.png`}
-            alt={`${certName} badge`}
-            fill
-            className="object-contain rounded-2xl p-3"
-            onError={(e) => {
-              // Fallback to SVG if image fails to load
-              const target = e.target as HTMLImageElement;
-              target.style.display = "none";
-              const parent = target.parentElement;
-              if (parent) {
-                parent.innerHTML = `
-                  <svg
-                    class="w-28 h-28 text-white"
-                    viewBox="0 0 256 256"
-                    fill="currentColor"
-                  >
-                    <path d="M210.7 191.4c-4.7 3.4-70.7 48.6-139.5 48.6-43.1 0-79.7-15.2-79.7-45.2 0-29.9 35.5-45.4 62.5-55.1 32.1-11.6 58.1-27.9 58.1-55.8 0-28.6-24.6-46.3-60.6-46.3-29.7 0-54.9 9.7-76.4 28.4l16.1 18.9c18.7-15.6 40.1-24.6 62-24.6 27.8 0 49.4 12.4 49.4 35.2 0 21.6-13.7 34.9-48.8 47.6-41.9 15-70.9 38.3-70.9 73.4 0 35.9 29.7 59.8 71.7 59.8 32.7 0 60.9-10.7 80.4-29.9l-16.3-17.9z" />
-                  </svg>
-                `;
-              }
-            }}
-          />
+      <section className="container mx-auto px-4 py-16">
+        <div className="flex items-center justify-center h-64">
+          <div className="text-center space-y-4">
+            <div className="loading-spinner w-12 h-12 mx-auto"></div>
+            <p className="text-gray-400">Loading certifications...</p>
+          </div>
         </div>
-      </div>
+      </section>
     );
-  };
+  }
 
-  const scrollCards = [...certificates, ...certificates];
+  const featuredCert =
+    certificates.find((cert) => cert.slug === defaultCert?.slug) ||
+    certificates[0];
+  const otherCerts = certificates.filter(
+    (cert) => cert.slug !== featuredCert.slug,
+  );
 
   return (
     <section className="container mx-auto px-4 py-16">
-      <div className="mx-auto max-w-6xl space-y-12">
-        <div className="text-center space-y-4">
-          <p className="text-sm font-medium uppercase tracking-wider text-red-500">
-            Choose Your Path
-          </p>
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
-            Select Your Certification
-          </h2>
-          <p className="text-xl text-gray-400 leading-relaxed">
-            Choose a certification track and start your preparation journey
-          </p>
-        </div>
-
-        {/* Infinite scroll container */}
-        <div className="overflow-hidden">
-          <div className="flex gap-6 animate-scroll">
-            {scrollCards.map((cert, index) => {
-              return (
-                <Link
-                  key={`${cert.id}-${index}`}
-                  className="flex-none w-[380px]"
-                  href={`/${cert.slug}/levels`}
-                >
-                  <div
-                    className={`group relative rounded-[1.3rem] border border-white/5  p-1.5 hover:border-white/10 transition-all duration-500`}
-                  >
-                    <div className="custom-card h-[420px] flex flex-col overflow-hidden">
-                      {/* Centered Badge and Content */}
-                      <div className="relative flex-1 flex flex-col justify-center items-center text-center p-6">
-                        {/* Popular Badge */}
-                        {cert.slug === defaultCert?.slug && (
-                          <div className="absolute top-4 right-4 z-10">
-                            <Badge className="bg-white/20 backdrop-blur-sm text-white border-white/30 hover:bg-white/30">
-                              Popular
-                            </Badge>
-                          </div>
-                        )}
-
-                        {/* Large Centered Badge */}
-                        <div className="mb-8">
-                          {getCertIcon(cert.slug, cert.name)}
-                        </div>
-
-                        {/* Certificate Info */}
-                        <div className="space-y-3">
-                          <h3 className="text-2xl font-bold text-white">
-                            {cert.name}
-                          </h3>
-                          <p className="text-white/80 text-base max-w-xs leading-relaxed">
-                            {cert.description}
-                          </p>
-                        </div>
-
-                        {/* Stats */}
-                        <div className="flex items-center justify-center gap-2 mt-2">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="size-4 text-white/60"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={1.5}
-                              d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
-                            />
-                          </svg>
-                          <span className="text-sm text-white/80 font-medium ">
-                            {cert.totalLevels} levels
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
+      <div className="max-w-7xl mx-auto space-y-16">
+        {/* All Certifications */}
+        <AllCertificationsGrid certificates={otherCerts} />
       </div>
     </section>
+  );
+}
+
+function HeroSection() {
+  return (
+    <div className="text-center space-y-8 py-12 relative">
+      <div className="absolute inset-0 hero-bg rounded-3xl opacity-30" />
+
+      <div className="relative z-10 space-y-6">
+        <Badge
+          variant="outline"
+          className="px-4 py-2 border-red-500/30 text-red-400 bg-red-500/10"
+        >
+          <Trophy className="w-4 h-4 mr-2" />
+          AWS Certification Prep
+        </Badge>
+
+        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight">
+          <span className="text-gradient">Choose Your Path to</span>
+          <br />
+          <span className="text-gradient-white">Cloud Mastery</span>
+        </h1>
+
+        <p className="text-xl md:text-2xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
+          Join thousands of professionals advancing their careers with our
+          comprehensive AWS certification preparation
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function AllCertificationsGrid({
+  certificates,
+}: {
+  certificates: Certificate[];
+}) {
+  return (
+    <div className="space-y-8">
+      <div className="text-center">
+        <h2 className="text-3xl font-bold text-white mb-4">
+          All Certifications
+        </h2>
+        <p className="text-gray-400 max-w-2xl mx-auto">
+          Explore our complete catalog of AWS certification preparation courses
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {certificates.map((cert) => (
+          <Link key={cert.slug} href={`/${cert.slug}/levels`} className="block">
+            <div className="certificate-card rounded-2xl p-6 h-full hover:scale-105 transition-all duration-300 group">
+              <div className="space-y-4 h-full flex flex-col">
+                {/* Header */}
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <h3 className="text-lg font-bold text-white mb-2 leading-tight group-hover:text-red-400 transition-colors">
+                      {cert.name}
+                    </h3>
+                    <p className="text-gray-400 text-sm">{cert.description}</p>
+                  </div>
+                  <div className="ml-4">
+                    <div className="cert-badge w-16 h-16 group-hover:scale-110 transition-transform duration-300">
+                      <Image
+                        src={`/badges/${cert.slug}.png`}
+                        alt={`${cert.name} badge`}
+                        fill
+                        className="object-contain"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = "none";
+                          const parent = target.parentElement;
+                          if (parent) {
+                            parent.innerHTML = `
+                              <div class="w-full h-full bg-gradient-to-br from-red-500/20 to-red-600/30 rounded-xl flex items-center justify-center">
+                                <Award class="w-8 h-8 text-red-400" />
+                              </div>
+                            `;
+                          }
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Stats */}
+                <div className="grid grid-cols-2 gap-3 mt-auto">
+                  <div className="text-center">
+                    <div className="text-lg font-bold text-white">
+                      {cert.totalLevels}
+                    </div>
+                    <div className="text-xs text-gray-400">Levels</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-lg font-bold text-white">
+                      {cert.totalLevels * 8}h
+                    </div>
+                    <div className="text-xs text-gray-400">Study Time</div>
+                  </div>
+                </div>
+
+                {/* Action */}
+                <div className="pt-4">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full border-gray-600 text-gray-300 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all duration-300"
+                  >
+                    <BookOpen className="w-4 h-4 mr-2" />
+                    Explore
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 }

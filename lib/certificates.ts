@@ -1,14 +1,28 @@
 import { Certificate, CertificateMetadata } from "@/types/certificate";
 
 // Import certificate configurations
+import aifc01Metadata from "@/public/quiz/aifc01/metadata.json";
 import ansc01Metadata from "@/public/quiz/ansc01/metadata.json";
-import awsDeveloperMetadata from "@/public/quiz/aws-developer/metadata.json";
 import certificatesIndex from "@/public/quiz/certificates/index.json";
+import clfc02Metadata from "@/public/quiz/clfc02/metadata.json";
+import deac01Metadata from "@/public/quiz/deac01/metadata.json";
+import dopc02Metadata from "@/public/quiz/dopc02/metadata.json";
+import dvac02Metadata from "@/public/quiz/dvac02/metadata.json";
+import mlac01Metadata from "@/public/quiz/mlac01/metadata.json";
+import mlsc01Metadata from "@/public/quiz/mlsc01/metadata.json";
+import scsc02Metadata from "@/public/quiz/scsc02/metadata.json";
 
 // Certificate metadata mapping
 const certificateMetadata: Record<string, CertificateMetadata> = {
-  "aws-developer": awsDeveloperMetadata as CertificateMetadata,
+  dvac02: dvac02Metadata as CertificateMetadata,
   ansc01: ansc01Metadata as CertificateMetadata,
+  clfc02: clfc02Metadata as CertificateMetadata,
+  mlsc01: mlsc01Metadata as CertificateMetadata,
+  aifc01: aifc01Metadata as CertificateMetadata,
+  dopc02: dopc02Metadata as CertificateMetadata,
+  scsc02: scsc02Metadata as CertificateMetadata,
+  deac01: deac01Metadata as CertificateMetadata,
+  mlac01: mlac01Metadata as CertificateMetadata,
 };
 
 // Dynamic import function for quiz levels

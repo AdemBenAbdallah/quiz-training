@@ -19,12 +19,14 @@ interface QuizContainerProps {
   levelId: number;
   questions: Question[];
   title: string;
+  onBack?: () => void;
 }
 
 export const QuizContainer = ({
   levelId,
   questions,
   title = "Quiz",
+  onBack,
 }: QuizContainerProps) => {
   // Quiz state management
   const [answers, setAnswers] = useState<Choice[][]>(
@@ -180,6 +182,7 @@ export const QuizContainer = ({
       <main className="container mx-auto px-4 py-12 max-w-4xl">
         <QuizHeader
           title={title}
+          onBackClick={onBack}
           onExplainClick={() => setIsExplainDialogOpen(true)}
           onChatClick={() => setIsChatDialogOpen(true)}
           isExplainDisabled={isCurrentQuestionSubmitted}

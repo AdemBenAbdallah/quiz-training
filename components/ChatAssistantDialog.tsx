@@ -9,6 +9,7 @@ import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import { Bot, Loader2, Send, User, X } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
+import { Markdown } from "./markdown";
 import { Button } from "./ui/button";
 
 interface ChatAssistantDialogProps {
@@ -134,7 +135,11 @@ const ChatAssistantDialog: React.FC<ChatAssistantDialogProps> = ({
                   >
                     {message.parts.map((part, idx) => {
                       if (part.type === "text") {
-                        return (
+                        return message.role === "assistant" ? (
+                          <div key={idx} className="text-sm leading-relaxed">
+                            <Markdown>{part.text}</Markdown>
+                          </div>
+                        ) : (
                           <p
                             key={idx}
                             className="text-sm whitespace-pre-wrap leading-relaxed"
