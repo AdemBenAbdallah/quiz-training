@@ -40,16 +40,16 @@ export default function CertificateLevels({
       <div className="container max-w-6xl mx-auto px-4 py-16 min-h-screen">
         <div className="flex items-center justify-center h-64">
           <div className="text-center space-y-4">
-            <div className="text-red-500 text-6xl">❌</div>
+            <div className="text-destructive text-6xl">❌</div>
             <h2 className="text-2xl font-bold text-white">
               Certificate Not Found
             </h2>
-            <p className="text-gray-400">
+            <p className="text-muted-foreground">
               The requested certificate could not be loaded.
             </p>
             <Button
               onClick={() => router.push("/certificates")}
-              className="bg-red-600 hover:bg-red-700"
+              className="bg-primary hover:bg-primary/90"
             >
               Back to Certificates
             </Button>
@@ -77,10 +77,9 @@ export default function CertificateLevels({
   };
 
   const getDifficultyColor = (level: number) => {
-    if (level <= 3) return "text-green-400 bg-green-400/10 border-green-400/20";
-    if (level <= 6)
-      return "text-yellow-400 bg-yellow-400/10 border-yellow-400/20";
-    return "text-red-400 bg-red-400/10 border-red-400/20";
+    if (level <= 3) return "text-success bg-success/10 border-success/20";
+    if (level <= 6) return "text-warning bg-warning/10 border-warning/20";
+    return "text-primary bg-primary/10 border-primary/20";
   };
 
   const getEstimatedTime = (level: number) => {
@@ -122,8 +121,8 @@ export default function CertificateLevels({
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-red-600/20 rounded-lg">
-                    <Trophy className="w-5 h-5 text-red-400" />
+                  <div className="p-2 bg-primary/20 rounded-lg">
+                    <Trophy className="w-5 h-5 text-primary" />
                   </div>
                   <div>
                     <div className="text-lg font-semibold text-white">
@@ -189,10 +188,10 @@ export default function CertificateLevels({
                   key={level}
                   className={`group relative overflow-hidden transition-all duration-300 ${
                     status === "available"
-                      ? "hover:shadow-2xl hover:scale-105 cursor-pointer border-red-500/30 hover:border-red-400/50 bg-gradient-to-br from-red-900/20 to-red-800/10"
+                      ? "hover:shadow-2xl hover:scale-105 cursor-pointer border-primary/30 hover:border-primary/50 bg-gradient-to-br from-primary-900/20 to-primary-800/10"
                       : status === "completed"
-                        ? "bg-gradient-to-br from-green-900/20 to-green-800/10 border-green-500/30 hover:from-green-800/30 hover:to-green-700/20"
-                        : "opacity-60 bg-gradient-to-br from-gray-900/40 to-gray-800/20 border-white/5 hover:border-white/10"
+                        ? "bg-gradient-to-br from-success-900/20 to-success-800/10 border-success/30 hover:from-success-800/30 hover:to-success-700/20"
+                        : "opacity-60 bg-gradient-to-br from-neutral-900/40 to-neutral-800/20 border-white/5 hover:border-white/10"
                   } ${isHovered ? "ring-2 ring-red-400/50" : ""}`}
                   onClick={() => handleLevelClick(level)}
                   onMouseEnter={() => setHoveredLevel(level)}
@@ -212,20 +211,20 @@ export default function CertificateLevels({
                         <div
                           className={`p-2 rounded-lg ${
                             status === "completed"
-                              ? "bg-green-500/20"
+                              ? "bg-success/20"
                               : status === "available"
-                                ? "bg-red-500/20"
-                                : "bg-gray-500/20"
+                                ? "bg-primary/20"
+                                : "bg-neutral-500/20"
                           }`}
                         >
                           {status === "completed" && (
-                            <CheckCircle className="w-5 h-5 text-green-400" />
+                            <CheckCircle className="w-5 h-5 text-success" />
                           )}
                           {status === "available" && (
-                            <Play className="w-5 h-5 text-red-400" />
+                            <Play className="w-5 h-5 text-primary" />
                           )}
                           {status === "locked" && (
-                            <Lock className="w-5 h-5 text-gray-400" />
+                            <Lock className="w-5 h-5 text-muted-foreground" />
                           )}
                         </div>
                         <Badge
@@ -281,7 +280,7 @@ export default function CertificateLevels({
                         {status === "available" && (
                           <Button
                             size="sm"
-                            className="w-full bg-red-600 hover:bg-red-700 text-white font-medium group-hover:shadow-lg transition-all duration-200"
+                            className="w-full bg-primary hover:bg-primary/90 text-white font-medium group-hover:shadow-lg transition-all duration-200"
                           >
                             <Play className="w-4 h-4 mr-2" />
                             Start Level
@@ -293,7 +292,7 @@ export default function CertificateLevels({
                           <Button
                             size="sm"
                             variant="outline"
-                            className="w-full border-green-500/30 text-green-400 hover:bg-green-500/10"
+                            className="w-full border-success/30 text-success hover:bg-success/10"
                           >
                             <CheckCircle className="w-4 h-4 mr-2" />
                             Review
@@ -350,8 +349,8 @@ export default function CertificateLevels({
             <div className="bg-gradient-to-r from-red-900/20 to-orange-900/20 backdrop-blur-sm rounded-2xl p-8 border border-red-500/20 max-w-2xl mx-auto">
               <div className="space-y-4">
                 <div className="flex justify-center">
-                  <div className="p-3 bg-red-600/20 rounded-full">
-                    <Zap className="w-6 h-6 text-red-400" />
+                  <div className="p-3 bg-primary/20 rounded-full">
+                    <Zap className="w-6 h-6 text-primary" />
                   </div>
                 </div>
                 <h3 className="text-xl font-bold text-white">
@@ -370,7 +369,7 @@ export default function CertificateLevels({
                       router.push(`/${certificateSlug}/quiz/${nextLevel.id}`);
                     }
                   }}
-                  className="bg-red-600 hover:bg-red-700 text-white"
+                  className="bg-primary hover:bg-primary/90 text-white"
                 >
                   Continue Next Level
                 </Button>
@@ -385,8 +384,8 @@ export default function CertificateLevels({
             <div className="bg-gradient-to-r from-green-900/20 to-emerald-900/20 backdrop-blur-sm rounded-2xl p-8 border border-green-500/20 max-w-2xl mx-auto">
               <div className="space-y-4">
                 <div className="flex justify-center">
-                  <div className="p-3 bg-green-600/20 rounded-full">
-                    <Trophy className="w-8 h-8 text-green-400" />
+                  <div className="p-3 bg-success/20 rounded-full">
+                    <Trophy className="w-8 h-8 text-success" />
                   </div>
                 </div>
                 <h3 className="text-2xl font-bold text-white">
@@ -397,7 +396,7 @@ export default function CertificateLevels({
                   {metadata.name}. You&apos;re ready for the certification exam!
                 </p>
                 <Button
-                  className="bg-green-600 hover:bg-green-700 text-white"
+                  className="bg-success hover:bg-success/90 text-white"
                   onClick={() => router.push("/certificates")}
                 >
                   Explore More Certifications

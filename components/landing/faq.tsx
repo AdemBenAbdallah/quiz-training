@@ -13,7 +13,7 @@ export default function Faq() {
   };
 
   return (
-    <section id="faq" className="container mx-auto px-4 py-16 lg:py-24">
+    <section id="faq" className="container mx-auto px-4 py-24">
       <div className="max-w-3xl mx-auto space-y-4">
         <h2 className="text-2xl lg:text-3xl text-center font-bold text-white">
           FAQ

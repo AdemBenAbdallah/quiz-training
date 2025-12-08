@@ -89,6 +89,26 @@
       "isActive": true,
       "isDefault": false,
       "badgeColor": "bg-pink-500"
+    },
+    {
+      "id": "saac03",
+      "slug": "saac03",
+      "name": "AWS Certified Solutions Architect - Associate",
+      "description": "SAA-C03 certification exam preparation",
+      "totalLevels": 13,
+      "isActive": true,
+      "isDefault": false,
+      "badgeColor": "bg-yellow-500"
+    },
+    {
+      "id": "sapc02",
+      "slug": "sapc02",
+      "name": "AWS Certified Solutions Architect - Professional",
+      "description": "SAP-C02 certification exam preparation",
+      "totalLevels": 7,
+      "isActive": true,
+      "isDefault": false,
+      "badgeColor": "bg-amber-500"
     }
   ],
   "defaultCertificate": "dvac02"

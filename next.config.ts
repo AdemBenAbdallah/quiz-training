@@ -3,6 +3,13 @@ import { withWorkflow } from "workflow/next";
 
 const nextConfig: NextConfig = {
   cacheComponents: true,
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.json$/,
+      type: "asset/resource",
+    });
+    return config;
+  },
   async rewrites() {
     return [
       {

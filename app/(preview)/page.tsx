@@ -1,4 +1,4 @@
-import CertificateSelector from "@/components/CertificateSelector";
+import CertificateSelectorHome from "@/components/certificate-selector/CertificateSelectorHome";
 import Footer from "@/components/footer/Footer";
 import { ClientProvider } from "@/components/landing/client-provider";
 import Faq from "@/components/landing/faq";
@@ -30,7 +30,7 @@ export default async function HomePage() {
         <div className="relative">
           <Navigation />
           <Hero />
-          <CertificateSelector />
+          <CertificateSelectorHome />
           <HowItWorks />
           <Review />
           <Faq />

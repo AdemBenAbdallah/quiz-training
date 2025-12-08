@@ -136,6 +136,26 @@ CERTIFICATIONS = {
         },
         "total_questions": 307,
         "search_query_template": "SCS-C02 topic {topic} question {question} discussion"
+    },
+
+    "SAA-C03": {
+        "name": "AWS Certified Solutions Architect - Associate",
+        "topics": [1],
+        "question_ranges": {
+            1: (796, 1),
+        },
+        "total_questions": 796,
+        "search_query_template": "{exam} topic {topic} question {question} discussion"
+    },
+
+    "SAP-C02": {
+        "name": "AWS Certified Solutions Architect - Professional",
+        "topics": [1],
+        "question_ranges": {
+            1: (437, 1),
+        },
+        "total_questions": 437,
+        "search_query_template": "{exam} topic {topic} question {question} discussion"
     }
 }
 

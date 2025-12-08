@@ -39,7 +39,9 @@ const AvatarMenu = ({ setOpen }: { setOpen: (open: boolean) => void }) => {
   };
 
   if (isLoading) {
-    return <div className="w-10 h-10 rounded-full bg-gray-300 animate-pulse" />;
+    return (
+      <div className="w-10 h-10 rounded-full bg-neutral-300 animate-pulse" />
+    );
   }
 
   return (
@@ -70,7 +72,7 @@ const AvatarMenu = ({ setOpen }: { setOpen: (open: boolean) => void }) => {
       ) : (
         <Button
           onClick={() => setOpen(true)}
-          className="border border-white text-black font-semibold px-4 py-4 text-md rounded-xl transition-all duration-200 hover:scale-105"
+          className="border border-white text-primary-foreground font-semibold px-4 py-4 text-md rounded-xl transition-all duration-200 hover:scale-105"
         >
           Sign Up
         </Button>

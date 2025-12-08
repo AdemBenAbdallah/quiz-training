@@ -15,9 +15,11 @@ export interface CertificateMetadata {
   description: string;
   totalLevels: number;
   questionsPerLevel: number[];
+  levels: Record<string, number>;
   heroTitle: string;
   heroDescription: string;
   badgeColor: string;
+  lastUpdated: string;
 }
 
 export interface CertificateQuestion {

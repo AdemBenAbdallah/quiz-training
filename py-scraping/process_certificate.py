@@ -1,4 +1,4 @@
-```#!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 Generic Certificate Question Processor
 Processes raw scraped questions for any certificate with configurable distribution

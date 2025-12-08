@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Review() {
   return (
     <section className="mx-auto grid max-w-7xl grid-cols-1">
-      <section className="mx-auto my-12 max-w-md space-y-4 max-lg:px-4 md:my-24 md:space-y-6 lg:max-w-lg">
+      <section className="mx-auto py-24 max-w-md space-y-4 max-lg:px-4 lg:max-w-lg">
         <div className="rating !flex justify-center">
           <StarIcon className="h-6 w-6 text-yellow-500" />
           <StarIcon className="h-6 w-6 text-yellow-500" />

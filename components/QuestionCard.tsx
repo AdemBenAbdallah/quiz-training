@@ -55,8 +55,8 @@ const QuestionCard: React.FC<{
             <div key={index} className="relative group">
               <Button
                 disabled={isDisabled}
-                variant={isSelected ? "secondary" : "outline"}
-                className={`h-auto py-6 px-4 justify-start text-left whitespace-normal w-full ${
+                variant={isSelected ? "default" : "outline"}
+                className={`h-auto py-6 px-4 justify-start text-left whitespace-normal w-full transition-all duration-200 transform-none ${
                   showCorrectAnswer &&
                   question.answer.includes(availableOptions[index])
                     ? "bg-green-600 hover:bg-green-700"
@@ -66,7 +66,9 @@ const QuestionCard: React.FC<{
                       ? "bg-red-600 hover:bg-red-700"
                       : isDisabled
                         ? "opacity-50 cursor-not-allowed"
-                        : ""
+                        : isSelected
+                          ? "bg-primary text-primary-foreground border-primary"
+                          : "hover:bg-gray-50 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-600"
                 }`}
                 onClick={() => onSelectAnswer(availableOptions[index])}
               >
