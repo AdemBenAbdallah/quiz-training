@@ -1,6 +1,7 @@
 import { db } from "@/db/index";
 import { schema, userLevelProgress, userPayment } from "@/db/schema";
 import MagicLinkEmail from "@/emails/MagicLinkEmail";
+import { createInitialProgressForNewUser } from "@/lib/utils/progress";
 import {
   checkout,
   dodopayments,
@@ -36,60 +37,13 @@ export const auth = betterAuth({
     user: {
       create: {
         after: async (user) => {
-          // Initialize user level progress - Level 1 is accessible, others are locked
-          const initialProgress = [
-            {
-              id: `${user.id}_1`,
-              userId: user.id,
-              levelId: 1,
-              passed: false,
-            },
-            {
-              id: `${user.id}_2`,
-              userId: user.id,
-              levelId: 2,
-              passed: false,
-            },
-            {
-              id: `${user.id}_3`,
-              userId: user.id,
-              levelId: 3,
-              passed: false,
-            },
-            {
-              id: `${user.id}_4`,
-              userId: user.id,
-              levelId: 4,
-              passed: false,
-            },
-            {
-              id: `${user.id}_5`,
-              userId: user.id,
-              levelId: 5,
-              passed: false,
-            },
-            {
-              id: `${user.id}_6`,
-              userId: user.id,
-              levelId: 6,
-              passed: false,
-            },
-            {
-              id: `${user.id}_7`,
-              userId: user.id,
-              levelId: 7,
-              passed: false,
-            },
-            {
-              id: `${user.id}_8`,
-              userId: user.id,
-              levelId: 8,
-              passed: false,
-            },
-          ];
+          // Initialize user level progress for default certificate using helper function
+          const initialProgress = createInitialProgressForNewUser(user.id);
 
           await db.insert(userLevelProgress).values(initialProgress);
-          console.log(`Created initial progress for user: ${user.id}`);
+          console.log(
+            `Created initial progress for user: ${user.id} with default certificate`,
+          );
         },
       },
     },
@@ -130,8 +84,16 @@ export const auth = betterAuth({
         checkout({
           products: [
             {
-              productId: process.env.PRODUCT_ID!,
-              slug: "premium-plan",
+              productId: process.env.NEXT_PUBLIC_DODO_PRODUCT_INDIVIDUAL!,
+              slug: "individual-plan",
+            },
+            {
+              productId: process.env.NEXT_PUBLIC_DODO_PRODUCT_PROFESSIONAL!,
+              slug: "professional-plan",
+            },
+            {
+              productId: process.env.NEXT_PUBLIC_DODO_PRODUCT_COMPLETE!,
+              slug: "complete-plan",
             },
           ],
           successUrl: "/levels",
@@ -156,8 +118,11 @@ export const auth = betterAuth({
                 data?.total_amount ?? data?.settlement_amount ?? 0;
               const currency: string =
                 data?.settlement_currency ?? data?.currency ?? "USD";
-              const productSlug: string =
-                data?.product_cart?.[0]?.product_slug || "premium-plan";
+              // Get product details from product_cart
+              const productCart = data?.product_cart || [];
+              const firstProduct = productCart[0];
+              const productId: string = firstProduct?.product_id;
+              const productSlug: string = firstProduct?.product_slug;
 
               console.log("Received webhook (normalized):", {
                 event,
@@ -165,6 +130,7 @@ export const auth = betterAuth({
                 paymentId,
                 amount,
                 currency,
+                productId,
                 productSlug,
               });
 
@@ -173,20 +139,98 @@ export const auth = betterAuth({
                 (data?.status === "succeeded" && paymentId)
               ) {
                 if (userId && paymentId) {
+                  // Map product IDs back to bundle types
+                  const productIdToBundleMap: Record<
+                    string,
+                    { bundleType: string; certificateCount: number }
+                  > = {
+                    [process.env.NEXT_PUBLIC_DODO_PRODUCT_INDIVIDUAL || ""]: {
+                      bundleType: "individual",
+                      certificateCount: 1,
+                    },
+                    [process.env.NEXT_PUBLIC_DODO_PRODUCT_PROFESSIONAL || ""]: {
+                      bundleType: "professional",
+                      certificateCount: 3,
+                    },
+                    [process.env.NEXT_PUBLIC_DODO_PRODUCT_COMPLETE || ""]: {
+                      bundleType: "complete",
+                      certificateCount: 11,
+                    },
+                  };
+
+                  const bundleInfo = productId
+                    ? productIdToBundleMap[productId]
+                    : null;
+                  const planType =
+                    bundleInfo?.bundleType ||
+                    (productSlug ? productSlug.split("-")[0] : "individual");
+                  const selectedCertificates = data?.metadata
+                    ?.selectedCertificates
+                    ? JSON.parse(data.metadata.selectedCertificates)
+                    : [];
+
+                  let bundleType: string | null =
+                    bundleInfo?.bundleType || "individual";
+                  let certificateCount: number | null =
+                    bundleInfo?.certificateCount || 1;
+                  let purchasedCertificates: string[] = [];
+                  let certificateId: string | null = null;
+
+                  // Determine bundle configuration based on plan type
+                  if (
+                    planType === "individual" &&
+                    selectedCertificates.length > 0
+                  ) {
+                    bundleType = "individual";
+                    certificateCount = 1;
+                    certificateId = selectedCertificates[0] as string;
+                    purchasedCertificates = [certificateId];
+                  } else if (planType === "professional") {
+                    bundleType = "professional";
+                    certificateCount = 3;
+                    purchasedCertificates = selectedCertificates;
+                  } else if (planType === "complete") {
+                    bundleType = "complete";
+                    certificateCount = 11;
+                    // For complete bundle, we'll handle this differently
+                    purchasedCertificates = [];
+                  } else {
+                    // Fallback for legacy payments
+                    bundleType = "complete";
+                    certificateCount = 11;
+                    certificateId =
+                      data?.metadata?.certificateId ||
+                      (productSlug.includes("-")
+                        ? productSlug.split("-")[1]
+                        : "dvac02");
+                    purchasedCertificates = certificateId
+                      ? [certificateId]
+                      : [];
+                  }
+
                   await db
                     .insert(userPayment)
                     .values({
                       id: crypto.randomUUID(),
                       userId,
+                      certificateId,
                       paymentId,
                       status: "completed",
                       amount,
                       currency,
                       productSlug,
+                      bundleType,
+                      certificateCount,
+                      purchasedCertificates:
+                        purchasedCertificates.length > 0
+                          ? JSON.stringify(purchasedCertificates)
+                          : null,
                     })
                     .onConflictDoNothing();
 
-                  console.log(`Payment recorded for user: ${userId}`);
+                  console.log(
+                    `Payment recorded for user: ${userId}, bundle: ${bundleType}, certificates: ${certificateCount}`,
+                  );
                 } else {
                   console.warn(
                     "Missing userId or paymentId in webhook payload",

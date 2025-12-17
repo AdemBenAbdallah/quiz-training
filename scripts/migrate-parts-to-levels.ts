@@ -1,15 +1,11 @@
-import { db } from "@/db";
-import { userLevelProgress, userLevelProgressV2 } from "@/db/schema";
-import { eq, and } from "drizzle-orm";
-import { nanoid } from "nanoid";
-
 async function migratePartsToLevels() {
   console.log("Starting migration from parts-based to level-based progress...");
 
   try {
-    console.log("Migration completed successfully - parts-based tables have been removed!");
+    console.log(
+      "Migration completed successfully - parts-based tables have been removed!",
+    );
     console.log("The system now uses level-based progress only.");
-
   } catch (error) {
     console.error("Migration failed:", error);
     throw error;
@@ -19,7 +15,9 @@ async function migratePartsToLevels() {
 // Run the migration if this file is executed directly
 migratePartsToLevels()
   .then(() => {
-    console.log("Migration completed. You can now remove the parts-based tables.");
+    console.log(
+      "Migration completed. You can now remove the parts-based tables.",
+    );
     process.exit(0);
   })
   .catch((error) => {

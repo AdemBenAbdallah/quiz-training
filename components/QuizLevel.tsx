@@ -82,6 +82,7 @@ export default function QuizLevel({
   return (
     <div className="flex flex-col gap-4">
       <Quiz
+        certificateSlug={certificateSlug || "dvac02"}
         levelId={levelId}
         title={`Level ${levelId}`}
         questions={quizQuestions}

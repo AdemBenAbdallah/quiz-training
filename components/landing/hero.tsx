@@ -12,13 +12,14 @@ export default function Hero() {
       <div className="space-y-8 text-center">
         <div className="flex flex-col gap-6 items-center">
           <h1 className="text-4xl md:text-6xl font-extrabold text-balance !leading-[1.2]">
-            Master 500+ DVA-C02 Questions.{" "}
-            <span className="bg-red-700 text-white">Pass With Confidence.</span>
+            Get your <span className="bg-red-700">certification in days</span>{" "}
+            <br />
+            instead of weeks
           </h1>
           <p className="text-xl lg:text-2xl text-gray-400 leading-relaxed text-pretty max-w-6xl">
-            Don&apos;t just memorize dumps. Our gamified quiz app provides
-            detailed explanations for every answer, so you *actually* learn the
-            concepts. Try it free.
+            Master AWS certifications faster with our proven study system. Get
+            detailed explanations, practice questions, and progress tracking to
+            accelerate your learning journey.
           </p>
         </div>
 
@@ -26,9 +27,9 @@ export default function Hero() {
           <Button
             onClick={handleStart}
             size="lg"
-            className="bg-white text-black font-semibold px-8 py-4 text-xl rounded-xl"
+            className="font-semibold px-8 py-4 text-xl rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
           >
-            Start For Free
+            Start preparing
           </Button>
         </div>
       </div>

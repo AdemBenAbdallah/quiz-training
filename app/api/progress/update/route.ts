@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db";
 import { userLevelProgress } from "@/db/schema";
-import { eq, and } from "drizzle-orm";
 import { auth } from "@/lib/auth";
+import { and, eq } from "drizzle-orm";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   try {
@@ -16,16 +16,24 @@ export async function POST(request: NextRequest) {
 
     const userId = session.user.id;
     const body = await request.json();
-    const { type, levelId } = body;
+    const { type, levelId, certificateSlug } = body;
+
+    if (!certificateSlug) {
+      return NextResponse.json(
+        { error: "Certificate is required" },
+        { status: 400 },
+      );
+    }
 
     if (type === "level_complete") {
-      // Mark level as passed
+      // Mark level as passed for specific certificate
       const existingLevelProgress = await db
         .select()
         .from(userLevelProgress)
         .where(
           and(
             eq(userLevelProgress.userId, userId),
+            eq(userLevelProgress.certificateId, certificateSlug),
             eq(userLevelProgress.levelId, levelId),
           ),
         );
@@ -41,20 +49,24 @@ export async function POST(request: NextRequest) {
           .where(
             and(
               eq(userLevelProgress.userId, userId),
+              eq(userLevelProgress.certificateId, certificateSlug),
               eq(userLevelProgress.levelId, levelId),
             ),
           );
       } else {
         // Create new record marking this level as passed
         await db.insert(userLevelProgress).values({
-          id: `${userId}_${levelId}`,
+          id: `${userId}_${certificateSlug}_${levelId}`,
           userId,
+          certificateId: certificateSlug,
           levelId,
           passed: true,
         });
       }
 
-      console.log(`Level ${levelId} completed for user: ${userId}`);
+      console.log(
+        `Level ${levelId} completed for user: ${userId}, certificate: ${certificateSlug}`,
+      );
       return NextResponse.json({ success: true });
     }
 

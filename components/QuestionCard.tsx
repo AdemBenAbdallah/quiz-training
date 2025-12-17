@@ -63,11 +63,11 @@ const QuestionCard: React.FC<{
                     : showCorrectAnswer &&
                         isSelected &&
                         !question.answer.includes(availableOptions[index])
-                      ? "bg-red-600 hover:bg-red-700"
+                      ? "bg-gray-200 dark:bg-gray-700 border-gray-400 dark:border-gray-500 text-gray-700 dark:text-gray-300"
                       : isDisabled
                         ? "opacity-50 cursor-not-allowed"
                         : isSelected
-                          ? "bg-primary text-primary-foreground border-primary"
+                          ? "bg-gray-700 hover:bg-gray-600 text-white border-gray-500"
                           : "hover:bg-gray-50 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-600"
                 }`}
                 onClick={() => onSelectAnswer(availableOptions[index])}

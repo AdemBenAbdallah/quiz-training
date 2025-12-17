@@ -14,8 +14,8 @@ export default function Review() {
         </div>
         <div className="space-y-2 text-center text-base leading-relaxed lg:text-lg">
           <span className="bg-yellow-100/80 px-1.5 font-medium text-yellow-950 dark:bg-yellow-900/80 dark:text-yellow-100">
-            AwsQuizGame is the best way to learn and prepare for the AWS
-            Developer exam.
+            CertFast is the best way to learn and prepare for the AWS Developer
+            exam.
           </span>
           It was the main reason I was able to pass the exam faster and with
           confidence.

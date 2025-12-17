@@ -44,6 +44,7 @@ export const QuizHeader = ({
           onClick={onExplainClick}
           disabled={isExplainDisabled}
           title="Get explanation for this question"
+          className="rounded-xl"
         >
           <HelpCircle className="h-5 w-5" />
         </Button>
@@ -52,6 +53,7 @@ export const QuizHeader = ({
           size="icon"
           onClick={onChatClick}
           title="Chat with AI assistant"
+          className="rounded-xl"
         >
           <MessageCircle className="h-5 w-5" />
         </Button>

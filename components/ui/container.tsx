@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect, createContext } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 
 export const FullscreenContainerContext =
   createContext<React.RefObject<HTMLDivElement | null> | null>(null);
@@ -76,7 +76,7 @@ const Container = ({ children }: { children: React.ReactNode }) => {
               </div>
               <div className="w-full text-center text-sm">
                 <span className="text-base-secondary opacity-50">
-                  https://awsquizgame.adembenabdallah.com/
+                  https://certfast.com/
                 </span>
                 <span className="text-base-content">levels</span>
               </div>

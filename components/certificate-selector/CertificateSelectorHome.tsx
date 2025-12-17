@@ -89,6 +89,10 @@ export default function CertificateSelectorHome() {
               width: max-content;
             }
 
+            .scroll-container:hover {
+              animation-play-state: paused;
+            }
+
             @keyframes scroll {
               0% {
                 transform: translateX(0);
@@ -162,7 +166,7 @@ export default function CertificateSelectorHome() {
                       <Button
                         variant="outline"
                         size="lg"
-                        className="w-full border-neutral-600 text-neutral-300 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 group-hover:shadow-lg"
+                        className="w-full border-neutral-600 text-neutral-300 transition-all duration-300 group-hover:shadow-lg"
                       >
                         <BookOpen className="w-4 h-4 mr-2" />
                         Start Learning

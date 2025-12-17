@@ -1,10 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Check, Info } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
+import {
+  createCheckoutData,
+  validateDodoPaymentsConfig,
+} from "@/lib/dodopayments-config";
 import { getBillingInfo } from "@/lib/utils/get-user-location";
+import { Check, Info } from "lucide-react";
+import { useEffect, useState } from "react";
 
 interface PaymentModalProps {
   isOpen: boolean;
@@ -36,27 +40,47 @@ export default function PaymentModal({
       return;
     }
 
+    // Validate configuration
+    const configValidation = validateDodoPaymentsConfig();
+    if (!configValidation.valid) {
+      console.error(
+        "DodoPayments configuration errors:",
+        configValidation.errors,
+      );
+      alert("Payment system configuration error. Please contact support.");
+      return;
+    }
+
     setIsProcessing(true);
     try {
       const billingInfo = await getBillingInfo();
-      const { data: checkout, error } = await authClient.dodopayments.checkout({
-        slug: "premium-plan",
-        billing: billingInfo,
-        customer: {
+
+      // Create checkout data using the new config utility
+      const checkoutData = createCheckoutData(
+        "individual",
+        billingInfo,
+        {
           email: session.user.email,
           name: session.user.name,
         },
-        referenceId: session.user.id,
-      });
+        session.user.id,
+      );
+
+      const { data: checkout, error } =
+        await authClient.dodopayments.checkout(checkoutData);
 
       if (error) {
         console.error("Checkout error:", error);
+        alert("Payment failed. Please try again.");
         return;
       }
 
-      if (checkout?.url) window.location.href = checkout.url;
+      if (checkout?.url) {
+        window.location.href = checkout.url;
+      }
     } catch (error) {
       console.error("Payment error:", error);
+      alert("Payment failed. Please try again.");
     } finally {
       setIsProcessing(false);
     }

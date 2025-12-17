@@ -1,5 +1,6 @@
 "use client";
 
+import PublicChatAssistant from "@/components/PublicChatAssistant";
 import QuestionCard from "@/components/QuestionCard";
 import QuestionExplainDialog from "@/components/QuestionExplainDialog";
 import { Button } from "@/components/ui/button";
@@ -7,7 +8,12 @@ import { useUser } from "@/hooks/useUser";
 import rawQuestions from "@/public/quiz/level1.json";
 import { Choice, Question } from "@/types/quiz";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  HelpCircle,
+  MessageCircle,
+} from "lucide-react";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { Progress } from "./ui/progress";
 
@@ -37,8 +43,26 @@ const PublicQuiz = ({ handleStart }: PublicQuizProps) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<Choice[]>([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isExplainDialogOpen, setIsExplainDialogOpen] = useState(false);
+  const [isChatDialogOpen, setIsChatDialogOpen] = useState(false);
+  const [chatUsageCount, setChatUsageCount] = useState(0);
+  const [showChatLimitNotification, setShowChatLimitNotification] =
+    useState(false);
   const { session } = useUser();
   const quizContainerRef = useRef<HTMLDivElement>(null);
+
+  // Security: Rate limiting for public chat (max 3 messages per session)
+  const canUseChat = chatUsageCount < 3;
+
+  const handleChatOpen = () => {
+    if (canUseChat) {
+      setIsChatDialogOpen(true);
+      setChatUsageCount((prev) => prev + 1);
+    } else {
+      setShowChatLimitNotification(true);
+      setTimeout(() => setShowChatLimitNotification(false), 5000);
+    }
+  };
 
   useEffect(() => {
     if (quizContainerRef.current) {
@@ -87,11 +111,36 @@ const PublicQuiz = ({ handleStart }: PublicQuizProps) => {
       ref={quizContainerRef}
       className="container mx-auto px-4 py-12 max-w-4xl overflow-y-auto"
     >
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold">Practice Quiz</h1>
-        <p className="text-muted-foreground">
-          Try out a few questions to see how it works.
-        </p>
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <h1 className="text-3xl font-bold">Practice Quiz</h1>
+          <p className="text-muted-foreground">
+            Try out a few questions to see how it works.
+          </p>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button
+            size="icon"
+            onClick={() => setIsExplainDialogOpen(true)}
+            title="Get explanation for this question"
+            className="animate-border"
+          >
+            <HelpCircle className="h-5 w-5 text-white" />
+          </Button>
+          <Button
+            size="icon"
+            onClick={handleChatOpen}
+            disabled={!canUseChat}
+            title={
+              canUseChat
+                ? "Chat with AI assistant"
+                : "Sign up for unlimited chat access"
+            }
+            className="animate-border"
+          >
+            <MessageCircle className="h-5 w-5 text-white" />
+          </Button>
+        </div>
       </div>
 
       <Progress value={progress} className="h-1 mb-8" />
@@ -114,9 +163,18 @@ const PublicQuiz = ({ handleStart }: PublicQuizProps) => {
                   isSubmitted={isSubmitted}
                   showCorrectAnswer={isSubmitted}
                 />
-                <div className="flex justify-center">
-                  <QuestionExplainDialog question={currentQuestion} />
-                </div>
+                <QuestionExplainDialog
+                  question={currentQuestion}
+                  open={isExplainDialogOpen}
+                  onOpenChange={setIsExplainDialogOpen}
+                />
+
+                <PublicChatAssistant
+                  question={currentQuestion}
+                  selectedAnswers={selectedAnswers}
+                  open={isChatDialogOpen}
+                  onOpenChange={setIsChatDialogOpen}
+                />
 
                 <div className="flex justify-between items-center pt-4">
                   <Button
@@ -143,6 +201,29 @@ const PublicQuiz = ({ handleStart }: PublicQuizProps) => {
           </AnimatePresence>
         </Suspense>
       </div>
+      {showChatLimitNotification && (
+        <div className="mt-6 p-4 rounded-lg bg-yellow-50 border border-yellow-200 flex items-center gap-3">
+          <div className="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center flex-shrink-0">
+            <MessageCircle className="h-4 w-4 text-yellow-600" />
+          </div>
+          <div className="flex-1">
+            <div className="font-semibold text-yellow-800">
+              Chat limit reached
+            </div>
+            <div className="text-sm text-yellow-700">
+              You&apos;ve used your free chat allowance. Sign up for unlimited
+              AI assistance!
+            </div>
+          </div>
+          <Button
+            onClick={handleStart}
+            size="sm"
+            className="bg-yellow-600 hover:bg-yellow-700 text-white"
+          >
+            Sign up
+          </Button>
+        </div>
+      )}
       <div className="text-center mt-8 text-sm text-gray-500">
         Sign up to access over 500+ questions and track your progress.
       </div>

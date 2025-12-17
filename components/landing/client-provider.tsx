@@ -6,6 +6,8 @@ import React, { createContext, useContext, useState } from "react";
 
 type ClientContextType = {
   handleStart: () => void;
+  handleStartTrial: () => void;
+  handleViewPricing: () => void;
   setOpenSignUp: (open: boolean) => void;
 };
 
@@ -37,8 +39,20 @@ export function ClientProvider({
     }
   };
 
+  const handleStartTrial = () => {
+    if (session) {
+      router.push("/levels");
+    } else {
+      setOpenSignUp(true);
+    }
+  };
+
+  const handleViewPricing = () => {
+    router.push("/pricing");
+  };
+
   return (
-    <ClientContext.Provider value={{ handleStart, setOpenSignUp }}>
+    <ClientContext.Provider value={{ handleStart, handleStartTrial, handleViewPricing, setOpenSignUp }}>
       {children}
       {openSignUp && (
         <div className="fixed z-50 top-0 left-0 right-0 bottom-0 bg-black flex items-center justify-center">

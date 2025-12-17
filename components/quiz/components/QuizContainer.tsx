@@ -16,6 +16,7 @@ import { QuizHeader } from "./QuizHeader";
 import { QuizNavigation } from "./QuizNavigation";
 
 interface QuizContainerProps {
+  certificateSlug: string;
   levelId: number;
   questions: Question[];
   title: string;
@@ -23,6 +24,7 @@ interface QuizContainerProps {
 }
 
 export const QuizContainer = ({
+  certificateSlug,
   levelId,
   questions,
   title = "Quiz",
@@ -47,7 +49,7 @@ export const QuizContainer = ({
   const [isChatDialogOpen, setIsChatDialogOpen] = useState(false);
 
   // Progression state
-  const { data, updateProgress } = useProgress();
+  const { data, updateProgress } = useProgress(certificateSlug);
   const levels = data?.levels || [];
   const currentLevel = levels.find((level) => level.id === levelId);
   const isLevelAccessible = Boolean(currentLevel?.accessible);
@@ -141,7 +143,9 @@ export const QuizContainer = ({
     const correctAnswers = submitQuiz();
 
     try {
-      if (correctAnswers === questions.length) {
+      // Allow level completion with 80% or higher score
+      const completionThreshold = Math.ceil(questions.length * 0.8);
+      if (correctAnswers >= completionThreshold) {
         passToNextLevel();
       }
     } catch (error) {

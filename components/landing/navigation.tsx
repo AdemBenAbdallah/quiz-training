@@ -2,24 +2,34 @@
 
 import AvatarMenu from "@/components/Avatar";
 import Image from "next/image";
+import Link from "next/link";
 import { useClientProvider } from "./client-provider";
 
+export const Logo = () => {
+  return (
+    <Link
+      href="/"
+      className="flex items-center hover:opacity-80 transition-opacity"
+    >
+      <Image
+        src="/logo.png"
+        alt="CertFast Logo"
+        width={69}
+        height={69}
+        className="rounded-lg"
+        suppressHydrationWarning
+      />
+      <span className="text-xl font-bold -translate-x-3">CertFast</span>
+    </Link>
+  );
+};
 export default function Navigation() {
   const { setOpenSignUp } = useClientProvider();
   return (
     <nav className="border-b border-gray-800">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex gap-2 items-center">
-            <Image
-              src="/logo.png"
-              alt="AWS Quiz Logo"
-              width={34}
-              height={34}
-              className="rounded-lg"
-            />
-            <span className="text-xl font-bold">AWS Exam</span>
-          </div>
+          <Logo />
           <AvatarMenu setOpen={setOpenSignUp} />
         </div>
       </div>

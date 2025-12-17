@@ -20,6 +20,7 @@ import {
   Trophy,
   Zap,
 } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -31,7 +32,7 @@ export default function CertificateLevels({
   certificateSlug,
 }: CertificateLevelsProps) {
   const router = useRouter();
-  const { data: progressData } = useProgress();
+  const { data: progressData } = useProgress(certificateSlug);
   const [hoveredLevel, setHoveredLevel] = useState<number | null>(null);
   const metadata = getCertificateMetadata(certificateSlug);
 
@@ -101,9 +102,16 @@ export default function CertificateLevels({
         <div className="text-center space-y-6 py-8">
           <div className="space-y-4">
             <div className="flex items-center justify-center gap-2 text-sm text-gray-400">
-              <span>Home</span>
+              <Link href="/" className="hover:text-white transition-colors">
+                Home
+              </Link>
               <span>/</span>
-              <span>Certificates</span>
+              <Link
+                href="/certificates"
+                className="hover:text-white transition-colors"
+              >
+                Certificates
+              </Link>
               <span>/</span>
               <span className="text-white">{metadata.name}</span>
             </div>
