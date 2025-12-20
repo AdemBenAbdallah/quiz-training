@@ -66,8 +66,9 @@ export default function PaymentModal({
         session.user.id,
       );
 
-      const { data: checkout, error } =
-        await authClient.dodopayments.checkout(checkoutData);
+      const { data: checkout, error } = await authClient.dodopayments.checkout(
+        checkoutData as any,
+      );
 
       if (error) {
         console.error("Checkout error:", error);

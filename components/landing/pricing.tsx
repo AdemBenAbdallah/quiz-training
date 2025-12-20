@@ -187,7 +187,7 @@ export default function Pricing() {
             ]?.certificateCount.toString() || "1",
           ...checkoutData,
         },
-      });
+      } as any);
 
       if (error) {
         console.error("Checkout error:", error);

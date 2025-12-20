@@ -51,7 +51,7 @@ export default function CompletionModal({
           name: session.user.name,
         },
         referenceId: session.user.id,
-      });
+      } as any);
 
       if (error) {
         console.error("Checkout error:", error);

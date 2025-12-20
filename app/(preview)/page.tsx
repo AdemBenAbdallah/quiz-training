@@ -5,7 +5,6 @@ import Faq from "@/components/landing/faq";
 import Hero from "@/components/landing/hero";
 import HowItWorks from "@/components/landing/how-it-works";
 import Navigation from "@/components/landing/navigation";
-import Pricing from "@/components/landing/pricing";
 import Review from "@/components/landing/review";
 import { Link } from "@/components/ui/link";
 import { auth } from "@/lib/auth";
@@ -49,7 +48,6 @@ export default async function HomePage() {
           <Hero />
           <CertificateSelectorHome />
           <HowItWorks />
-          <Pricing />
           <Review />
           <Faq />
           <Suspense fallback={<div>Loading...</div>}>

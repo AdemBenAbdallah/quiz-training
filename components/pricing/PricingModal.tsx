@@ -26,9 +26,12 @@ const plans = [
     description: "Perfect for single certification",
     features: [
       "1 full certification",
-      "All levels (1-8)",
+      "All levels",
       "Detailed explanations",
+      "Unlimited chat explanations",
+      "Progress tracking",
       "Lifetime access",
+      "Money-back guarantee",
     ],
     cta: "Get Started",
     popular: false,
@@ -43,11 +46,14 @@ const plans = [
     features: [
       "3 certifications of your choice",
       "All levels for each cert",
+      "Detailed explanations",
+      "Unlimited chat explanations",
       "Priority support",
       "Lifetime access",
+      "Money-back guarantee",
     ],
     cta: "Go Professional",
-    popular: true,
+    popular: false,
     color: "red",
   },
   {
@@ -59,16 +65,20 @@ const plans = [
     features: [
       "All 11 AWS certifications",
       "Complete question database",
-      "Advanced analytics",
+      "Detailed explanations",
+      "Unlimited chat explanations",
+      "Priority support",
       "Lifetime access",
+      "Money-back guarantee",
     ],
     cta: "Get Everything",
-    popular: false,
+    popular: true,
     color: "purple",
   },
 ];
 
 type Step = "plans" | "select-certificates" | "checkout";
+type TPlan = "professional" | "individual" | "complete";
 
 export default function PricingModal() {
   const { isOpen, preselectedCertificateId, closePricingModal } =
@@ -76,7 +86,7 @@ export default function PricingModal() {
   const { data: session } = authClient.useSession();
 
   const [step, setStep] = useState<Step>("plans");
-  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
+  const [selectedPlan, setSelectedPlan] = useState<TPlan | null>(null);
   const [selectedCertificates, setSelectedCertificates] = useState<string[]>(
     [],
   );
@@ -96,24 +106,6 @@ export default function PricingModal() {
     }
   }, [isOpen, preselectedCertificateId]);
 
-  const handlePlanSelect = (planType: string) => {
-    setSelectedPlan(planType);
-
-    if (planType === "professional") {
-      setStep("select-certificates");
-    } else if (planType === "individual" && preselectedCertificateId) {
-      // Individual with preselected cert - go straight to checkout
-      setSelectedCertificates([preselectedCertificateId]);
-      setStep("checkout");
-    } else if (planType === "individual") {
-      // Individual without preselection - select one cert
-      setStep("select-certificates");
-    } else {
-      // Complete - go to checkout
-      setStep("checkout");
-    }
-  };
-
   const handleCertificateToggle = (certificateId: string) => {
     const maxCerts = selectedPlan === "professional" ? 3 : 1;
 
@@ -127,20 +119,19 @@ export default function PricingModal() {
     });
   };
 
-  const handleContinueToCheckout = () => {
-    const requiredCerts = selectedPlan === "professional" ? 3 : 1;
-    if (selectedCertificates.length === requiredCerts) {
-      setStep("checkout");
-    }
-  };
-
-  const handleCheckout = async () => {
+  const handleCheckout = async (selectedPlan: TPlan) => {
     if (!session?.user) {
       window.location.href = "/auth/signin";
       return;
     }
 
     if (!selectedPlan) return;
+
+    if (selectedPlan === "professional") {
+      setStep("select-certificates");
+      setSelectedPlan("professional");
+      return;
+    }
 
     setIsProcessing(true);
 
@@ -178,7 +169,7 @@ export default function PricingModal() {
               selectedPlan as keyof typeof BUNDLE_CONFIGS
             ]?.certificateCount.toString() || "1",
         },
-      });
+      } as any);
 
       if (error) {
         alert("Payment failed. Please try again.");
@@ -194,9 +185,6 @@ export default function PricingModal() {
       setIsProcessing(false);
     }
   };
-
-  const getSelectedPlanDetails = () =>
-    plans.find((p) => p.bundleType === selectedPlan);
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && closePricingModal()}>
@@ -216,59 +204,62 @@ export default function PricingModal() {
             {plans.map((plan) => (
               <div
                 key={plan.bundleType}
-                className={`relative rounded-xl border p-4 cursor-pointer transition-all hover:scale-[1.02] ${
+                className={`relative rounded-xl border p-4 cursor-pointer transition-all hover:scale-[1.02] max-h-96 flex flex-col justify-between ${
                   plan.popular
                     ? "border-red-500 bg-red-500/10"
                     : "border-gray-700 bg-gray-800/50 hover:border-gray-600"
                 }`}
-                onClick={() => handlePlanSelect(plan.bundleType)}
+                onClick={() => handleCheckout(plan.bundleType)}
               >
-                {plan.popular && (
-                  <Badge className="absolute -top-2 left-1/2 -translate-x-1/2 bg-red-500 text-white text-xs">
-                    Best Value
-                  </Badge>
-                )}
-
-                <div className="flex items-center gap-2 mb-3">
-                  <div
-                    className={`p-2 rounded-full ${
-                      plan.popular ? "bg-red-500" : "bg-gray-700"
-                    }`}
-                  >
-                    {plan.icon}
-                  </div>
-                  <h3 className="font-semibold">{plan.name}</h3>
-                </div>
-
-                <div className="mb-3">
-                  <span className="text-2xl font-bold">${plan.price}</span>
-                  <span className="text-gray-400 text-sm ml-1">one-time</span>
-                </div>
-
-                <p className="text-gray-400 text-sm mb-3">{plan.description}</p>
-
-                <ul className="space-y-1.5 mb-4">
-                  {plan.features.map((feature, i) => (
-                    <li
-                      key={i}
-                      className="flex items-start gap-2 text-xs text-gray-300"
+                <div>
+                  {plan.popular && (
+                    <Badge className="absolute -top-2 left-1/2 -translate-x-1/2 bg-red-500 text-white text-xs">
+                      Best Value
+                    </Badge>
+                  )}
+                  <div className="flex items-center gap-2 mb-3">
+                    <div
+                      className={`p-2 rounded-full ${
+                        plan.popular ? "bg-red-500" : "bg-gray-700"
+                      }`}
                     >
-                      <Check className="w-3 h-3 text-green-500 mt-0.5 shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
+                      {plan.icon}
+                    </div>
+                    <h3 className="font-semibold">{plan.name}</h3>
+                  </div>
+
+                  <div className="mb-3">
+                    <span className="text-2xl font-bold">${plan.price}</span>
+                    <span className="text-gray-400 text-sm ml-1">one-time</span>
+                  </div>
+
+                  <p className="text-gray-400 text-sm mb-3">
+                    {plan.description}
+                  </p>
+
+                  <ul className="space-y-1.5 mb-4">
+                    {plan.features.map((feature, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-2 text-xs text-gray-300"
+                      >
+                        <Check className="w-3 h-3 text-green-500 mt-0.5 shrink-0" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
                 <Button
                   className={`w-full ${
                     plan.popular
-                      ? "bg-red-500 hover:bg-red-600"
+                      ? "bg-red-500 hover:bg-red-600 text-white"
                       : "bg-gray-700 hover:bg-gray-600"
                   }`}
                   size="sm"
                 >
                   {plan.cta}
-                  {plan.bundleType === "professional" && (
+                  {plan.bundleType === "complete" && (
                     <ArrowRight className="w-3 h-3 ml-1" />
                   )}
                 </Button>
@@ -334,88 +325,13 @@ export default function PricingModal() {
                   Back
                 </Button>
                 <Button
-                  onClick={handleContinueToCheckout}
-                  disabled={
-                    selectedCertificates.length !==
-                    (selectedPlan === "professional" ? 3 : 1)
-                  }
+                  onClick={() => handleCheckout("professional")}
+                  disabled={isProcessing}
                   className="bg-red-500 hover:bg-red-600"
                 >
                   Continue to Payment
                 </Button>
               </div>
-            </div>
-          </div>
-        )}
-
-        {/* Checkout Step */}
-        {step === "checkout" && (
-          <div className="mt-4">
-            <div className="bg-gray-800 rounded-lg p-4 mb-4">
-              <h4 className="font-semibold mb-2">Order Summary</h4>
-
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-gray-300">
-                  {getSelectedPlanDetails()?.name} Plan
-                </span>
-                <span className="font-bold">
-                  ${getSelectedPlanDetails()?.price}
-                </span>
-              </div>
-
-              {selectedPlan !== "complete" &&
-                selectedCertificates.length > 0 && (
-                  <div className="border-t border-gray-700 pt-3">
-                    <p className="text-sm text-gray-400 mb-2">
-                      Selected Certifications:
-                    </p>
-                    <ul className="space-y-1">
-                      {selectedCertificates.map((certId) => {
-                        const cert = certificates.find((c) => c.id === certId);
-                        return (
-                          <li
-                            key={certId}
-                            className="flex items-center gap-2 text-sm"
-                          >
-                            <Check className="w-3 h-3 text-green-500" />
-                            {cert?.name || certId}
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
-                )}
-
-              {selectedPlan === "complete" && (
-                <p className="text-sm text-gray-400">
-                  Access to all 11 AWS certifications
-                </p>
-              )}
-            </div>
-
-            <div className="flex gap-2">
-              <Button
-                variant="outline"
-                onClick={() =>
-                  setStep(
-                    selectedPlan === "complete"
-                      ? "plans"
-                      : "select-certificates",
-                  )
-                }
-                className="border-gray-600"
-              >
-                Back
-              </Button>
-              <Button
-                onClick={handleCheckout}
-                disabled={isProcessing}
-                className="flex-1 bg-red-500 hover:bg-red-600"
-              >
-                {isProcessing
-                  ? "Processing..."
-                  : `Pay $${getSelectedPlanDetails()?.price}`}
-              </Button>
             </div>
           </div>
         )}

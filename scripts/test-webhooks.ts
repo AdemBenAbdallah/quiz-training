@@ -5,12 +5,12 @@
  * Easy-to-use script for running webhook tests
  */
 
-import { spawn } from 'child_process';
-import { existsSync } from 'fs';
-import { join } from 'path';
+import { spawn } from "child_process";
+import { existsSync } from "fs";
+import { join } from "path";
 
 interface WebhookTestOptions {
-  type?: 'all' | 'unit' | 'integration' | 'local';
+  type?: "all" | "unit" | "integration" | "local";
   verbose?: boolean;
   coverage?: boolean;
   port?: number;
@@ -22,26 +22,26 @@ class WebhookTestRunner {
 
   constructor(options: WebhookTestOptions = {}) {
     this.options = {
-      type: 'all',
+      type: "all",
       verbose: false,
       coverage: false,
       port: 3001,
       server: false,
-      ...options
+      ...options,
     };
   }
 
   async run(): Promise<void> {
-    console.log('🚀 Starting DodoPayments Webhook Tests\n');
+    console.log("🚀 Starting DodoPayments Webhook Tests\n");
 
     switch (this.options.type) {
-      case 'unit':
+      case "unit":
         await this.runUnitTests();
         break;
-      case 'integration':
+      case "integration":
         await this.runIntegrationTests();
         break;
-      case 'local':
+      case "local":
         await this.runLocalTests();
         break;
       default:
@@ -50,11 +50,9 @@ class WebhookTestRunner {
   }
 
   private async runUnitTests(): Promise<void> {
-    console.log('🧪 Running Unit Tests...\n');
+    console.log("🧪 Running Unit Tests...\n");
 
-    const testFiles = [
-      'tests/webhooks/dodopayments.test.ts'
-    ];
+    const testFiles = ["tests/webhooks/dodopayments.test.ts"];
 
     for (const file of testFiles) {
       if (existsSync(join(process.cwd(), file))) {
@@ -64,20 +62,18 @@ class WebhookTestRunner {
   }
 
   private async runIntegrationTests(): Promise<void> {
-    console.log('🔗 Running Integration Tests...\n');
+    console.log("🔗 Running Integration Tests...\n");
 
     // Start local server for integration tests
     if (this.options.server) {
       await this.startLocalServer();
     }
 
-    const integrationTests = [
-      'tests/webhooks/dodopayments.test.ts'
-    ];
+    const integrationTests = ["tests/webhooks/dodopayments.test.ts"];
 
     for (const file of integrationTests) {
       if (existsSync(join(process.cwd(), file))) {
-        await this.runTestFile(file, '--grep', 'integration');
+        await this.runTestFile(file, "--grep", "integration");
       }
     }
 
@@ -87,12 +83,12 @@ class WebhookTestRunner {
   }
 
   private async runLocalTests(): Promise<void> {
-    console.log('🌐 Running Local Server Tests...\n');
+    console.log("🌐 Running Local Server Tests...\n");
 
     await this.startLocalServer();
-    
+
     // Wait for server to be ready
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 2000));
 
     // Test server endpoints
     await this.testServerEndpoints();
@@ -101,10 +97,10 @@ class WebhookTestRunner {
   }
 
   private async runAllTests(): Promise<void> {
-    console.log('🎯 Running All Webhook Tests...\n');
+    console.log("🎯 Running All Webhook Tests...\n");
 
-    const testFile = 'tests/webhooks/dodopayments.test.ts';
-    
+    const testFile = "tests/webhooks/dodopayments.test.ts";
+
     if (!existsSync(join(process.cwd(), testFile))) {
       console.error(`❌ Test file not found: ${testFile}`);
       process.exit(1);
@@ -114,37 +110,37 @@ class WebhookTestRunner {
   }
 
   private async runTestFile(file: string, ...args: string[]): Promise<void> {
-    const command = 'npm';
+    const command = "npm";
     const testArgs = [
-      'test',
-      '--',
-      '--run',
-      '--reporter=verbose',
+      "test",
+      "--",
+      "--run",
+      "--reporter=verbose",
       file,
-      ...args
+      ...args,
     ];
 
     if (this.options.coverage) {
-      testArgs.unshift('--coverage');
+      testArgs.unshift("--coverage");
     }
 
     return new Promise((resolve, reject) => {
       const proc = spawn(command, testArgs, {
-        stdio: this.options.verbose ? 'inherit' : 'pipe',
-        cwd: process.cwd()
+        stdio: this.options.verbose ? "inherit" : "pipe",
+        cwd: process.cwd(),
       });
 
       if (!this.options.verbose) {
-        proc.stdout.on('data', (data) => {
+        proc.stdout?.on("data", (data) => {
           process.stdout.write(data);
         });
 
-        proc.stderr.on('data', (data) => {
+        proc.stderr?.on("data", (data) => {
           process.stderr.write(data);
         });
       }
 
-      proc.on('close', (code) => {
+      proc.on("close", (code) => {
         if (code === 0) {
           console.log(`✅ ${file} tests passed\n`);
           resolve();
@@ -154,7 +150,7 @@ class WebhookTestRunner {
         }
       });
 
-      proc.on('error', (error) => {
+      proc.on("error", (error) => {
         console.error(`❌ Error running tests: ${error.message}`);
         reject(error);
       });
@@ -162,42 +158,53 @@ class WebhookTestRunner {
   }
 
   private async startLocalServer(): Promise<void> {
-    console.log(`🧪 Starting local webhook server on port ${this.options.port}...`);
+    console.log(
+      `🧪 Starting local webhook server on port ${this.options.port}...`,
+    );
 
-    const serverPath = join(process.cwd(), 'tests', 'webhooks', 'local-server.ts');
-    const serverArgs = [serverPath, this.options.port!.toString(), 'test_secret'];
+    const serverPath = join(
+      process.cwd(),
+      "tests",
+      "webhooks",
+      "local-server.ts",
+    );
+    const serverArgs = [
+      serverPath,
+      this.options.port!.toString(),
+      "test_secret",
+    ];
 
-    const serverProcess = spawn('npx', ['tsx', ...serverArgs], {
-      stdio: 'pipe',
-      cwd: process.cwd()
+    const serverProcess = spawn("npx", ["tsx", ...serverArgs], {
+      stdio: "pipe",
+      cwd: process.cwd(),
     });
 
-    serverProcess.stdout.on('data', (data) => {
+    serverProcess.stdout.on("data", (data) => {
       if (this.options.verbose) {
         process.stdout.write(data);
       }
     });
 
-    serverProcess.stderr.on('data', (data) => {
+    serverProcess.stderr.on("data", (data) => {
       process.stderr.write(data);
     });
 
     // Wait for server to start
     await new Promise((resolve) => {
-      serverProcess.stdout.on('data', (data) => {
-        if (data.toString().includes('Local webhook server running')) {
+      serverProcess.stdout.on("data", (data) => {
+        if (data.toString().includes("Local webhook server running")) {
           resolve(void 0);
         }
       });
     });
 
-    console.log('✅ Local server started\n');
+    console.log("✅ Local server started\n");
   }
 
   private async stopLocalServer(): Promise<void> {
-    console.log('🛑 Stopping local webhook server...');
+    console.log("🛑 Stopping local webhook server...");
     // This is a simplified version - in practice you'd want to track the process
-    console.log('✅ Local server stopped\n');
+    console.log("✅ Local server stopped\n");
   }
 
   private async testServerEndpoints(): Promise<void> {
@@ -207,40 +214,39 @@ class WebhookTestRunner {
       // Test health endpoint
       const healthResponse = await fetch(`${baseUrl}/health`);
       if (healthResponse.ok) {
-        console.log('✅ Health endpoint working');
+        console.log("✅ Health endpoint working");
       } else {
-        console.log('❌ Health endpoint failed');
+        console.log("❌ Health endpoint failed");
       }
 
       // Test webhook endpoint
       const webhookResponse = await fetch(`${baseUrl}/webhook`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: 'test_webhook',
-          type: 'payment.succeeded',
-          data: { payment_id: 'test_payment' }
-        })
+          id: "test_webhook",
+          type: "payment.succeeded",
+          data: { payment_id: "test_payment" },
+        }),
       });
 
       if (webhookResponse.ok) {
-        console.log('✅ Webhook endpoint working');
+        console.log("✅ Webhook endpoint working");
       } else {
-        console.log('❌ Webhook endpoint failed');
+        console.log("❌ Webhook endpoint failed");
       }
 
       // Test logs endpoint
       const logsResponse = await fetch(`${baseUrl}/logs`);
       if (logsResponse.ok) {
-        console.log('✅ Logs endpoint working');
+        console.log("✅ Logs endpoint working");
       } else {
-        console.log('❌ Logs endpoint failed');
+        console.log("❌ Logs endpoint failed");
       }
-
     } catch (error) {
-      console.error('❌ Server endpoint testing failed:', error);
+      console.error("❌ Server endpoint testing failed:", error);
     }
   }
 }
@@ -253,29 +259,29 @@ async function main() {
   // Parse arguments
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
-    
+
     switch (arg) {
-      case '--type':
+      case "--type":
         options.type = args[i + 1] as any;
         i++;
         break;
-      case '--verbose':
-      case '-v':
+      case "--verbose":
+      case "-v":
         options.verbose = true;
         break;
-      case '--coverage':
+      case "--coverage":
         options.coverage = true;
         break;
-      case '--port':
-      case '-p':
+      case "--port":
+      case "-p":
         options.port = parseInt(args[i + 1]);
         i++;
         break;
-      case '--server':
+      case "--server":
         options.server = true;
         break;
-      case '--help':
-      case '-h':
+      case "--help":
+      case "-h":
         printUsage();
         process.exit(0);
         break;
@@ -283,12 +289,12 @@ async function main() {
   }
 
   const runner = new WebhookTestRunner(options);
-  
+
   try {
     await runner.run();
-    console.log('🎉 All webhook tests completed successfully!');
+    console.log("🎉 All webhook tests completed successfully!");
   } catch (error) {
-    console.error('❌ Webhook tests failed:', error);
+    console.error("❌ Webhook tests failed:", error);
     process.exit(1);
   }
 }
