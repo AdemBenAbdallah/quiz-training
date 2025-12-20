@@ -12,7 +12,6 @@ import {
 import { authClient } from "@/lib/auth-client";
 import { getAvailableCertificates } from "@/lib/certificates";
 import { getBillingInfo } from "@/lib/utils/get-user-location";
-import { BUNDLE_CONFIGS } from "@/lib/utils/payment";
 import { Certificate } from "@/types/certificate";
 import { ArrowRight, Check, Crown, Star, Zap } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -127,9 +126,15 @@ export default function PricingModal() {
 
     if (!selectedPlan) return;
 
-    if (selectedPlan === "professional") {
+    if (selectedPlan === "professional" && selectedCertificates.length !== 3) {
       setStep("select-certificates");
       setSelectedPlan("professional");
+      return;
+    }
+
+    if (selectedPlan === "individual" && selectedCertificates.length === 0) {
+      setStep("select-certificates");
+      setSelectedPlan("individual");
       return;
     }
 
@@ -165,9 +170,11 @@ export default function PricingModal() {
           ),
           bundleType: selectedPlan,
           certificateCount:
-            BUNDLE_CONFIGS[
-              selectedPlan as keyof typeof BUNDLE_CONFIGS
-            ]?.certificateCount.toString() || "1",
+            selectedPlan === "complete"
+              ? "11"
+              : selectedPlan === "professional"
+                ? "3"
+                : "1",
         },
       } as any);
 
@@ -325,11 +332,13 @@ export default function PricingModal() {
                   Back
                 </Button>
                 <Button
-                  onClick={() => handleCheckout("professional")}
+                  variant="destructive"
+                  onClick={() => handleCheckout(selectedPlan!)}
                   disabled={isProcessing}
-                  className="bg-red-500 hover:bg-red-600"
                 >
-                  Continue to Payment
+                  {selectedPlan === "individual"
+                    ? "Continue to Payment"
+                    : `Continue to Payment (${selectedCertificates.length}/3)`}
                 </Button>
               </div>
             </div>

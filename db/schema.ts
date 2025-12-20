@@ -114,7 +114,6 @@ export const userPayment = pgTable("user_payment", {
   status: text("status").notNull().default("pending"),
   amount: integer("amount"),
   currency: text("currency").default("USD"),
-  productSlug: text("product_slug"),
   bundleType: text("bundle_type"), // 'individual', 'professional', 'complete'
   certificateCount: integer("certificate_count"), // 1, 3, or 11
   purchasedCertificates: text("purchased_certificates"), // JSON array of certificate IDs

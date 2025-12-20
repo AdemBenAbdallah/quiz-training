@@ -16,6 +16,7 @@
     "warm-cache": "pnpm dlx tsx ./scripts/warm-cache.ts",
     "db:push": "drizzle-kit push",
     "db:generate": "drizzle-kit generate",
+    "db:studio": "drizzle-kit studio",
     "send-reminders": "tsx ./scripts/send-reminder-emails.ts",
     "workflow:inspect": "npx workflow inspect runs --web",
     "workflow:dev": "npx workflow dev",

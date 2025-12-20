@@ -223,7 +223,7 @@ const certificateMetadata: Record<string, CertificateMetadata> = {
 const certificatesIndex = {
   certificates: [
     {
-      id: "dvac02",
+      id: "d4a30a6a-5584-4044-82ad-3a034ed9ba5c",
       slug: "dvac02",
       name: "AWS Certified Developer Associate",
       description: "DVA-C02 certification exam preparation",
@@ -233,7 +233,7 @@ const certificatesIndex = {
       badgeColor: "bg-orange-500",
     },
     {
-      id: "ansc01",
+      id: "a0db9c04-0642-4c76-b244-d9b8ed078054",
       slug: "ansc01",
       name: "AWS Certified Advanced Networking - Specialty",
       description: "ANS-C01 certification exam preparation",
@@ -243,7 +243,7 @@ const certificatesIndex = {
       badgeColor: "bg-blue-500",
     },
     {
-      id: "clfc02",
+      id: "ba62351b-45b4-420d-9c8a-9079ac576f9d",
       slug: "clfc02",
       name: "AWS Certified Cloud Practitioner",
       description: "CLF-C02 certification exam preparation",
@@ -253,7 +253,7 @@ const certificatesIndex = {
       badgeColor: "bg-gray-500",
     },
     {
-      id: "mlsc01",
+      id: "088b0166-251c-43a1-8408-335c9cae7221",
       slug: "mlsc01",
       name: "AWS Certified Machine Learning - Specialty",
       description: "MLS-C01 certification exam preparation",
@@ -263,7 +263,7 @@ const certificatesIndex = {
       badgeColor: "bg-purple-500",
     },
     {
-      id: "aifc01",
+      id: "45e794f0-f31d-4bf4-b28c-f47b1053f7b7",
       slug: "aifc01",
       name: "AWS Certified AI Practitioner",
       description: "AIF-C01 certification exam preparation",
@@ -273,7 +273,7 @@ const certificatesIndex = {
       badgeColor: "bg-green-500",
     },
     {
-      id: "dopc02",
+      id: "57296766-2eea-4a55-931f-1bab5d81e113",
       slug: "dopc02",
       name: "AWS Certified DevOps Engineer - Professional",
       description: "DOP-C02 certification exam preparation",
@@ -283,7 +283,7 @@ const certificatesIndex = {
       badgeColor: "bg-indigo-500",
     },
     {
-      id: "scsc02",
+      id: "c443db13-9b6f-4ffe-83e9-a071ca0484d2",
       slug: "scsc02",
       name: "AWS Certified Security - Specialty",
       description: "SCS-C02 certification exam preparation",
@@ -293,7 +293,7 @@ const certificatesIndex = {
       badgeColor: "bg-red-500",
     },
     {
-      id: "deac01",
+      id: "ec103156-b657-4060-9893-c5ac5c58b45c",
       slug: "deac01",
       name: "AWS Certified Data Engineer - Associate",
       description: "DEA-C01 certification exam preparation",
@@ -303,7 +303,7 @@ const certificatesIndex = {
       badgeColor: "bg-cyan-500",
     },
     {
-      id: "mlac01",
+      id: "38a4d206-84cd-4834-a2c2-c20992acc3b7",
       slug: "mlac01",
       name: "AWS Certified Machine Learning Engineer - Associate",
       description: "MLA-C01 certification exam preparation",
@@ -313,7 +313,7 @@ const certificatesIndex = {
       badgeColor: "bg-pink-500",
     },
     {
-      id: "saac03",
+      id: "5d203a46-af1a-4268-818b-2370b74a0fa6",
       slug: "saac03",
       name: "AWS Certified Solutions Architect - Associate",
       description: "SAA-C03 certification exam preparation",
@@ -323,7 +323,7 @@ const certificatesIndex = {
       badgeColor: "bg-yellow-500",
     },
     {
-      id: "sapc02",
+      id: "a4eee8a5-5c09-4ce4-9cda-03e5431327f8",
       slug: "sapc02",
       name: "AWS Certified Solutions Architect - Professional",
       description: "SAP-C02 certification exam preparation",
@@ -369,9 +369,7 @@ export async function loadCertificateLevel(
 
 // Get all available certificates (synchronous)
 export function getAvailableCertificates(): Certificate[] {
-  console.log("🔧 getAvailableCertificates called");
   const data = loadCertificatesIndex();
-  console.log("🔧 Data loaded:", data.certificates.length, "certificates");
   const result = data.certificates.map((cert: any) => ({
     id: cert.id,
     slug: cert.slug,
@@ -382,7 +380,6 @@ export function getAvailableCertificates(): Certificate[] {
     createdAt: new Date(),
     updatedAt: new Date(),
   }));
-  console.log("🔧 Mapped result:", result.length, "certificates");
   return result;
 }
 

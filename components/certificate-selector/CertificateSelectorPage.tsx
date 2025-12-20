@@ -10,6 +10,8 @@ import { Certificate } from "@/types/certificate";
 import { BookOpen, Lock } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useClientProvider } from "../landing/client-provider";
 
 interface CertificateSelectorPageProps {
   accessibleCertificates: string[];
@@ -69,6 +71,7 @@ function AllCertificationsGrid({
 }: AllCertificationsGridProps) {
   const { openPricingModal } = usePricingModal();
   const router = useRouter();
+  const { handleStart } = useClientProvider();
 
   const hasAccess = (cert: Certificate): boolean => {
     return (
@@ -81,7 +84,7 @@ function AllCertificationsGrid({
     e.preventDefault();
 
     if (!isLoggedIn) {
-      router.push("/auth/signin");
+      handleStart();
       return;
     }
 

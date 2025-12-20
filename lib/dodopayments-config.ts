@@ -102,7 +102,10 @@ export const DODO_PRODUCT_CONFIGS: Record<BundleType, DodoProductConfig> = {
 /**
  * Validate that all required environment variables are set
  */
-export function validateDodoPaymentsConfig(): { valid: boolean; errors: string[] } {
+export function validateDodoPaymentsConfig(): {
+  valid: boolean;
+  errors: string[];
+} {
   const errors: string[] = [];
 
   if (!process.env.NEXT_PUBLIC_DODO_PRODUCT_INDIVIDUAL) {
@@ -124,7 +127,10 @@ export function validateDodoPaymentsConfig(): { valid: boolean; errors: string[]
 /**
  * Check if a product ID is valid for a given bundle type
  */
-export function isValidProductId(productId: string, bundleType: BundleType): boolean {
+export function isValidProductId(
+  productId: string,
+  bundleType: BundleType,
+): boolean {
   const config = DODO_PRODUCT_CONFIGS[bundleType];
   return config.productId === productId;
 }
@@ -159,7 +165,9 @@ export function getBundleTypeByProductId(productId: string): BundleType | null {
 /**
  * Map product ID to bundle information for webhook processing
  */
-export function getBundleInfoByProductId(productId: string): WebhookProductMapping | null {
+export function getBundleInfoByProductId(
+  productId: string,
+): WebhookProductMapping | null {
   for (const [bundleType, config] of Object.entries(DODO_PRODUCT_CONFIGS)) {
     if (config.productId === productId) {
       return {
@@ -193,7 +201,7 @@ export function createCheckoutData(
     name: string;
   },
   referenceId: string,
-  selectedCertificates?: string[]
+  selectedCertificates?: string[],
 ): CheckoutData {
   const config = getProductConfig(bundleType);
 
@@ -210,9 +218,10 @@ export function createCheckoutData(
     metadata: {
       bundleType,
       certificateCount: config.certificateCount.toString(),
-      ...(selectedCertificates && selectedCertificates.length > 0 && {
-        selectedCertificates,
-      }),
+      ...(selectedCertificates &&
+        selectedCertificates.length > 0 && {
+          selectedCertificates,
+        }),
     },
   };
 }
@@ -232,16 +241,19 @@ export function getAllCheckoutData(
     email: string;
     name: string;
   },
-  referenceId: string
+  referenceId: string,
 ): Record<BundleType, CheckoutData> {
-  const result: Record<BundleType, CheckoutData> = {} as Record<BundleType, CheckoutData>;
+  const result: Record<BundleType, CheckoutData> = {} as Record<
+    BundleType,
+    CheckoutData
+  >;
 
   for (const bundleType of Object.keys(DODO_PRODUCT_CONFIGS) as BundleType[]) {
     result[bundleType] = createCheckoutData(
       bundleType,
       billingInfo,
       customer,
-      referenceId
+      referenceId,
     );
   }
 
@@ -362,7 +374,7 @@ export function getConfigStatus(): {
 // DEFAULT EXPORTS
 // ===============================================
 
-export default {
+const dodopaymentsConfig = {
   DODO_PRODUCT_CONFIGS,
   DODO_PRODUCT_IDS,
   validateDodoPaymentsConfig,
@@ -377,3 +389,5 @@ export default {
   areAllProductsConfigured,
   getConfigStatus,
 };
+
+export default dodopaymentsConfig;

@@ -52,7 +52,14 @@ export function ClientProvider({
   };
 
   return (
-    <ClientContext.Provider value={{ handleStart, handleStartTrial, handleViewPricing, setOpenSignUp }}>
+    <ClientContext.Provider
+      value={{
+        handleStart,
+        handleStartTrial,
+        handleViewPricing,
+        setOpenSignUp,
+      }}
+    >
       {children}
       {openSignUp && (
         <div className="fixed z-50 top-0 left-0 right-0 bottom-0 bg-black flex items-center justify-center">
