@@ -10,7 +10,6 @@ import { Certificate } from "@/types/certificate";
 import { BookOpen, Lock } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import { useClientProvider } from "../landing/client-provider";
 
 interface CertificateSelectorPageProps {
@@ -38,18 +37,11 @@ export default function CertificateSelectorPage({
     );
   }
 
-  const featuredCert =
-    certificates.find((cert) => cert.slug === defaultCert?.slug) ||
-    certificates[0];
-  const otherCerts = certificates.filter(
-    (cert) => cert.slug !== featuredCert.slug,
-  );
-
   return (
     <section className="container mx-auto px-4">
       <div className="max-w-7xl mx-auto space-y-16">
         <AllCertificationsGrid
-          certificates={otherCerts}
+          certificates={certificates}
           accessibleCertificates={accessibleCertificates}
           isLoggedIn={isLoggedIn}
         />
