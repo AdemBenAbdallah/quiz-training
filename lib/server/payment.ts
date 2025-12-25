@@ -92,7 +92,6 @@ export async function getUserBundleInfo(userId: string) {
         }
       })
       .filter((id, index, arr) => arr.indexOf(id) === index); // Remove duplicates
-    console.log("here purchasedCertificateIds", purchasedCertificateIds);
 
     const allActiveCerts =
       purchasedCertificateIds.length > 0
@@ -152,27 +151,39 @@ export async function hasActivePurchase(
     }
 
     if (bundleInfo.bundleType === "complete") {
-      console.log(`hasActivePurchase: User ${userId} has complete bundle - access to all certificates`);
+      console.log(
+        `hasActivePurchase: User ${userId} has complete bundle - access to all certificates`,
+      );
       return true;
     }
 
     const purchasedIds = bundleInfo.purchasedCertificates || [];
     const purchasedSlugs = bundleInfo.purchasedCertificateSlugs || [];
 
-    const hasAccess = purchasedIds.includes(certificateId) || purchasedSlugs.includes(certificateId);
+    const hasAccess =
+      purchasedIds.includes(certificateId) ||
+      purchasedSlugs.includes(certificateId);
 
     if (!hasAccess) {
-      console.log(`hasActivePurchase: Certificate ${certificateId} not found in user ${userId}'s purchased certificates`, {
-        purchasedIds,
-        purchasedSlugs,
-      });
+      console.log(
+        `hasActivePurchase: Certificate ${certificateId} not found in user ${userId}'s purchased certificates`,
+        {
+          purchasedIds,
+          purchasedSlugs,
+        },
+      );
     } else {
-      console.log(`hasActivePurchase: Certificate ${certificateId} found in user ${userId}'s purchased certificates`);
+      console.log(
+        `hasActivePurchase: Certificate ${certificateId} found in user ${userId}'s purchased certificates`,
+      );
     }
 
     return hasAccess;
   } catch (error) {
-    console.error(`hasActivePurchase: Error checking access for user ${userId}, certificate ${certificateId}:`, error);
+    console.error(
+      `hasActivePurchase: Error checking access for user ${userId}, certificate ${certificateId}:`,
+      error,
+    );
     return false;
   }
 }
@@ -251,12 +262,16 @@ export async function getUserAccessibleCertificates(userId: string) {
         .from(certificates)
         .where(eq(certificates.isActive, true));
 
-      return [...allCerts.map((cert) => cert.id), ...allCerts.map((cert) => cert.slug)];
+      return [
+        ...allCerts.map((cert) => cert.id),
+        ...allCerts.map((cert) => cert.slug),
+      ];
     }
 
     // Return user's specific purchased certificates (both IDs and slugs for compatibility)
     const purchasedIds = (bundleInfo.purchasedCertificates || []) as string[];
-    const purchasedSlugs = (bundleInfo.purchasedCertificateSlugs || []) as string[];
+    const purchasedSlugs = (bundleInfo.purchasedCertificateSlugs ||
+      []) as string[];
     return [...purchasedIds, ...purchasedSlugs];
   } catch (error) {
     console.error("Error getting accessible certificates:", error);
@@ -339,7 +354,10 @@ export async function hasUserPurchasedCertificate(
     const purchasedIds = bundleInfo.purchasedCertificates || [];
     const purchasedSlugs = bundleInfo.purchasedCertificateSlugs || [];
 
-    return purchasedIds.includes(certificateId) || purchasedSlugs.includes(certificateId);
+    return (
+      purchasedIds.includes(certificateId) ||
+      purchasedSlugs.includes(certificateId)
+    );
   } catch (error) {
     console.error("Error checking certificate purchase:", error);
     return false;
@@ -695,7 +713,9 @@ export async function processWebhookPayment(
         return { action: "failed", reason: "no_valid_certificates" };
       }
 
-      console.log(`✅ Validated ${validCertificates.length} certificates for user ${userId}`);
+      console.log(
+        `✅ Validated ${validCertificates.length} certificates for user ${userId}`,
+      );
     }
 
     // Handle individual and professional bundles
