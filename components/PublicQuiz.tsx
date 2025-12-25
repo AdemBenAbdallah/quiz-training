@@ -123,7 +123,7 @@ const PublicQuiz = ({ handleStart }: PublicQuizProps) => {
             size="icon"
             onClick={() => setIsExplainDialogOpen(true)}
             title="Get explanation for this question"
-            className="animate-border"
+            className="animate-border rounded-xl"
           >
             <HelpCircle className="h-5 w-5 text-white" />
           </Button>
@@ -136,7 +136,7 @@ const PublicQuiz = ({ handleStart }: PublicQuizProps) => {
                 ? "Chat with AI assistant"
                 : "Sign up for unlimited chat access"
             }
-            className="animate-border"
+            className="animate-border rounded-xl"
           >
             <MessageCircle className="h-5 w-5 text-white" />
           </Button>

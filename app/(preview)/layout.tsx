@@ -9,19 +9,19 @@ import "./globals.css";
 const geist = Geist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://certfast.com/"),
+  metadataBase: new URL("https://certquickly.com/"),
   title: {
-    default: "CertFast - AWS Certification Prep",
-    template: `%s | CertFast - AWS Certification Prep`,
+    default: "CertQuickly - AWS Certification Prep",
+    template: `%s | CertQuickly - AWS Certification Prep`,
   },
   description:
-    "The best platform to prepare for AWS certification exams and improve your cloud knowledge with CertFast.",
+      "The best platform to prepare for AWS certification exams and improve your cloud knowledge with CertQuickly.",
   openGraph: {
-    title: "CertFast - AWS Certification Prep",
+    title: "CertQuickly - AWS Certification Prep",
     description:
-      "The best platform to prepare for AWS certification exams and improve your cloud knowledge with CertFast.",
+    "The best platform to prepare for AWS certification exams and improve your cloud knowledge with CertQuickly.",
     url: absoluteUrl("/"),
-    siteName: "CertFast - AWS Certification Prep",
+    siteName: "CertQuickly - AWS Certification Prep",
     images: [
       {
         url: absoluteUrl("/opengraph-image.png"),

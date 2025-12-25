@@ -1,11 +1,18 @@
 "use client";
 
+import SocialProof from "@/components/landing/social-proof";
 import PublicQuiz from "@/components/PublicQuiz";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
 import { useClientProvider } from "./client-provider";
 
-export default function Hero() {
+export default function Hero({
+  users,
+  totalCount,
+}: {
+  users: Array<{ name: string; image: string | null }>;
+  totalCount: number;
+}) {
   const { handleStart } = useClientProvider();
   return (
     <section className="container mx-auto px-4 py-24 space-y-12">
@@ -23,14 +30,15 @@ export default function Hero() {
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 grid place-content-center">
           <Button
             onClick={handleStart}
             size="lg"
-            className="font-semibold px-8 py-4 text-xl rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+            className="font-semibold max-w-35 px-8 py-4 text-xl rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
           >
             Start preparing
           </Button>
+          <SocialProof users={users} totalCount={totalCount} />
         </div>
       </div>
 

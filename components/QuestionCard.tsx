@@ -57,7 +57,7 @@ const QuestionCard: React.FC<{
                 disabled={isDisabled}
                 variant={isSelected ? "default" : "outline"}
                 className={`h-auto py-6 px-4 justify-start text-left whitespace-normal w-full transition-all duration-200 transform-none ${
-                  showCorrectAnswer &&
+                      showCorrectAnswer &&
                   question.answer.includes(availableOptions[index])
                     ? "bg-green-600 hover:bg-green-700"
                     : showCorrectAnswer &&

@@ -13,13 +13,13 @@ export const Logo = () => {
     >
       <Image
         src="/logo.png"
-        alt="CertFast Logo"
+        alt="CertQuickly Logo"
         width={69}
         height={69}
         className="rounded-lg"
         suppressHydrationWarning
       />
-      <span className="text-xl font-bold -translate-x-3">CertFast</span>
+      <span className="text-xl font-bold -translate-x-3">CertQuickly</span>
     </Link>
   );
 };

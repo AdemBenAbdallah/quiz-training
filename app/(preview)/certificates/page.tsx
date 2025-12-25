@@ -18,6 +18,7 @@ export default async function CertificatesPage() {
     ? await getUserAccessibleCertificates(session.user.id)
     : [];
 
+  console.log("here accessibleCertificates", accessibleCertificates);
   return (
     <ClientProvider session={session}>
       <PricingProvider>

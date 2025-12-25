@@ -14,7 +14,7 @@ export default function HowItWorks() {
       <div className="mx-auto max-w-7xl py-24 max-xl:px-4">
         <SectionHeader
           subtitle="How it works?"
-          title="Find revenue opportunities in 3 steps"
+          title="Pass your AWS certification in 3 steps"
         />
 
         <div className="flex flex-col justify-center gap-6 max-lg:items-center lg:flex-row">

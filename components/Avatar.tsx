@@ -119,7 +119,7 @@ const AvatarMenu = ({ setOpen }: { setOpen: (open: boolean) => void }) => {
         <Button
           onClick={() => setOpen(true)}
           variant="default"
-          className="font-semibold px-6 py-2.5 text-md"
+          className="font-semibold px-4 py-2.5 text-md rounded-xl"
         >
           Sign In
         </Button>

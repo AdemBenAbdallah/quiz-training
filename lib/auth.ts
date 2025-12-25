@@ -6,6 +6,7 @@ import {
   userPayment,
 } from "@/db/schema";
 import MagicLinkEmail from "@/emails/MagicLinkEmail";
+import { processWebhookPayment } from "@/lib/server/payment";
 import { createInitialProgressForNewUser } from "@/lib/utils/progress";
 import {
   checkout,
@@ -191,14 +192,11 @@ export const auth = betterAuth({
                     ? JSON.parse(data.metadata.selectedCertificates)
                     : [];
 
-                  let bundleType: string | null = "individual";
-                  let certificateCount: number | null = 1;
-                  let purchasedCertificates: string[] = [];
+                  let bundleType: string = "individual";
+                  let certificateCount: number = 1;
                   let certificateId: string | null = null;
-                  let certificateUuid: string | null = null;
 
                   // Determine bundle configuration based on plan type
-
                   if (
                     planType === "individual" &&
                     selectedCertificates.length > 0
@@ -215,18 +213,15 @@ export const auth = betterAuth({
                       .limit(1);
 
                     if (certResult.length > 0) {
-                      certificateUuid = certResult[0].id;
-                      // Store UUIDs consistently
-                      purchasedCertificates = [certificateUuid];
+                      certificateId = certResult[0].id;
                       console.log(
-                        `✅ Individual bundle - certificate UUID: ${certificateUuid}`,
+                        `✅ Individual bundle - certificate UUID: ${certificateId}`,
                       );
                     } else {
                       console.warn(
                         `❌ Certificate with UUID "${selectedCertUuid}" not found`,
                       );
-                      certificateUuid = null;
-                      purchasedCertificates = [];
+                      certificateId = null;
                     }
                   } else if (planType === "professional") {
                     bundleType = "professional";
@@ -244,7 +239,7 @@ export const auth = betterAuth({
                         .limit(1);
 
                       if (certResult.length > 0) {
-                        convertedCerts.push(certResult[0].id); // Store UUID
+                        convertedCerts.push(certResult[0].id);
                         console.log(
                           `✅ Professional bundle - found certificate: ${certResult[0].slug} (${certUuid})`,
                         );
@@ -258,8 +253,6 @@ export const auth = betterAuth({
 
                     // Verify we have all 3 certificates
                     if (convertedCerts.length === 3) {
-                      purchasedCertificates = convertedCerts; // Store ALL 3 UUIDs
-                      certificateUuid = null; // No single certificate for professional bundle
                       console.log(
                         `✅ Professional bundle - stored all 3 certificates:`,
                         convertedCerts,
@@ -268,133 +261,104 @@ export const auth = betterAuth({
                       console.error(
                         `❌ Professional bundle - expected 3 certificates, got ${convertedCerts.length}. Missing: ${missingCerts.join(", ")}`,
                       );
-                      // Still store what we have, but log the error
-                      purchasedCertificates = convertedCerts;
-                      certificateUuid = null;
                     }
-
-                    // Store the converted UUIDs, not the original slugs
-                    purchasedCertificates = convertedCerts; // Store UUIDs for consistency
-                    certificateUuid = null; // No single certificate for professional bundle
-
-                    console.log(
-                      `✅ Professional bundle - converted certificates:`,
-                      convertedCerts,
-                    );
                   } else if (planType === "complete") {
                     bundleType = "complete";
                     certificateCount = 11;
-                    // Complete bundle has access to all certificates
-                    purchasedCertificates = []; // Empty array = all certificates
-                    certificateUuid = null;
                   } else {
                     // Fallback for legacy payments
                     bundleType = "complete";
                     certificateCount = 11;
-                    certificateId =
+                    const fallbackCertId =
                       data?.metadata?.certificateId ||
                       (productSlug && productSlug.includes("-")
                         ? productSlug.split("-")[1]
                         : "dvac02");
 
-                    // Look up certificate UUID by slug for fallback
-                    if (certificateId) {
+                    if (fallbackCertId) {
                       const certResult = await db
                         .select()
                         .from(certificates)
-                        .where(eq(certificates.slug, certificateId))
+                        .where(eq(certificates.slug, fallbackCertId))
                         .limit(1);
 
                       if (certResult.length > 0) {
-                        certificateUuid = certResult[0].id;
-                        purchasedCertificates = [certificateUuid]; // Store UUID for consistency
+                        certificateId = certResult[0].id;
                         console.log(
-                          `✅ Fallback bundle - found certificate UUID: ${certificateUuid} for slug: ${certificateId}`,
+                          `✅ Fallback bundle - found certificate UUID: ${certificateId} for slug: ${fallbackCertId}`,
                         );
                       } else {
                         console.warn(
-                          `❌ Fallback bundle - certificate with slug "${certificateId}" not found`,
+                          `❌ Fallback bundle - certificate with slug "${fallbackCertId}" not found`,
                         );
-                        certificateUuid = null;
-                        purchasedCertificates = [];
                       }
-                    } else {
-                      purchasedCertificates = [];
                     }
                   }
 
-                  console.log("💾 Attempting to insert payment record:", {
-                    userId,
-                    certificateId,
+                  // Prepare payment data for the new processing function
+                  const paymentData = {
                     paymentId,
-                    status: "completed",
                     amount,
                     currency,
                     bundleType,
                     certificateCount,
-                    purchasedCertificates,
-                  });
+                    selectedCertificates,
+                    certificateId,
+                  };
+
+                  console.log(
+                    "🔄 Processing payment with enhanced merging logic:",
+                    {
+                      userId,
+                      paymentId,
+                      bundleType,
+                      certificateCount,
+                      selectedCertificates,
+                    },
+                  );
 
                   try {
+                    // Use the new enhanced payment processing
+                    const result = await processWebhookPayment(
+                      userId,
+                      paymentData,
+                    );
+
+                    console.log("✅ Payment processed successfully:", result);
+                  } catch (processError) {
+                    console.error(
+                      "❌ Enhanced payment processing failed:",
+                      processError,
+                    );
+                    // Fall back to basic processing if enhanced processing fails
+                    console.log(
+                      "🔄 Falling back to basic payment processing...",
+                    );
+
+                    // Basic fallback processing (simplified version of original logic)
                     await db
                       .insert(userPayment)
                       .values({
                         id: crypto.randomUUID(),
                         userId,
-                        certificateId: certificateUuid, // Use UUID for individual, null for others
+                        certificateId,
                         paymentId,
                         status: "completed",
                         amount,
                         currency,
-                        bundleType,
-                        certificateCount,
+                        bundleType: bundleType,
+                        certificateCount: certificateCount,
                         purchasedCertificates:
-                          purchasedCertificates.length > 0
-                            ? JSON.stringify(purchasedCertificates) // Store UUIDs consistently
-                            : null, // null for complete bundle (empty array handled separately)
+                          selectedCertificates.length > 0
+                            ? JSON.stringify(selectedCertificates)
+                            : null,
                       })
                       .onConflictDoNothing();
 
-                    console.log("✅ Payment record inserted successfully");
-                  } catch (dbError: any) {
-                    console.error("❌ Database insertion failed:", dbError);
-
-                    // If it's a foreign key constraint error, provide more context
-                    if (dbError.code === "23503") {
-                      console.error("🔍 Foreign key constraint details:", {
-                        constraint: dbError.constraint,
-                        table: dbError.table,
-                        column: dbError.column,
-                        certificateId,
-                        userId,
-                      });
-
-                      // Verify certificate exists
-                      if (certificateId) {
-                        const certCheck = await db
-                          .select()
-                          .from(certificates)
-                          .where(eq(certificates.id, certificateId))
-                          .limit(1);
-
-                        if (certCheck.length === 0) {
-                          console.error(
-                            `❌ Certificate ${certificateId} not found in database`,
-                          );
-                        } else {
-                          console.log(
-                            `✅ Certificate ${certificateId} exists in database`,
-                          );
-                        }
-                      }
-                    }
-
-                    throw dbError; // Re-throw to maintain existing error handling
+                    console.log(
+                      "✅ Fallback payment record created successfully",
+                    );
                   }
-
-                  console.log(
-                    `Payment recorded for user: ${userId}, bundle: ${bundleType}, certificates: ${certificateCount}`,
-                  );
                 } else {
                   console.warn(
                     "Missing userId or paymentId in webhook payload",
