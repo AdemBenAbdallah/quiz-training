@@ -39,26 +39,25 @@ export const faqData = [
 export const stepsData = [
   {
     id: 1,
-    title: "Browse & Pick",
-    description:
-      "Browse all certificates and pick the one you want to achieve.",
+    title: "Create Account",
+    description: "Create an account and start your journey to certification.",
     imgSrc: "/steps/step0.png",
-    imgAlt: "Browse icon",
+    imgAlt: "signup",
   },
   {
     id: 2,
-    title: "Pass All Levels",
+    title: "Browse & Pick",
     description:
-      "Complete each level to build your skills. Master all levels and you'll be ready to pass your exam.",
+      "Browse all available certificates and pick the one you want to achieve. Each comes with multiple levels of practice.",
     imgSrc: "/steps/step1.png",
-    imgAlt: "Pass icon",
+    imgAlt: "Browse icon",
   },
   {
     id: 3,
-    title: "Get Certified",
+    title: "Pass All Levels",
     description:
-      "With full preparation under your belt, walk into exam day with confidence and pass.",
+      "Complete each level to build your skills. Master all levels and you'll be ready for your exam.",
     imgSrc: "/steps/step2.png",
-    imgAlt: "Certified icon",
+    imgAlt: "Pass icon",
   },
 ];

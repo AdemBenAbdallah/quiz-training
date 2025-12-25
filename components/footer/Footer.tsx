@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Mail } from "lucide-react";
+import Link from "next/link";
 import { useClientProvider } from "../landing/client-provider";
 import { Logo } from "../landing/navigation";
 
@@ -55,12 +56,12 @@ export default function Footer() {
               >
                 How it Works
               </button>
-              <a
+              <Link
                 href="/certificates"
                 className="block text-gray-400 hover:text-white transition-colors duration-200"
               >
                 Certificates
-              </a>
+              </Link>
               <button
                 onClick={() => scrollToSection("faq")}
                 className="block text-gray-400 hover:text-white transition-colors duration-200"
