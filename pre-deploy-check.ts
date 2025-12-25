@@ -53,7 +53,7 @@ try {
 console.log("\n4. Checking file structure...");
 const fs = await import("fs/promises");
 try {
-  await fs.access("./public/quiz/aws-developer/metadata.json");
+  await fs.access("./public/quiz/dvac02/metadata.json");
   await fs.access("./public/quiz/certificates/index.json");
   console.log("✅ Certificate file structure correct");
 } catch (error) {

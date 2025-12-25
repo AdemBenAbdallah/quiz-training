@@ -5,7 +5,7 @@ import QuestionCard from "@/components/QuestionCard";
 import QuestionExplainDialog from "@/components/QuestionExplainDialog";
 import { Button } from "@/components/ui/button";
 import { useUser } from "@/hooks/useUser";
-import rawQuestions from "@/public/quiz/level1.json";
+import rawQuestions from "@/public/quiz/dvac02/level1.json";
 import { Choice, Question } from "@/types/quiz";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -211,8 +211,7 @@ const PublicQuiz = ({ handleStart }: PublicQuizProps) => {
               Chat limit reached
             </div>
             <div className="text-sm text-yellow-700">
-              You&apos;ve used your free chat allowance. Sign up for unlimited
-              AI assistance!
+              Sign up to unlock unlimited AI assistance and track your progress!
             </div>
           </div>
           <Button

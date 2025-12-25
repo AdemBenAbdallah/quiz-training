@@ -1,45 +1,34 @@
 import { getCertificateMetadata } from "@/lib/certificates";
-import { certificateLevels, quizLevels } from "@/public/quiz";
+import { certificateLevels } from "@/public/quiz";
 import { describe, expect, it } from "vitest";
 
-describe("Backward Compatibility Tests", () => {
-  it("should maintain legacy quizLevels structure", () => {
-    expect(quizLevels).toBeDefined();
-    expect(Array.isArray(quizLevels)).toBe(true);
-    expect(quizLevels.length).toBe(8);
-
-    // Check that each level has questions
-    quizLevels.forEach((level, index) => {
-      expect(Array.isArray(level)).toBe(true);
-      expect(level.length).toBeGreaterThan(0);
-
-      // Check question structure
-      if (level.length > 0) {
-        const question = level[0];
-        expect(question).toHaveProperty("question");
-        expect(question).toHaveProperty("choices");
-        expect(question).toHaveProperty("answers");
-        expect(question).toHaveProperty("question_number");
-      }
-    });
+describe("Certificate Structure Tests", () => {
+  it("should have all 11 certificates", () => {
+    expect(Object.keys(certificateLevels).length).toBe(11);
   });
 
-  it("should have certificate levels matching legacy structure", () => {
-    expect(certificateLevels).toBeDefined();
+  it("should have dvac02 (AWS Developer) certificate", () => {
     expect(certificateLevels["dvac02"]).toBeDefined();
+    expect(Array.isArray(certificateLevels["dvac02"])).toBe(true);
+    expect(certificateLevels["dvac02"].length).toBe(8);
+  });
 
-    const awsLevels = certificateLevels["dvac02"];
-    expect(Array.isArray(awsLevels)).toBe(true);
-    expect(awsLevels.length).toBe(8);
-
-    // Compare with legacy levels
-    awsLevels.forEach((certLevel, index) => {
-      const legacyLevel = quizLevels[index];
-      expect(certLevel).toEqual(legacyLevel);
+  it("should have all certificates with valid level structure", () => {
+    const certs = Object.keys(certificateLevels);
+    
+    certs.forEach((certSlug) => {
+      const levels = certificateLevels[certSlug as keyof typeof certificateLevels];
+      expect(Array.isArray(levels)).toBe(true);
+      expect(levels.length).toBeGreaterThan(0);
+      
+      levels.forEach((level) => {
+        expect(Array.isArray(level)).toBe(true);
+        expect(level.length).toBeGreaterThan(0);
+      });
     });
   });
 
-  it("should load AWS certificate metadata correctly", () => {
+  it("should load certificate metadata correctly", () => {
     const metadata = getCertificateMetadata("dvac02");
     expect(metadata).toBeDefined();
     expect(metadata?.slug).toBe("dvac02");
@@ -49,37 +38,37 @@ describe("Backward Compatibility Tests", () => {
     expect(metadata?.questionsPerLevel?.length).toBe(8);
   });
 
-  it("should maintain question count consistency", () => {
-    const metadata = getCertificateMetadata("dvac02");
-    const awsLevels = certificateLevels["dvac02"];
+  it("should maintain question structure in all certificate levels", () => {
+    Object.keys(certificateLevels).forEach((certSlug) => {
+      const levels = certificateLevels[certSlug as keyof typeof certificateLevels];
+      
+      levels.forEach((level) => {
+        level.forEach((question: any) => {
+          expect(question).toHaveProperty("question");
+          expect(question).toHaveProperty("choices");
+          expect(question).toHaveProperty("answers");
+          expect(question).toHaveProperty("question_number");
+          expect(question).toHaveProperty("url");
+          
+          expect(Array.isArray(question.choices)).toBe(true);
+          expect(question.choices.length).toBeGreaterThan(0);
+          
+          expect(Array.isArray(question.answers)).toBe(true);
+          expect(question.answers.length).toBeGreaterThan(0);
+        });
+      });
+    });
+  });
 
-    if (metadata && awsLevels) {
+  it("should have question count consistency with metadata", () => {
+    const dvac02Levels = certificateLevels["dvac02"];
+    const metadata = getCertificateMetadata("dvac02");
+    
+    if (metadata && dvac02Levels) {
       metadata.questionsPerLevel.forEach((expectedCount, index) => {
-        const actualCount = awsLevels[index]?.length || 0;
+        const actualCount = dvac02Levels[index]?.length || 0;
         expect(actualCount).toBe(expectedCount);
       });
     }
-  });
-
-  it("should preserve question structure in certificate levels", () => {
-    const awsLevels = certificateLevels["dvac02"];
-
-    awsLevels?.forEach((level) => {
-      level.forEach((question) => {
-        expect(question).toHaveProperty("question");
-        expect(question).toHaveProperty("choices");
-        expect(question).toHaveProperty("answers");
-        expect(question).toHaveProperty("question_number");
-        expect(question).toHaveProperty("url");
-
-        // Check choices structure
-        expect(Array.isArray(question.choices)).toBe(true);
-        expect(question.choices.length).toBeGreaterThan(0);
-
-        // Check answers structure
-        expect(Array.isArray(question.answers)).toBe(true);
-        expect(question.answers.length).toBeGreaterThan(0);
-      });
-    });
   });
 });

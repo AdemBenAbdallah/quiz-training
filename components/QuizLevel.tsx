@@ -3,7 +3,6 @@
 import Quiz from "@/components/quiz";
 import { loadCertificateLevel } from "@/lib/certificates";
 import { cleanOptions } from "@/lib/explain-utils";
-import { quizLevels } from "@/public/quiz";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -39,11 +38,9 @@ export default function QuizLevel({
         let data: any[] = [];
 
         if (certificateSlug) {
-          // Load from new certificate structure
           data = await loadCertificateLevel(certificateSlug, levelId);
         } else {
-          // Fallback to legacy structure for backward compatibility
-          data = quizLevels[levelId - 1] || [];
+          data = await loadCertificateLevel("dvac02", levelId);
         }
 
         setQuizData(data);

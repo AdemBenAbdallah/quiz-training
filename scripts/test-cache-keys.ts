@@ -1,6 +1,5 @@
 import dotenv from "dotenv";
 
-// Load environment variables
 dotenv.config();
 
 import {
@@ -9,36 +8,44 @@ import {
   generateCacheKey,
   processQuestionForCache,
 } from "../lib/explain-utils";
-import { quizLevels } from "../public/quiz";
+import { certificateLevels } from "../public/quiz";
 
-console.log("🧪 Testing Cache Key Consistency\n");
+console.log("Testing Cache Key Consistency\n");
 
-// Test with first few questions from different levels
-const testQuestions: QuizQuestion[] = [
-  quizLevels[0][0] as QuizQuestion,
-  quizLevels[0][1] as QuizQuestion,
-  quizLevels[1][0] as QuizQuestion,
-];
+const certEntries = Object.entries(certificateLevels);
+const firstCertSlug = certEntries[0][0] as keyof typeof certificateLevels;
+const firstCertLevels = certificateLevels[firstCertSlug];
 
-console.log("📋 Testing Questions:");
+const testQuestions: QuizQuestion[] = [];
+if (firstCertLevels && firstCertLevels.length > 0) {
+  if (firstCertLevels[0].length > 0) {
+    testQuestions.push(firstCertLevels[0][0] as QuizQuestion);
+  }
+  if (firstCertLevels[0].length > 1) {
+    testQuestions.push(firstCertLevels[0][1] as QuizQuestion);
+  }
+  if (firstCertLevels.length > 1 && firstCertLevels[1].length > 0) {
+    testQuestions.push(firstCertLevels[1][0] as QuizQuestion);
+  }
+}
+
+console.log(`Testing ${testQuestions.length} questions from ${firstCertSlug}:`);
 testQuestions.forEach((q, i) => {
   console.log(`${i + 1}. ${q.question.substring(0, 60)}...`);
 });
 console.log();
 
-console.log("🔍 Cache Key Generation Tests:\n");
+console.log("Cache Key Generation Tests:\n");
 
 testQuestions.forEach((question, index) => {
-  console.log(`📝 Question ${index + 1}:`);
+  console.log(`Question ${index + 1}:`);
   console.log(`   Question: ${question.question.substring(0, 50)}...`);
   console.log(`   Original choices:`, question.choices);
   console.log(`   Answers:`, question.answers);
 
-  // Method 1: Using processQuestionForCache (warm-cache.ts style)
   const { cacheKey: cacheKey1, cleanedOptions: cleanedOptions1 } =
     processQuestionForCache(question);
 
-  // Method 2: Manual process (API route style)
   const cleanedOptions2 = cleanOptions(question.choices);
   const cacheKey2 = generateCacheKey(
     question.question,
@@ -50,15 +57,15 @@ testQuestions.forEach((question, index) => {
   console.log(`   Cleaned choices (method 2):`, cleanedOptions2);
   console.log(`   Cache key 1: ${cacheKey1}`);
   console.log(`   Cache key 2: ${cacheKey2}`);
-  console.log(`   ✅ Keys match:`, cacheKey1 === cacheKey2);
+  console.log(`   Keys match:`, cacheKey1 === cacheKey2);
   console.log(
-    `   ✅ Options match:`,
+    `   Options match:`,
     JSON.stringify(cleanedOptions1) === JSON.stringify(cleanedOptions2),
   );
 
   if (cacheKey1 !== cacheKey2) {
-    console.log(`   ❌ MISMATCH DETECTED!`);
-    console.log(`   🔍 Difference analysis:`);
+    console.log(`   MISMATCH DETECTED!`);
+    console.log(`   Difference analysis:`);
     console.log(`      Key 1 length: ${cacheKey1.length}`);
     console.log(`      Key 2 length: ${cacheKey2.length}`);
   }
@@ -66,7 +73,7 @@ testQuestions.forEach((question, index) => {
   console.log();
 });
 
-console.log("🎯 Summary:");
+console.log("Summary:");
 const allMatch = testQuestions.every((question) => {
   const { cacheKey: key1 } = processQuestionForCache(question);
   const cleanedOptions = cleanOptions(question.choices);
@@ -80,27 +87,25 @@ const allMatch = testQuestions.every((question) => {
 
 if (allMatch) {
   console.log(
-    "✅ All cache keys match! The warm-cache and API route will use identical keys.",
+    "All cache keys match! The warm-cache and API route will use identical keys.",
   );
-  console.log("🎉 Your cached explanations should work correctly!");
+  console.log("Your cached explanations should work correctly!");
 } else {
-  console.log("❌ Cache key mismatch detected!");
-  console.log("🔧 Check the shared utilities implementation for consistency.");
+  console.log("Cache key mismatch detected!");
+  console.log("Check the shared utilities implementation for consistency.");
 }
 
 console.log();
-console.log("🔧 Testing with sample frontend data format:");
+console.log("Testing with sample frontend data format:");
 
-// Simulate what frontend might send
 const frontendPayload = {
   question: testQuestions[0].question,
-  options: testQuestions[0].choices, // Raw choices with "A. ", "B. ", etc.
+  options: testQuestions[0].choices,
   answer: testQuestions[0].answers,
 };
 
 console.log("Frontend payload options:", frontendPayload.options);
 
-// Process like API route would
 const cleanedForAPI = cleanOptions(frontendPayload.options);
 const apiCacheKey = generateCacheKey(
   frontendPayload.question,
@@ -108,7 +113,6 @@ const apiCacheKey = generateCacheKey(
   frontendPayload.answer as ("A" | "B" | "C" | "D" | "E")[],
 );
 
-// Process like warm-cache would
 const { cacheKey: warmCacheKey } = processQuestionForCache(testQuestions[0]);
 
 console.log("API route cache key: ", apiCacheKey);
@@ -116,7 +120,7 @@ console.log("Warm cache key:     ", warmCacheKey);
 console.log("Frontend->API matches warm-cache:", apiCacheKey === warmCacheKey);
 
 if (apiCacheKey === warmCacheKey) {
-  console.log("\n🎉 PERFECT! Frontend requests will find cached explanations!");
+  console.log("\nPERFECT! Frontend requests will find cached explanations!");
 } else {
-  console.log("\n❌ PROBLEM! Frontend requests will miss the cache!");
+  console.log("\nPROBLEM! Frontend requests will miss the cache!");
 }

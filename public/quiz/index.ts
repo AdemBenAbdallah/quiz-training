@@ -1,30 +1,18 @@
-import level1 from "./level1.json";
-import level2 from "./level2.json";
-import level3 from "./level3.json";
-import level4 from "./level4.json";
-import level5 from "./level5.json";
-import level6 from "./level6.json";
-import level7 from "./level7.json";
-import level8 from "./level8.json";
+import dvac02Level1 from "./dvac02/level1.json";
+import dvac02Level2 from "./dvac02/level2.json";
+import dvac02Level3 from "./dvac02/level3.json";
+import dvac02Level4 from "./dvac02/level4.json";
+import dvac02Level5 from "./dvac02/level5.json";
+import dvac02Level6 from "./dvac02/level6.json";
+import dvac02Level7 from "./dvac02/level7.json";
+import dvac02Level8 from "./dvac02/level8.json";
 
-// Import AWS Developer certificate levels
-import awsDeveloperLevel1 from "./dvac02/level1.json";
-import awsDeveloperLevel2 from "./dvac02/level2.json";
-import awsDeveloperLevel3 from "./dvac02/level3.json";
-import awsDeveloperLevel4 from "./dvac02/level4.json";
-import awsDeveloperLevel5 from "./dvac02/level5.json";
-import awsDeveloperLevel6 from "./dvac02/level6.json";
-import awsDeveloperLevel7 from "./dvac02/level7.json";
-import awsDeveloperLevel8 from "./dvac02/level8.json";
-
-// Import ANS-C01 certificate levels
 import ansc01Level1 from "./ansc01/level1.json";
 import ansc01Level2 from "./ansc01/level2.json";
 import ansc01Level3 from "./ansc01/level3.json";
 import ansc01Level4 from "./ansc01/level4.json";
 import ansc01Level5 from "./ansc01/level5.json";
 
-// Import SAA-C03 certificate levels
 import saac03Level1 from "./saac03/level1.json";
 import saac03Level10 from "./saac03/level10.json";
 import saac03Level11 from "./saac03/level11.json";
@@ -39,7 +27,6 @@ import saac03Level7 from "./saac03/level7.json";
 import saac03Level8 from "./saac03/level8.json";
 import saac03Level9 from "./saac03/level9.json";
 
-// Import SAP-C02 certificate levels
 import sapc02Level1 from "./sapc02/level1.json";
 import sapc02Level2 from "./sapc02/level2.json";
 import sapc02Level3 from "./sapc02/level3.json";
@@ -48,29 +35,59 @@ import sapc02Level5 from "./sapc02/level5.json";
 import sapc02Level6 from "./sapc02/level6.json";
 import sapc02Level7 from "./sapc02/level7.json";
 
-// Legacy quiz levels for backward compatibility
-export const quizLevels = [
-  level1,
-  level2,
-  level3,
-  level4,
-  level5,
-  level6,
-  level7,
-  level8,
-];
+import aifc01Level1 from "./aifc01/level1.json";
+import aifc01Level2 from "./aifc01/level2.json";
+import aifc01Level3 from "./aifc01/level3.json";
+import aifc01Level4 from "./aifc01/level4.json";
+import aifc01Level5 from "./aifc01/level5.json";
 
-// Certificate levels mapping
+import clfc02Level1 from "./clfc02/level1.json";
+import clfc02Level2 from "./clfc02/level2.json";
+import clfc02Level3 from "./clfc02/level3.json";
+import clfc02Level4 from "./clfc02/level4.json";
+import clfc02Level5 from "./clfc02/level5.json";
+import clfc02Level6 from "./clfc02/level6.json";
+import clfc02Level7 from "./clfc02/level7.json";
+import clfc02Level8 from "./clfc02/level8.json";
+
+import deac01Level1 from "./deac01/level1.json";
+import deac01Level2 from "./deac01/level2.json";
+import deac01Level3 from "./deac01/level3.json";
+import deac01Level4 from "./deac01/level4.json";
+
+import dopc02Level1 from "./dopc02/level1.json";
+import dopc02Level2 from "./dopc02/level2.json";
+import dopc02Level3 from "./dopc02/level3.json";
+import dopc02Level4 from "./dopc02/level4.json";
+import dopc02Level5 from "./dopc02/level5.json";
+import dopc02Level6 from "./dopc02/level6.json";
+
+import mlac01Level1 from "./mlac01/level1.json";
+import mlac01Level2 from "./mlac01/level2.json";
+import mlac01Level3 from "./mlac01/level3.json";
+
+import mlsc01Level1 from "./mlsc01/level1.json";
+import mlsc01Level2 from "./mlsc01/level2.json";
+import mlsc01Level3 from "./mlsc01/level3.json";
+import mlsc01Level4 from "./mlsc01/level4.json";
+import mlsc01Level5 from "./mlsc01/level5.json";
+
+import scsc02Level1 from "./scsc02/level1.json";
+import scsc02Level2 from "./scsc02/level2.json";
+import scsc02Level3 from "./scsc02/level3.json";
+import scsc02Level4 from "./scsc02/level4.json";
+import scsc02Level5 from "./scsc02/level5.json";
+
 export const certificateLevels = {
   dvac02: [
-    awsDeveloperLevel1,
-    awsDeveloperLevel2,
-    awsDeveloperLevel3,
-    awsDeveloperLevel4,
-    awsDeveloperLevel5,
-    awsDeveloperLevel6,
-    awsDeveloperLevel7,
-    awsDeveloperLevel8,
+    dvac02Level1,
+    dvac02Level2,
+    dvac02Level3,
+    dvac02Level4,
+    dvac02Level5,
+    dvac02Level6,
+    dvac02Level7,
+    dvac02Level8,
   ],
   ansc01: [
     ansc01Level1,
@@ -103,4 +120,60 @@ export const certificateLevels = {
     sapc02Level6,
     sapc02Level7,
   ],
+  aifc01: [
+    aifc01Level1,
+    aifc01Level2,
+    aifc01Level3,
+    aifc01Level4,
+    aifc01Level5,
+  ],
+  clfc02: [
+    clfc02Level1,
+    clfc02Level2,
+    clfc02Level3,
+    clfc02Level4,
+    clfc02Level5,
+    clfc02Level6,
+    clfc02Level7,
+    clfc02Level8,
+  ],
+  deac01: [
+    deac01Level1,
+    deac01Level2,
+    deac01Level3,
+    deac01Level4,
+  ],
+  dopc02: [
+    dopc02Level1,
+    dopc02Level2,
+    dopc02Level3,
+    dopc02Level4,
+    dopc02Level5,
+    dopc02Level6,
+  ],
+  mlac01: [
+    mlac01Level1,
+    mlac01Level2,
+    mlac01Level3,
+  ],
+  mlsc01: [
+    mlsc01Level1,
+    mlsc01Level2,
+    mlsc01Level3,
+    mlsc01Level4,
+    mlsc01Level5,
+  ],
+  scsc02: [
+    scsc02Level1,
+    scsc02Level2,
+    scsc02Level3,
+    scsc02Level4,
+    scsc02Level5,
+  ],
 };
+
+export type CertificateSlug = keyof typeof certificateLevels;
+
+export function getCertificateLevels(slug: string) {
+  return certificateLevels[slug as CertificateSlug] || null;
+}
