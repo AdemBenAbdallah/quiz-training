@@ -1,0 +1,21 @@
+{
+  "slug": "clf-c02",
+  "name": "CLF-C02",
+  "description": "CLF-C02 certification preparation",
+  "totalLevels": 8,
+  "questionsPerLevel": [65, 65, 65, 65, 65, 65, 65, 62],
+  "levels": {
+    "1": 65,
+    "2": 65,
+    "3": 65,
+    "4": 65,
+    "5": 65,
+    "6": 65,
+    "7": 65,
+    "8": 62
+  },
+  "heroTitle": "Master CLF-C02",
+  "heroDescription": "Prepare for the CLF-C02 certification exam",
+  "badgeColor": "bg-gray-500",
+  "lastUpdated": "2025-12-05T14:03:23.914346"
+}

@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db";
 import { userLevelProgress } from "@/db/schema";
-import { eq } from "drizzle-orm";
 import { auth } from "@/lib/auth";
+import { and, eq } from "drizzle-orm";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   try {
@@ -15,67 +15,89 @@ export async function POST(request: NextRequest) {
     }
 
     const userId = session.user.id;
+    const { searchParams } = new URL(request.url);
+    const certificateSlug = searchParams.get("certificate");
 
-    // Check if user already has progress
+    if (!certificateSlug) {
+      return NextResponse.json(
+        { error: "Certificate is required" },
+        { status: 400 },
+      );
+    }
+
+    // Check if user already has progress for this certificate
     const existingProgress = await db
       .select()
       .from(userLevelProgress)
-      .where(eq(userLevelProgress.userId, userId));
+      .where(
+        and(
+          eq(userLevelProgress.userId, userId),
+          eq(userLevelProgress.certificateId, certificateSlug),
+        ),
+      );
 
     if (existingProgress.length > 0) {
       return NextResponse.json({
         message: "User progress already exists",
-        count: existingProgress.length
+        count: existingProgress.length,
       });
     }
 
-    // Initialize user level progress - Level 1 is accessible, others are locked
+    // Initialize user level progress for specific certificate
     const initialProgress = [
       {
-        id: `${userId}_1`,
+        id: `${userId}_${certificateSlug}_1`,
         userId,
+        certificateId: certificateSlug,
         levelId: 1,
         passed: false,
       },
       {
-        id: `${userId}_2`,
+        id: `${userId}_${certificateSlug}_2`,
         userId,
+        certificateId: certificateSlug,
         levelId: 2,
         passed: false,
       },
       {
-        id: `${userId}_3`,
+        id: `${userId}_${certificateSlug}_3`,
         userId,
+        certificateId: certificateSlug,
         levelId: 3,
         passed: false,
       },
       {
-        id: `${userId}_4`,
+        id: `${userId}_${certificateSlug}_4`,
         userId,
+        certificateId: certificateSlug,
         levelId: 4,
         passed: false,
       },
       {
-        id: `${userId}_5`,
+        id: `${userId}_${certificateSlug}_5`,
         userId,
+        certificateId: certificateSlug,
         levelId: 5,
         passed: false,
       },
       {
-        id: `${userId}_6`,
+        id: `${userId}_${certificateSlug}_6`,
         userId,
+        certificateId: certificateSlug,
         levelId: 6,
         passed: false,
       },
       {
-        id: `${userId}_7`,
+        id: `${userId}_${certificateSlug}_7`,
         userId,
+        certificateId: certificateSlug,
         levelId: 7,
         passed: false,
       },
       {
-        id: `${userId}_8`,
+        id: `${userId}_${certificateSlug}_8`,
         userId,
+        certificateId: certificateSlug,
         levelId: 8,
         passed: false,
       },
@@ -85,7 +107,8 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       message: "User progress initialized successfully",
-      count: initialProgress.length
+      count: initialProgress.length,
+      certificate: certificateSlug,
     });
   } catch (error) {
     console.error("Error initializing user progress:", error);

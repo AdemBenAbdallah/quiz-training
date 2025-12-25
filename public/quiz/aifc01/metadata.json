@@ -1,0 +1,18 @@
+{
+  "slug": "aif-c01",
+  "name": "AIF-C01",
+  "description": "AIF-C01 certification preparation",
+  "totalLevels": 5,
+  "questionsPerLevel": [65, 65, 65, 65, 46],
+  "levels": {
+    "1": 65,
+    "2": 65,
+    "3": 65,
+    "4": 65,
+    "5": 46
+  },
+  "heroTitle": "Master AIF-C01",
+  "heroDescription": "Prepare for the AIF-C01 certification exam",
+  "badgeColor": "bg-gray-500",
+  "lastUpdated": "2025-12-05T14:06:48.117457"
+}

@@ -9,19 +9,19 @@ import "./globals.css";
 const geist = Geist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://awsquizgame.adembenabdallah.com/"),
+  metadataBase: new URL("https://certquickly.com/"),
   title: {
-    default: "Quizzes Prepare for exams",
-    template: `%s | Quizzes Prepare for exams`,
+    default: "CertQuickly - AWS Certification Prep",
+    template: `%s | CertQuickly - AWS Certification Prep`,
   },
   description:
-    "The best Quiz app to prepare for aws developer exam  and improve your knowledge.",
+      "The best platform to prepare for AWS certification exams and improve your cloud knowledge with CertQuickly.",
   openGraph: {
-    title: "Quizzes Prepare for exams",
+    title: "CertQuickly - AWS Certification Prep",
     description:
-      "The best Quiz app to prepare for exams and improve your knowledge.",
+    "The best platform to prepare for AWS certification exams and improve your cloud knowledge with CertQuickly.",
     url: absoluteUrl("/"),
-    siteName: "Quizzes Prepare for exams",
+    siteName: "CertQuickly - AWS Certification Prep",
     images: [
       {
         url: absoluteUrl("/opengraph-image.png"),

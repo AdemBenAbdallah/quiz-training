@@ -1,0 +1,21 @@
+{
+  "slug": "dvac02",
+  "name": "AWS Certified Developer Associate",
+  "description": "DVA-C02 certification exam preparation",
+  "totalLevels": 8,
+  "questionsPerLevel": [71, 71, 71, 71, 71, 71, 71, 55],
+  "levels": {
+    "1": 71,
+    "2": 71,
+    "3": 71,
+    "4": 71,
+    "5": 71,
+    "6": 71,
+    "7": 71,
+    "8": 55
+  },
+  "heroTitle": "Master DVA-C02",
+  "heroDescription": "Prepare for the DVA-C02 certification exam",
+  "badgeColor": "bg-orange-500",
+  "lastUpdated": "2025-12-05"
+}

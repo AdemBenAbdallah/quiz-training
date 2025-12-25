@@ -1,0 +1,18 @@
+{
+  "slug": "mls-c01",
+  "name": "MLS-C01",
+  "description": "MLS-C01 certification preparation",
+  "totalLevels": 5,
+  "questionsPerLevel": [65, 65, 65, 65, 33],
+  "levels": {
+    "1": 65,
+    "2": 65,
+    "3": 65,
+    "4": 65,
+    "5": 33
+  },
+  "heroTitle": "Master MLS-C01",
+  "heroDescription": "Prepare for the MLS-C01 certification exam",
+  "badgeColor": "bg-gray-500",
+  "lastUpdated": "2025-12-05T14:05:42.952206"
+}

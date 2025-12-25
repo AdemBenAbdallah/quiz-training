@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { user, userQuizProgress } from "@/db/schema";
+import { user, userLevelProgress } from "@/db/schema";
 import { and, eq, isNull, lte, or } from "drizzle-orm";
 import { AlertCircle, Clock, Mail, RefreshCw, Users } from "lucide-react";
 
@@ -28,18 +28,18 @@ async function getWorkflowStats(): Promise<WorkflowStats> {
   const inactiveUsers = await db
     .select()
     .from(user)
-    .leftJoin(userQuizProgress, eq(user.id, userQuizProgress.userId))
-    .where(and(lte(user.createdAt, twoDaysAgo), isNull(userQuizProgress.id)));
+    .leftJoin(userLevelProgress, eq(user.id, userLevelProgress.userId))
+    .where(and(lte(user.createdAt, twoDaysAgo), isNull(userLevelProgress.id)));
 
   // Get users who haven't received reminders in the last 7 days
   const eligibleForReminder = await db
     .select()
     .from(user)
-    .leftJoin(userQuizProgress, eq(user.id, userQuizProgress.userId))
+    .leftJoin(userLevelProgress, eq(user.id, userLevelProgress.userId))
     .where(
       and(
         lte(user.createdAt, twoDaysAgo),
-        isNull(userQuizProgress.id),
+        isNull(userLevelProgress.id),
         // Only send reminders to users who haven't received one in the last 7 days
         or(
           isNull(user.lastReminderSentAt),
@@ -123,58 +123,58 @@ export default async function WorkflowDashboard({
   }
 
   return (
-    <div className="min-h-screen bg-black py-8">
+    <div className="min-h-screen bg-background py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-black rounded-lg shadow-xl p-8 border border-red-900/30">
-          <h1 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
-            <RefreshCw className="w-8 h-8 text-red-500" />
+        <div className="bg-card rounded-lg shadow-xl p-8 border border-primary/30">
+          <h1 className="text-3xl font-bold text-foreground mb-8 flex items-center gap-3">
+            <RefreshCw className="w-8 h-8 text-primary" />
             Workflow Management Dashboard
           </h1>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-red-900/20 border border-red-600/30 rounded-lg p-6 backdrop-blur-sm">
+            <div className="bg-primary/20 border border-primary/30 rounded-lg p-6 backdrop-blur-sm">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-sm font-medium text-red-400">
+                <h3 className="text-sm font-medium text-primary">
                   Total Users
                 </h3>
-                <Users className="w-4 h-4 text-red-500" />
+                <Users className="w-4 h-4 text-primary" />
               </div>
-              <p className="text-3xl font-bold text-red-300">
+              <p className="text-3xl font-bold text-primary-foreground">
                 {stats.totalUsers}
               </p>
             </div>
 
-            <div className="bg-orange-900/20 border border-orange-600/30 rounded-lg p-6 backdrop-blur-sm">
+            <div className="bg-warning/20 border border-warning/30 rounded-lg p-6 backdrop-blur-sm">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-sm font-medium text-orange-400">
+                <h3 className="text-sm font-medium text-warning">
                   Inactive Users
                 </h3>
-                <Clock className="w-4 h-4 text-orange-500" />
+                <Clock className="w-4 h-4 text-warning" />
               </div>
-              <p className="text-3xl font-bold text-orange-300">
+              <p className="text-3xl font-bold text-warning-foreground">
                 {stats.inactiveUsers}
               </p>
             </div>
 
-            <div className="bg-yellow-900/20 border border-yellow-600/30 rounded-lg p-6 backdrop-blur-sm">
+            <div className="bg-info/20 border border-info/30 rounded-lg p-6 backdrop-blur-sm">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-sm font-medium text-yellow-400">
+                <h3 className="text-sm font-medium text-info">
                   Eligible for Reminder
                 </h3>
-                <Mail className="w-4 h-4 text-yellow-500" />
+                <Mail className="w-4 h-4 text-info" />
               </div>
-              <p className="text-3xl font-bold text-yellow-300">
+              <p className="text-3xl font-bold text-info-foreground">
                 {stats.eligibleForReminder}
               </p>
             </div>
           </div>
 
           <div className="mb-8">
-            <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-              <Clock className="w-5 h-5 text-red-500" />
+            <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+              <Clock className="w-5 h-5 text-primary" />
               Last Updated
             </h3>
-            <p className="text-gray-300">
+            <p className="text-muted-foreground">
               {new Date(stats.lastUpdated).toLocaleString()}
             </p>
           </div>
@@ -186,8 +186,8 @@ export default async function WorkflowDashboard({
                 disabled={stats.eligibleForReminder === 0}
                 className={`w-full py-3 px-4 rounded-lg font-semibold text-white transition-all duration-200 transform ${
                   stats.eligibleForReminder === 0
-                    ? "bg-red-800 cursor-not-allowed opacity-50"
-                    : "bg-red-600 hover:bg-red-500 hover:shadow-lg hover:scale-105 active:scale-95 border border-red-400/30"
+                    ? "bg-muted cursor-not-allowed opacity-50"
+                    : "bg-primary hover:bg-primary/90 hover:shadow-lg hover:scale-105 active:scale-95 border border-primary/30"
                 }`}
               >
                 <div className="flex items-center justify-center gap-2">
@@ -209,9 +209,9 @@ export default async function WorkflowDashboard({
               >
                 <div className="flex items-center gap-2 mb-1">
                   {workflowResult.success ? (
-                    <RefreshCw className="w-4 h-4 text-green-300" />
+                    <RefreshCw className="w-4 h-4 text-success-foreground" />
                   ) : (
-                    <AlertCircle className="w-4 h-4 text-red-300" />
+                    <AlertCircle className="w-4 h-4 text-destructive" />
                   )}
                   <span className="text-sm font-medium">
                     {workflowResult.success ? "Success" : "Error"}
@@ -226,31 +226,31 @@ export default async function WorkflowDashboard({
             )}
           </div>
 
-          <div className="mt-8 p-6 bg-black rounded-lg border border-red-900/30 backdrop-blur-sm">
-            <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-              <AlertCircle className="w-5 h-5 text-red-500" />
+          <div className="mt-8 p-6 bg-card rounded-lg border border-primary/30 backdrop-blur-sm">
+            <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+              <AlertCircle className="w-5 h-5 text-primary" />
               About This Workflow
             </h3>
-            <ul className="text-gray-300 space-y-2">
+            <ul className="text-muted-foreground space-y-2">
               <li className="flex items-start gap-2">
-                <span className="text-red-500 mt-1">•</span>
+                <span className="text-primary mt-1">•</span>
                 Sends reminder emails to users who have not started quiz
                 practice after 2 days
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-orange-500 mt-1">•</span>
+                <span className="text-warning mt-1">•</span>
                 Only sends reminders once per 7 days to avoid spam
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-yellow-500 mt-1">•</span>
+                <span className="text-info mt-1">•</span>
                 Uses randomized email templates to keep content fresh
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-red-500 mt-1">•</span>
+                <span className="text-primary mt-1">•</span>
                 Automatically retries failed email sends
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-red-500 mt-1">•</span>
+                <span className="text-primary mt-1">•</span>
                 Workflow runs continuously with 24-hour intervals
               </li>
             </ul>

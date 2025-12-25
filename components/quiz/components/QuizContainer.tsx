@@ -1,32 +1,34 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { Progress } from "@/components/ui/progress";
-import { Question, Choice } from "@/types/quiz";
-import { TQuizParts, TLevelParts } from "@/app/(preview)/parts";
-import { useProgress } from "@/hooks/useProgress";
-import { handleAnswerSelection, calculateScore } from "@/lib/selection";
-import { QuizHeader } from "./QuizHeader";
-import { QuizNavigation } from "./QuizNavigation";
-import { QuizActions } from "./QuizActions";
+import ChatAssistantDialog from "@/components/ChatAssistantDialog";
 import QuestionCard from "@/components/QuestionCard";
 import QuestionExplainDialog from "@/components/QuestionExplainDialog";
-import QuizScore from "@/components/score";
 import QuizReview from "@/components/quiz-overview";
+import QuizScore from "@/components/score";
+import { Progress } from "@/components/ui/progress";
+import { useProgress } from "@/hooks/useProgress";
+import { calculateScore, handleAnswerSelection } from "@/lib/selection";
+import { Choice, Question } from "@/types/quiz";
+import { AnimatePresence, motion } from "framer-motion";
+import { useCallback, useEffect, useState } from "react";
+import { QuizActions } from "./QuizActions";
+import { QuizHeader } from "./QuizHeader";
+import { QuizNavigation } from "./QuizNavigation";
 
 interface QuizContainerProps {
-  idx: number;
+  certificateSlug: string;
   levelId: number;
   questions: Question[];
   title: string;
+  onBack?: () => void;
 }
 
 export const QuizContainer = ({
-  idx,
+  certificateSlug,
   levelId,
   questions,
   title = "Quiz",
+  onBack,
 }: QuizContainerProps) => {
   // Quiz state management
   const [answers, setAnswers] = useState<Choice[][]>(
@@ -42,15 +44,15 @@ export const QuizContainer = ({
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [progress, setProgress] = useState(0);
 
+  // Dialog state
+  const [isExplainDialogOpen, setIsExplainDialogOpen] = useState(false);
+  const [isChatDialogOpen, setIsChatDialogOpen] = useState(false);
+
   // Progression state
-  const { data, updateProgress } = useProgress();
-  const quizParts = data?.quizPartsByLevel[levelId] || null;
-  const levelParts = data?.levelParts || null;
-  const currentPart = quizParts?.data.find((part) => part.id === +idx);
-  const isPartAccessible = Boolean(currentPart?.accessible);
-  const isLastPart = Boolean(
-    quizParts && Number(idx) === quizParts.data.length,
-  );
+  const { data, updateProgress } = useProgress(certificateSlug);
+  const levels = data?.levels || [];
+  const currentLevel = levels.find((level) => level.id === levelId);
+  const isLevelAccessible = Boolean(currentLevel?.accessible);
 
   // Update progress when question changes
   useEffect(() => {
@@ -75,8 +77,6 @@ export const QuizContainer = ({
       setAnswers(newAnswers);
     }
   };
-
-
 
   const submitQuiz = () => {
     const correctAnswers = calculateScore(answers, questions);
@@ -130,26 +130,26 @@ export const QuizContainer = ({
   };
 
   // Progression actions
-  const passToNextPart = useCallback(async () => {
-    if (!quizParts) return;
-
+  const passToNextLevel = useCallback(async () => {
     try {
-      await updateProgress(levelId, idx);
+      await updateProgress(levelId);
     } catch (error) {
       console.error("Error updating progress:", error);
     }
-  }, [quizParts, levelId, idx, updateProgress]);
+  }, [levelId, updateProgress]);
 
   // Handle quiz completion and progression
   const handleQuizSubmit = async () => {
     const correctAnswers = submitQuiz();
 
     try {
-      if (correctAnswers === questions.length) {
-        passToNextPart();
+      // Allow level completion with 80% or higher score
+      const completionThreshold = Math.ceil(questions.length * 0.8);
+      if (correctAnswers >= completionThreshold) {
+        passToNextLevel();
       }
     } catch (error) {
-      console.error("Error progressing to next part:", error);
+      console.error("Error progressing to next level:", error);
     }
   };
 
@@ -159,8 +159,18 @@ export const QuizContainer = ({
     resetNavigation();
   };
 
-  if (!isPartAccessible) {
-    return null;
+  if (!isLevelAccessible) {
+    return (
+      <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold mb-4">Level Not Accessible</h2>
+          <p className="text-muted-foreground">
+            You need to complete the previous level or purchase access to
+            continue.
+          </p>
+        </div>
+      </div>
+    );
   }
 
   const currentQuestion = questions[currentQuestionIndex];
@@ -171,15 +181,16 @@ export const QuizContainer = ({
     selectAnswer(currentQuestionIndex, answer);
   };
 
-  const handleCopy = () => {
-    const text = currentQuestion.question + currentQuestion.options.join(", ");
-    navigator.clipboard.writeText(text);
-  };
-
   return (
     <div className="min-h-screen bg-background text-foreground">
       <main className="container mx-auto px-4 py-12 max-w-4xl">
-        <QuizHeader title={title} handleCopyAction={handleCopy} />
+        <QuizHeader
+          title={title}
+          onBackClick={onBack}
+          onExplainClick={() => setIsExplainDialogOpen(true)}
+          onChatClick={() => setIsChatDialogOpen(true)}
+          isExplainDisabled={isCurrentQuestionSubmitted}
+        />
 
         <div className="relative">
           {!isQuizComplete && (
@@ -209,9 +220,18 @@ export const QuizContainer = ({
                       showCorrectAnswer={isCurrentQuestionSubmitted}
                     />
 
-                    {!isCurrentQuestionSubmitted && (
-                      <QuestionExplainDialog question={currentQuestion} />
-                    )}
+                    <QuestionExplainDialog
+                      question={currentQuestion}
+                      open={isExplainDialogOpen}
+                      onOpenChange={setIsExplainDialogOpen}
+                    />
+
+                    <ChatAssistantDialog
+                      question={currentQuestion}
+                      selectedAnswers={currentAnswers}
+                      open={isChatDialogOpen}
+                      onOpenChange={setIsChatDialogOpen}
+                    />
 
                     <QuizNavigation
                       navigation={{
@@ -236,10 +256,7 @@ export const QuizContainer = ({
                     />
 
                     <div className="space-y-12">
-                      <QuizReview
-                        questions={questions}
-                        userAnswers={answers}
-                      />
+                      <QuizReview questions={questions} userAnswers={answers} />
                     </div>
 
                     <QuizActions

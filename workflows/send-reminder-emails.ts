@@ -2,7 +2,7 @@ import { and, eq, isNull, lte, or } from "drizzle-orm";
 import { Resend } from "resend";
 import { sleep } from "workflow";
 import { db } from "../db";
-import { userQuizProgress, user as userSchema } from "../db/schema";
+import { userLevelProgress, user as userSchema } from "../db/schema";
 
 const resend = new Resend(process.env.RESEND_API_KEY!);
 
@@ -12,17 +12,17 @@ interface EmailTemplate {
 }
 
 const EMAIL_TEMPLATES: EmailTemplate[] = [
-  {
+{
     subject: "Your AWS DVA-C02 practice is waiting",
     body: `Hi {{userName}},
 
-You recently signed up for the AWS Quiz Game to start practicing for your Developer Associate (DVA-C02) exam.
+You recently signed up for AWS Quiz Game to start practicing for your Developer Associate (DVA-C02) exam.
 
-That certification is a huge step, and the key to passing is consistent practice. Your free Level 1 is ready and waiting for you.
+That certification is a huge step, and key to passing is consistent practice. Your free Level 1 is ready and waiting for you.
 
-Why not take 10 minutes right now to knock out the first part?
+Why not take 10 minutes right now to knock out first level?
 
-Start Part 1 (8 Free Questions)
+Start Level 1 (Free Questions)
 
 You've got this!
 
@@ -104,12 +104,12 @@ async function getInactiveUsers(twoDaysAgo: Date, sevenDaysAgo: Date) {
   return await db
     .select()
     .from(userSchema)
-    .leftJoin(userQuizProgress, eq(userSchema.id, userQuizProgress.userId))
+    .leftJoin(userLevelProgress, eq(userSchema.id, userLevelProgress.userId))
     .where(
       and(
         lte(userSchema.createdAt, twoDaysAgo),
-        isNull(userQuizProgress.id),
-        // Only send reminders to users who haven't received one in the last 7 days
+        isNull(userLevelProgress.id),
+        // Only send reminders to users who haven't received one in last 7 days
         or(
           isNull(userSchema.lastReminderSentAt),
           lte(userSchema.lastReminderSentAt, sevenDaysAgo),

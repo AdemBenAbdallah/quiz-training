@@ -1,0 +1,922 @@
+[
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85910-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 111Topic #: 1",
+    "question": "A company recently migrated a message processing system to AWS. The system receives messages into an ActiveMQ queue running on an Amazon EC2 instance. Messages are processed by a consumer application running on Amazon EC2. The consumer application processes the messages and writes results to a MySQL database running on Amazon EC2. The company wants this application to be highly available with low operational complexity.Which architecture offers the HIGHEST availability?",
+    "choices": [
+      "Add a second ActiveMQ server to another Availability Zone. Add an additional consumer EC2 instance in another Availability Zone. Replicate the MySQL database to another Availability Zone.",
+      "Use Amazon MQ with active/standby brokers configured across two Availability Zones. Add an additional consumer EC2 instance in another Availability Zone. Replicate the MySQL database to another Availability Zone.",
+      "Use Amazon MQ with active/standby brokers configured across two Availability Zones. Add an additional consumer EC2 instance in another Availability Zone. Use Amazon RDS for MySQL with Multi-AZ enabled.",
+      "Use Amazon MQ with active/standby brokers configured across two Availability Zones. Add an Auto Scaling group for the consumer EC2 instances across two Availability Zones. Use Amazon RDS for MySQL with Multi-AZ enabled.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/86471-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 110Topic #: 1",
+    "question": "A social media company allows users to upload images to its website. The website runs on Amazon EC2 instances. During upload requests, the website resizes the images to a standard size and stores the resized images in Amazon S3. Users are experiencing slow upload requests to the website.The company needs to reduce coupling within the application and improve website performance. A solutions architect must design the most operationally efficient process for image uploads.Which combination of actions should the solutions architect take to meet these requirements? (Choose two.)",
+    "choices": [
+      "Configure the application to upload images to S3 Glacier.",
+      "Configure the web server to upload the original images to Amazon S3.",
+      "Configure the application to upload images directly from each user's browser to Amazon S3 through the use of a presigned URLMost Voted",
+      "Configure S3 Event Notifications to invoke an AWS Lambda function when an image is uploaded. Use the function to resize the image.Most Voted",
+      "E.Create an Amazon EventBridge (Amazon CloudWatch Events) rule that invokes an AWS Lambda function on a schedule to resize uploaded images."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85634-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 109Topic #: 1",
+    "question": "A company needs to store data in Amazon S3 and must prevent the data from being changed. The company wants new objects that are uploaded to Amazon S3 to remain unchangeable for a nonspecific amount of time until the company decides to modify the objects. Only specific users in the company's AWS account can have the ability 10 delete the objects.What should a solutions architect do to meet these requirements?",
+    "choices": [
+      "Create an S3 Glacier vault. Apply a write-once, read-many (WORM) vault lock policy to the objects.",
+      "Create an S3 bucket with S3 Object Lock enabled. Enable versioning. Set a retention period of 100 years. Use governance mode as the S3 bucket’s default retention mode for new objects.",
+      "Create an S3 bucket. Use AWS CloudTrail to track any S3 API events that modify the objects. Upon notification, restore the modified objects from any backup versions that the company has.",
+      "Create an S3 bucket with S3 Object Lock enabled. Enable versioning. Add a legal hold to the objects. Add the s3:PutObjectLegalHold permission to the IAM policies of users who need to delete the objects.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85427-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 108Topic #: 1",
+    "question": "A company has an automobile sales website that stores its listings in a database on Amazon RDS. When an automobile is sold, the listing needs to be removed from the website and the data must be sent to multiple target systems.Which design should a solutions architect recommend?",
+    "choices": [
+      "Create an AWS Lambda function triggered when the database on Amazon RDS is updated to send the information to an Amazon Simple Queue Service (Amazon SQS) queue for the targets to consume.Most Voted",
+      "Create an AWS Lambda function triggered when the database on Amazon RDS is updated to send the information to an Amazon Simple Queue Service (Amazon SQS) FIFO queue for the targets to consume.",
+      "Subscribe to an RDS event notification and send an Amazon Simple Queue Service (Amazon SQS) queue fanned out to multiple Amazon Simple Notification Service (Amazon SNS) topics. Use AWS Lambda functions to update the targets.",
+      "Subscribe to an RDS event notification and send an Amazon Simple Notification Service (Amazon SNS) topic fanned out to multiple Amazon Simple Queue Service (Amazon SQS) queues. Use AWS Lambda functions to update the targets."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85212-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 107Topic #: 1",
+    "question": "A bicycle sharing company is developing a multi-tier architecture to track the location of its bicycles during peak operating hours. The company wants to use these data points in its existing analytics platform. A solutions architect must determine the most viable multi-tier option to support this architecture. The data points must be accessible from the REST API.Which action meets these requirements for storing and retrieving location data?",
+    "choices": [
+      "Use Amazon Athena with Amazon S3.",
+      "Use Amazon API Gateway with AWS Lambda.",
+      "Use Amazon QuickSight with Amazon Redshift.",
+      "Use Amazon API Gateway with Amazon Kinesis Data Analytics.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85817-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 106Topic #: 1",
+    "question": "A company is preparing to store confidential data in Amazon S3. For compliance reasons, the data must be encrypted at rest. Encryption key usage must be logged for auditing purposes. Keys must be rotated every year.Which solution meets these requirements and is the MOST operationally efficient?",
+    "choices": [
+      "Server-side encryption with customer-provided keys (SSE-C)",
+      "Server-side encryption with Amazon S3 managed keys (SSE-S3)",
+      "Server-side encryption with AWS KMS keys (SSE-KMS) with manual rotation",
+      "Server-side encryption with AWS KMS keys (SSE-KMS) with automatic rotationMost Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85816-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 105Topic #: 1",
+    "question": "A company is preparing to deploy a new serverless workload. A solutions architect must use the principle of least privilege to configure permissions that will be used to run an AWS Lambda function. An Amazon EventBridge (Amazon CloudWatch Events) rule will invoke the function.Which solution meets these requirements?",
+    "choices": [
+      "Add an execution role to the function with lambda:InvokeFunction as the action and * as the principal.",
+      "Add an execution role to the function with lambda:InvokeFunction as the action and Service: lambda.amazonaws.com as the principal.",
+      "Add a resource-based policy to the function with lambda:* as the action and Service: events.amazonaws.com as the principal.",
+      "Add a resource-based policy to the function with lambda:InvokeFunction as the action and Service: events.amazonaws.com as the principal.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85342-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 104Topic #: 1",
+    "question": "A solutions architect must design a highly available infrastructure for a website. The website is powered by Windows web servers that run on Amazon EC2 instances. The solutions architect must implement a solution that can mitigate a large-scale DDoS attack that originates from thousands of IP addresses. Downtime is not acceptable for the website.Which actions should the solutions architect take to protect the website from such an attack? (Choose two.)",
+    "choices": [
+      "Use AWS Shield Advanced to stop the DDoS attack.Most Voted",
+      "Configure Amazon GuardDuty to automatically block the attackers.",
+      "Configure the website to use Amazon CloudFront for both static and dynamic content.Most Voted",
+      "Use an AWS Lambda function to automatically add attacker IP addresses to VPC network ACLs.",
+      "E.Use EC2 Spot Instances in an Auto Scaling group with a target tracking scaling policy that is set to 80% CPU utilization."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85781-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 103Topic #: 1",
+    "question": "A company has an AWS Glue extract, transform, and load (ETL) job that runs every day at the same time. The job processes XML data that is in an Amazon S3 bucket. New data is added to the S3 bucket every day. A solutions architect notices that AWS Glue is processing all the data during each run.What should the solutions architect do to prevent AWS Glue from reprocessing old data?",
+    "choices": [
+      "Edit the job to use job bookmarks.Most Voted",
+      "Edit the job to delete data after the data is processed.",
+      "Edit the job by setting the NumberOfWorkers field to 1.",
+      "Use a FindMatches machine learning (ML) transform."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85814-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 102Topic #: 1",
+    "question": "A company wants to migrate an on-premises data center to AWS. The data center hosts an SFTP server that stores its data on an NFS-based file system. The server holds 200 GB of data that needs to be transferred. The server must be hosted on an Amazon EC2 instance that uses an Amazon Elastic File System (Amazon EFS) file system.Which combination of steps should a solutions architect take to automate this task? (Choose two.)",
+    "choices": [
+      "Launch the EC2 instance into the same Availability Zone as the EFS file system.",
+      "Install an AWS DataSync agent in the on-premises data center.Most Voted",
+      "Create a secondary Amazon Elastic Block Store (Amazon EBS) volume on the EC2 instance for the data.",
+      "Manually use an operating system copy command to push the data to the EC2 instance.",
+      "E.Use AWS DataSync to create a suitable location configuration for the on-premises SFTP server.Most Voted"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/86019-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 101Topic #: 1",
+    "question": "A solutions architect is designing a VPC with public and private subnets. The VPC and subnets use IPv4 CIDR blocks. There is one public subnet and one private subnet in each of three Availability Zones (AZs) for high availability. An internet gateway is used to provide internet access for the public subnets. The private subnets require access to the internet to allow Amazon EC2 instances to download software updates.What should the solutions architect do to enable Internet access for the private subnets?",
+    "choices": [
+      "Create three NAT gateways, one for each public subnet in each AZ. Create a private route table for each AZ that forwards non-VPC traffic to the NAT gateway in its AZ.Most Voted",
+      "Create three NAT instances, one for each private subnet in each AZ. Create a private route table for each AZ that forwards non-VPC traffic to the NAT instance in its AZ.",
+      "Create a second internet gateway on one of the private subnets. Update the route table for the private subnets that forward non-VPC traffic to the private internet gateway.",
+      "Create an egress-only internet gateway on one of the public subnets. Update the route table for the private subnets that forward non-VPC traffic to the egress-only Internet gateway."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85811-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 99Topic #: 1",
+    "question": "A company is implementing a shared storage solution for a gaming application that is hosted in an on-premises data center. The company needs the ability to use Lustre clients to access data. The solution must be fully managed.Which solution meets these requirements?",
+    "choices": [
+      "Create an AWS Storage Gateway file gateway. Create a file share that uses the required client protocol. Connect the application server to the file share.",
+      "Create an Amazon EC2 Windows instance. Install and configure a Windows file share role on the instance. Connect the application server to the file share.",
+      "Create an Amazon Elastic File System (Amazon EFS) file system, and configure it to support Lustre. Attach the file system to the origin server. Connect the application server to the file system.",
+      "Create an Amazon FSx for Lustre file system. Attach the file system to the origin server. Connect the application server to the file system.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85185-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 98Topic #: 1",
+    "question": "An image-processing company has a web application that users use to upload images. The application uploads the images into an Amazon S3 bucket. The company has set up S3 event notifications to publish the object creation events to an Amazon Simple Queue Service (Amazon SQS) standard queue. The SQS queue serves as the event source for an AWS Lambda function that processes the images and sends the results to users through email.Users report that they are receiving multiple email messages for every uploaded image. A solutions architect determines that SQS messages are invoking the Lambda function more than once, resulting in multiple email messages.What should the solutions architect do to resolve this issue with the LEAST operational overhead?",
+    "choices": [
+      "Set up long polling in the SQS queue by increasing the ReceiveMessage wait time to 30 seconds.",
+      "Change the SQS standard queue to an SQS FIFO queue. Use the message deduplication ID to discard duplicate messages.",
+      "Increase the visibility timeout in the SQS queue to a value that is greater than the total of the function timeout and the batch window timeout.Most Voted",
+      "Modify the Lambda function to delete each message from the SQS queue immediately after the message is read before processing."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/86626-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 97Topic #: 1",
+    "question": "A company has a large Microsoft SharePoint deployment running on-premises that requires Microsoft Windows shared file storage. The company wants to migrate this workload to the AWS Cloud and is considering various storage options. The storage solution must be highly available and integrated with Active Directory for access control.Which solution will satisfy these requirements?",
+    "choices": [
+      "Configure Amazon EFS storage and set the Active Directory domain for authentication.",
+      "Create an SMB file share on an AWS Storage Gateway file gateway in two Availability Zones.",
+      "Create an Amazon S3 bucket and configure Microsoft Windows Server to mount it as a volume.",
+      "Create an Amazon FSx for Windows File Server file system on AWS and set the Active Directory domain for authentication.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/86460-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 96Topic #: 1",
+    "question": "An Amazon EC2 administrator created the following policy associated with an IAM group containing several users:What is the effect of this policy?",
+    "choices": [
+      "Users can terminate an EC2 instance in any AWS Region except us-east-1.",
+      "Users can terminate an EC2 instance with the IP address 10.100.100.1 in the us-east-1 Region.",
+      "Users can terminate an EC2 instance in the us-east-1 Region when the user's source IP is 10.100.100.254.Most Voted",
+      "Users cannot terminate an EC2 instance in the us-east-1 Region when the user's source IP is 10.100.100.254."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85906-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 95Topic #: 1",
+    "question": "An application allows users at a company's headquarters to access product data. The product data is stored in an Amazon RDS MySQL DB instance. The operations team has isolated an application performance slowdown and wants to separate read traffic from write traffic. A solutions architect needs to optimize the application's performance quickly.What should the solutions architect recommend?",
+    "choices": [
+      "Change the existing database to a Multi-AZ deployment. Serve the read requests from the primary Availability Zone.",
+      "Change the existing database to a Multi-AZ deployment. Serve the read requests from the secondary Availability Zone.",
+      "Create read replicas for the database. Configure the read replicas with half of the compute and storage resources as the source database.",
+      "Create read replicas for the database. Configure the read replicas with the same compute and storage resources as the source database.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/86676-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 94Topic #: 1",
+    "question": "A company is designing an application where users upload small files into Amazon S3. After a user uploads a file, the file requires one-time simple processing to transform the data and save the data in JSON format for later analysis.Each file must be processed as quickly as possible after it is uploaded. Demand will vary. On some days, users will upload a high number of files. On other days, users will upload a few files or no files.Which solution meets these requirements with the LEAST operational overhead?",
+    "choices": [
+      "Configure Amazon EMR to read text files from Amazon S3. Run processing scripts to transform the data. Store the resulting JSON file in an Amazon Aurora DB cluster.",
+      "Configure Amazon S3 to send an event notification to an Amazon Simple Queue Service (Amazon SQS) queue. Use Amazon EC2 instances to read from the queue and process the data. Store the resulting JSON file in Amazon DynamoDB.",
+      "Configure Amazon S3 to send an event notification to an Amazon Simple Queue Service (Amazon SQS) queue. Use an AWS Lambda function to read from the queue and process the data. Store the resulting JSON file in Amazon DynamoDB.Most Voted",
+      "Configure Amazon EventBridge (Amazon CloudWatch Events) to send an event to Amazon Kinesis Data Streams when a new file is uploaded. Use an AWS Lambda function to consume the event from the stream and process the data. Store the resulting JSON file in an Amazon Aurora DB cluster."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85729-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 93Topic #: 1",
+    "question": "A company runs an on-premises application that is powered by a MySQL database. The company is migrating the application to AWS to increase the application's elasticity and availability.The current architecture shows heavy read activity on the database during times of normal operation. Every 4 hours, the company's development team pulls a full export of the production database to populate a database in the staging environment. During this period, users experience unacceptable application latency. The development team is unable to use the staging environment until the procedure completes.A solutions architect must recommend replacement architecture that alleviates the application latency issue. The replacement architecture also must give the development team the ability to continue using the staging environment without delay.Which solution meets these requirements?",
+    "choices": [
+      "Use Amazon Aurora MySQL with Multi-AZ Aurora Replicas for production. Populate the staging database by implementing a backup and restore process that uses the mysqldump utility.",
+      "Use Amazon Aurora MySQL with Multi-AZ Aurora Replicas for production. Use database cloning to create the staging database on-demand.Most Voted",
+      "Use Amazon RDS for MySQL with a Multi-AZ deployment and read replicas for production. Use the standby instance for the staging database.",
+      "Use Amazon RDS for MySQL with a Multi-AZ deployment and read replicas for production. Populate the staging database by implementing a backup and restore process that uses the mysqldump utility."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85903-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 92Topic #: 1",
+    "question": "A company is storing sensitive user information in an Amazon S3 bucket. The company wants to provide secure access to this bucket from the application tier running on Amazon EC2 instances inside a VPC.Which combination of steps should a solutions architect take to accomplish this? (Choose two.)",
+    "choices": [
+      "Configure a VPC gateway endpoint for Amazon S3 within the VPC.Most Voted",
+      "Create a bucket policy to make the objects in the S3 bucket public.",
+      "Create a bucket policy that limits access to only the application tier running in the VPC.Most Voted",
+      "Create an IAM user with an S3 access policy and copy the IAM credentials to the EC2 instance.",
+      "E.Create a NAT instance and have the EC2 instances use the NAT instance to access the S3 bucket."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85667-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 91Topic #: 1",
+    "question": "A company has applications that run on Amazon EC2 instances in a VPC. One of the applications needs to call the Amazon S3 API to store and read objects. According to the company's security regulations, no traffic from the applications is allowed to travel across the internet.Which solution will meet these requirements?",
+    "choices": [
+      "Configure an S3 gateway endpoint.Most Voted",
+      "Create an S3 bucket in a private subnet.",
+      "Create an S3 bucket in the same AWS Region as the EC2 instances.",
+      "Configure a NAT gateway in the same subnet as the EC2 instances."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85738-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 88Topic #: 1",
+    "question": "A survey company has gathered data for several years from areas in the United States. The company hosts the data in an Amazon S3 bucket that is 3 TB in size and growing. The company has started to share the data with a European marketing firm that has S3 buckets. The company wants to ensure that its data transfer costs remain as low as possible.Which solution will meet these requirements?",
+    "choices": [
+      "Configure the Requester Pays feature on the company's S3 bucket.Most Voted",
+      "Configure S3 Cross-Region Replication from the company's S3 bucket to one of the marketing firm's S3 buckets.",
+      "Configure cross-account access for the marketing firm so that the marketing firm has access to the company's S3 bucket.",
+      "Configure the company's S3 bucket to use S3 Intelligent-Tiering. Sync the S3 bucket to one of the marketing firm's S3 buckets."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85319-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 87Topic #: 1",
+    "question": "A company hosts an application on AWS Lambda functions that are invoked by an Amazon API Gateway API. The Lambda functions save customer data to an Amazon Aurora MySQL database. Whenever the company upgrades the database, the Lambda functions fail to establish database connections until the upgrade is complete. The result is that customer data is not recorded for some of the event.A solutions architect needs to design a solution that stores customer data that is created during database upgrades.Which solution will meet these requirements?",
+    "choices": [
+      "Provision an Amazon RDS proxy to sit between the Lambda functions and the database. Configure the Lambda functions to connect to the RDS proxy.",
+      "Increase the run time of the Lambda functions to the maximum. Create a retry mechanism in the code that stores the customer data in the database.",
+      "Persist the customer data to Lambda local storage. Configure new Lambda functions to scan the local storage to save the customer data to the database.",
+      "Store the customer data in an Amazon Simple Queue Service (Amazon SQS) FIFO queue. Create a new Lambda function that polls the queue and stores the customer data in the database.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85753-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 86Topic #: 1",
+    "question": "A company has several web servers that need to frequently access a common Amazon RDS MySQL Multi-AZ DB instance. The company wants a secure method for the web servers to connect to the database while meeting a security requirement to rotate user credentials frequently.Which solution meets these requirements?",
+    "choices": [
+      "Store the database user credentials in AWS Secrets Manager. Grant the necessary IAM permissions to allow the web servers to access AWS Secrets Manager.Most Voted",
+      "Store the database user credentials in AWS Systems Manager OpsCenter. Grant the necessary IAM permissions to allow the web servers to access OpsCenter.",
+      "Store the database user credentials in a secure Amazon S3 bucket. Grant the necessary IAM permissions to allow the web servers to retrieve credentials and access the database.",
+      "Store the database user credentials in files encrypted with AWS Key Management Service (AWS KMS) on the web server file system. The web server should be able to decrypt the files and access the database."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85751-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 85Topic #: 1",
+    "question": "A company has a production web application in which users upload documents through a web interface or a mobile app. According to a new regulatory requirement. new documents cannot be modified or deleted after they are stored.What should a solutions architect do to meet this requirement?",
+    "choices": [
+      "Store the uploaded documents in an Amazon S3 bucket with S3 Versioning and S3 Object Lock enabled.Most Voted",
+      "Store the uploaded documents in an Amazon S3 bucket. Configure an S3 Lifecycle policy to archive the documents periodically.",
+      "Store the uploaded documents in an Amazon S3 bucket with S3 Versioning enabled. Configure an ACL to restrict all access to read-only.",
+      "Store the uploaded documents on an Amazon Elastic File System (Amazon EFS) volume. Access the data by mounting the volume in read-only mode."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/109467-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 84Topic #: 1",
+    "question": "A company wants to move from many standalone AWS accounts to a consolidated, multi-account architecture. The company plans to create many new AWS accounts for different business units. The company needs to authenticate access to these AWS accounts by using a centralized corporate directory service.Which combination of actions should a solutions architect recommend to meet these requirements? (Choose two.)",
+    "choices": [
+      "Create a new organization in AWS Organizations with all features turned on. Create the new AWS accounts in the organization.Most Voted",
+      "Set up an Amazon Cognito identity pool. Configure AWS IAM Identity Center (AWS Single Sign-On) to accept Amazon Cognito authentication.",
+      "Configure a service control policy (SCP) to manage the AWS accounts. Add AWS IAM Identity Center (AWS Single Sign-On) to AWS Directory Service.",
+      "Create a new organization in AWS Organizations. Configure the organization's authentication mechanism to use AWS Directory Service directly.",
+      "E.Set up AWS IAM Identity Center (AWS Single Sign-On) in the organization. Configure IAM Identity Center, and integrate it with the company's corporate directory service.Most Voted"
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85902-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 83Topic #: 1",
+    "question": "A company's dynamic website is hosted using on-premises servers in the United States. The company is launching its product in Europe, and it wants to optimize site loading times for new European users. The site's backend must remain in the United States. The product is being launched in a few days, and an immediate solution is needed.What should the solutions architect recommend?",
+    "choices": [
+      "Launch an Amazon EC2 instance in us-east-1 and migrate the site to it.",
+      "Move the website to Amazon S3. Use Cross-Region Replication between Regions.",
+      "Use Amazon CloudFront with a custom origin pointing to the on-premises servers.Most Voted",
+      "Use an Amazon Route 53 geoproximity routing policy pointing to on-premises servers."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85615-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 82Topic #: 1",
+    "question": "A company hosts its web applications in the AWS Cloud. The company configures Elastic Load Balancers to use certificates that are imported into AWS Certificate Manager (ACM). The company's security team must be notified 30 days before the expiration of each certificate.What should a solutions architect recommend to meet this requirement?",
+    "choices": [
+      "Add a rule in ACM to publish a custom message to an Amazon Simple Notification Service (Amazon SNS) topic every day, beginning 30 days before any certificate will expire.",
+      "Create an AWS Config rule that checks for certificates that will expire within 30 days. Configure Amazon EventBridge (Amazon CloudWatch Events) to invoke a custom alert by way of Amazon Simple Notification Service (Amazon SNS) when AWS Config reports a noncompliant resource.",
+      "Use AWS Trusted Advisor to check for certificates that will expire within 30 days. Create an Amazon CloudWatch alarm that is based on Trusted Advisor metrics for check status changes. Configure the alarm to send a custom alert by way of Amazon Simple Notification Service (Amazon SNS).",
+      "Create an Amazon EventBridge (Amazon CloudWatch Events) rule to detect any certificates that will expire within 30 days. Configure the rule to invoke an AWS Lambda function. Configure the Lambda function to send a custom alert by way of Amazon Simple Notification Service (Amazon SNS).Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/86621-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 81Topic #: 1",
+    "question": "A solutions architect is designing the cloud architecture for a new application being deployed on AWS. The process should run in parallel while adding and removing application nodes as needed based on the number of jobs to be processed. The processor application is stateless. The solutions architect must ensure that the application is loosely coupled and the job items are durably stored.Which design should the solutions architect use?",
+    "choices": [
+      "Create an Amazon SNS topic to send the jobs that need to be processed. Create an Amazon Machine Image (AMI) that consists of the processor application. Create a launch configuration that uses the AMI. Create an Auto Scaling group using the launch configuration. Set the scaling policy for the Auto Scaling group to add and remove nodes based on CPU usage.",
+      "Create an Amazon SQS queue to hold the jobs that need to be processed. Create an Amazon Machine Image (AMI) that consists of the processor application. Create a launch configuration that uses the AMI. Create an Auto Scaling group using the launch configuration. Set the scaling policy for the Auto Scaling group to add and remove nodes based on network usage.",
+      "Create an Amazon SQS queue to hold the jobs that need to be processed. Create an Amazon Machine Image (AMI) that consists of the processor application. Create a launch template that uses the AMI. Create an Auto Scaling group using the launch template. Set the scaling policy for the Auto Scaling group to add and remove nodes based on the number of items in the SQS queue.Most Voted",
+      "Create an Amazon SNS topic to send the jobs that need to be processed. Create an Amazon Machine Image (AMI) that consists of the processor application. Create a launch template that uses the AMI. Create an Auto Scaling group using the launch template. Set the scaling policy for the Auto Scaling group to add and remove nodes based on the number of messages published to the SNS topic."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85606-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 80Topic #: 1",
+    "question": "A company recently signed a contract with an AWS Managed Service Provider (MSP) Partner for help with an application migration initiative. A solutions architect needs ta share an Amazon Machine Image (AMI) from an existing AWS account with the MSP Partner's AWS account. The AMI is backed by Amazon Elastic Block Store (Amazon EBS) and uses an AWS Key Management Service (AWS KMS) customer managed key to encrypt EBS volume snapshots.What is the MOST secure way for the solutions architect to share the AMI with the MSP Partner's AWS account?",
+    "choices": [
+      "Make the encrypted AMI and snapshots publicly available. Modify the key policy to allow the MSP Partner's AWS account to use the key.",
+      "Modify the launchPermission property of the AMI. Share the AMI with the MSP Partner's AWS account only. Modify the key policy to allow the MSP Partner's AWS account to use the key.Most Voted",
+      "Modify the launchPermission property of the AMI. Share the AMI with the MSP Partner's AWS account only. Modify the key policy to trust a new KMS key that is owned by the MSP Partner for encryption.",
+      "Export the AMI from the source account to an Amazon S3 bucket in the MSP Partner's AWS account, Encrypt the S3 bucket with a new KMS key that is owned by the MSP Partner. Copy and launch the AMI in the MSP Partner's AWS account."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85743-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 79Topic #: 1",
+    "question": "A company is planning to use an Amazon DynamoDB table for data storage. The company is concerned about cost optimization. The table will not be used on most mornings. In the evenings, the read and write traffic will often be unpredictable. When traffic spikes occur, they will happen very quickly.What should a solutions architect recommend?",
+    "choices": [
+      "Create a DynamoDB table in on-demand capacity mode.Most Voted",
+      "Create a DynamoDB table with a global secondary index.",
+      "Create a DynamoDB table with provisioned capacity and auto scaling.",
+      "Create a DynamoDB table in provisioned capacity mode, and configure it as a global table."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85742-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 78Topic #: 1",
+    "question": "A company needs to keep user transaction data in an Amazon DynamoDB table. The company must retain the data for 7 years.What is the MOST operationally efficient solution that meets these requirements?",
+    "choices": [
+      "Use DynamoDB point-in-time recovery to back up the table continuously.",
+      "Use AWS Backup to create backup schedules and retention policies for the table.Most Voted",
+      "Create an on-demand backup of the table by using the DynamoDB console. Store the backup in an Amazon S3 bucket. Set an S3 Lifecycle configuration for the S3 bucket.",
+      "Create an Amazon EventBridge (Amazon CloudWatch Events) rule to invoke an AWS Lambda function. Configure the Lambda function to back up the table and to store the backup in an Amazon S3 bucket. Set an S3 Lifecycle configuration for the S3 bucket."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85740-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 77Topic #: 1",
+    "question": "A company needs to configure a real-time data ingestion architecture for its application. The company needs an API, a process that transforms data as the data is streamed, and a storage solution for the data.Which solution will meet these requirements with the LEAST operational overhead?",
+    "choices": [
+      "Deploy an Amazon EC2 instance to host an API that sends data to an Amazon Kinesis data stream. Create an Amazon Kinesis Data Firehose delivery stream that uses the Kinesis data stream as a data source. Use AWS Lambda functions to transform the data. Use the Kinesis Data Firehose delivery stream to send the data to Amazon S3.",
+      "Deploy an Amazon EC2 instance to host an API that sends data to AWS Glue. Stop source/destination checking on the EC2 instance. Use AWS Glue to transform the data and to send the data to Amazon S3.",
+      "Configure an Amazon API Gateway API to send data to an Amazon Kinesis data stream. Create an Amazon Kinesis Data Firehose delivery stream that uses the Kinesis data stream as a data source. Use AWS Lambda functions to transform the data. Use the Kinesis Data Firehose delivery stream to send the data to Amazon S3.Most Voted",
+      "Configure an Amazon API Gateway API to send data to AWS Glue. Use AWS Lambda functions to transform the data. Use AWS Glue to send the data to Amazon S3."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85801-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 76Topic #: 1",
+    "question": "A company receives 10 TB of instrumentation data each day from several machines located at a single factory. The data consists of JSON files stored on a storage area network (SAN) in an on-premises data center located within the factory. The company wants to send this data to Amazon S3 where it can be accessed by several additional systems that provide critical near-real-time analytics. A secure transfer is important because the data is considered sensitive.Which solution offers the MOST reliable data transfer?",
+    "choices": [
+      "AWS DataSync over public internet",
+      "AWS DataSync over AWS Direct ConnectMost Voted",
+      "AWS Database Migration Service (AWS DMS) over public internet",
+      "AWS Database Migration Service (AWS DMS) over AWS Direct Connect"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/86120-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 75Topic #: 1",
+    "question": "A company wants to move a multi-tiered application from on premises to the AWS Cloud to improve the application's performance. The application consists of application tiers that communicate with each other by way of RESTful services. Transactions are dropped when one tier becomes overloaded. A solutions architect must design a solution that resolves these issues and modernizes the application.Which solution meets these requirements and is the MOST operationally efficient?",
+    "choices": [
+      "Use Amazon API Gateway and direct transactions to the AWS Lambda functions as the application layer. Use Amazon Simple Queue Service (Amazon SQS) as the communication layer between application services.Most Voted",
+      "Use Amazon CloudWatch metrics to analyze the application performance history to determine the servers' peak utilization during the performance failures. Increase the size of the application server's Amazon EC2 instances to meet the peak requirements.",
+      "Use Amazon Simple Notification Service (Amazon SNS) to handle the messaging between application servers running on Amazon EC2 in an Auto Scaling group. Use Amazon CloudWatch to monitor the SNS queue length and scale up and down as required.",
+      "Use Amazon Simple Queue Service (Amazon SQS) to handle the messaging between application servers running on Amazon EC2 in an Auto Scaling group. Use Amazon CloudWatch to monitor the SQS queue length and scale up when communication failures are detected."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85346-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 74Topic #: 1",
+    "question": "A solutions architect is designing a two-tier web application. The application consists of a public-facing web tier hosted on Amazon EC2 in public subnets. The database tier consists of Microsoft SQL Server running on Amazon EC2 in a private subnet. Security is a high priority for the company.How should security groups be configured in this situation? (Choose two.)",
+    "choices": [
+      "Configure the security group for the web tier to allow inbound traffic on port 443 from 0.0.0.0/0.Most Voted",
+      "Configure the security group for the web tier to allow outbound traffic on port 443 from 0.0.0.0/0.",
+      "Configure the security group for the database tier to allow inbound traffic on port 1433 from the security group for the web tier.Most Voted",
+      "Configure the security group for the database tier to allow outbound traffic on ports 443 and 1433 to the security group for the web tier.",
+      "E.Configure the security group for the database tier to allow inbound traffic on ports 443 and 1433 from the security group for the web tier."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85613-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 73Topic #: 1",
+    "question": "A company recently launched Linux-based application instances on Amazon EC2 in a private subnet and launched a Linux-based bastion host on an Amazon EC2 instance in a public subnet of a VPC. A solutions architect needs to connect from the on-premises network, through the company's internet connection, to the bastion host, and to the application servers. The solutions architect must make sure that the security groups of all the EC2 instances will allow that access.Which combination of steps should the solutions architect take to meet these requirements? (Choose two.)",
+    "choices": [
+      "Replace the current security group of the bastion host with one that only allows inbound access from the application instances.",
+      "Replace the current security group of the bastion host with one that only allows inbound access from the internal IP range for the company.",
+      "Replace the current security group of the bastion host with one that only allows inbound access from the external IP range for the company.Most Voted",
+      "Replace the current security group of the application instances with one that allows inbound SSH access from only the private IP address of the bastion host.Most Voted",
+      "E.Replace the current security group of the application instances with one that allows inbound SSH access from only the public IP address of the bastion host."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85604-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 72Topic #: 1",
+    "question": "A company runs a photo processing application that needs to frequently upload and download pictures from Amazon S3 buckets that are located in the same AWS Region. A solutions architect has noticed an increased cost in data transfer fees and needs to implement a solution to reduce these costs.How can the solutions architect meet this requirement?",
+    "choices": [
+      "Deploy Amazon API Gateway into a public subnet and adjust the route table to route S3 calls through it.",
+      "Deploy a NAT gateway into a public subnet and attach an endpoint policy that allows access to the S3 buckets.",
+      "Deploy the application into a public subnet and allow it to route through an internet gateway to access the S3 buckets.",
+      "Deploy an S3 VPC gateway endpoint into the VPC and attach an endpoint policy that allows access to the S3 buckets.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85603-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 71Topic #: 1",
+    "question": "A company runs a shopping application that uses Amazon DynamoDB to store customer information. In case of data corruption, a solutions architect needs to design a solution that meets a recovery point objective (RPO) of 15 minutes and a recovery time objective (RTO) of 1 hour.What should the solutions architect recommend to meet these requirements?",
+    "choices": [
+      "Configure DynamoDB global tables. For RPO recovery, point the application to a different AWS Region.",
+      "Configure DynamoDB point-in-time recovery. For RPO recovery, restore to the desired point in time.Most Voted",
+      "Export the DynamoDB data to Amazon S3 Glacier on a daily basis. For RPO recovery, import the data from S3 Glacier to DynamoDB.",
+      "Schedule Amazon Elastic Block Store (Amazon EBS) snapshots for the DynamoDB table every 15 minutes. For RPO recovery, restore the DynamoDB table by using the EBS snapshot."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85594-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 69Topic #: 1",
+    "question": "A company is running a business-critical web application on Amazon EC2 instances behind an Application Load Balancer. The EC2 instances are in an Auto Scaling group. The application uses an Amazon Aurora PostgreSQL database that is deployed in a single Availability Zone. The company wants the application to be highly available with minimum downtime and minimum loss of data.Which solution will meet these requirements with the LEAST operational effort?",
+    "choices": [
+      "Place the EC2 instances in different AWS Regions. Use Amazon Route 53 health checks to redirect traffic. Use Aurora PostgreSQL Cross-Region Replication.",
+      "Configure the Auto Scaling group to use multiple Availability Zones. Configure the database as Multi-AZ. Configure an Amazon RDS Proxy instance for the database.Most Voted",
+      "Configure the Auto Scaling group to use one Availability Zone. Generate hourly snapshots of the database. Recover the database from the snapshots in the event of a failure.",
+      "Configure the Auto Scaling group to use multiple AWS Regions. Write the data from the application to Amazon S3. Use S3 Event Notifications to launch an AWS Lambda function to write the data to the database."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85593-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 68Topic #: 1",
+    "question": "A solutions architect is designing a new hybrid architecture to extend a company's on-premises infrastructure to AWS. The company requires a highly available connection with consistent low latency to an AWS Region. The company needs to minimize costs and is willing to accept slower traffic if the primary connection fails.What should the solutions architect do to meet these requirements?",
+    "choices": [
+      "Provision an AWS Direct Connect connection to a Region. Provision a VPN connection as a backup if the primary Direct Connect connection fails.Most Voted",
+      "Provision a VPN tunnel connection to a Region for private connectivity. Provision a second VPN tunnel for private connectivity and as a backup if the primary VPN connection fails.",
+      "Provision an AWS Direct Connect connection to a Region. Provision a second Direct Connect connection to the same Region as a backup if the primary Direct Connect connection fails.",
+      "Provision an AWS Direct Connect connection to a Region. Use the Direct Connect failover attribute from the AWS CLI to automatically create a backup connection if the primary Direct Connect connection fails."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85583-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 67Topic #: 1",
+    "question": "A company hosts an application on multiple Amazon EC2 instances. The application processes messages from an Amazon SQS queue, writes to an Amazon RDS table, and deletes the message from the queue. Occasional duplicate records are found in the RDS table. The SQS queue does not contain any duplicate messages.What should a solutions architect do to ensure messages are being processed once only?",
+    "choices": [
+      "Use the CreateQueue API call to create a new queue.",
+      "Use the AddPermission API call to add appropriate permissions.",
+      "Use the ReceiveMessage API call to set an appropriate wait time.",
+      "Use the ChangeMessageVisibility API call to increase the visibility timeout.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85310-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 66Topic #: 1",
+    "question": "A company has an application that generates a large number of files, each approximately 5 MB in size. The files are stored in Amazon S3. Company policy requires the files to be stored for 4 years before they can be deleted. Immediate accessibility is always required as the files contain critical business data that is not easy to reproduce. The files are frequently accessed in the first 30 days of the object creation but are rarely accessed after the first 30 days.Which storage solution is MOST cost-effective?",
+    "choices": [
+      "Create an S3 bucket lifecycle policy to move files from S3 Standard to S3 Glacier 30 days from object creation. Delete the files 4 years after object creation.",
+      "Create an S3 bucket lifecycle policy to move files from S3 Standard to S3 One Zone-Infrequent Access (S3 One Zone-IA) 30 days from object creation. Delete the files 4 years after object creation.",
+      "Create an S3 bucket lifecycle policy to move files from S3 Standard to S3 Standard-Infrequent Access (S3 Standard-IA) 30 days from object creation. Delete the files 4 years after object creation.Most Voted",
+      "Create an S3 bucket lifecycle policy to move files from S3 Standard to S3 Standard-Infrequent Access (S3 Standard-IA) 30 days from object creation. Move the files to S3 Glacier 4 years after object creation."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85367-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 65Topic #: 1",
+    "question": "A hospital recently deployed a RESTful API with Amazon API Gateway and AWS Lambda. The hospital uses API Gateway and Lambda to upload reports that are in PDF format and JPEG format. The hospital needs to modify the Lambda code to identify protected health information (PHI) in the reports.Which solution will meet these requirements with the LEAST operational overhead?",
+    "choices": [
+      "Use existing Python libraries to extract the text from the reports and to identify the PHI from the extracted text.",
+      "Use Amazon Textract to extract the text from the reports. Use Amazon SageMaker to identify the PHI from the extracted text.",
+      "Use Amazon Textract to extract the text from the reports. Use Amazon Comprehend Medical to identify the PHI from the extracted text.Most Voted",
+      "Use Amazon Rekognition to extract the text from the reports. Use Amazon Comprehend Medical to identify the PHI from the extracted text."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85173-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 64Topic #: 1",
+    "question": "A company has more than 5 TB of file data on Windows file servers that run on premises. Users and applications interact with the data each day.The company is moving its Windows workloads to AWS. As the company continues this process, the company requires access to AWS and on-premises file storage with minimum latency. The company needs a solution that minimizes operational overhead and requires no significant changes to the existing file access patterns. The company uses an AWS Site-to-Site VPN connection for connectivity to AWS.What should a solutions architect do to meet these requirements?",
+    "choices": [
+      "Deploy and configure Amazon FSx for Windows File Server on AWS. Move the on-premises file data to FSx for Windows File Server. Reconfigure the workloads to use FSx for Windows File Server on AWS.",
+      "Deploy and configure an Amazon S3 File Gateway on premises. Move the on-premises file data to the S3 File Gateway. Reconfigure the on-premises workloads and the cloud workloads to use the S3 File Gateway.",
+      "Deploy and configure an Amazon S3 File Gateway on premises. Move the on-premises file data to Amazon S3. Reconfigure the workloads to use either Amazon S3 directly or the S3 File Gateway. depending on each workload's location.",
+      "Deploy and configure Amazon FSx for Windows File Server on AWS. Deploy and configure an Amazon FSx File Gateway on premises. Move the on-premises file data to the FSx File Gateway. Configure the cloud workloads to use FSx for Windows File Server on AWS. Configure the on-premises workloads to use the FSx File Gateway.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85795-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 63Topic #: 1",
+    "question": "A company runs its infrastructure on AWS and has a registered base of 700,000 users for its document management application. The company intends to create a product that converts large .pdf files to .jpg image files. The .pdf files average 5 MB in size. The company needs to store the original files and the converted files. A solutions architect must design a scalable solution to accommodate demand that will grow rapidly over time.Which solution meets these requirements MOST cost-effectively?",
+    "choices": [
+      "Save the .pdf files to Amazon S3. Configure an S3 PUT event to invoke an AWS Lambda function to convert the files to .jpg format and store them back in Amazon S3.Most Voted",
+      "Save the .pdf files to Amazon DynamoDUse the DynamoDB Streams feature to invoke an AWS Lambda function to convert the files to .jpg format and store them back in DynamoDB.",
+      "Upload the .pdf files to an AWS Elastic Beanstalk application that includes Amazon EC2 instances, Amazon Elastic Block Store (Amazon EBS) storage, and an Auto Scaling group. Use a program in the EC2 instances to convert the files to .jpg format. Save the .pdf files and the .jpg files in the EBS store.",
+      "Upload the .pdf files to an AWS Elastic Beanstalk application that includes Amazon EC2 instances, Amazon Elastic File System (Amazon EFS) storage, and an Auto Scaling group. Use a program in the EC2 instances to convert the file to .jpg format. Save the .pdf files and the .jpg files in the EBS store."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85524-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 62Topic #: 1",
+    "question": "A company is deploying a new public web application to AWS. The application will run behind an Application Load Balancer (ALB). The application needs to be encrypted at the edge with an SSL/TLS certificate that is issued by an external certificate authority (CA). The certificate must be rotated each year before the certificate expires.What should a solutions architect do to meet these requirements?",
+    "choices": [
+      "Use AWS Certificate Manager (ACM) to issue an SSL/TLS certificate. Apply the certificate to the ALB. Use the managed renewal feature to automatically rotate the certificate.",
+      "Use AWS Certificate Manager (ACM) to issue an SSL/TLS certificate. Import the key material from the certificate. Apply the certificate to the ALUse the managed renewal feature to automatically rotate the certificate.",
+      "Use AWS Certificate Manager (ACM) Private Certificate Authority to issue an SSL/TLS certificate from the root CA. Apply the certificate to the ALB. Use the managed renewal feature to automatically rotate the certificate.",
+      "Use AWS Certificate Manager (ACM) to import an SSL/TLS certificate. Apply the certificate to the ALB. Use Amazon EventBridge (Amazon CloudWatch Events) to send a notification when the certificate is nearing expiration. Rotate the certificate manually.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85580-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 61Topic #: 1",
+    "question": "A company is developing a two-tier web application on AWS. The company's developers have deployed the application on an Amazon EC2 instance that connects directly to a backend Amazon RDS database. The company must not hardcode database credentials in the application. The company must also implement a solution to automatically rotate the database credentials on a regular basis.Which solution will meet these requirements with the LEAST operational overhead?",
+    "choices": [
+      "Store the database credentials in the instance metadata. Use Amazon EventBridge (Amazon CloudWatch Events) rules to run a scheduled AWS Lambda function that updates the RDS credentials and instance metadata at the same time.",
+      "Store the database credentials in a configuration file in an encrypted Amazon S3 bucket. Use Amazon EventBridge (Amazon CloudWatch Events) rules to run a scheduled AWS Lambda function that updates the RDS credentials and the credentials in the configuration file at the same time. Use S3 Versioning to ensure the ability to fall back to previous values.",
+      "Store the database credentials as a secret in AWS Secrets Manager. Turn on automatic rotation for the secret. Attach the required permission to the EC2 role to grant access to the secret.Most Voted",
+      "Store the database credentials as encrypted parameters in AWS Systems Manager Parameter Store. Turn on automatic rotation for the encrypted parameters. Attach the required permission to the EC2 role to grant access to the encrypted parameters."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85121-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 60Topic #: 1",
+    "question": "A company has a website hosted on AWS. The website is behind an Application Load Balancer (ALB) that is configured to handle HTTP and HTTPS separately. The company wants to forward all requests to the website so that the requests will use HTTPS.What should a solutions architect do to meet this requirement?",
+    "choices": [
+      "Update the ALB's network ACL to accept only HTTPS traffic.",
+      "Create a rule that replaces the HTTP in the URL with HTTPS.",
+      "Create a listener rule on the ALB to redirect HTTP traffic to HTTPS.Most Voted",
+      "Replace the ALB with a Network Load Balancer configured to use Server Name Indication (SNI)."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85793-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 59Topic #: 1",
+    "question": "A company hosts more than 300 global websites and applications. The company requires a platform to analyze more than 30 TB of clickstream data each day.What should a solutions architect do to transmit and process the clickstream data?",
+    "choices": [
+      "Design an AWS Data Pipeline to archive the data to an Amazon S3 bucket and run an Amazon EMR cluster with the data to generate analytics.",
+      "Create an Auto Scaling group of Amazon EC2 instances to process the data and send it to an Amazon S3 data lake for Amazon Redshift to use for analysis.",
+      "Cache the data to Amazon CloudFront. Store the data in an Amazon S3 bucket. When an object is added to the S3 bucket. run an AWS Lambda function to process the data for analysis.",
+      "Collect the data from Amazon Kinesis Data Streams. Use Amazon Kinesis Data Firehose to transmit the data to an Amazon S3 data lake. Load the data in Amazon Redshift for analysis.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85453-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 58Topic #: 1",
+    "question": "A company wants to run its critical applications in containers to meet requirements for scalability and availability. The company prefers to focus on maintenance of the critical applications. The company does not want to be responsible for provisioning and managing the underlying infrastructure that runs the containerized workload.What should a solutions architect do to meet these requirements?",
+    "choices": [
+      "Use Amazon EC2 instances, and install Docker on the instances.",
+      "Use Amazon Elastic Container Service (Amazon ECS) on Amazon EC2 worker nodes.",
+      "Use Amazon Elastic Container Service (Amazon ECS) on AWS Fargate.Most Voted",
+      "Use Amazon EC2 instances from an Amazon Elastic Container Service (Amazon ECS)-optimized Amazon Machine Image (AMI)."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85452-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 57Topic #: 1",
+    "question": "A company is running a popular social media website. The website gives users the ability to upload images to share with other users. The company wants to make sure that the images do not contain inappropriate content. The company needs a solution that minimizes development effort.What should a solutions architect do to meet these requirements?",
+    "choices": [
+      "Use Amazon Comprehend to detect inappropriate content. Use human review for low-confidence predictions.",
+      "Use Amazon Rekognition to detect inappropriate content. Use human review for low-confidence predictions.Most Voted",
+      "Use Amazon SageMaker to detect inappropriate content. Use ground truth to label low-confidence predictions.",
+      "Use AWS Fargate to deploy a custom machine learning model to detect inappropriate content. Use ground truth to label low-confidence predictions."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85266-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 56Topic #: 1",
+    "question": "A company has registered its domain name with Amazon Route 53. The company uses Amazon API Gateway in the ca-central-1 Region as a public interface for its backend microservice APIs. Third-party services consume the APIs securely. The company wants to design its API Gateway URL with the company's domain name and corresponding certificate so that the third-party services can use HTTPS.Which solution will meet these requirements?",
+    "choices": [
+      "Create stage variables in API Gateway with Name=\"Endpoint-URL\" and Value=\"Company Domain Name\" to overwrite the default URL. Import the public certificate associated with the company's domain name into AWS Certificate Manager (ACM).",
+      "Create Route 53 DNS records with the company's domain name. Point the alias record to the Regional API Gateway stage endpoint. Import the public certificate associated with the company's domain name into AWS Certificate Manager (ACM) in the us-east-1 Region.",
+      "Create a Regional API Gateway endpoint. Associate the API Gateway endpoint with the company's domain name. Import the public certificate associated with the company's domain name into AWS Certificate Manager (ACM) in the same Region. Attach the certificate to the API Gateway endpoint. Configure Route 53 to route traffic to the API Gateway endpoint.Most Voted",
+      "Create a Regional API Gateway endpoint. Associate the API Gateway endpoint with the company's domain name. Import the public certificate associated with the company's domain name into AWS Certificate Manager (ACM) in the us-east-1 Region. Attach the certificate to the API Gateway APIs. Create Route 53 DNS records with the company's domain name. Point an A record to the company's domain name."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85532-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 53Topic #: 1",
+    "question": "A company needs to store its accounting records in Amazon S3. The records must be immediately accessible for 1 year and then must be archived for an additional 9 years. No one at the company, including administrative users and root users, can be able to delete the records during the entire 10-year period. The records must be stored with maximum resiliency.Which solution will meet these requirements?",
+    "choices": [
+      "Store the records in S3 Glacier for the entire 10-year period. Use an access control policy to deny deletion of the records for a period of 10 years.",
+      "Store the records by using S3 Intelligent-Tiering. Use an IAM policy to deny deletion of the records. After 10 years, change the IAM policy to allow deletion.",
+      "Use an S3 Lifecycle policy to transition the records from S3 Standard to S3 Glacier Deep Archive after 1 year. Use S3 Object Lock in compliance mode for a period of 10 years.Most Voted",
+      "Use an S3 Lifecycle policy to transition the records from S3 Standard to S3 One Zone-Infrequent Access (S3 One Zone-IA) after 1 year. Use S3 Object Lock in governance mode for a period of 10 years."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85265-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 52Topic #: 1",
+    "question": "A company wants to migrate its on-premises application to AWS. The application produces output files that vary in size from tens of gigabytes to hundreds of terabytes. The application data must be stored in a standard file system structure. The company wants a solution that scales automatically. is highly available, and requires minimum operational overhead.Which solution will meet these requirements?",
+    "choices": [
+      "Migrate the application to run as containers on Amazon Elastic Container Service (Amazon ECS). Use Amazon S3 for storage.",
+      "Migrate the application to run as containers on Amazon Elastic Kubernetes Service (Amazon EKS). Use Amazon Elastic Block Store (Amazon EBS) for storage.",
+      "Migrate the application to Amazon EC2 instances in a Multi-AZ Auto Scaling group. Use Amazon Elastic File System (Amazon EFS) for storage.Most Voted",
+      "Migrate the application to Amazon EC2 instances in a Multi-AZ Auto Scaling group. Use Amazon Elastic Block Store (Amazon EBS) for storage."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85557-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 51Topic #: 1",
+    "question": "A company is developing an application that provides order shipping statistics for retrieval by a REST API. The company wants to extract the shipping statistics, organize the data into an easy-to-read HTML format, and send the report to several email addresses at the same time every morning.Which combination of steps should a solutions architect take to meet these requirements? (Choose two.)",
+    "choices": [
+      "Configure the application to send the data to Amazon Kinesis Data Firehose.",
+      "Use Amazon Simple Email Service (Amazon SES) to format the data and to send the report by email.Most Voted",
+      "Create an Amazon EventBridge (Amazon CloudWatch Events) scheduled event that invokes an AWS Glue job to query the application's API for the data.",
+      "Create an Amazon EventBridge (Amazon CloudWatch Events) scheduled event that invokes an AWS Lambda function to query the application's API for the data.Most Voted",
+      "E.Store the application data in Amazon S3. Create an Amazon Simple Notification Service (Amazon SNS) topic as an S3 event destination to send the report by email."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85211-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 49Topic #: 1",
+    "question": "A company stores call transcript files on a monthly basis. Users access the files randomly within 1 year of the call, but users access the files infrequently after 1 year. The company wants to optimize its solution by giving users the ability to query and retrieve files that are less than 1-year-old as quickly as possible. A delay in retrieving older files is acceptable.Which solution will meet these requirements MOST cost-effectively?",
+    "choices": [
+      "Store individual files with tags in Amazon S3 Glacier Instant Retrieval. Query the tags to retrieve the files from S3 Glacier Instant Retrieval.",
+      "Store individual files in Amazon S3 Intelligent-Tiering. Use S3 Lifecycle policies to move the files to S3 Glacier Flexible Retrieval after 1 year. Query and retrieve the files that are in Amazon S3 by using Amazon Athena. Query and retrieve the files that are in S3 Glacier by using S3 Glacier Select.Most Voted",
+      "Store individual files with tags in Amazon S3 Standard storage. Store search metadata for each archive in Amazon S3 Standard storage. Use S3 Lifecycle policies to move the files to S3 Glacier Instant Retrieval after 1 year. Query and retrieve the files by searching for metadata from Amazon S3.",
+      "Store individual files in Amazon S3 Standard storage. Use S3 Lifecycle policies to move the files to S3 Glacier Deep Archive after 1 year. Store search metadata in Amazon RDS. Query the files from Amazon RDS. Retrieve the files from S3 Glacier Deep Archive."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85119-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 48Topic #: 1",
+    "question": "A company's website uses an Amazon EC2 instance store for its catalog of items. The company wants to make sure that the catalog is highly available and that the catalog is stored in a durable location.What should a solutions architect do to meet these requirements?",
+    "choices": [
+      "Move the catalog to Amazon ElastiCache for Redis.",
+      "Deploy a larger EC2 instance with a larger instance store.",
+      "Move the catalog from the instance store to Amazon S3 Glacier Deep Archive.",
+      "Move the catalog to an Amazon Elastic File System (Amazon EFS) file system.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85529-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 47Topic #: 1",
+    "question": "A company needs guaranteed Amazon EC2 capacity in three specific Availability Zones in a specific AWS Region for an upcoming event that will last 1 week.What should the company do to guarantee the EC2 capacity?",
+    "choices": [
+      "Purchase Reserved Instances that specify the Region needed.",
+      "Create an On-Demand Capacity Reservation that specifies the Region needed.",
+      "Purchase Reserved Instances that specify the Region and three Availability Zones needed.",
+      "Create an On-Demand Capacity Reservation that specifies the Region and three Availability Zones needed.Most Voted"
+    ],
+    "answers": [
+      "D."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85264-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 46Topic #: 1",
+    "question": "A company has an application that provides marketing services to stores. The services are based on previous purchases by store customers. The stores upload transaction data to the company through SFTP, and the data is processed and analyzed to generate new marketing offers. Some of the files can exceed 200 GB in size.Recently, the company discovered that some of the stores have uploaded files that contain personally identifiable information (PII) that should not have been included. The company wants administrators to be alerted if PII is shared again. The company also wants to automate remediation.What should a solutions architect do to meet these requirements with the LEAST development effort?",
+    "choices": [
+      "Use an Amazon S3 bucket as a secure transfer point. Use Amazon Inspector to scan the objects in the bucket. If objects contain PII, trigger an S3 Lifecycle policy to remove the objects that contain PII.",
+      "Use an Amazon S3 bucket as a secure transfer point. Use Amazon Macie to scan the objects in the bucket. If objects contain PII, use Amazon Simple Notification Service (Amazon SNS) to trigger a notification to the administrators to remove the objects that contain PII.Most Voted",
+      "Implement custom scanning algorithms in an AWS Lambda function. Trigger the function when objects are loaded into the bucket. If objects contain PII, use Amazon Simple Notification Service (Amazon SNS) to trigger a notification to the administrators to remove the objects that contain PII.",
+      "Implement custom scanning algorithms in an AWS Lambda function. Trigger the function when objects are loaded into the bucket. If objects contain PII, use Amazon Simple Email Service (Amazon SES) to trigger a notification to the administrators and trigger an S3 Lifecycle policy to remove the meats that contain PII."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85408-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 45Topic #: 1",
+    "question": "A company has a data ingestion workflow that consists of the following:• An Amazon Simple Notification Service (Amazon SNS) topic for notifications about new data deliveries• An AWS Lambda function to process the data and record metadataThe company observes that the ingestion workflow fails occasionally because of network connectivity issues. When such a failure occurs, the Lambda function does not ingest the corresponding data unless the company manually reruns the job.Which combination of actions should a solutions architect take to ensure that the Lambda function ingests all data in the future? (Choose two.)",
+    "choices": [
+      "Deploy the Lambda function in multiple Availability Zones.",
+      "Create an Amazon Simple Queue Service (Amazon SQS) queue, and subscribe it to the SNS topic.Most Voted",
+      "Increase the CPU and memory that are allocated to the Lambda function.",
+      "Increase provisioned throughput for the Lambda function.",
+      "E.Modify the Lambda function to read from an Amazon Simple Queue Service (Amazon SQS) queue.Most Voted"
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/84750-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 44Topic #: 1",
+    "question": "A company has an Amazon S3 bucket that contains critical data. The company must protect the data from accidental deletion.Which combination of steps should a solutions architect take to meet these requirements? (Choose two.)",
+    "choices": [
+      "Enable versioning on the S3 bucket.Most Voted",
+      "Enable MFA Delete on the S3 bucket.Most Voted",
+      "Create a bucket policy on the S3 bucket.",
+      "Enable default encryption on the S3 bucket.",
+      "E.Create a lifecycle policy for the objects in the S3 bucket."
+    ],
+    "answers": [
+      "A."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85206-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 43Topic #: 1",
+    "question": "A company has an on-premises application that generates a large amount of time-sensitive data that is backed up to Amazon S3. The application has grown and there are user complaints about internet bandwidth limitations. A solutions architect needs to design a long-term solution that allows for both timely backups to Amazon S3 and with minimal impact on internet connectivity for internal users.Which solution meets these requirements?",
+    "choices": [
+      "Establish AWS VPN connections and proxy all traffic through a VPC gateway endpoint.",
+      "Establish a new AWS Direct Connect connection and direct backup traffic through this new connection.Most Voted",
+      "Order daily AWS Snowball devices. Load the data onto the Snowball devices and return the devices to AWS each day.",
+      "Submit a support ticket through the AWS Management Console. Request the removal of S3 service limits from the account."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85205-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 42Topic #: 1",
+    "question": "A company runs a highly available image-processing application on Amazon EC2 instances in a single VPC. The EC2 instances run inside several subnets across multiple Availability Zones. The EC2 instances do not communicate with each other. However, the EC2 instances download images from Amazon S3 and upload images to Amazon S3 through a single NAT gateway. The company is concerned about data transfer charges.What is the MOST cost-effective way for the company to avoid Regional data transfer charges?",
+    "choices": [
+      "Launch the NAT gateway in each Availability Zone.",
+      "Replace the NAT gateway with a NAT instance.",
+      "Deploy a gateway VPC endpoint for Amazon S3.Most Voted",
+      "Provision an EC2 Dedicated Host to run the EC2 instances."
+    ],
+    "answers": [
+      "C."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85446-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 41Topic #: 1",
+    "question": "A company's application integrates with multiple software-as-a-service (SaaS) sources for data collection. The company runs Amazon EC2 instances to receive the data and to upload the data to an Amazon S3 bucket for analysis. The same EC2 instance that receives and uploads the data also sends a notification to the user when an upload is complete. The company has noticed slow application performance and wants to improve the performance as much as possible.Which solution will meet these requirements with the LEAST operational overhead?",
+    "choices": [
+      "Create an Auto Scaling group so that EC2 instances can scale out. Configure an S3 event notification to send events to an Amazon Simple Notification Service (Amazon SNS) topic when the upload to the S3 bucket is complete.",
+      "Create an Amazon AppFlow flow to transfer data between each SaaS source and the S3 bucket. Configure an S3 event notification to send events to an Amazon Simple Notification Service (Amazon SNS) topic when the upload to the S3 bucket is complete.Most Voted",
+      "Create an Amazon EventBridge (Amazon CloudWatch Events) rule for each SaaS source to send output data. Configure the S3 bucket as the rule's target. Create a second EventBridge (Cloud Watch Events) rule to send events when the upload to the S3 bucket is complete. Configure an Amazon Simple Notification Service (Amazon SNS) topic as the second rule's target.",
+      "Create a Docker container to use instead of an EC2 instance. Host the containerized application on Amazon Elastic Container Service (Amazon ECS). Configure Amazon CloudWatch Container Insights to send events to an Amazon Simple Notification Service (Amazon SNS) topic when the upload to the S3 bucket is complete."
+    ],
+    "answers": [
+      "B."
+    ]
+  },
+  {
+    "url": "https://www.examtopics.com/discussions/amazon/view/85204-exam-aws-certified-solutions-architect-associate-saa-c03/",
+    "question_number": "Question #: 40Topic #: 1",
+    "question": "A company has thousands of edge devices that collectively generate 1 TB of status alerts each day. Each alert is approximately 2 KB in size. A solutions architect needs to implement a solution to ingest and store the alerts for future analysis.The company wants a highly available solution. However, the company needs to minimize costs and does not want to manage additional infrastructure. Additionally, the company wants to keep 14 days of data available for immediate analysis and archive any data older than 14 days.What is the MOST operationally efficient solution that meets these requirements?",
+    "choices": [
+      "Create an Amazon Kinesis Data Firehose delivery stream to ingest the alerts. Configure the Kinesis Data Firehose stream to deliver the alerts to an Amazon S3 bucket. Set up an S3 Lifecycle configuration to transition data to Amazon S3 Glacier after 14 days.Most Voted",
+      "Launch Amazon EC2 instances across two Availability Zones and place them behind an Elastic Load Balancer to ingest the alerts. Create a script on the EC2 instances that will store the alerts in an Amazon S3 bucket. Set up an S3 Lifecycle configuration to transition data to Amazon S3 Glacier after 14 days.",
+      "Create an Amazon Kinesis Data Firehose delivery stream to ingest the alerts. Configure the Kinesis Data Firehose stream to deliver the alerts to an Amazon OpenSearch Service (Amazon Elasticsearch Service) cluster. Set up the Amazon OpenSearch Service (Amazon Elasticsearch Service) cluster to take manual snapshots every day and delete data from the cluster that is older than 14 days.",
+      "Create an Amazon Simple Queue Service (Amazon SQS) standard queue to ingest the alerts, and set the message retention period to 14 days. Configure consumers to poll the SQS queue, check the age of the message, and analyze the message data as needed. If the message is 14 days old, the consumer should copy the message to an Amazon S3 bucket and delete the message from the SQS queue."
+    ],
+    "answers": [
+      "A."
+    ]
+  }
+]

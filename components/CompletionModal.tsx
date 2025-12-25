@@ -1,5 +1,7 @@
 "use client";
 
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -7,8 +9,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { authClient } from "@/lib/auth-client";
 import { getBillingInfo } from "@/lib/utils/get-user-location";
 import { useState } from "react";
@@ -38,7 +38,7 @@ export default function CompletionModal({
     try {
       const billingInfo = await getBillingInfo();
       const { data: checkout, error } = await authClient.dodopayments.checkout({
-        slug: "premium-plan",
+        slug: "individual-plan",
         billing: {
           city: billingInfo.city,
           country: billingInfo.country,
@@ -51,7 +51,7 @@ export default function CompletionModal({
           name: session.user.name,
         },
         referenceId: session.user.id,
-      });
+      } as any);
 
       if (error) {
         console.error("Checkout error:", error);
@@ -83,17 +83,18 @@ export default function CompletionModal({
         <div className="py-6 space-y-6">
           {/* Description text */}
           <p className="text-center text-gray-600 text-sm leading-relaxed">
-            Unlock full access to all 5<br />
-            levels, 250+ AWS-style
+            Unlock full access to this
             <br />
-            questions, and get our
+            certification with detailed
             <br />
-            100% pass guarantee
+            explanations and final
+            <br />
+            challenge questions
           </p>
 
           {/* Price and badge section */}
           <div className="flex items-center justify-center gap-6">
-            <div className="text-4xl font-bold text-gray-800">$30</div>
+            <div className="text-4xl font-bold text-gray-800">$9.99</div>
             <div className="relative">
               <Badge
                 variant="secondary"
@@ -115,14 +116,16 @@ export default function CompletionModal({
             className="w-full bg-gray-700 hover:bg-gray-800 text-white font-semibold py-3 rounded-lg"
             disabled={isProcessing}
           >
-            {isProcessing ? "Processing..." : "Unlock Full Quiz - $30"}
+            {isProcessing ? "Processing..." : "Unlock Full Access - $9.99"}
           </Button>
 
           {/* Social proof */}
           <p className="text-center text-gray-500 text-xs">
-            Over 1,200 AWS developers
+            Or choose Professional ($24.99) for
             <br />
-            certified with our system
+            3 certifications or Complete ($49.99)
+            <br />
+            for all AWS certifications
           </p>
         </div>
       </DialogContent>

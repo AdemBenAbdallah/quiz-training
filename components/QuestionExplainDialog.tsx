@@ -5,7 +5,6 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Question } from "@/types/quiz";
 import { Loader2 } from "lucide-react";
@@ -24,6 +23,8 @@ interface ExplainData {
 
 type Props = {
   question: Question;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 };
 
 // Loading states to track different phases
@@ -86,8 +87,14 @@ const fetcher = async (url: string, body: any) => {
   return res.json();
 };
 
-const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
-  const [open, setOpen] = useState(false);
+const QuestionExplainDialog: React.FC<Props> = ({
+  question,
+  open: controlledOpen,
+  onOpenChange,
+}) => {
+  const [internalOpen, setInternalOpen] = useState(false);
+  const open = controlledOpen !== undefined ? controlledOpen : internalOpen;
+  const setOpen = onOpenChange || setInternalOpen;
   const containerRef = useContext(FullscreenContainerContext);
 
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
@@ -135,15 +142,6 @@ const QuestionExplainDialog: React.FC<Props> = ({ question }) => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button
-          aria-label="Explain this question"
-          className="w-full max-w-xs mx-auto block"
-          onClick={() => setOpen(true)}
-        >
-          Get Answer
-        </Button>
-      </DialogTrigger>
       <DialogContent
         container={container}
         className="overflow-y-auto max-h-[700px] w-full sm:max-w-lg md:max-w-3xl"

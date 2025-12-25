@@ -1,24 +1,14 @@
-import { TLevelParts } from "@/app/(preview)/parts";
 import useSWR, { mutate } from "swr";
 
-interface QuizPartWithAccess {
+interface Level {
   id: number;
-  start: number;
-  end: number;
   passed: boolean;
   accessible: boolean;
   needsPayment?: boolean;
 }
 
-interface EnhancedQuizParts {
-  level: number;
-  data: QuizPartWithAccess[];
-  QUESTIONS_PER_PART: number;
-}
-
 interface ProgressData {
-  levelParts: TLevelParts;
-  quizPartsByLevel: Record<number, EnhancedQuizParts>;
+  levels: Level[];
 }
 
 const fetcher = async (url: string): Promise<ProgressData> => {
@@ -27,55 +17,44 @@ const fetcher = async (url: string): Promise<ProgressData> => {
   return res.json();
 };
 
-export const useProgress = () => {
-  const { data, error, isLoading } = useSWR<ProgressData>(
-    "/api/progress",
-    fetcher,
-  );
+export const useProgress = (certificateSlug?: string) => {
+  const key = certificateSlug
+    ? `/api/progress?certificate=${certificateSlug}`
+    : "/api/progress";
 
-  const updateProgress = async (levelId: number, partId: number) => {
-    const key = "/api/progress";
+  const { data, error, isLoading } = useSWR<ProgressData>(key, fetcher);
+
+  const updateProgress = async (levelId: number, certSlug?: string) => {
+    const updateKey = certSlug || certificateSlug;
+    if (!updateKey) {
+      throw new Error("Certificate slug is required");
+    }
 
     // Optimistic update
     mutate(
-      key,
+      updateKey,
       (current) => {
         if (!current) return current;
 
         const newData = { ...current };
 
-        // Update quiz part
-        const quizParts = { ...newData.quizPartsByLevel[levelId] };
-        const updatedQuizData = quizParts.data.map(
-          (part: {
-            id: number;
-            start: number;
-            end: number;
-            passed: boolean;
-          }) => {
-            if (part.id === partId) {
-              return { ...part, passed: true };
+        // Update level as passed
+        newData.levels = newData.levels.map((level: any) => {
+          if (level.id === levelId) {
+            return { ...level, passed: true };
+          }
+          return level;
+        });
+
+        // Unlock next level if this level was passed
+        const nextLevelId = levelId + 1;
+        if (nextLevelId <= 8) {
+          newData.levels = newData.levels.map((level: any) => {
+            if (level.id === nextLevelId) {
+              return { ...level, accessible: true };
             }
-            return part;
-          },
-        );
-
-        newData.quizPartsByLevel[levelId] = {
-          ...quizParts,
-          data: updatedQuizData,
-        };
-
-        // Check if last part to unlock next level
-        const isLastPart = partId === quizParts.data.length;
-        if (isLastPart && levelId < 8) {
-          newData.levelParts = newData.levelParts.map(
-            (level: { id: number; passed: boolean }) => {
-              if (level.id === levelId + 1) {
-                return { ...level, passed: true };
-              }
-              return level;
-            },
-          );
+            return level;
+          });
         }
 
         return newData;
@@ -89,17 +68,17 @@ export const useProgress = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          type: "quiz_part",
+          type: "level_complete",
           levelId,
-          partId,
+          certificateSlug: updateKey,
         }),
       });
 
       // Revalidate to ensure consistency
-      mutate(key);
+      mutate(updateKey);
     } catch (error) {
       // Revert optimistic update on error
-      mutate(key);
+      mutate(updateKey);
       throw error;
     }
   };

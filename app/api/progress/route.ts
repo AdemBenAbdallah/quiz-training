@@ -1,11 +1,10 @@
-import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db";
-import { userLevelProgress, userQuizProgress } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { certificates, userLevelProgress } from "@/db/schema";
 import { auth } from "@/lib/auth";
-import { LevelParts, QuizParts } from "@/app/(preview)/parts";
-import { hasActivePurchase } from "@/lib/utils/payment";
-import { connection } from "next/server";
+import { hasActivePurchase } from "@/lib/server/payment";
+import { createInitialProgress } from "@/lib/utils/progress";
+import { and, eq } from "drizzle-orm";
+import { connection, NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   await connection();
@@ -20,138 +19,111 @@ export async function GET(request: NextRequest) {
     }
 
     const userId = session.user.id;
+    const { searchParams } = new URL(request.url);
+    const certificateSlug = searchParams.get("certificate");
 
-    // Get level progress
+    if (!certificateSlug) {
+      return NextResponse.json(
+        { error: "Certificate is required" },
+        { status: 400 },
+      );
+    }
+
+    // First, get the certificate by slug to get the actual ID
+    let certificateId: string;
+    try {
+      const certificate = await db
+        .select()
+        .from(certificates)
+        .where(eq(certificates.slug, certificateSlug))
+        .limit(1);
+
+      if (certificate.length === 0) {
+        return NextResponse.json(
+          { error: "Certificate not found" },
+          { status: 404 },
+        );
+      }
+
+      certificateId = certificate[0].id;
+    } catch (certError) {
+      console.error("Error fetching certificate:", certError);
+      return NextResponse.json(
+        { error: "Database error fetching certificate" },
+        { status: 500 },
+      );
+    }
+
+    // Get level progress for specific certificate
     let levelProgress = await db
       .select()
       .from(userLevelProgress)
-      .where(eq(userLevelProgress.userId, userId));
+      .where(
+        and(
+          eq(userLevelProgress.userId, userId),
+          eq(userLevelProgress.certificateId, certificateId),
+        ),
+      );
 
-    // If no progress exists, initialize it for the user
+    // If no progress exists, initialize it for the user for this certificate
     if (levelProgress.length === 0) {
-      const initialProgress = [
-        { id: `${userId}_1`, userId, levelId: 1, passed: false },
-        { id: `${userId}_2`, userId, levelId: 2, passed: false },
-        { id: `${userId}_3`, userId, levelId: 3, passed: false },
-        { id: `${userId}_4`, userId, levelId: 4, passed: false },
-        { id: `${userId}_5`, userId, levelId: 5, passed: false },
-        { id: `${userId}_6`, userId, levelId: 6, passed: false },
-        { id: `${userId}_7`, userId, levelId: 7, passed: false },
-        { id: `${userId}_8`, userId, levelId: 8, passed: false },
-      ];
+      const initialProgress = createInitialProgress(userId, certificateId);
 
       await db.insert(userLevelProgress).values(initialProgress);
       levelProgress = await db
         .select()
         .from(userLevelProgress)
-        .where(eq(userLevelProgress.userId, userId));
+        .where(
+          and(
+            eq(userLevelProgress.userId, userId),
+            eq(userLevelProgress.certificateId, certificateId),
+          ),
+        );
 
-      console.log(`Initialized progress for user: ${userId}`);
+      console.log(
+        `Initialized progress for user: ${userId}, certificate: ${certificateSlug}`,
+      );
     }
 
-    // Get quiz progress
-    const quizProgress = await db
-      .select()
-      .from(userQuizProgress)
-      .where(eq(userQuizProgress.userId, userId));
+    // Check if user has made a purchase for this certificate
+    let hasPaid = false;
+    try {
+      hasPaid = await hasActivePurchase(userId, certificateId);
+    } catch (paymentError) {
+      console.error("Error checking payment status:", paymentError);
+      // Continue without payment check - user can still access free content
+      hasPaid = false;
+    }
 
-    // Check if user has made a purchase
-    const hasPaid = await hasActivePurchase(userId);
+    // Create level data with accessibility logic
+    const levels = Array.from({ length: 8 }, (_, index) => {
+      const levelId = index + 1;
+      const userLevel = levelProgress.find((p) => p.levelId === levelId);
 
-    const levelParts = LevelParts.map((level) => {
-      const userLevel = levelProgress.find((p) => p.levelId === level.id);
+      // Level is accessible if:
+      // 1. It's level 1 (always free)
+      // 2. Previous level is passed
+      // 3. User has paid (for levels 2+)
       const prevLevelPassed =
-        level.id === 1
-          ? true
-          : levelProgress.find((p) => p.levelId === level.id - 1)?.passed ||
-            false;
+        levelId === 1 ||
+        levelProgress.find((p) => p.levelId === levelId - 1)?.passed ||
+        false;
 
-      const isAccessible = level.id === 1 || prevLevelPassed;
+      const isAccessible =
+        levelId === 1 || (prevLevelPassed && (levelId === 1 || hasPaid));
 
       return {
-        ...level,
+        id: levelId,
         passed: userLevel?.passed || false,
         accessible: isAccessible,
+        needsPayment: levelId > 1 && !hasPaid && prevLevelPassed,
       };
     });
 
-    // Group quiz progress by level
-    const quizPartsByLevel: Record<number, any> = {};
-
-    // Simple quiz parts logic for each level
-    for (let levelId = 1; levelId <= 8; levelId++) {
-      const defaultQuizParts = QuizParts(levelId);
-      const levelQuizProgress = quizProgress.filter(
-        (p) => p.levelId === levelId,
-      );
-
-      // Check if this level is accessible
-      const levelAccessible =
-        levelParts.find((l) => l.id === levelId)?.accessible || false;
-
-      const updatedData = defaultQuizParts.data.map((part, index) => {
-        const userPart = levelQuizProgress.find((p) => p.partId === part.id);
-
-        // If level is not accessible, all parts are locked
-        if (!levelAccessible) {
-          return {
-            ...part,
-            passed: userPart?.passed || false,
-            accessible: false,
-            needsPayment: false,
-          };
-        }
-
-        // Level is accessible - check part accessibility
-        let isAccessible = false;
-        let needsPayment = false;
-
-        if (levelId === 1) {
-          // Level 1 is completely free
-          const prevPartsCompleted = defaultQuizParts.data
-            .slice(0, index)
-            .every((prevPart) =>
-              levelQuizProgress.find(
-                (p) => p.partId === prevPart.id && p.passed,
-              ),
-            );
-          isAccessible = index === 0 || prevPartsCompleted;
-          needsPayment = false;
-        } else {
-          // Levels 2+ require payment
-          if (hasPaid) {
-            const prevPartsCompleted = defaultQuizParts.data
-              .slice(0, index)
-              .every((prevPart) =>
-                levelQuizProgress.find(
-                  (p) => p.partId === prevPart.id && p.passed,
-                ),
-              );
-            isAccessible = index === 0 || prevPartsCompleted;
-            needsPayment = false;
-          } else {
-            isAccessible = index === 0; // Only first part is accessible to show paywall
-            needsPayment = true;
-          }
-        }
-
-        return {
-          ...part,
-          passed: userPart?.passed || false,
-          accessible: isAccessible,
-          needsPayment,
-        };
-      });
-
-      quizPartsByLevel[levelId] = {
-        ...defaultQuizParts,
-        data: updatedData,
-      };
-    }
-
     return NextResponse.json({
-      levelParts,
-      quizPartsByLevel,
+      levels,
+      certificateId,
+      hasPayment: hasPaid,
     });
   } catch (error) {
     console.error("Error fetching progress:", error);

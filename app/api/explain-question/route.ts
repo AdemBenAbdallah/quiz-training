@@ -1,10 +1,9 @@
+import { generateCacheKey } from "@/lib/explain-utils";
+import { getCachedData, setCachedData } from "@/lib/redis-cache";
 import { google } from "@ai-sdk/google";
 import { generateObject } from "ai";
 import { NextRequest, NextResponse } from "next/server";
-import { z } from "zod";
-import { getCachedData, setCachedData } from "@/lib/redis-cache";
 import { explainSchema } from "./schemas";
-import { generateCacheKey } from "@/lib/explain-utils";
 
 export async function POST(req: NextRequest) {
   try {
@@ -34,8 +33,6 @@ export async function POST(req: NextRequest) {
       cachedResponse = await getCachedData(cacheKey);
       if (cachedResponse) {
         return NextResponse.json(cachedResponse);
-      } else {
-        console.log("🔍 Debug - No cached response found for key:", cacheKey);
       }
     } catch (error) {
       console.error("❌ Failed to get cached response:", error);

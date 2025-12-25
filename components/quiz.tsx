@@ -1,22 +1,30 @@
 "use client";
 
-import { QuizContainer } from "./quiz/components/QuizContainer";
 import { Question } from "@/types/quiz";
+import { QuizContainer } from "./quiz/components/QuizContainer";
 
 type QuizProps = {
-  idx: number;
+  certificateSlug: string;
   levelId: number;
   questions: Question[];
   title: string;
+  onBack?: () => void;
 };
 
-function Quiz({ idx, levelId, questions, title = "Quiz" }: QuizProps) {
+function Quiz({
+  certificateSlug,
+  levelId,
+  questions,
+  title = "Quiz",
+  onBack,
+}: QuizProps) {
   return (
     <QuizContainer
-      idx={idx}
+      certificateSlug={certificateSlug}
       levelId={levelId}
       questions={questions}
       title={title}
+      onBack={onBack}
     />
   );
 }

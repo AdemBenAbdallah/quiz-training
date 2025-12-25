@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import SectionHeader from "@/components/ui/section-header";
 import Image from "next/image";
 import { Fragment } from "react";
 import { useClientProvider } from "./client-provider";
@@ -11,20 +12,16 @@ export default function HowItWorks() {
   return (
     <section className="bg-base-300" id="how">
       <div className="mx-auto max-w-7xl py-24 max-xl:px-4">
-        <div className="mb-12 flex w-full flex-col text-center md:mb-20">
-          <p className="mb-3 text-sm font-medium uppercase tracking-wider text-red-500">
-            How it works?
-          </p>
-          <h2 className="mx-auto text-3xl font-extrabold tracking-tight md:text-5xl">
-            Find revenue opportunities in 3 steps
-          </h2>
-        </div>
+        <SectionHeader
+          subtitle="How it works?"
+          title="Pass your AWS certification in 3 steps"
+        />
 
         <div className="flex flex-col justify-center gap-6 max-lg:items-center lg:flex-row">
           {stepsData.map((step, index) => (
             <Fragment key={index}>
-              <div className="rounded-[1.3rem] border border-base-content/5 bg-neutral/5 p-1.5 dark:bg-neutral/50">
-                <div className="custom-card card mx-auto w-full h-full max-w-lg">
+              <div className="rounded-[1.3rem] border border-base-content/5 bg-neutral/5 p-1.5 dark:bg-neutral/50 flex items-stretch">
+                <div className="custom-card card mx-auto w-full h-[400px] flex flex-col max-w-lg">
                   <figure className="relative h-48">
                     <Image
                       src={step.imgSrc}
@@ -35,7 +32,7 @@ export default function HowItWorks() {
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-neutral/20 p-8 dark:bg-base-100/30 lg:items-start lg:justify-start"></div>
                   </figure>
-                  <div className="flex flex-1 flex-col p-8 gap-2">
+                  <div className="flex flex-1 flex-col p-8 gap-2 justify-between">
                     <h3 className="flex items-center gap-2 text-xl leading-7 font-semibold">
                       {step.id}. {step.title}
                     </h3>
@@ -68,7 +65,11 @@ export default function HowItWorks() {
         <div className="mt-12">
           <div className="mx-auto flex w-64 flex-col items-center justify-center gap-1.5">
             <div className="w-full space-y-1">
-              <Button onClick={handleStart} className="w-full">
+              <Button
+                onClick={handleStart}
+                variant="outline"
+                className="w-full bg-white text-black"
+              >
                 <span>Start now</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

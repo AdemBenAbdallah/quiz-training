@@ -2,8 +2,8 @@
 
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Mail } from "lucide-react";
-import Image from "next/image";
 import { useClientProvider } from "../landing/client-provider";
+import { Logo } from "../landing/navigation";
 
 export default function Footer() {
   const { handleStart } = useClientProvider();
@@ -22,23 +22,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand Section */}
           <div className="md:col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
-              <Image
-                src="/logo.png"
-                alt="AWS Quiz Logo"
-                width={40}
-                height={40}
-                className="rounded-lg"
-              />
-              <span className="text-2xl font-bold text-white">AWS Exam</span>
-            </div>
+            <Logo />
             <p className="text-gray-400 text-lg leading-relaxed max-w-md">
               Master the AWS Certified Developer Associate (DVA-C02) exam with
               our gamified learning platform. 500+ practice questions with
               detailed explanations.
             </p>
             <div className="flex items-center gap-2 text-gray-300">
-              <Mail className="w-5 h-5 text-red-500" />
+              <Mail className="w-5 h-5 text-red-500" suppressHydrationWarning />
               <a
                 href="mailto:adembenabdallah.contact@gmail.com"
                 className="hover:text-white transition-colors duration-200"
@@ -87,7 +78,7 @@ export default function Footer() {
               className="w-full bg-white text-black font-semibold hover:bg-gray-100 transition-all duration-200"
             >
               Start Free Trial
-              <ExternalLink className="w-4 h-4 ml-2" />
+              <ExternalLink className="w-4 h-4 ml-2" suppressHydrationWarning />
             </Button>
             <p className="text-xs text-gray-500 text-center">
               Unlock level 1 for free • No credit card required
@@ -99,7 +90,7 @@ export default function Footer() {
         <div className="pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-gray-400 text-sm">
-              © {currentYear} AWS Exam Prep. All rights reserved.
+              © {currentYear} CertQuickly. All rights reserved.
             </div>
             <div className="flex items-center gap-6 text-sm text-gray-400">
               <span>Built for AWS Developers</span>

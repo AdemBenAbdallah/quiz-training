@@ -5,7 +5,11 @@
  * This script tests the new multi-certificate structure
  */
 
-import { getAvailableCertificates, getCertificateMetadata, getDefaultCertificate } from "./lib/certificates";
+import {
+  getAvailableCertificates,
+  getCertificateMetadata,
+  getDefaultCertificate,
+} from "./lib/certificates";
 import { certificateLevels } from "./public/quiz";
 
 console.log("🧪 Testing Certificate Functionality\n");
@@ -14,7 +18,7 @@ console.log("🧪 Testing Certificate Functionality\n");
 console.log("1. Testing available certificates...");
 const certificates = getAvailableCertificates();
 console.log(`✅ Found ${certificates.length} certificates`);
-certificates.forEach(cert => {
+certificates.forEach((cert) => {
   console.log(`   - ${cert.name} (${cert.slug}) - ${cert.totalLevels} levels`);
 });
 
@@ -29,20 +33,24 @@ if (defaultCert) {
 
 // Test 3: Load certificate metadata
 console.log("\n3. Testing certificate metadata...");
-const metadata = getCertificateMetadata('aws-developer');
+const metadata = getCertificateMetadata("dvac02");
 if (metadata) {
   console.log(`✅ Metadata loaded for ${metadata.name}`);
   console.log(`   - Total levels: ${metadata.totalLevels}`);
-  console.log(`   - Questions per level: ${metadata.questionsPerLevel.join(', ')}`);
+  console.log(
+    `   - Questions per level: ${metadata.questionsPerLevel.join(", ")}`,
+  );
 } else {
   console.log("❌ Failed to load metadata");
 }
 
 // Test 4: Load certificate levels
 console.log("\n4. Testing certificate levels...");
-const awsLevels = certificateLevels['aws-developer'];
+const awsLevels = certificateLevels["dvac02"];
 if (awsLevels) {
-  console.log(`✅ Loaded ${awsLevels.length} levels for AWS Developer`);
+  console.log(
+    `✅ Loaded ${awsLevels.length} levels for AWS Developer Associate`,
+  );
   awsLevels.forEach((level, index) => {
     console.log(`   - Level ${index + 1}: ${level.length} questions`);
   });
@@ -54,10 +62,15 @@ if (awsLevels) {
 console.log("\n5. Testing backward compatibility...");
 const { quizLevels } = await import("./public/quiz");
 if (awsLevels && quizLevels) {
-  const isCompatible = awsLevels.every((level, index) => 
-    JSON.stringify(level) === JSON.stringify(quizLevels[index])
+  const isCompatible = awsLevels.every(
+    (level, index) =>
+      JSON.stringify(level) === JSON.stringify(quizLevels[index]),
   );
-  console.log(isCompatible ? "✅ Backward compatibility maintained" : "❌ Backward compatibility broken");
+  console.log(
+    isCompatible
+      ? "✅ Backward compatibility maintained"
+      : "❌ Backward compatibility broken",
+  );
 } else {
   console.log("❌ Could not test backward compatibility");
 }

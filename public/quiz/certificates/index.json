@@ -1,15 +1,115 @@
 {
   "certificates": [
     {
-      "id": "aws-developer",
-      "slug": "aws-developer",
+      "id": "dvac02",
+      "slug": "dvac02",
       "name": "AWS Certified Developer Associate",
       "description": "DVA-C02 certification exam preparation",
       "totalLevels": 8,
       "isActive": true,
       "isDefault": true,
       "badgeColor": "bg-orange-500"
+    },
+    {
+      "id": "ansc01",
+      "slug": "ansc01",
+      "name": "AWS Certified Advanced Networking - Specialty",
+      "description": "ANS-C01 certification exam preparation",
+      "totalLevels": 5,
+      "isActive": true,
+      "isDefault": false,
+      "badgeColor": "bg-blue-500"
+    },
+    {
+      "id": "clfc02",
+      "slug": "clfc02",
+      "name": "AWS Certified Cloud Practitioner",
+      "description": "CLF-C02 certification exam preparation",
+      "totalLevels": 8,
+      "isActive": true,
+      "isDefault": false,
+      "badgeColor": "bg-gray-500"
+    },
+    {
+      "id": "mlsc01",
+      "slug": "mlsc01",
+      "name": "AWS Certified Machine Learning - Specialty",
+      "description": "MLS-C01 certification exam preparation",
+      "totalLevels": 5,
+      "isActive": true,
+      "isDefault": false,
+      "badgeColor": "bg-purple-500"
+    },
+    {
+      "id": "aifc01",
+      "slug": "aifc01",
+      "name": "AWS Certified AI Practitioner",
+      "description": "AIF-C01 certification exam preparation",
+      "totalLevels": 5,
+      "isActive": true,
+      "isDefault": false,
+      "badgeColor": "bg-green-500"
+    },
+    {
+      "id": "dopc02",
+      "slug": "dopc02",
+      "name": "AWS Certified DevOps Engineer - Professional",
+      "description": "DOP-C02 certification exam preparation",
+      "totalLevels": 6,
+      "isActive": true,
+      "isDefault": false,
+      "badgeColor": "bg-indigo-500"
+    },
+    {
+      "id": "scsc02",
+      "slug": "scsc02",
+      "name": "AWS Certified Security - Specialty",
+      "description": "SCS-C02 certification exam preparation",
+      "totalLevels": 5,
+      "isActive": true,
+      "isDefault": false,
+      "badgeColor": "bg-red-500"
+    },
+    {
+      "id": "deac01",
+      "slug": "deac01",
+      "name": "AWS Certified Data Engineer - Associate",
+      "description": "DEA-C01 certification exam preparation",
+      "totalLevels": 4,
+      "isActive": true,
+      "isDefault": false,
+      "badgeColor": "bg-cyan-500"
+    },
+    {
+      "id": "mlac01",
+      "slug": "mlac01",
+      "name": "AWS Certified Machine Learning Engineer - Associate",
+      "description": "MLA-C01 certification exam preparation",
+      "totalLevels": 3,
+      "isActive": true,
+      "isDefault": false,
+      "badgeColor": "bg-pink-500"
+    },
+    {
+      "id": "saac03",
+      "slug": "saac03",
+      "name": "AWS Certified Solutions Architect - Associate",
+      "description": "SAA-C03 certification exam preparation",
+      "totalLevels": 13,
+      "isActive": true,
+      "isDefault": false,
+      "badgeColor": "bg-yellow-500"
+    },
+    {
+      "id": "sapc02",
+      "slug": "sapc02",
+      "name": "AWS Certified Solutions Architect - Professional",
+      "description": "SAP-C02 certification exam preparation",
+      "totalLevels": 7,
+      "isActive": true,
+      "isDefault": false,
+      "badgeColor": "bg-amber-500"
     }
   ],
-  "defaultCertificate": "aws-developer"
+  "defaultCertificate": "dvac02"
 }

@@ -55,18 +55,20 @@ const QuestionCard: React.FC<{
             <div key={index} className="relative group">
               <Button
                 disabled={isDisabled}
-                variant={isSelected ? "secondary" : "outline"}
-                className={`h-auto py-6 px-4 justify-start text-left whitespace-normal w-full ${
-                  showCorrectAnswer &&
+                variant={isSelected ? "default" : "outline"}
+                className={`h-auto py-6 px-4 justify-start text-left whitespace-normal w-full transition-all duration-200 transform-none ${
+                      showCorrectAnswer &&
                   question.answer.includes(availableOptions[index])
                     ? "bg-green-600 hover:bg-green-700"
                     : showCorrectAnswer &&
                         isSelected &&
                         !question.answer.includes(availableOptions[index])
-                      ? "bg-red-600 hover:bg-red-700"
+                      ? "bg-gray-200 dark:bg-gray-700 border-gray-400 dark:border-gray-500 text-gray-700 dark:text-gray-300"
                       : isDisabled
                         ? "opacity-50 cursor-not-allowed"
-                        : ""
+                        : isSelected
+                          ? "bg-gray-700 hover:bg-gray-600 text-white border-gray-500"
+                          : "hover:bg-gray-50 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-600"
                 }`}
                 onClick={() => onSelectAnswer(availableOptions[index])}
               >

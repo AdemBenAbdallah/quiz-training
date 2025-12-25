@@ -36,7 +36,7 @@ export default function SignUp() {
     try {
       await authClient.signIn.social({
         provider: "google",
-        callbackURL: "/levels",
+        callbackURL: "/certificates",
       });
     } catch (error) {
       console.error("Google sign in error:", error);

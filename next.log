@@ -1,0 +1,487 @@
+
+> fast-certif@0.1.0 dev
+> next dev
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+Discovering workflow directives 2168ms
+Created steps bundle 23ms
+Created intermediate workflow bundle 24ms
+Creating webhook route
+   ▲ Next.js 16.0.3 (Turbopack, Cache Components)
+   - Local:         http://localhost:3000
+   - Network:       http://192.168.1.180:3000
+   - Environments: .env.local, .env
+
+ ✓ Starting...
+ ✓ Ready in 3.5s
+Discovering workflow directives 3152ms
+Created steps bundle 31ms
+Created intermediate workflow bundle 31ms
+Discovering workflow directives 2571ms
+Created steps bundle 21ms
+Created intermediate workflow bundle 27ms
+Creating webhook route
+Discovering workflow directives 1856ms
+Created steps bundle 39ms
+Created intermediate workflow bundle 32ms
+ ○ Compiling / ...
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+🔧 getAvailableCertificates called
+🔧 Data loaded: 11 certificates
+🔧 Mapped result: 11 certificates
+Session not available during prerendering
+Session not available during prerendering
+ GET / 200 in 10.0s (compile: 8.8s, render: 1266ms)
+🔧 getAvailableCertificates called
+🔧 Data loaded: 11 certificates
+🔧 Mapped result: 11 certificates
+Session not available during prerendering
+Session not available during prerendering
+ GET / 200 in 220ms (compile: 7ms, render: 213ms)
+🔧 getAvailableCertificates called
+🔧 Data loaded: 11 certificates
+🔧 Mapped result: 11 certificates
+Session not available during prerendering
+Session not available during prerendering
+ GET / 200 in 175ms (compile: 5ms, render: 170ms)
+🔧 getAvailableCertificates called
+🔧 Data loaded: 11 certificates
+🔧 Mapped result: 11 certificates
+Session not available during prerendering
+Session not available during prerendering
+ GET / 200 in 173ms (compile: 4ms, render: 169ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 458ms (compile: 6ms, render: 452ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 387ms (compile: 7ms, render: 380ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 362ms (compile: 8ms, render: 353ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 360ms (compile: 8ms, render: 352ms)
+🔧 getAvailableCertificates called
+🔧 Data loaded: 11 certificates
+🔧 Mapped result: 11 certificates
+Session not available during prerendering
+Session not available during prerendering
+ GET / 200 in 205ms (compile: 9ms, render: 196ms)
+Session not available during prerendering
+Session not available during prerendering
+🔧 getAvailableCertificates called
+🔧 Data loaded: 11 certificates
+🔧 Mapped result: 11 certificates
+ GET / 200 in 1711ms (compile: 9ms, render: 1702ms)
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+ GET /api/auth/get-session 200 in 4.2s (compile: 3.3s, render: 898ms)
+ GET /api/auth/get-session 200 in 4.1s (compile: 3.2s, render: 903ms)
+ POST /api/auth/sign-out 200 in 861ms (compile: 90ms, render: 772ms)
+🔧 getAvailableCertificates called
+🔧 Data loaded: 11 certificates
+🔧 Mapped result: 11 certificates
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops
+Session not available during prerendering
+Session not available during prerendering
+ GET /api/auth/get-session 200 in 117ms (compile: 110ms, render: 7ms)
+ GET / 200 in 342ms (compile: 5ms, render: 337ms)
+ GET /api/auth/get-session 200 in 8ms (compile: 3ms, render: 6ms)
+ GET /api/auth/get-session 200 in 7ms (compile: 2ms, render: 5ms)
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+ GET /certificates 200 in 2.2s (compile: 2.2s, render: 37ms)
+🔧 getAvailableCertificates called
+🔧 Data loaded: 11 certificates
+🔧 Mapped result: 11 certificates
+Session not available during prerendering
+Session not available during prerendering
+ GET / 200 in 218ms (compile: 5ms, render: 213ms)
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+ GET /dopc02/levels 200 in 2.3s (compile: 2.3s, render: 32ms)
+ GET /api/progress?certificate=dopc02 401 in 942ms (compile: 932ms, render: 10ms)
+ GET /api/progress?certificate=dopc02 401 in 9ms (compile: 3ms, render: 5ms)
+ GET /api/progress?certificate=dopc02 401 in 7ms (compile: 2ms, render: 5ms)
+ GET /api/progress?certificate=dopc02 401 in 10ms (compile: 2ms, render: 7ms)
+ GET /api/progress?certificate=dopc02 401 in 8ms (compile: 3ms, render: 5ms)
+ GET /api/progress?certificate=dopc02 401 in 7ms (compile: 1840µs, render: 5ms)
+ GET /api/auth/get-session 200 in 110ms (compile: 100ms, render: 10ms)
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+ GET /api/auth/get-session 200 in 104ms (compile: 99ms, render: 6ms)
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 406ms (compile: 4ms, render: 402ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 397ms (compile: 6ms, render: 390ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 410ms (compile: 6ms, render: 405ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 386ms (compile: 7ms, render: 379ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 344ms (compile: 6ms, render: 338ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 343ms (compile: 5ms, render: 338ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 386ms (compile: 7ms, render: 379ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 335ms (compile: 6ms, render: 330ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 373ms (compile: 5ms, render: 368ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 402ms (compile: 6ms, render: 396ms)
+ POST /goform/set_LimitClient_cfg 404 in 432ms (compile: 336ms, render: 96ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 324ms (compile: 5ms, render: 320ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 367ms (compile: 4ms, render: 364ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 734ms (compile: 6ms, render: 728ms)
+ POST / 500 in 733ms (compile: 394ms, render: 340ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 327ms (compile: 6ms, render: 321ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 365ms (compile: 4ms, render: 361ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 406ms (compile: 6ms, render: 400ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 343ms (compile: 4ms, render: 339ms)
+🔧 getAvailableCertificates called
+🔧 Data loaded: 11 certificates
+🔧 Mapped result: 11 certificates
+Session not available during prerendering
+Session not available during prerendering
+ GET / 200 in 200ms (compile: 4ms, render: 196ms)
+ GET /wiki 404 in 77ms (compile: 4ms, render: 73ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 372ms (compile: 3ms, render: 369ms)
+ GET /api/auth/get-session 200 in 108ms (compile: 93ms, render: 15ms)
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 392ms (compile: 5ms, render: 388ms)
+🔧 getAvailableCertificates called
+🔧 Data loaded: 11 certificates
+🔧 Mapped result: 11 certificates
+Session not available during prerendering
+Session not available during prerendering
+ GET / 200 in 202ms (compile: 5ms, render: 197ms)
+ GET /pricing 404 in 73ms (compile: 3ms, render: 71ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 388ms (compile: 5ms, render: 383ms)
+🔧 getAvailableCertificates called
+🔧 Data loaded: 11 certificates
+🔧 Mapped result: 11 certificates
+Session not available during prerendering
+Session not available during prerendering
+ GET / 200 in 182ms (compile: 6ms, render: 176ms)
+🔧 getAvailableCertificates called
+🔧 Data loaded: 11 certificates
+🔧 Mapped result: 11 certificates
+Session not available during prerendering
+Session not available during prerendering
+ GET / 200 in 165ms (compile: 3ms, render: 162ms)
+ GET /.well-known/security.txt 404 in 73ms (compile: 2ms, render: 71ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 395ms (compile: 4ms, render: 390ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 418ms (compile: 7ms, render: 411ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 340ms (compile: 4ms, render: 336ms)
+ POST / 200 in 3.8s (compile: 4ms, render: 3.8s)
+🔧 getAvailableCertificates called
+🔧 Data loaded: 11 certificates
+🔧 Mapped result: 11 certificates
+Session not available during prerendering
+Session not available during prerendering
+ GET / 200 in 177ms (compile: 4ms, render: 173ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 369ms (compile: 5ms, render: 365ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 404ms (compile: 6ms, render: 398ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 339ms (compile: 4ms, render: 335ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 355ms (compile: 5ms, render: 349ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 413ms (compile: 5ms, render: 408ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 349ms (compile: 4ms, render: 345ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 361ms (compile: 4ms, render: 357ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 407ms (compile: 7ms, render: 399ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 348ms (compile: 5ms, render: 343ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 377ms (compile: 4ms, render: 373ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 344ms (compile: 5ms, render: 339ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 406ms (compile: 5ms, render: 401ms)
+ POST / 200 in 28.9s (compile: 5ms, render: 28.9s)
+ POST / 200 in 29.4s (compile: 4ms, render: 29.4s)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 331ms (compile: 6ms, render: 325ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 336ms (compile: 4ms, render: 332ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 373ms (compile: 4ms, render: 369ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 363ms (compile: 6ms, render: 357ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 354ms (compile: 5ms, render: 350ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 349ms (compile: 3ms, render: 346ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 408ms (compile: 4ms, render: 404ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 339ms (compile: 5ms, render: 334ms)
+curl: option -O-: is unknown
+curl: try 'curl --help' for more information
+ ⨯ Error: NEXT_REDIRECT
+    at ignore-listed frames {
+  digest: '401437578'
+}
+ POST / 500 in 361ms (compile: 4ms, render: 357ms)
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+Discovering workflow directives 1978ms
+Created steps bundle 31ms
+Created intermediate workflow bundle 22ms
+Creating webhook route
+[?25h
