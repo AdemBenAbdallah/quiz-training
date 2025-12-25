@@ -70,7 +70,7 @@ export const auth = betterAuth({
       sendMagicLink: async (params) => {
         const { email, url } = params;
         await resend.emails.send({
-          from: "Aws Quiz Game <onboarding@adembenabdallah.com>",
+          from: "Aws Quiz Game <onboarding@certquickly.com>",
           to: email,
           subject: "Quiz Aws: your sign-in link",
           text: `Sign in to Quiz Aws:\n${url}\n\nThis link expires in 15 minutes.`,

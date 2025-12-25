@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useUser } from "@/hooks/useUser";
 import { authClient } from "@/lib/auth-client";
-import { BookOpen, Home, LogOut, Trophy } from "lucide-react";
+import { BookOpen, Home, LogOut } from "lucide-react";
 import Link from "next/link";
 
 const AvatarMenu = ({ setOpen }: { setOpen: (open: boolean) => void }) => {
@@ -94,12 +94,12 @@ const AvatarMenu = ({ setOpen }: { setOpen: (open: boolean) => void }) => {
             <DropdownMenuSeparator className="bg-white/10 mx-4" />
 
             {/* Secondary Actions */}
-            <div className="py-2 px-2">
+            {/*<div className="py-2 px-2">
               <DropdownMenuItem className="cursor-pointer rounded-xl hover:bg-white/10 focus:bg-white/10 transition-all duration-200 p-3">
                 <Trophy className="mr-3 h-4 w-4 text-gray-300" />
                 <span className="text-white font-medium">Achievements</span>
               </DropdownMenuItem>
-            </div>
+            </div>*/}
 
             <DropdownMenuSeparator className="bg-white/10 mx-4" />
 

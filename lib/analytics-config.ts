@@ -19,9 +19,7 @@ export function getAnalyticsConfig(): AnalyticsConfig {
     },
     dataFast: {
       id: process.env.NEXT_PUBLIC_DATAFAST_ID || "dfid_eTpQ5NjrKpI9SsZkJ4rgy",
-      domain:
-        process.env.NEXT_PUBLIC_DATAFAST_DOMAIN ||
-        "awsquizgame.adembenabdallah.com",
+      domain: process.env.NEXT_PUBLIC_DATAFAST_DOMAIN || "certquickly.com",
     },
     posthog: {
       key: process.env.NEXT_PUBLIC_POSTHOG_KEY!,

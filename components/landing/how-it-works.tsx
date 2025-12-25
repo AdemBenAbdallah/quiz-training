@@ -14,7 +14,7 @@ export default function HowItWorks() {
       <div className="mx-auto max-w-7xl py-24 max-xl:px-4">
         <SectionHeader
           subtitle="How it works?"
-          title="Pass your AWS certification in 3 steps"
+          title="Pass your certification in 3 steps"
         />
 
         <div className="flex flex-col justify-center gap-6 max-lg:items-center lg:flex-row">
@@ -85,7 +85,7 @@ export default function HowItWorks() {
                 </svg>
               </Button>
               <div className="text-gray-300 text-center text-sm opacity-80">
-                Unlock Level 1 for free. No card required.
+                Start your prep today. Get certified tomorrow.
               </div>
             </div>
           </div>

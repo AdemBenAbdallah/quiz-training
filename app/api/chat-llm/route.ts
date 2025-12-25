@@ -2,6 +2,8 @@ import { google } from "@ai-sdk/google";
 import { convertToModelMessages, streamText, UIMessage } from "ai";
 import { NextRequest } from "next/server";
 import { z } from "zod";
+import { rateLimitByIp, getRateLimitHeaders } from "@/lib/rate-limit";
+import logger from "@/lib/logger";
 
 const chatSchema = z.object({
   messages: z.array(z.any()).optional(),
@@ -10,6 +12,24 @@ const chatSchema = z.object({
 
 export async function POST(req: NextRequest) {
   try {
+    const ip = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "unknown";
+    const rateLimitResult = await rateLimitByIp(ip, "chatLlm");
+
+    if (!rateLimitResult.success) {
+      return new Response(
+        JSON.stringify({
+          error: rateLimitResult.message,
+        }),
+        {
+          status: 429,
+          headers: {
+            "Content-Type": "application/json",
+            ...getRateLimitHeaders(rateLimitResult),
+          },
+        },
+      );
+    }
+
     const body = await req.json();
 
     const { messages } = chatSchema.parse(body);
@@ -42,7 +62,7 @@ Keep the response conversational and helpful for a beginner.`;
 
     return result.toUIMessageStreamResponse();
   } catch (err: any) {
-    console.error("❌ Error processing chat request:", err);
+    logger.error("Error processing chat request:", err);
 
     if (err instanceof z.ZodError) {
       return new Response(

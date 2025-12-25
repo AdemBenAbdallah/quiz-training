@@ -2,17 +2,27 @@
 
 import { useEffect, useState } from "react";
 
+const END_DATE_KEY = "countdown_end_date";
+
 export default function CountdownTimer() {
   const [timeLeft, setTimeLeft] = useState({
-    days: 6,
+    days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
   });
 
   useEffect(() => {
-    const startTime = new Date();
-    const endTime = new Date(startTime.getTime() + 6 * 24 * 60 * 60 * 1000);
+    let endTime: Date;
+
+    const savedEndDate = localStorage.getItem(END_DATE_KEY);
+    if (savedEndDate) {
+      endTime = new Date(savedEndDate);
+    } else {
+      const startTime = new Date();
+      endTime = new Date(startTime.getTime() + 6 * 24 * 60 * 60 * 1000);
+      localStorage.setItem(END_DATE_KEY, endTime.toISOString());
+    }
 
     const timer = setInterval(() => {
       const now = new Date();
@@ -21,11 +31,14 @@ export default function CountdownTimer() {
       if (diff <= 0) {
         clearInterval(timer);
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        localStorage.removeItem(END_DATE_KEY);
         return;
       }
 
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const hours = Math.floor(
+        (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+      );
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 

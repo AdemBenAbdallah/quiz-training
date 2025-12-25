@@ -76,7 +76,7 @@ const Container = ({ children }: { children: React.ReactNode }) => {
               </div>
               <div className="w-full text-center text-sm">
                 <span className="text-base-secondary opacity-50">
-                  https://certfast.com/
+                  https://certquickly.com/
                 </span>
                 <span className="text-base-content">levels</span>
               </div>

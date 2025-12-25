@@ -3,6 +3,7 @@ import CountdownTimer from "@/components/CountdownTimer";
 import Footer from "@/components/footer/Footer";
 import { ClientProvider } from "@/components/landing/client-provider";
 import Faq from "@/components/landing/faq";
+import Features from "@/components/landing/features";
 import Hero from "@/components/landing/hero";
 import HowItWorks from "@/components/landing/how-it-works";
 import Navigation from "@/components/landing/navigation";
@@ -10,6 +11,7 @@ import Review from "@/components/landing/review";
 import { db } from "@/db";
 import { user } from "@/db/schema";
 import { auth } from "@/lib/auth";
+import logger from "@/lib/logger";
 import { eq, sql } from "drizzle-orm";
 import { Target } from "lucide-react";
 import { headers } from "next/headers";
@@ -46,7 +48,7 @@ export default async function HomePage() {
     });
   } catch (error) {
     // During prerendering or other contexts where headers() fails, continue without session
-    console.log("Session not available during prerendering");
+    logger.log("Session not available during prerendering");
   }
 
   const { users, totalCount } = await getUsers();
@@ -73,6 +75,7 @@ export default async function HomePage() {
           </div>
           <Hero users={users} totalCount={totalCount} />
           <CertificateSelectorHome />
+          <Features />
           <HowItWorks />
           <Review />
           <Faq />

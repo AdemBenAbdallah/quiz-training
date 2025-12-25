@@ -1,5 +1,6 @@
 import { auth } from "@/lib/auth";
 import { sendReminderEmails } from "@/workflows/send-reminder-emails";
+import logger from "@/lib/logger";
 import { connection, NextResponse } from "next/server";
 import { start } from "workflow/api";
 
@@ -23,7 +24,7 @@ export async function POST(request: Request) {
       workflowId: workflow.runId,
     });
   } catch (error) {
-    console.error("Error starting reminder email workflow:", error);
+    logger.error("Error starting reminder email workflow:", error);
     return NextResponse.json(
       { error: "Failed to start workflow" },
       { status: 500 },

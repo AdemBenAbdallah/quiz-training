@@ -3,6 +3,7 @@ import { certificates, userLevelProgress } from "@/db/schema";
 import { auth } from "@/lib/auth";
 import { hasActivePurchase } from "@/lib/server/payment";
 import { createInitialProgress } from "@/lib/utils/progress";
+import logger from "@/lib/logger";
 import { and, eq } from "drizzle-orm";
 import { connection, NextRequest, NextResponse } from "next/server";
 
@@ -47,7 +48,7 @@ export async function GET(request: NextRequest) {
 
       certificateId = certificate[0].id;
     } catch (certError) {
-      console.error("Error fetching certificate:", certError);
+      logger.error("Error fetching certificate:", certError);
       return NextResponse.json(
         { error: "Database error fetching certificate" },
         { status: 500 },
@@ -80,7 +81,7 @@ export async function GET(request: NextRequest) {
           ),
         );
 
-      console.log(
+      logger.log(
         `Initialized progress for user: ${userId}, certificate: ${certificateSlug}`,
       );
     }
@@ -90,7 +91,7 @@ export async function GET(request: NextRequest) {
     try {
       hasPaid = await hasActivePurchase(userId, certificateId);
     } catch (paymentError) {
-      console.error("Error checking payment status:", paymentError);
+      logger.error("Error checking payment status:", paymentError);
       // Continue without payment check - user can still access free content
       hasPaid = false;
     }
@@ -126,7 +127,7 @@ export async function GET(request: NextRequest) {
       hasPayment: hasPaid,
     });
   } catch (error) {
-    console.error("Error fetching progress:", error);
+    logger.error("Error fetching progress:", error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 },

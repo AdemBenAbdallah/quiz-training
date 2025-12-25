@@ -81,7 +81,10 @@ async function sendReminderEmails() {
       .from(userSchema)
       .leftJoin(userLevelProgress, eq(userSchema.id, userLevelProgress.userId))
       .where(
-        and(lte(userSchema.createdAt, twoDaysAgo), isNull(userLevelProgress.id)),
+        and(
+          lte(userSchema.createdAt, twoDaysAgo),
+          isNull(userLevelProgress.id),
+        ),
       );
 
     console.log(`Found ${inactiveUsers.length} inactive users.`);
@@ -93,7 +96,7 @@ async function sendReminderEmails() {
       const emailBody = randomEmail.body.replace("[User's Name]", user.name);
 
       await resend.emails.send({
-        from: "Aws Quiz Game <support@adembenabdallah.com>",
+        from: "Aws Quiz Game <support@certquickly.com>",
         to: user.email,
         subject: randomEmail.subject,
         text: emailBody,

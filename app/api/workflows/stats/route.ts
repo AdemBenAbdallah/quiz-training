@@ -1,5 +1,6 @@
 import { db } from "@/db";
 import { user, userLevelProgress } from "@/db/schema";
+import logger from "@/lib/logger";
 import { and, eq, isNull, lte, or } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
@@ -46,7 +47,7 @@ export async function GET() {
       lastUpdated: now.toISOString(),
     });
   } catch (error) {
-    console.error("Error fetching workflow stats:", error);
+    logger.error("Error fetching workflow stats:", error);
     return NextResponse.json(
       { error: "Failed to fetch stats" },
       { status: 500 },

@@ -1,9 +1,10 @@
 import { google } from "@ai-sdk/google";
 import { generateText } from "ai";
 import { NextRequest, NextResponse } from "next/server";
-import { z } from "zod";
 import { getCachedData, setCachedData } from "@/lib/redis-cache";
 import { serviceInfoSchema } from "./schemas";
+import { rateLimitByIp, getRateLimitHeaders } from "@/lib/rate-limit";
+import logger from "@/lib/logger";
 
 function stripCodeBlock(text: string): string {
   return text
@@ -29,6 +30,19 @@ function generateCacheKey(question: string, options: string[]): string {
 
 export async function POST(req: NextRequest) {
   try {
+    const ip = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "unknown";
+    const rateLimitResult = await rateLimitByIp(ip, "serviceInfo");
+
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        { error: rateLimitResult.message },
+        {
+          status: 429,
+          headers: getRateLimitHeaders(rateLimitResult),
+        },
+      );
+    }
+
     const body = await req.json();
     const {
       question,
@@ -53,15 +67,15 @@ export async function POST(req: NextRequest) {
     try {
       cachedResponse = await getCachedData(cacheKey);
       if (cachedResponse) {
-        console.log("✨ Returning cached service info for question:", question);
+        logger.log("Returning cached service info for question:", question);
         return NextResponse.json(cachedResponse);
       }
     } catch (error) {
-      console.error("Failed to get cached service info:", error);
+      logger.error("Failed to get cached service info:", error);
       // Continue with generation if cache fails
     }
 
-    console.log("🔄 Generating new service info for question:", question);
+    logger.log("Generating new service info for question:", question);
     const answerLabels = ["A", "B", "C", "D", "E"];
     const prompt = `You are an AWS expert assistant. Given the following AWS certification exam question, identify the primary AWS service being discussed and provide comprehensive information about it.
 
@@ -100,13 +114,12 @@ Respond in this JSON format:
       prompt,
     });
 
-    console.log("Raw AI response:", result.text); // Log raw AI response
     const cleanText = stripCodeBlock(result.text);
     const parsed = JSON.parse(cleanText);
 
     const validated = serviceInfoSchema.safeParse(parsed);
     if (!validated.success) {
-      console.error("AI response validation error:", validated.error);
+      logger.error("AI response validation error:", validated.error);
       return NextResponse.json(
         {
           error: "AI response did not match expected format",
@@ -120,15 +133,15 @@ Respond in this JSON format:
     // Store for 30 days (you can adjust this value)
     try {
       await setCachedData(cacheKey, parsed, 30);
-      console.log("✅ Cached new service info for question:", question);
+      logger.log("Cached new service info for question:", question);
     } catch (error) {
-      console.error("Failed to cache service info:", error);
+      logger.error("Failed to cache service info:", error);
       // Continue even if caching fails
     }
 
     return NextResponse.json(parsed);
   } catch (err: any) {
-    console.error("❌ Error processing service info request:", err);
+    logger.error("Error processing service info request:", err);
     return NextResponse.json(
       { error: err.message || "Internal server error" },
       { status: 500 },

@@ -305,15 +305,6 @@ const PublicChatAssistantDialog: React.FC<PublicChatAssistantDialogProps> = ({
                 </Button>
               )}
             </form>
-            <div className="mt-2 text-xs text-muted-foreground text-center">
-              Free demo • Limited messages •{" "}
-              <button
-                onClick={() => (window.location.href = "#signup")}
-                className="underline hover:no-underline"
-              >
-                Sign up for unlimited access
-              </button>
-            </div>
           </div>
         </div>
       </DialogContent>

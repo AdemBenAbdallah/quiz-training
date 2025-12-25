@@ -2,8 +2,8 @@
 
 import SocialProof from "@/components/landing/social-proof";
 import PublicQuiz from "@/components/PublicQuiz";
-import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
+import Link from "next/link";
 import { useClientProvider } from "./client-provider";
 
 export default function Hero({
@@ -31,13 +31,12 @@ export default function Hero({
         </div>
 
         <div className="space-y-4 grid place-content-center">
-          <Button
-            onClick={handleStart}
-            size="lg"
-            className="font-semibold max-w-35 px-8 py-4 text-xl rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+          <Link
+            href="/certificates"
+            className="font-semibold bg-white text-black max-w-35 px-8 py-2 text-xl rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
           >
             Start preparing
-          </Button>
+          </Link>
           <SocialProof users={users} totalCount={totalCount} />
         </div>
       </div>

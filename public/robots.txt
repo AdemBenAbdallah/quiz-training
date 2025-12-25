@@ -3,7 +3,8 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://awsquizgame.adembenabdallah.com
+Host: https://certquickly.com
 
 # Sitemaps
-Sitemap: https://awsquizgame.adembenabdallah.com/sitemap.xml
+Sitemap: https://certquickly.com/sitemap.xml
+

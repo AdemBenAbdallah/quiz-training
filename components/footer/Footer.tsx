@@ -24,9 +24,9 @@ export default function Footer() {
           <div className="md:col-span-2 space-y-4">
             <Logo />
             <p className="text-gray-400 text-lg leading-relaxed max-w-md">
-              Master the AWS Certified Developer Associate (DVA-C02) exam with
-              our gamified learning platform. 500+ practice questions with
-              detailed explanations.
+              Prepare for your certification with our practice platform.
+              Detailed explanations, progress tracking, and AI-powered
+              assistance.
             </p>
             <div className="flex items-center gap-2 text-gray-300">
               <Mail className="w-5 h-5 text-red-500" suppressHydrationWarning />
@@ -34,7 +34,7 @@ export default function Footer() {
                 href="mailto:adembenabdallah.contact@gmail.com"
                 className="hover:text-white transition-colors duration-200"
               >
-                support@adembenabdallah.com
+                support@certquickly.com.
               </a>
             </div>
           </div>
@@ -59,7 +59,7 @@ export default function Footer() {
                 onClick={handleStart}
                 className="block text-gray-400 hover:text-white transition-colors duration-200"
               >
-                Start Free Trial
+                Start Now
               </button>
             </nav>
           </div>
@@ -70,19 +70,15 @@ export default function Footer() {
               Ready to Start?
             </h3>
             <p className="text-gray-400 text-sm">
-              Join thousands of developers who&apos;ve passed their AWS
-              certification.
+              Join thousands of learners preparing for their certification.
             </p>
             <Button
               onClick={handleStart}
               className="w-full bg-white text-black font-semibold hover:bg-gray-100 transition-all duration-200"
             >
-              Start Free Trial
+              Get Started
               <ExternalLink className="w-4 h-4 ml-2" suppressHydrationWarning />
             </Button>
-            <p className="text-xs text-gray-500 text-center">
-              Unlock level 1 for free • No credit card required
-            </p>
           </div>
         </div>
 
@@ -93,9 +89,9 @@ export default function Footer() {
               © {currentYear} CertQuickly. All rights reserved.
             </div>
             <div className="flex items-center gap-6 text-sm text-gray-400">
-              <span>Built for AWS Developers</span>
+              <span>11 Certificates Available</span>
               <span className="text-red-500">•</span>
-              <span>DVA-C02 Certified</span>
+              <span>1,200+ Questions</span>
             </div>
           </div>
         </div>

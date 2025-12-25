@@ -1,6 +1,7 @@
 import { db } from "@/db";
 import { userLevelProgress } from "@/db/schema";
 import { auth } from "@/lib/auth";
+import logger from "@/lib/logger";
 import { and, eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -111,7 +112,7 @@ export async function POST(request: NextRequest) {
       certificate: certificateSlug,
     });
   } catch (error) {
-    console.error("Error initializing user progress:", error);
+    logger.error("Error initializing user progress:", error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 },

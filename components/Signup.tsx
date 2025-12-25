@@ -44,7 +44,6 @@ export default function SignUp() {
       setStatus("idle");
     }
   };
-  console.log("status", status);
 
   return (
     <div className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-8 rounded-2xl shadow-2xl border border-gray-700/50 flex flex-col gap-6 relative">

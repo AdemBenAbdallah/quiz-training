@@ -1,6 +1,7 @@
 import { db } from "@/db";
 import { userLevelProgress } from "@/db/schema";
 import { auth } from "@/lib/auth";
+import logger from "@/lib/logger";
 import { and, eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -64,7 +65,7 @@ export async function POST(request: NextRequest) {
         });
       }
 
-      console.log(
+      logger.log(
         `Level ${levelId} completed for user: ${userId}, certificate: ${certificateSlug}`,
       );
       return NextResponse.json({ success: true });
@@ -72,7 +73,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ error: "Invalid type" }, { status: 400 });
   } catch (error) {
-    console.error("Error updating progress:", error);
+    logger.error("Error updating progress:", error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 },

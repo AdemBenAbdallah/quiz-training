@@ -26,7 +26,7 @@ export default function MagicLinkEmail({
   magicLinkUrl,
   appName = "Quiz Aws",
   expiresInMinutes = 15,
-  supportEmail = "support@adembenabdallah.com",
+  supportEmail = "support@certquickly.com",
 }: MagicLinkEmailProps) {
   return (
     <Html lang="en">

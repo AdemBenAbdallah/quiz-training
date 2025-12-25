@@ -12,7 +12,7 @@ interface EmailTemplate {
 }
 
 const EMAIL_TEMPLATES: EmailTemplate[] = [
-{
+  {
     subject: "Your AWS DVA-C02 practice is waiting",
     body: `Hi {{userName}},
 
@@ -138,7 +138,7 @@ async function sendReminderEmail(userData: {
 
     // Send the email
     await resend.emails.send({
-      from: "Aws Quiz Game <support@adembenabdallah.com>",
+      from: "Aws Quiz Game <support@certquickly.com>",
       to: user.email,
       subject: randomEmail.subject,
       text: emailBody,

@@ -17,7 +17,7 @@ interface AnalyticsScriptsProps {
 
   /**
    * DataFast domain for analytics
-   * @default 'certfast.com'
+   * @default 'certquickly.com'
    */
   dataFastDomain?: string;
 
@@ -43,7 +43,7 @@ interface AnalyticsScriptsProps {
 export function AnalyticsScripts({
   googleAdsId = "AW-17695424239",
   dataFastId = "dfid_eTpQ5NjrKpI9SsZkJ4rgy",
-  dataFastDomain = "certfast.com",
+  dataFastDomain = "certquickly.com",
   posthogKey = "phc_z9UVM3S4rx4oG2UE2uQGCkOH6JnhAwvqAZnU91lRKkV",
   posthogHost = "https://us.i.posthog.com",
   debug = process.env.NODE_ENV === "development",

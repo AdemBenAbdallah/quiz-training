@@ -1,54 +1,64 @@
 export const faqData = [
   {
-    question: "What happens if I don't pass the AWS exam?",
+    question: "What happens if I don't pass?",
     answer:
-      "We offer a 100% money-back guarantee. If you complete all levels and don't pass the AWS Developer Associate exam, we'll refund your full payment.",
+      "Complete all levels and don't pass your exam? We'll refund your full payment. No questions asked.",
   },
   {
-    question: "How long do I have access to the content?",
+    question: "How many questions and certificates are included?",
     answer:
-      "Your access is lifetime! Once you purchase, you can access all current and future content updates forever.",
+      "Over 1,200 practice questions across 11 certificates. New certificates and questions are added regularly at no extra cost.",
   },
   {
-    question: "What AWS exam does this prepare me for?",
+    question: "How does the AI chat assistant work?",
     answer:
-      "This course is specifically designed for the AWS Certified Developer Associate (DVA-C02) exam.",
+      "Stuck on a concept? Ask our AI anything and get instant, detailed answers. It's like having a tutor available 24/7 to clarify doubts and explain concepts.",
   },
   {
-    question: "How is this different from other AWS courses?",
+    question: "How similar are the questions to the real exam?",
     answer:
-      "Our gamified approach makes learning engaging and memorable. You progress through levels, earn achievements, and get hands-on experience with real AWS scenarios.",
+      "Our questions mirror the format, difficulty, and topics of the actual certification exam. We regularly update content to match new exam versions.",
   },
   {
-    question: "Do I need prior AWS experience?",
+    question: "Can I study on mobile or tablet?",
     answer:
-      "No prior AWS experience is required. Our course starts from the basics and gradually builds up to advanced concepts.",
+      "Yes. Our platform is fully responsive. Study on your computer, tablet, or phone—wherever and whenever it's convenient for you.",
+  },
+  {
+    question: "Do I need prior experience?",
+    answer:
+      "Not at all. Whether you're a beginner or refreshing your knowledge, our structured levels guide you from basics to advanced concepts.",
+  },
+  {
+    question: "How long do I have access?",
+    answer:
+      "Lifetime. Pay once, learn forever. Get all future updates, new certificates, and new questions at no extra cost.",
   },
 ];
 
 export const stepsData = [
   {
     id: 1,
-    title: "Start Your Free Practice",
+    title: "Browse & Pick",
     description:
-      "Sign up free to unlock Level 1. No credit card required, ever.",
+      "Browse all certificates and pick the one you want to achieve.",
     imgSrc: "/steps/step0.png",
-    imgAlt: "Practice icon",
+    imgAlt: "Browse icon",
   },
   {
     id: 2,
-    title: "Master All 8 Levels",
+    title: "Pass All Levels",
     description:
-      "Our gamified system guides you from basic concepts to complex exam-day scenarios, one level at a time.",
-    imgSrc: "/steps/step1.jpeg",
-    imgAlt: "Master icon",
+      "Complete each level to build your skills. Master all levels and you'll be ready to pass your exam.",
+    imgSrc: "/steps/step1.png",
+    imgAlt: "Pass icon",
   },
   {
     id: 3,
-    title: "Pass the DVA-C02",
+    title: "Get Certified",
     description:
-      "Gain the confidence and knowledge you need. When you can pass all 8 levels, you're ready for the real exam.",
-    imgSrc: "/steps/step2.jpeg",
-    imgAlt: "Pass icon",
+      "With full preparation under your belt, walk into exam day with confidence and pass.",
+    imgSrc: "/steps/step2.png",
+    imgAlt: "Certified icon",
   },
 ];

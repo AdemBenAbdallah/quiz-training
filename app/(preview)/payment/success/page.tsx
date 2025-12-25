@@ -19,7 +19,6 @@ export default function PaymentSuccessPage() {
   useEffect(() => {
     const verifyPayment = async () => {
       if (!paymentId) {
-        console.log("No payment ID found in URL parameters");
         setVerificationStatus("error");
         setIsVerifying(false);
         return;

@@ -2,6 +2,7 @@ import { google } from "@ai-sdk/google";
 import { convertToModelMessages, streamText, UIMessage } from "ai";
 import { NextRequest } from "next/server";
 import { z } from "zod";
+import logger from "@/lib/logger";
 
 // Rate limiting storage (in production, use Redis or similar)
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
@@ -150,7 +151,7 @@ Keep the response conversational and helpful for a beginner.`;
 
     return response;
   } catch (err: any) {
-    console.error("❌ Error processing chat request:", err);
+    logger.error("Error processing chat request:", err);
 
     if (err instanceof z.ZodError) {
       return new Response(
