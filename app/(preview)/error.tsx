@@ -1,9 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import Container from "@/components/ui/container";
-import { AlertCircle, RefreshCw, Home } from "lucide-react";
+import { AlertCircle, Home, RefreshCw } from "lucide-react";
 
 export default function Error({
   error,
@@ -12,13 +10,9 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  useEffect(() => {
-    console.error("Application error:", error);
-  }, [error]);
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-neutral-900 via-black to-black flex items-center justify-center p-4">
-      <Container>
+      <div className="container">
         <div className="max-w-2xl mx-auto text-center space-y-8">
           <div className="flex justify-center">
             <div className="relative">
@@ -32,7 +26,8 @@ export default function Error({
               Oops! Something went wrong
             </h1>
             <p className="text-xl text-gray-400 max-w-lg mx-auto">
-              {error.message || "An unexpected error occurred while loading your quiz."}
+              {error.message ||
+                "An unexpected error occurred while loading your quiz."}
             </p>
           </div>
 
@@ -68,7 +63,7 @@ export default function Error({
             If this problem persists, please contact support
           </p>
         </div>
-      </Container>
+      </div>
     </div>
   );
 }

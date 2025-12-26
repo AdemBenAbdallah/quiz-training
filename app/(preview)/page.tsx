@@ -8,10 +8,12 @@ import Hero from "@/components/landing/hero";
 import HowItWorks from "@/components/landing/how-it-works";
 import Navigation from "@/components/landing/navigation";
 import Review from "@/components/landing/review";
+import SectionHeader from "@/components/ui/section-header";
 import { db } from "@/db";
 import { user } from "@/db/schema";
 import { auth } from "@/lib/auth";
 import logger from "@/lib/logger";
+
 import { eq, sql } from "drizzle-orm";
 import { Target } from "lucide-react";
 import { headers } from "next/headers";
@@ -78,6 +80,31 @@ export default async function HomePage() {
           <Features />
           <HowItWorks />
           <Review />
+
+          {/* Video Showcase */}
+          <section className="py-20 px-4">
+            <div className="max-w-5xl mx-auto">
+              <SectionHeader
+                subtitle="Video Showcase"
+                title="See how the platform works"
+              />
+
+              <div className="rounded-[1.3rem] border border-base-content/5 bg-neutral/5 p-1.5 dark:bg-neutral/50 mx-auto max-w-5xl">
+                <div className="custom-card aspect-video w-full overflow-hidden rounded-[0.8rem]">
+                  <video
+                    className="w-full h-full object-cover"
+                    playsInline
+                    controls
+                    preload="metadata"
+                    poster="/thumbnail.png"
+                  >
+                    <source src="/introduction.mp4" type="video/mp4" />
+                  </video>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <Faq />
           <Suspense fallback={<div>Loading...</div>}>
             <Footer />
