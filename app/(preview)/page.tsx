@@ -8,6 +8,7 @@ import Hero from "@/components/landing/hero";
 import HowItWorks from "@/components/landing/how-it-works";
 import Navigation from "@/components/landing/navigation";
 import Review from "@/components/landing/review";
+import { UrgencyBannerLink } from "@/components/landing/urgency-banner-link";
 import SectionHeader from "@/components/ui/section-header";
 import { db } from "@/db";
 import { user } from "@/db/schema";
@@ -17,7 +18,6 @@ import logger from "@/lib/logger";
 import { eq, sql } from "drizzle-orm";
 import { Target } from "lucide-react";
 import { headers } from "next/headers";
-import Link from "next/link";
 import { Suspense } from "react";
 
 async function getUsers() {
@@ -66,13 +66,7 @@ export default async function HomePage() {
           <div className="bg-white text-black py-2 text-center flex justify-center items-center">
             <p className="text-sm font-medium flex gap-2 items-center">
               <Target className="h-5" /> Limited Time: 50% OFF All Plans -{" "}
-              <CountdownTimer />{" "}
-              <Link href="/pricing">
-                <span className="text-red-700 font-semibold">
-                  {" "}
-                  Get Discount →
-                </span>
-              </Link>
+              <CountdownTimer /> <UrgencyBannerLink />
             </p>
           </div>
           <Hero users={users} totalCount={totalCount} />
