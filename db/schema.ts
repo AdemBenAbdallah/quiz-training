@@ -1,5 +1,6 @@
 import {
   boolean,
+  date,
   integer,
   pgTable,
   text,
@@ -114,15 +115,81 @@ export const userPayment = pgTable("user_payment", {
   status: text("status").notNull().default("pending"),
   amount: integer("amount"),
   currency: text("currency").default("USD"),
-  bundleType: text("bundle_type"), // 'individual', 'professional', 'complete'
-  certificateCount: integer("certificate_count"), // 1, 3, or 11
-  purchasedCertificates: text("purchased_certificates"), // JSON array of certificate IDs
+  bundleType: text("bundle_type"),
+  certificateCount: integer("certificate_count"),
+  purchasedCertificates: text("purchased_certificates"),
   createdAt: timestamp("created_at")
     .$defaultFn(() => new Date())
     .notNull(),
   updatedAt: timestamp("updated_at")
     .$defaultFn(() => new Date())
     .notNull(),
+});
+
+export const userGamification = pgTable("user_gamification", {
+  id: text("id").primaryKey(),
+  totalXp: integer("total_xp").notNull().default(0),
+  currentStreak: integer("current_streak").notNull().default(0),
+  longestStreak: integer("longest_streak").notNull().default(0),
+  lastActivityDate: timestamp("last_activity_date"),
+  level: integer("level").notNull().default(1),
+  createdAt: timestamp("created_at")
+    .$defaultFn(() => new Date())
+    .notNull(),
+  updatedAt: timestamp("updated_at")
+    .$defaultFn(() => new Date())
+    .notNull(),
+});
+
+export const userAchievement = pgTable("user_achievement", {
+  id: text("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  achievementId: text("achievement_id").notNull(),
+  earnedAt: timestamp("earned_at")
+    .$defaultFn(() => new Date())
+    .notNull(),
+  progress: integer("progress"),
+  isComplete: boolean("is_complete").notNull().default(false),
+});
+
+export const questionAttempt = pgTable("question_attempt", {
+  id: text("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  certificateId: text("certificate_id").notNull(),
+  questionId: text("question_id").notNull(),
+  levelId: integer("level_id").notNull(),
+  isCorrect: boolean("is_correct").notNull(),
+  topic: text("topic"),
+  answeredAt: timestamp("answered_at")
+    .$defaultFn(() => new Date())
+    .notNull(),
+});
+
+export const dailyGoal = pgTable("daily_goal", {
+  id: text("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  date: date("date").notNull(),
+  questionsAnswered: integer("questions_answered").notNull().default(0),
+  xpEarned: integer("xp_earned").notNull().default(0),
+  goalType: text("goal_type").notNull().default("questions"),
+  goalValue: integer("goal_value").notNull().default(20),
+  isCompleted: boolean("is_completed").notNull().default(false),
+});
+
+export const achievementDefinition = pgTable("achievement_definition", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  description: text("description").notNull(),
+  xpReward: integer("xp_reward").notNull().default(0),
+  type: text("type").notNull(),
+  icon: text("icon"),
+  tier: text("tier").default("bronze"),
 });
 
 export const schema = {
@@ -133,4 +200,9 @@ export const schema = {
   userLevelProgress,
   userPayment,
   certificates,
+  userGamification,
+  userAchievement,
+  questionAttempt,
+  dailyGoal,
+  achievementDefinition,
 };
