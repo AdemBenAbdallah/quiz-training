@@ -1,22 +1,34 @@
 import { createClient } from "redis";
 import dotenv from "dotenv";
+
 dotenv.config();
 
 async function testRedisConnection() {
-  // Create Redis client with configuration
-  const client = createClient({
-    username: "default",
-    password: "ARhmAAImcDI5ODRjYjU3ZjNiYzU0MDUzYTNjNmE2MzFjNDljYzY5NXAyNjI0Ng",
-    socket: {
-      host: "one-wren-6246.upstash.io",
-      port: 6379,
-      tls: true,
-    },
-  });
+  const redisUrl = process.env.REDIS_URL;
+  const redisHost = process.env.REDIS_HOST;
+  const redisPassword = process.env.REDIS_PASSWORD;
 
-  // const client = createClient({
-  //   url: "rediss://default:ARhmAAImcDI5ODRjYjU3ZjNiYzU0MDUzYTNjNmE2MzFjNDljYzY5NXAyNjI0Ng@one-wren-6246.upstash.io:6379",
-  // });
+  const hasRedisUrl = redisUrl !== undefined && redisUrl !== "";
+  const hasRedisHost = redisHost !== undefined && redisHost !== "";
+  const hasRedisPassword = redisPassword !== undefined && redisPassword !== "";
+
+  if (hasRedisUrl === false && (hasRedisHost === false || hasRedisPassword === false)) {
+    throw new Error(
+      "Missing Redis configuration. Set REDIS_URL or REDIS_HOST + REDIS_PASSWORD in your environment.",
+    );
+  }
+
+  const client = hasRedisUrl
+    ? createClient({ url: redisUrl })
+    : createClient({
+        username: "default",
+        password: redisPassword,
+        socket: {
+          host: redisHost,
+          port: 6379,
+          tls: true,
+        },
+      });
 
   try {
     client.on("error", (err: Error) =>
@@ -29,25 +41,20 @@ async function testRedisConnection() {
       console.log("🔄 Redis Client Reconnecting..."),
     );
 
-    // Connect to Redis
     console.log("\n🔄 Connecting to Redis...");
     await client.connect();
 
-    // Test basic operations
     console.log("\n🧪 Testing Redis operations:");
 
-    // Test 1: Set a value
     console.log("\n1️⃣ Testing SET operation...");
     await client.set("test-key", "Hello from Redis!");
     console.log("✅ SET operation successful");
 
-    // Test 2: Get the value
     console.log("\n2️⃣ Testing GET operation...");
     const value = await client.get("test-key");
     console.log("📝 Retrieved value:", value);
     console.log("✅ GET operation successful");
 
-    // Test 3: Delete the value
     console.log("\n3️⃣ Testing DEL operation...");
     await client.del("test-key");
     const deletedValue = await client.get("test-key");
@@ -59,13 +66,11 @@ async function testRedisConnection() {
     console.error("❌ Redis Test Failed:", error);
     process.exit(1);
   } finally {
-    // Clean up
     await client.quit();
     console.log("\n👋 Redis connection closed");
   }
 }
 
-// Run the test
 console.log("🚀 Starting Redis connection test...");
 testRedisConnection().catch((error: Error) => {
   console.error("❌ Unhandled error:", error);
